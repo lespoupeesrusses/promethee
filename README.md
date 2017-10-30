@@ -98,7 +98,7 @@ Which renders to:
 ### Editor
 
 This would allow editing for a page model, with a data attributes as jsonb.
-``èrb
+```erb
 <%= form_for @page do |f| %>
     <%= f.text_field :title %>
     <%= f.promethee :data %>
