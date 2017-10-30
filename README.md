@@ -1,14 +1,20 @@
-# Prométhée
-## Brings fire to your pages
+# Prométhée | Bring fire to your page
 
 ## Where does it come from?
 As we built sites and digital solutions for some of the most prestigious brands (Givenchy, L’Oréal, Lancôme, Cartier, Hermès…) we often need to build spectacular pages, with a responsive layout, using a predefined design system or visual guidelines. Very often, our clients need to be able to do some creation or adaptation on their own. And in most situation, it has to be translated very easily, with no technical cost.
+
 Our first approach was to generate custom templates. For example, 10 years ago, before responsivity, we did a lot of multilingual content for Parfums Lolita Lempicka using a simple read/write system with something like 10 templates. We soon made a “Do what you feel” template, allowing the designer to put fields wherever he needed on the page, but it was completely unusable for people who lacked either design or development background.
+
 We then built a system for Cartier, where the content was made by a designer, then implemented by a front end developer with keys allowing the translation. This was good because creation was very free, but the client could make no content on its own.
+
 We built another tool for Diptyque, with content bricks that we assembled. Basically, it looked like vertical slides doing a nice one-page. It seemed like the perfect solution, but in the end it had so many options it became very hard to use, and still the different pages like quite similar.
+
 Then came the page builder. Inspired by Divi, the idea was to offer rows and columns, based on bootstrap. We built that for Hermès, as one of the different components available to build pages. Translation was fine, responsivity was fine, content was not super simple to do, but still quite simple, and the use of presets provided a good “easy to use” solution.
+
 We re-used the concept for Céline, and realized we had a mis-conception: the builder was the basic page editor, and we could add components in it.
+
 As we needed the solution for 2 projects, and a third one coming, we decided to make it a gem.
+
 Prométhée was born.
 
 ## What does it do?
