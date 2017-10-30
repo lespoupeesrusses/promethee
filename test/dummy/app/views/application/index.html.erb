@@ -1,0 +1,53 @@
+<%
+data = [
+  {
+    type: 'row',
+    children: [
+      {
+        type: 'col',
+        attributes: {
+          size: 4,
+          offset: 0
+        },
+        children: [
+          {
+            type: 'text',
+            attributes: {
+              body: '<p><b>This</b> is a text</p>'
+            }
+          },
+          {
+            type: 'image',
+            attributes: {
+              src: 'https://c1.staticflickr.com/5/4089/4975306844_f849232195_b.jpg',
+              alt: 'Prométhée'
+            }
+          }
+        ]
+      }
+    ]
+  }
+]
+%>
+
+<h1>Promethée</h1>
+<hr>
+
+<br>
+
+<h3>Rendering</h3>
+
+<%# lib/promethee/rails/helper.rb %>
+<%= promethee data %>
+
+<br><br>
+
+<h3>Editing</h3>
+
+<%# lib/promethee/core_ext/form_builder.rb %>
+<%= form_for :record do |f| %>
+  <%= f.promethee :data, value: data %> (nested in <code>form_for</code>)
+<% end %>
+
+<%# lib/promethee/core_ext/form_helper.rb %>
+<%= promethee_editor :record, :data, value: data %> (standing alone)
