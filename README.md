@@ -40,7 +40,71 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### Render
+
+The data is:
+```ruby
+# This could be stored in database
+data = [
+    {
+        type: 'row',
+        children: [
+            {
+                type: 'col',
+                attributes: {
+                    size: 4,
+                    offset: 0
+                },
+                children: [
+                    {
+                        type: 'text',
+                        attributes: {
+                            body: '<p><b>This</b> is a text</p>'
+                        }
+                    },
+                    {
+                        type: 'image',
+                        attributes: {
+                            src: 'https://c1.staticflickr.com/5/4089/4975306844_f849232195_b.jpg',
+                            alt: 'Prométhée'
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+]
+```
+
+The view is:
+```erb
+<%= promethee data %>
+```
+
+Which renders to:
+```html
+<div class="row promethee__component promethee__component--row">
+    <div class="col-md-4 promethee__component promethee__component--col">
+        <div class="promethee__component promethee__component--text">
+            <p><b>This</b> is a text</p>
+        </div>
+        <div class="promethee__component promethee__component--image">
+            <img src="https://c1.staticflickr.com/5/4089/4975306844_f849232195_b.jpg" alt="Prométhée">
+        </div>
+    </div>
+</div>
+```
+
+### Editor
+
+This would allow editing for a page model, with a data attributes as jsonb.
+``èrb
+<%= form_for @page do |f| %>
+    <%= f.text_field :title %>
+    <%= f.promethee :data %>
+    <%= f.submit %>
+<% end %>
+```
 
 ## Development
 
