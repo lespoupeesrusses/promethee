@@ -99,11 +99,10 @@ Which renders to:
 
 ### Editor
 
-This would allow editing for a page model, with a data attributes as jsonb.
+This would allow editing for a page model, with a jsonb data attribute.
 
 ```erb
 <%= form_for @page do |f| %>
-  <%= f.text_field :title %>
   <%= f.promethee :data %>
   <%= f.submit %>
 <% end %>
