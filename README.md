@@ -40,12 +40,12 @@ Or install it yourself as:
 
 ## Usage
 
+In this example, we have a page with a title (string) and a data (jsonb) attribute.
+
 ### Render
 
-The data is:
 ```ruby
-# This could be stored in database
-data = [
+@page.data = [
     {
         type: 'row',
         children: [
@@ -78,7 +78,7 @@ data = [
 
 The view is:
 ```erb
-<%= promethee data %>
+<%= promethee @page.data %>
 ```
 
 Which renders to:
