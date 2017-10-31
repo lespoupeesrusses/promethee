@@ -1,3 +1,12 @@
+require 'bootstrap-sass'
+require 'font-awesome-rails'
+require 'jquery-rails'
+require 'jquery-ui-rails'
+require 'tinymce-rails'
+require 'angularjs-rails'
+require 'angular-rails-templates'
+require 'angular-ui-tinymce/rails'
+
 module Promethee
   module Rails
     require 'promethee/rails/helper'
