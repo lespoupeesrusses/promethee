@@ -1,7 +1,9 @@
 # Prométhée | Bring fire to your page
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/98a8649f411bc9f50786/maintainability)](https://codeclimate.com/github/lespoupeesrusses/promethee/maintainability)
+
 ## Where does it come from?
-As we built sites and digital solutions for some of the most prestigious brands (Givenchy, L’Oréal, Lancôme, Cartier, Hermès…) we often need to build spectacular pages, with a responsive layout, using a predefined design system or visual guidelines. Very often, our clients need to be able to do some creation or adaptation on their own. And in most situation, it has to be translated very easily, with no technical cost.
+As we build sites and digital solutions for some of the most prestigious brands (Givenchy, L’Oréal, Lancôme, Cartier, Hermès…) we often need to build spectacular pages, with a responsive layout, using a predefined design system or visual guidelines. Very often, our clients need to be able to do some creation or adaptation on their own. And in most situation, it has to be translated very easily, with no technical cost.
 
 Our first approach was to generate custom templates. For example, 10 years ago, before responsivity, we did a lot of multilingual content for Parfums Lolita Lempicka using a simple read/write system with something like 10 templates. We soon made a “Do what you feel” template, allowing the designer to put fields wherever he needed on the page, but it was completely unusable for people who lacked either design or development background.
 
