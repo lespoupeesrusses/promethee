@@ -124,6 +124,10 @@ This would allow editing for a page model, with a jsonb data attribute.
 ```
 
 ### Roadmap
+- ~~Gem setup~~
+- renderer helper
+- editor helper (for form tag)
+- editor helper (for simple form)
 - Row
 - Col
 - Text
