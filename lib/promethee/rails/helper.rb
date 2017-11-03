@@ -1,8 +1,5 @@
-module Promethee::Rails
-  module Helper
-    def promethee(data = {})
-      # TODO: implement
-      'Here is the Prométhée renderer 🖼'
-    end
+module Promethee::Rails::Helper
+  def promethee(data)
+    Promethee::Grid.new(data).show
   end
 end

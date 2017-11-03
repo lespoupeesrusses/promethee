@@ -99,13 +99,22 @@ Which renders to:
 
 ### Editor
 
-This would allow editing for a page model, with a jsonb data attribute.
+This would allow editing for a page model, with a jsonb data attribute:
 
 ```erb
 <%= form_for @page do |f| %>
   <%= f.promethee :data %>
   <%= f.submit %>
 <% end %>
+```
+
+This would do quite the same thing:
+
+```erb
+<form action="/pages" method="post">
+  <%= promethee_editor :page, :data, @page.data %>
+  <input type="submit">
+</form>
 ```
 
 ### Roadmap

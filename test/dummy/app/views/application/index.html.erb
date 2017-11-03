@@ -4,18 +4,33 @@ data = [
     type: 'row',
     children: [
       {
-        type: 'col',
+        type: 'column',
         attributes: {
-          size: 4,
+          size: 8,
           offset: 0
         },
         children: [
           {
             type: 'text',
             attributes: {
-              body: '<p><b>This</b> is a text</p>'
+              body: '<h4>Lorem ipsum dolor sit amet,</h4><p>consectetur adipisicing elit. Voluptatum minus voluptas repellendus voluptatibus repudiandae, similique facere corporis, ipsam ducimus, velit ullam architecto vero dicta molestiae ratione dolor obcaecati quam. Eum.</p><p>Beatae enim iure eum quia. At magni doloribus commodi laborum iure quidem atque sint a! Rem recusandae, blanditiis quibusdam voluptates, molestiae ipsam?</p><br>'
             }
           },
+          {
+            type: 'text',
+            attributes: {
+              body: '<h4>Lorem ipsum dolor sit amet,</h4><p>consectetur adipisicing elit. Voluptatum minus voluptas repellendus voluptatibus repudiandae, similique facere corporis, ipsam ducimus, velit ullam architecto vero dicta molestiae ratione dolor obcaecati quam. Eum.</p><p>Beatae enim iure eum quia. At magni doloribus commodi laborum iure quidem atque sint a! Rem recusandae, blanditiis quibusdam voluptates, molestiae ipsam?</p><br>'
+            }
+          }
+        ]
+      },
+      {
+        type: 'column',
+        attributes: {
+          size: 4,
+          offset: 0
+        },
+        children: [
           {
             type: 'image',
             attributes: {
@@ -30,24 +45,13 @@ data = [
 ]
 %>
 
-<h1>Promethée</h1>
-<hr>
+<div class="container">
+  <h1>Promethée</h1>
+  <hr>
 
-<br>
+  <h2>Our data</h2>
+  <pre style="max-height: 200px;overflow: scroll;font-size: 11px"><%= JSON.pretty_generate data %></pre>
 
-<h3>Rendering</h3>
-
-<%# lib/promethee/rails/helper.rb %>
-<%= promethee data %>
-
-<br><br>
-
-<h3>Editing</h3>
-
-<%# lib/promethee/core_ext/form_builder.rb %>
-<%= form_for :record do |f| %>
-  <%= f.promethee :data, value: data %> (nested in <code>form_for</code>)
-<% end %>
-
-<%# lib/promethee/core_ext/form_helper.rb %>
-<%= promethee_editor :record, :data, value: data %> (standing alone)
+  <h2>Rendering</h2>
+  <%= promethee data %>
+</div>
