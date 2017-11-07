@@ -1,13 +1,10 @@
-@import 'bootstrap-sprockets'
 @import 'bootstrap'
-
 @import 'promethee-editor/mixins'
 
 .promethee-editor
   +grid-builder-set-gutter-width(0)
 
-  &, *
-    font-family: Helvetica
+  background: white
 
   &__component
     background: transparentize(#bbb, .8)
@@ -29,3 +26,10 @@
   &__content
     padding: 10px
 
+  &.fullscreen
+    position: fixed
+    left: 0
+    right: 0
+    bottom: 0
+    top: 0
+    overflow: auto

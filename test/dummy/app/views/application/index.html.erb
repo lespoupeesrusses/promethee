@@ -47,21 +47,21 @@ data = [
 
 <div>
   <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#data" aria-controls="data" role="tab" data-toggle="tab">Data</a></li>
+    <li role="presentation" class="active"><a href="#editing" aria-controls="editing" role="tab" data-toggle="tab">Editing</a></li>
     <li role="presentation"><a href="#rendering" aria-controls="rendering" role="tab" data-toggle="tab">Rendering</a></li>
-    <li role="presentation"><a href="#editing" aria-controls="editing" role="tab" data-toggle="tab">Editing</a></li>
+    <li role="presentation"><a href="#data" aria-controls="data" role="tab" data-toggle="tab">Data</a></li>
   </ul>
   <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="data">
-      <pre><%= JSON.pretty_generate data %></pre>
+    <div role="tabpanel" class="tab-pane active" id="editing">
+      <%= form_for :record do |f| %>
+        <%= f.promethee :data, value: data %>
+      <% end %>
     </div>
     <div role="tabpanel" class="tab-pane" id="rendering">
       <%= promethee data %>
     </div>
-    <div role="tabpanel" class="tab-pane" id="editing">
-      <%= form_for :record do |f| %>
-        <%= f.promethee :data, value: data %>
-      <% end %>
+    <div role="tabpanel" class="tab-pane" id="data">
+      <pre><%= JSON.pretty_generate data %></pre>
     </div>
   </div>
 </div>
