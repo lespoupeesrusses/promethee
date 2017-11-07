@@ -6,7 +6,7 @@ class Promethee::Component::Base
     @children = Promethee::Component::Collection.new children
   end
 
-  def to_hash
+  def to_hash *options
     {
       type: type,
       attributes: attributes.to_hash,
