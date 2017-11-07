@@ -4,7 +4,6 @@ require 'jquery-rails'
 require 'jquery-ui-rails'
 require 'tinymce-rails'
 require 'angularjs-rails'
-require 'angular-rails-templates'
 require 'angular-ui-tinymce/rails'
 
 module Promethee

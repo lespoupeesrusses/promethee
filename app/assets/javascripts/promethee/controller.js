@@ -1,82 +1,22 @@
-Promethee.Controller = function(promethee) {
-  this.promethee = promethee;
+Promethee.Controller = function(name, initializer) {
+  this.name = name;
+  this.initializer = initializer;
 };
 
 Promethee.Controller.prototype = {
   constructor: Promethee.Controller,
-  abstract: true,
-  name: 'Controller',
-  dependencies: [],
 
-  initializer: function() {
-
-  },
-
-  initialize: function() {
-    console.log('Initialized '+ this.name + ' controller');
-
-    if(!this.abstract) {
-      var self = this;
-
-      this.promethee.app.controller(this.name, this.dependencies.concat([function() {
-        this.promethee = self.promethee;
-        self.initializer.apply(this, arguments);
-      }]));
-    }
-
-    var controller;
-
-    for(var i = 0; i < this.constructor.controllers.length; i++) {
-      controller = new this.constructor.controllers[i](this.promethee);
-      controller.initialize();
-    }
+  initialize: function(promethee) {
+    promethee.app.controller(this.name, this.initializer);
   }
 };
 
-Promethee.Controller.for = function(name, initializer, abstract) {
-  var self = this;
+Promethee.Controller.controllers = {};
 
-  var controller = function() {
-    self.apply(this, arguments);
-  };
-
-  if(!Array.isArray(initializer)) initializer = [initializer];
-  if(typeof initializer[initializer.length - 1] !== 'function') initializer.push(function() {});
-
-  controller.prototype = Object.create(self.prototype, {
-    constructor: {
-      value: controller
-    },
-
-    abstract: {
-      value: !!abstract
-    },
-
-    name: {
-      value: name
-    },
-
-    dependencies: {
-      value: initializer.slice(0, -1)
-    },
-
-    initializer: {
-      value: function() {
-        self.prototype.initializer.apply(this, arguments);
-        initializer[initializer.length - 1].apply(this, arguments);
-      }
-    }
-  });
-
-  controller.for = this.for;
-  controller.controllers = [];
-
-  this.controllers.push(controller);
-  this[name] = controller;
+Promethee.Controller.for = function(name, initializer) {
+  this.controllers[name] = new this(name, initializer);
 };
 
-Promethee.Controller.abstract = function(name, initializer) {
-  this.for(name, initializer, true);
+Promethee.Controller.initialize = function(promethee) {
+  for(var name in this.controllers) this.controllers[name].initialize(promethee);
 };
-
-Promethee.Controller.controllers = [];

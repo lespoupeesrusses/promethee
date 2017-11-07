@@ -23,8 +23,7 @@ class Promethee::Grid
 
   def to_javascript
     <<-JAVASCRIPT.html_safe
-      var promethee = new Promethee(#{id.to_json}, #{data.to_json});
-      promethee.initialize();
+      new Promethee(#{id.to_json}, #{data.to_json})
     JAVASCRIPT
   end
   alias_method :to_js, :to_javascript
