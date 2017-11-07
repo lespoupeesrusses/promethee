@@ -16,7 +16,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'rails', '~> 5.1.3'
   s.add_dependency 'angularjs-rails', '~> 1.6.2'
-  s.add_dependency 'angular-rails-templates', '~> 1.0.2'
   s.add_dependency 'angular-ui-tinymce-rails'
   s.add_dependency 'bootstrap-sass', '~> 3.3.6'
   s.add_dependency 'sass-rails', '>= 3.2'

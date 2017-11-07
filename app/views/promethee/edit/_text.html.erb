@@ -1,3 +1,20 @@
-<div ng-controller="Text as text" ng-init="text.data = data">
-  <textarea ng-model="text.data.attributes.body" style="width: 100%;min-height: 150px"></textarea>
-</div>
+<script type="text/ng-template" id="promethee/text">
+  <div ng-controller="Text as text" ng-init="text.data = data">
+    <p ng-if="text.editing" class="text-right">
+      <span ng-click="text.editing = false" class="btn btn-xs btn-default">Close editor</span>
+    </p>
+
+    <textarea ng-if="text.editing" ui-tinymce="tinymceOptions" ng-model="text.data.attributes.body"></textarea>
+    <div ng-if="!text.editing" ng-bind-html="text.data.attributes.body | htmlSafe" ng-click="text.editing = true"></div>
+  </div>
+</script>
+
+<script>
+  Promethee.Controller.for('Text', ['$scope', function($scope) {
+    this.editing = false;
+
+    $scope.tinymceOptions = {
+      branding: false
+    };
+  }]);
+</script>

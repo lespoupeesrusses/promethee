@@ -1,3 +1,11 @@
-<div ng-controller="Component as component" ng-init="component.data = data || promethee.data" draggable>
-  <div ng-include src="'promethee/' + component.data.type"></div>
-</div>
+<script type="text/ng-template" id="promethee/component">
+  <div ng-controller="Component as component" ng-init="component.data = data || promethee.data" draggable>
+    <div ng-include src="'promethee/' + component.data.type"></div>
+  </div>
+</script>
+
+<script>
+  Promethee.Controller.for('Component', function() {
+
+  });
+</script>

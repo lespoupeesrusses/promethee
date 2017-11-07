@@ -1,4 +1,6 @@
+//= require tinymce
 //= require angular
+//= require angular-ui-tinymce-rails
 //= require_self
 //= require_tree './promethee'
 
@@ -9,6 +11,7 @@ Promethee = function(name, data) {
 
 Promethee.prototype = {
   constructor: Promethee,
+  dependencies: ['ui.tinymce'],
 
   get app() {
     if(!this.initialized) this.initialize();
@@ -20,7 +23,9 @@ Promethee.prototype = {
   },
 
   initialize: function() {
-    this._app = angular.module(this.name, []);
+    this._app = angular
+      .module(this.name, this.dependencies)
+      .constant('promethee', this);
 
     this.app.filter('htmlSafe', ['$sce', function($sce){
       return function(val) {
@@ -28,7 +33,6 @@ Promethee.prototype = {
       };
     }]);
 
-    var controller = new this.constructor.Controller(this);
-    controller.initialize();
+    this.constructor.Controller.initialize(this);
   }
 };
