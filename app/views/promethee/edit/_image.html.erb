@@ -1,1 +1,3 @@
-Image
+<div ng-controller="Image as image" ng-init="image.data = data">
+  <img ng-src="{{image.data.attributes.src}}" class="img-responsive">
+</div>

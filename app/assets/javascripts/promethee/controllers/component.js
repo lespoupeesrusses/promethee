@@ -1,3 +1,3 @@
-Promethee.Controller.for.abstract('Component', function() {
+Promethee.Controller.for('Component', function() {
 
 });

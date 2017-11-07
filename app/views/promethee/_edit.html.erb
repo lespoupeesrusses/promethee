@@ -1,10 +1,11 @@
-<%= promethee_templates %>
+<script type="text/javascript">
+  <%= promethee.to_js %>
+</script>
 
-<div
-  id="<%= promethee.id %>"
-  ng-app="<%= promethee.id %>"
-  ng-controller="PrometheeController as prometheeController"
-  class="promethee"
->
-  <%= promethee.input 'ng-model' => :data %>
+<div id="<%= promethee.id %>" ng-app="<%= promethee.id %>" ng-controller="Promethee as promethee" class="promethee">
+  <%= promethee_template :component %>
+  <%= promethee_templates %>
+  <%= promethee.input %>
+
+  <div ng-repeat="data in promethee.data track by $id(data)" ng-include="'promethee/component'"></div>
 </div>

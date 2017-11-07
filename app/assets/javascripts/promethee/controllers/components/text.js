@@ -1,3 +1,3 @@
-Promethee.Controller.Component.for('Text', function() {
+Promethee.Controller.Component.for('Text', function($sce) {
 
 });

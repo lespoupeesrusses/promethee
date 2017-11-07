@@ -1,1 +1,5 @@
-Row
+<div ng-controller="Row as row" ng-init="row.data = data">
+  <div class="row">
+    <div ng-repeat="data in row.data.children track by $id(data)" ng-include="'promethee/component'"></div>
+  </div>
+</div>
