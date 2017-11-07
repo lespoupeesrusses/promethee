@@ -2,7 +2,13 @@
   <div ng-controller="Row as row" ng-init="row.data = data">
     <div class="row">
       <div class="promethee-editor__component promethee-editor__component--row">
+
+        <div class="promethee-editor__toolbar">
+          Row
+        </div>
+
         <div ng-repeat="data in row.data.children track by $id(data)" ng-include="'promethee/component'"></div>
+        <div class="clearfix"></div>
       </div>
     </div>
   </div>

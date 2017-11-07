@@ -1,0 +1,31 @@
+@import 'bootstrap-sprockets'
+@import 'bootstrap'
+
+@import 'promethee-editor/mixins'
+
+.promethee-editor
+  +grid-builder-set-gutter-width(0)
+
+  &, *
+    font-family: Helvetica
+
+  &__component
+    background: transparentize(#bbb, .8)
+    border-radius: 10px
+    margin: 6px
+    overflow: auto
+
+    &--text
+      .mce-tinymce
+        border: none
+
+    &--final
+      background: #fff
+
+  &__toolbar
+    border-bottom: 1px solid transparentize(#bbb, .8)
+    padding: 10px
+
+  &__content
+    padding: 10px
+

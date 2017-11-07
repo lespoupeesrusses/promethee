@@ -1,12 +1,14 @@
 <script type="text/ng-template" id="promethee/text">
   <div ng-controller="Text as text" ng-init="text.data = data">
-    <div class="promethee-editor__component promethee-editor__component--text">
-      <p ng-if="text.editing" class="text-right">
-        <span ng-click="text.editing = false" class="btn btn-xs btn-default">Close editor</span>
-      </p>
+    <div class="promethee-editor__component promethee-editor__component--text promethee-editor__component--final">
+
+      <div class="promethee-editor__toolbar">
+        Text
+        <span ng-if="text.editing" ng-click="text.editing = false" class="btn btn-xs btn-default pull-right">Close editor</span>
+      </div>
 
       <textarea ng-if="text.editing" ui-tinymce="tinymceOptions" ng-model="text.data.attributes.body"></textarea>
-      <div ng-if="!text.editing" ng-bind-html="text.data.attributes.body | htmlSafe" ng-click="text.editing = true"></div>
+      <div ng-if="!text.editing" class="promethee-editor__content" ng-bind-html="text.data.attributes.body | htmlSafe" ng-click="text.editing = true"></div>
     </div>
   </div>
 </script>

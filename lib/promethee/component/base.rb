@@ -40,6 +40,14 @@ class Promethee::Component::Base
     to_s.split('::').last.underscore.to_sym
   end
 
+  def self.final?
+    children.empty?
+  end
+
+  # def self.class_name
+  #   "promethee-editor__component promethee__component--#{type}#{' promethee__component--final' if final?}"
+  # end
+
   private
 
   def self.has_attributes
