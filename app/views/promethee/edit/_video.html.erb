@@ -1,9 +1,11 @@
 <script type="text/ng-template" id="promethee/video">
   <div ng-controller="Video as video" ng-init="video.data = data">
-    <div class="embed-responsive embed-responsive-16by9">
-      <video class="embed-responsive-item">
-        <source ng-src="{{video.data.attributes.src}}">
-      </video>
+    <div class="promethee-editor__component promethee-editor__component--video">
+      <div class="embed-responsive embed-responsive-16by9">
+        <video class="embed-responsive-item">
+          <source ng-src="{{video.data.attributes.src}}">
+        </video>
+      </div>
     </div>
   </div>
 </script>

@@ -1,7 +1,9 @@
 <script type="text/ng-template" id="promethee/column">
   <div ng-controller="Column as column" ng-init="column.data = data">
     <div class="col col-md-{{column.data.attributes.size}} col-md-offset-{{column.data.attributes.offset}}">
-      <div ng-repeat="data in column.data.children track by $id(data)" ng-include="'promethee/component'"></div>
+      <div class="promethee-editor__component promethee-editor__component--column">
+        <div ng-repeat="data in column.data.children track by $id(data)" ng-include="'promethee/component'"></div>
+      </div>
     </div>
   </div>
 </script>

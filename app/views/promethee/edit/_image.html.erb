@@ -1,25 +1,26 @@
 <script type="text/ng-template" id="promethee/image">
   <div ng-controller="Image as image" ng-init="image.data = data" style="position: relative">
-
-    <div ng-if="image.editing" class="panel panel-default" style="width: 90%;max-width: 300px;position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);">
-      <div class="panel-heading">
-        <span ng-click="image.editing = false" class="btn btn-default btn-xs pull-right">Close settings</span>
-        <div class="clearfix"></div>
-      </div>
-      <div class="panel-body">
-        <div class="form-group">
-          <label class="label-control">Url</label>
-          <input ng-model="image.data.attributes.src" class="form-control" type="text"/>
+    <div class="promethee-editor__component promethee-editor__component--image">
+      <div ng-if="image.editing" class="panel panel-default" style="width: 90%;max-width: 300px;position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);">
+        <div class="panel-heading">
+          <span ng-click="image.editing = false" class="btn btn-default btn-xs pull-right">Close settings</span>
+          <div class="clearfix"></div>
         </div>
+        <div class="panel-body">
+          <div class="form-group">
+            <label class="label-control">Url</label>
+            <input ng-model="image.data.attributes.src" class="form-control" type="text"/>
+          </div>
 
-        <div class="form-group">
-          <label class="label-control">Alt</label>
-          <input ng-model="image.data.attributes.alt" class="form-control" type="text"/>
+          <div class="form-group">
+            <label class="label-control">Alt</label>
+            <input ng-model="image.data.attributes.alt" class="form-control" type="text"/>
+          </div>
         </div>
       </div>
+
+      <img ng-click="image.editing = true" ng-src="{{image.data.attributes.src}}" class="img-responsive">
     </div>
-
-    <img ng-click="image.editing = true" ng-src="{{image.data.attributes.src}}" class="img-responsive">
   </div>
 </script>
 
