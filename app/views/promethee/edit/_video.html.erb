@@ -1,6 +1,6 @@
 <script type="text/ng-template" id="promethee/video">
-  <div ng-controller="Video as video" ng-init="video.data = data">
-    <div class="promethee-editor__component promethee-editor__component--video promethee-editor__component--final">
+  <div ng-controller="Video as video" ng-init="video.data = data;video.siblings = siblings">
+    <div dnd-draggable="video.data" dnd-moved="siblings.splice(siblings.indexOf(video.data), 1)" class="promethee-editor__component promethee-editor__component--video promethee-editor__component--final">
 
       <div class="promethee-editor__toolbar">
         Video

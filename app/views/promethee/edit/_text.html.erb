@@ -1,6 +1,6 @@
 <script type="text/ng-template" id="promethee/text">
-  <div ng-controller="Text as text" ng-init="text.data = data">
-    <div class="promethee-editor__component promethee-editor__component--text promethee-editor__component--final">
+  <div ng-controller="Text as text" ng-init="text.data = data;text.siblings = siblings">
+    <div dnd-draggable="text.data" dnd-moved="siblings.splice(siblings.indexOf(text.data), 1)" class="promethee-editor__component promethee-editor__component--text promethee-editor__component--final">
 
       <div class="promethee-editor__toolbar">
         Text

@@ -41,7 +41,7 @@
   </nav>
 
   <div class="promethee-editor__page" ng-class="{ 'container-fluid': promethee.fullscreen }">
-    <div ng-repeat="data in promethee.data track by $id(data)" ng-include="'promethee/component'"></div>
+    <div ng-repeat="data in promethee.data track by $id(data)" ng-init="siblings = promethee.data"  ng-include="'promethee/component'"></div>
   </div>
   <!-- Work in progress -->
   <!-- <iframe id="iframe"></iframe> !-->

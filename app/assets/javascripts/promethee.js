@@ -12,7 +12,7 @@ Promethee = function(id, data) {
 
 Promethee.prototype = {
   constructor: Promethee,
-  dependencies: ['ui.tinymce'],
+  dependencies: ['ui.tinymce', 'dndLists'],
 
   get app() {
     if(!this.initialized) this.initialize();

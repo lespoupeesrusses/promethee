@@ -1,13 +1,13 @@
 <script type="text/ng-template" id="promethee/column">
-  <div ng-controller="Column as column" ng-init="column.data = data">
+  <div ng-controller="Column as column" ng-init="column.data = data;column.siblings = siblings">
     <div class="col col-md-{{column.data.attributes.size}} col-md-offset-{{column.data.attributes.offset}}">
-      <div class="promethee-editor__component promethee-editor__component--column">
+      <div dnd-list="column.data.children" dnd-draggable="column.data" dnd-moved="siblings.splice(siblings.indexOf(column.data), 1)" class="promethee-editor__component promethee-editor__component--column">
 
         <div class="promethee-editor__toolbar">
           Column
         </div>
 
-        <div ng-repeat="data in column.data.children track by $id(data)" ng-include="'promethee/component'"></div>
+        <div ng-repeat="data in column.data.children track by $id(data)" ng-init="siblings = column.data.children" ng-include="'promethee/component'"></div>
       </div>
     </div>
   </div>
