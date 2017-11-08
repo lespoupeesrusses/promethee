@@ -4,21 +4,26 @@
 
       <div class="promethee-editor__toolbar">
         Text
-        <span ng-if="text.editing" ng-click="text.editing = false" class="btn btn-xs btn-default pull-right">Close editor</span>
+        <span ng-if="text.editing" ng-click="text.complete()" class="btn btn-xs btn-default pull-right">Close editor</span>
       </div>
 
       <textarea ng-if="text.editing" ui-tinymce="tinymceOptions" ng-model="text.data.attributes.body"></textarea>
-      <div ng-if="!text.editing" class="promethee-editor__content" ng-bind-html="text.data.attributes.body | htmlSafe" ng-click="text.editing = true"></div>
+      <div ng-if="!text.editing" class="promethee-editor__wrapper" ng-bind-html="text.data.attributes.body | htmlSafe" ng-click="text.edit()"></div>
     </div>
   </div>
 </script>
 
 <script>
-  Promethee.Controller.for('Text', ['$scope', function($scope) {
-    this.editing = false;
+  Promethee.Controller.for('Text', ['$controller', '$scope', function($controller, $scope) {
+    $controller('Component');
 
     $scope.tinymceOptions = {
-      branding: false
+      plugins: 'autoresize',
+      toolbar: 'styleselect | bold italic',
+      menubar: false,
+      statusbar: false,
+      branding: false,
+      autoresize_bottom_margin: 0
     };
   }]);
 </script>

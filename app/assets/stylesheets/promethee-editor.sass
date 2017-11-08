@@ -1,6 +1,7 @@
 @import 'bootstrap-sprockets'
 @import 'bootstrap'
 
+@import 'promethee-editor/variables'
 @import 'promethee-editor/mixins'
 
 .promethee-editor
@@ -9,8 +10,21 @@
   &, *
     font-family: Helvetica
 
+  display: flex
+  align-items: stretch
+
+  &__sidebar
+    background: $promethee-light-grey
+    width: 300px
+    flex-grow: 0
+    flex-shrink: 0
+
+  &__content
+    flex-grow: 1
+    flex-shrink: 1
+
   &__component
-    background: transparentize(#bbb, .8)
+    background: $promethee-transparent-grey
     border-radius: 10px
     margin: 6px
     overflow: auto
@@ -19,13 +33,22 @@
       .mce-tinymce
         border: none
 
+      .mce-panel
+        border-top-color: $promethee-transparent-grey
+
+      .mce-btn-group:not(:first-child)
+        border-left-color: $promethee-transparent-grey
+
+      .mce-top-part::before
+        box-shadow: none
+
     &--final
       background: #fff
 
   &__toolbar
-    border-bottom: 1px solid transparentize(#bbb, .8)
+    border-bottom: 1px solid $promethee-transparent-grey
     padding: 10px
 
-  &__content
+  &__wrapper
     padding: 10px
 

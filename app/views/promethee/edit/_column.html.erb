@@ -14,7 +14,7 @@
 </script>
 
 <script>
-  Promethee.Controller.for('Column', function() {
-
-  });
+  Promethee.Controller.for('Column', ['$controller', function($controller) {
+    $controller('Component');
+  }]);
 </script>

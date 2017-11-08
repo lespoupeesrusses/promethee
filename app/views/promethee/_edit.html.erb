@@ -3,12 +3,19 @@
   <%= promethee_templates %>
   <%= promethee.input %>
 
-  <div ng-repeat="data in promethee.data track by $id(data)" ng-include="'promethee/component'"></div>
+  <div class="promethee-editor__content">
+    <div ng-repeat="data in promethee.data track by $id(data)" ng-include="'promethee/component'"></div>
+  </div>
+
+  <div class="promethee-editor__sidebar{{promethee.state.editing ? ' promethee-editor__sidebar--open' : ''}}">
+
+  </div>
 </div>
 
 <script>
-  Promethee.Controller.for('Promethee', ['promethee', function(promethee) {
+  Promethee.Controller.for('Promethee', ['promethee', 'state', function(promethee, state) {
     this.data = promethee.data;
+    this.state = state;
   }]);
 </script>
 

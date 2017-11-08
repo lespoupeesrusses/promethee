@@ -16,7 +16,7 @@
 </script>
 
 <script>
-  Promethee.Controller.for('Video', function() {
-
-  });
+  Promethee.Controller.for('Video', ['$controller', function($controller) {
+    $controller('Component');
+  }]);
 </script>

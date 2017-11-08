@@ -1,11 +1,12 @@
 //= require tinymce
 //= require angular
 //= require angular-ui-tinymce-rails
+//= require angular-drag-and-drop-lists
 //= require_self
 //= require_tree './promethee'
 
-Promethee = function(name, data) {
-  this.name = name;
+Promethee = function(id, data) {
+  this.id = id;
   this.data = data;
 };
 
@@ -24,8 +25,11 @@ Promethee.prototype = {
 
   initialize: function() {
     this._app = angular
-      .module(this.name, this.dependencies)
-      .constant('promethee', this);
+      .module(this.id, this.dependencies)
+      .constant('promethee', this)
+      .value('state', {
+        editing: false
+      })
 
     this.app.filter('htmlSafe', ['$sce', function($sce){
       return function(val) {
