@@ -146,9 +146,9 @@ Before the form is submit, we take the data from the angular app (through a plai
 
 ### Roadmap
 - ~~Gem setup~~
-- renderer helper
-- editor helper (for form tag)
-- editor helper (for simple form)
+- ~~renderer helper~~
+- ~~editor helper (for form tag)~~
+- ~~editor helper (for simple form)~~
 - Row
 - Col
 - Text
