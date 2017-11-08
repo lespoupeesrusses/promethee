@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Prométhée in an iframe</title>
+</head>
+<body>
+  <form onsubmit="syncFormFromFrame(event)">
+    This input will contain json data, and be hidden<br>
+    <input id="promethee" type="text" value=""><br>
+    This iframe will contain the Prométhée editor<br>
+    <iframe id="iframe"></iframe><br>
+    <input type="submit">
+  </form>
+  <script type="text/javascript">
+    var iframe = document.getElementById('iframe').contentWindow;
+    function syncFormFromFrame(event) {
+      document.getElementById('promethee').value = iframe.data.value;
+      event.preventDefault();
+    }
+    function loadAppInFrame() {
+      var script = iframe.document.createElement('script');
+      script.src = 'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js';
+      script.onload = function() {
+        iframe.data = { value: 'initial value' };
+        iframe.angular.module("promethee", []).controller('Controller', function($scope) {
+          $scope.data = iframe.data;
+        });
+      }
+      iframe.document.head.appendChild(script);
+      iframe.document.body.innerHTML = '<div ng-app="promethee" ng-controller="Controller"><input type="text" ng-model="data.value"><br/>{{data.value}}</div>';
+    }
+    loadAppInFrame();
+  </script>
+</body>
+</html>

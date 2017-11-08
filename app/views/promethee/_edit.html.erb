@@ -2,33 +2,66 @@
       ng-app="<%= promethee.id %>" 
       ng-controller="Promethee as promethee" 
       class="promethee-editor" 
-      ng-class="{fullscreen: promethee.fullscreen}">
+      ng-class="{ 
+        'fullscreen': promethee.fullscreen, 
+        'promethee-editor--preview': promethee.preview,
+        'promethee-editor--preview--mobile': promethee.preview && promethee.previewMode == 'mobile',
+        'promethee-editor--preview--tablet': promethee.preview && promethee.previewMode == 'tablet',
+        'promethee-editor--preview--desktop': promethee.preview && promethee.previewMode == 'desktop'
+      }">
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
         <%= image_tag 'icon-promethee.png', class: 'navbar-brand' %>
       </div>
-      <div id="navbar" class="navbar-collapse collapse">
+      <div id="navbar">
         <ul class="nav navbar-nav navbar-right">
-          <li ng-click="promethee.fullscreen = true" ng-hide="promethee.fullscreen"><a><i class="fa fa-expand" aria-hidden="true"></i>fullscreen</a></li>
-          <li ng-click="promethee.fullscreen = false" ng-show="promethee.fullscreen"><a><i class="fa fa-compress" aria-hidden="true"></i>quit full</a></li>
+          <li ng-click="promethee.startPreview()" ng-hide="promethee.preview"><a><%= fa_icon :eye %></a></li>
+          <li ng-click="promethee.previewMode = 'mobile'" ng-class="{ active: promethee.previewMode == 'mobile' }" ng-show="promethee.preview">
+            <a><%= fa_icon :mobile %></a>
+          </li>
+          <li ng-click="promethee.previewMode = 'tablet'" ng-class="{ active: promethee.previewMode == 'tablet' }" ng-show="promethee.preview"><a>
+            <%= fa_icon :tablet %></a>
+          </li>
+          <li ng-click="promethee.previewMode = 'desktop'" ng-class="{ active: promethee.previewMode == 'desktop' }" ng-show="promethee.preview"><a>
+            <%= fa_icon :desktop %></a>
+          </li>
+          <li ng-click="promethee.stopPreview()" ng-show="promethee.preview"><a><%= fa_icon 'eye-slash' %></a>
+          </li>
+          <li ng-click="promethee.fullscreen = true" ng-hide="promethee.fullscreen"><a><%= fa_icon :expand %></a></li>
+          <li ng-click="promethee.fullscreen = false" ng-show="promethee.fullscreen"><a><%= fa_icon :compress %></a></li>
         </ul>
-      </div><!--/.nav-collapse -->
-    </div><!--/.container-fluid -->
+      </div>
+    </div>
   </nav>
 
   <%= promethee_template :component %>
   <%= promethee_templates %>
   <%= promethee.input %>
-  <div ng-class="{ 'container-fluid': promethee.fullscreen}">
+  <div class="promethee-editor__page" ng-class="{ 'container-fluid': promethee.fullscreen }">
     <div ng-repeat="data in promethee.data track by $id(data)" ng-include="'promethee/component'"></div>
   </div>
+  <!-- Work in progress -->
+  <iframe id="iframe"></iframe>
 </div>
 
 <script>
   Promethee.Controller.for('Promethee', ['promethee', function(promethee) {
+    var self = this;
     this.data = promethee.data;
     this.fullscreen = false;
+    this.preview = false;
+    this.previewMode = 'desktop';
+
+    this.startPreview = function() {
+      self.preview = true;
+      // Work in progress
+      document.getElementById('iframe').contentWindow.document.documentElement.innerHTML = document.documentElement.innerHTML;
+    }
+
+    this.stopPreview = function() {
+      self.preview = false;
+    }
   }]);
 </script>
 
