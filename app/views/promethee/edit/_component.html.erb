@@ -5,33 +5,7 @@
 </script>
 
 <script>
-  Promethee.Controller.for('Component', ['$scope', 'state', function($scope, state) {
-    $scope.selected = false;
+  Promethee.Controller.for('Component', function() {
 
-    $scope.select = function() {
-      this.selected = true;
-      state.selected = this.data;
-    };
-
-    Object.defineProperties(this, {
-      editing: {
-        get: function() {
-          return this._editing && state.editing;
-        },
-
-        set: function(v) {
-          this._editing = state.editing = v;
-        }
-      }
-    });
-
-    this.edit = function() {
-      alert('ok');
-      this.editing = true;
-    };
-
-    this.complete = function() {
-      this.editing = false;
-    };
-  }]);
+  });
 </script>

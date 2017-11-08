@@ -1,25 +1,37 @@
 <%
 data = [
   {
+    type: 'image',
+    attributes: {
+      src: 'https://images.unsplash.com/photo-1502919280275-1bed9aca68ab?auto=format&fit=crop&w=1500&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D'
+    }
+  },
+  {
+    type: 'text',
+    attributes: {
+      body: '<h1><small>SCENE I.</small><br>A wood near Athens.</h1><h2>Enter, from opposite sides, a Fairy, and PUCK</h2>'
+    }
+  },
+  {
     type: 'row',
     children: [
       {
         type: 'column',
         attributes: {
-          size: 8,
+          size: 6,
           offset: 0
         },
         children: [
           {
             type: 'text',
             attributes: {
-              body: '<h4>Lorem ipsum dolor sit amet,</h4><p>consectetur adipisicing elit. Voluptatum minus voluptas repellendus voluptatibus repudiandae, similique facere corporis, ipsam ducimus, velit ullam architecto vero dicta molestiae ratione dolor obcaecati quam. Eum.</p><p>Beatae enim iure eum quia. At magni doloribus commodi laborum iure quidem atque sint a! Rem recusandae, blanditiis quibusdam voluptates, molestiae ipsam?</p><br>'
+              body: '<h3>PUCK</h3><p>How now, spirit! whither wander you?</p>'
             }
           },
           {
             type: 'text',
             attributes: {
-              body: '<h4>Lorem ipsum dolor sit amet,</h4><p>consectetur adipisicing elit. Voluptatum minus voluptas repellendus voluptatibus repudiandae, similique facere corporis, ipsam ducimus, velit ullam architecto vero dicta molestiae ratione dolor obcaecati quam. Eum.</p><p>Beatae enim iure eum quia. At magni doloribus commodi laborum iure quidem atque sint a! Rem recusandae, blanditiis quibusdam voluptates, molestiae ipsam?</p><br>'
+              body: '<h3>Fairy</h3><p>Over hill, over dale,<br>Thorough bush, thorough brier,<br>Over park, over pale,<br>Thorough flood, thorough fire,<br>I do wander everywhere,<br>Swifter than the moon\'s sphere;<br>And I serve the fairy queen,<br>To dew her orbs upon the green.<br>The cowslips tall her pensioners be:<br>In their gold coats spots you see;<br>Those be rubies, fairy favours,<br>In those freckles live their savours:<br>I must go seek some dewdrops here<br>And hang a pearl in every cowslip\'s ear.<br>Farewell, thou lob of spirits; I\'ll be gone:<br>Our queen and all our elves come here anon.</p>'
             }
           }
         ]
@@ -27,15 +39,51 @@ data = [
       {
         type: 'column',
         attributes: {
-          size: 4,
+          size: 6,
           offset: 0
         },
         children: [
           {
             type: 'image',
             attributes: {
-              src: 'https://c1.staticflickr.com/5/4089/4975306844_f849232195_b.jpg',
-              alt: 'Prométhée'
+              src: 'https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1050&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D',
+              alt: 'Wood'
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    type: 'row',
+    children: [
+      {
+        type: 'column',
+        attributes: {
+          size: 6,
+          offset: 0
+        },
+        children: [
+          {
+            type: 'image',
+            attributes: {
+              src: 'https://images.unsplash.com/photo-1502581827181-9cf3c3ee0106?auto=format&fit=crop&w=721&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D',
+              alt: 'Night'
+            }
+          }
+        ]
+      },
+      {
+        type: 'column',
+        attributes: {
+          size: 6,
+          offset: 0
+        },
+        children: [
+          {
+            type: 'text',
+            attributes: {
+              body: '<h3>PUCK</h3><p>The king doth keep his revels here to-night:<br>Take heed the queen come not within his sight;<br>For Oberon is passing fell and wrath,<br>Because that she as her attendant hath<br>A lovely boy, stolen from an Indian king;<br>She never had so sweet a changeling;<br>And jealous Oberon would have the child<br>Knight of his train, to trace the forests wild;<br>But she perforce withholds the loved boy,<br>Crowns him with flowers and makes him all her joy:<br>And now they never meet in grove or green,<br>By fountain clear, or spangled starlight sheen,<br>But, they do square, that all their elves for fear<br>Creep into acorn-cups and hide them there.</p>'
             }
           }
         ]
@@ -47,21 +95,21 @@ data = [
 
 <div>
   <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#data" aria-controls="data" role="tab" data-toggle="tab">Data</a></li>
+    <li role="presentation" class="active"><a href="#editing" aria-controls="editing" role="tab" data-toggle="tab">Editing</a></li>
     <li role="presentation"><a href="#rendering" aria-controls="rendering" role="tab" data-toggle="tab">Rendering</a></li>
-    <li role="presentation"><a href="#editing" aria-controls="editing" role="tab" data-toggle="tab">Editing</a></li>
+    <li role="presentation"><a href="#data" aria-controls="data" role="tab" data-toggle="tab">Data</a></li>
   </ul>
   <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="data">
-      <pre><%= JSON.pretty_generate data %></pre>
+    <div role="tabpanel" class="tab-pane active" id="editing">
+      <%= form_for :record do |f| %>
+        <%= f.promethee :data, value: data %>
+      <% end %>
     </div>
     <div role="tabpanel" class="tab-pane" id="rendering">
       <%= promethee data %>
     </div>
-    <div role="tabpanel" class="tab-pane" id="editing">
-      <%= form_for :record do |f| %>
-        <%= f.promethee :data, value: data %>
-      <% end %>
+    <div role="tabpanel" class="tab-pane" id="data">
+      <pre><%= JSON.pretty_generate data %></pre>
     </div>
   </div>
 </div>

@@ -16,6 +16,8 @@ module Promethee::Component
   def self.from data
     raise "Invalid data provided, expected a Hash got a #{data.class}." unless data.is_a? Hash
 
+    data = data.deep_dup
+
     data[:attributes] = {} unless data[:attributes].is_a? Hash
     data[:children] = [] unless data[:children].is_a? Array
 

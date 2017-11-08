@@ -132,11 +132,23 @@ This would do quite the same thing:
 </form>
 ```
 
+#### An editor in an iframe
+
+At first, the editor was rendered in the view.
+When trying to create a preview, it was impossible to manage responsivity, because it relies on the page width, and the page width does not change.
+This is the first problem of the kind, but many others would follow: stylesheet conflicts, bootstrap parameters (number of columns...) conflicts, maybe javascript conflicts...
+
+The solution is to put the editor in an iframe.
+The editor creates an iframe.
+The global scheme is illustrated in docs/iframe.html.
+The idea is to create the angular app inside the iframe so it's completely independant.
+Before the form is submit, we take the data from the angular app (through a plain javascript variable) and put it in the form input.
+
 ### Roadmap
 - ~~Gem setup~~
-- renderer helper
-- editor helper (for form tag)
-- editor helper (for simple form)
+- ~~renderer helper~~
+- ~~editor helper (for form tag)~~
+- ~~editor helper (for simple form)~~
 - Row
 - Col
 - Text

@@ -5,6 +5,7 @@ require 'jquery-ui-rails'
 require 'tinymce-rails'
 require 'angularjs-rails'
 require 'angular-ui-tinymce/rails'
+require 'material_icons'
 
 module Promethee
   module Rails

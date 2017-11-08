@@ -23,6 +23,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'jquery-ui-rails'
   s.add_dependency 'font-awesome-rails'
   s.add_dependency 'tinymce-rails'
+  s.add_dependency 'material_icons'
 
   s.add_development_dependency 'sqlite3'
 end

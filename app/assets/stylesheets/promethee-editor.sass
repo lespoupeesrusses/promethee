@@ -1,17 +1,45 @@
-@import 'bootstrap-sprockets'
 @import 'bootstrap'
 
 @import 'promethee-editor/variables'
+@import 'font-awesome.css'
+@import 'material_icons.css'
 @import 'promethee-editor/mixins'
+
+$promethee-color: #ff9900
 
 .promethee-editor
   +grid-builder-set-gutter-width(0)
 
-  &, *
-    font-family: Helvetica
+  background: white
 
-  display: flex
-  align-items: stretch
+  .navbar
+    border-radius: 0
+    border: none
+    border-bottom: 2px solid $promethee-color
+    background: transparent
+
+  &__page
+    margin-left: -6px
+    margin-right: -6px
+
+  &--preview
+    .promethee-editor__toolbar
+      display: none
+    .promethee-editor__component
+      border: none
+      margin: 0
+    .promethee-editor__page
+      margin: 0 auto
+    &--mobile
+      .promethee-editor__page
+        width: 375px
+        border-left: 1px dotted #eee
+        border-right: 1px dotted #eee
+    &--tablet
+      .promethee-editor__page
+        width: 768px
+        border-left: 1px dotted #eee
+        border-right: 1px dotted #eee
 
   &__sidebar
     background: $promethee-light-grey
@@ -24,8 +52,7 @@
     flex-shrink: 1
 
   &__component
-    background: $promethee-transparent-grey
-    border-radius: 10px
+    border: 1px #eee solid
     margin: 6px
     overflow: auto
 
@@ -46,9 +73,25 @@
       background: #fff
 
   &__toolbar
-    border-bottom: 1px solid $promethee-transparent-grey
     padding: 10px
+    font-size: 11px
+    text-transform: uppercase
+    font-weight: bold
+    color: $promethee-color
+    cursor: move
+    user-select: none
 
   &__wrapper
     padding: 10px
+
+  &__button
+    cursor: pointer
+
+  &.fullscreen
+    position: fixed
+    left: 0
+    right: 0
+    bottom: 0
+    top: 0
+    overflow: auto
 
