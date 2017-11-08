@@ -149,17 +149,25 @@ Before the form is submit, we take the data from the angular app (through a plai
 - ~~renderer helper~~
 - ~~editor helper (for form tag)~~
 - ~~editor helper (for simple form)~~
-- Row
-- Col
-- Text
-- Image (http)
-- Video (http)
+- ~~Show Row~~
+- ~~Show Col~~
+- ~~Show Text~~
+- ~~Show Image (http)~~
+- Show Video (http vimeo / youtube)
+- Edit Row
+- Edit Col
+- Edit Text
+- Edit Image (http)
+- Edit Video (http)
+- UI et branding
 - Hooks (needed for image and video)
 - Gallery
 - Menu
 - Tab
 - Cover
 - Chapter (or maybe it's a cover too?)
+- Preview
+- Fullscreen
 
 ## Development
 After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
