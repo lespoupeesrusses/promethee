@@ -1,7 +1,23 @@
 <script type="text/ng-template" id="promethee/components">
   <div class="clearfix"></div>
-  <div class="promethee-editor__components" ng-init="components = component ? component.children : promethee.data" dnd-list="components">
+  <div ng-controller="ComponentsController as componentsController" class="promethee-editor__components" ng-init="components = component ? component.children : promethee.data" dnd-list="components" dnd-allowed-types="allowedTypes()">
     <div ng-repeat="component in components track by $id(component)" ng-include="'promethee/component'"></div>
   </div>
   <div class="clearfix"></div>
+</script>
+
+<script>
+  Promethee.Controller.for('ComponentsController', function($scope) {
+    var types = {
+      row: ['column'],
+      column: ['row', 'text', 'image', 'video'],
+      text: [],
+      image: [],
+      video: []
+    };
+
+    $scope.allowedTypes = function() {
+      return this.component ? types[this.component.type] : Object.keys(types).filter(function(type) { return type !== 'column' });
+    };
+  });
 </script>
