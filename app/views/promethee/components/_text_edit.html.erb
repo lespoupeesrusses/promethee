@@ -1,0 +1,38 @@
+<script type="text/ng-template" id="promethee/text">
+  <div ng-controller="Text as text">
+    <div class="promethee-editor__component promethee-editor__component--text promethee-editor__component--final">
+
+      <div dnd-draggable="component" dnd-moved="move()" class="promethee-editor__toolbar">
+        Text
+        <span ng-if="text.editing" ng-click="complete()" class="promethee-editor__button pull-right"><%= fa_icon :close %></span>
+      </div>
+
+      <textarea ng-if="text.editing" ui-tinymce="tinymceOptions" ng-model="component.attributes.body"></textarea>
+      <div ng-if="!text.editing" class="promethee-editor__wrapper" ng-bind-html="component.attributes.body | htmlSafe" ng-click="edit()"></div>
+    </div>
+  </div>
+</script>
+
+<script>
+  Promethee.Controller.for('Text', ['$scope', function($scope) {
+    var self = this;
+    this.editing = false;
+
+    $scope.edit = function() {
+      self.editing = true;
+    };
+
+    $scope.complete = function() {
+      self.editing = false;
+    };
+
+    $scope.tinymceOptions = {
+      plugins: 'autoresize',
+      toolbar: 'styleselect | bold italic',
+      menubar: false,
+      statusbar: false,
+      branding: false,
+      autoresize_bottom_margin: 0
+    };
+  }]);
+</script>

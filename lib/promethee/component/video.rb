@@ -1,5 +1,5 @@
 class Promethee::Component::Video < Promethee::Component::Base
   has_attributes do |a|
-    a.string :src
+    a.string :url
   end
 end

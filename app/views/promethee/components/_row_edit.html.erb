@@ -1,0 +1,22 @@
+<script type="text/ng-template" id="promethee/row">
+  <div ng-controller="Row as row">
+    <div class="row">
+      <div class="promethee-editor__component promethee-editor__component--row">
+
+        <div dnd-draggable="component" dnd-moved="move()" class="promethee-editor__toolbar">
+          Row
+        </div>
+
+        <ng-include src="'promethee/components'"></ng-include>
+      </div>
+    </div>
+  </div>
+</script>
+
+<script>
+  Promethee.Controller.for('Row', function($scope) {
+    $scope.move = function() {
+      this.components.splice(this.components.indexOf(this.component), 1);
+    };
+  });
+</script>

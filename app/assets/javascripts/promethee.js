@@ -37,6 +37,12 @@ Promethee.prototype = {
       };
     }]);
 
+    this.app.filter('urlSafe', ['$sce', function($sce){
+      return function(val) {
+        return $sce.trustAsResourceUrl(val);
+      };
+    }]);
+
     this.constructor.Controller.initialize(this);
   }
 };

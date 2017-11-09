@@ -11,6 +11,7 @@
      }">
 
   <%= promethee_template :component %>
+  <%= promethee_template :components %>
   <%= promethee_templates %>
   <%= promethee.input %>
 
@@ -41,7 +42,7 @@
   </nav>
 
   <div class="promethee-editor__page" ng-class="{ 'container-fluid': promethee.fullscreen }">
-    <div ng-repeat="data in promethee.data track by $id(data)" ng-init="siblings = promethee.data"  ng-include="'promethee/component'"></div>
+    <ng-include src="'promethee/components'"></ng-include>
   </div>
   <!-- Work in progress -->
   <!-- <iframe id="iframe"></iframe> !-->

@@ -11,6 +11,10 @@ class Promethee::Component::Attributes
   alias_method :to_h, :to_hash
   alias_method :as_json, :to_hash
 
+  def [](method)
+    send method
+  end
+
   def keys
     attributes.keys
   end

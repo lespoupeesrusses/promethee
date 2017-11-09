@@ -1,0 +1,7 @@
+<script type="text/ng-template" id="promethee/components">
+  <div class="clearfix"></div>
+  <div class="promethee-editor__components" ng-init="components = component ? component.children : promethee.data" dnd-list="components">
+    <div ng-repeat="component in components track by $id(component)" ng-include="'promethee/component'"></div>
+  </div>
+  <div class="clearfix"></div>
+</script>

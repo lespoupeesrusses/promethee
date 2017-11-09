@@ -1,0 +1,6 @@
+<%
+children = component[:children]
+%>
+<div class="row <%= promethee_class_for component %>">
+  <%= render partial: 'promethee/components', locals: { components: children } %>
+</div>

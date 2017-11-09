@@ -1,0 +1,8 @@
+<%
+size = component[:attributes][:size]
+offset = component[:attributes][:offset]
+children = component[:children]
+%>
+<div class="col col-md-<%= size %><%= " col-md-offset-#{offset}" if offset > 0 %> <%= promethee_class_for component %>">
+  <%= render partial: 'promethee/components', locals: { components: children } %>
+</div>

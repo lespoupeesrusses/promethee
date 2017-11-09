@@ -17,7 +17,11 @@ class Promethee::Component::Base
   alias_method :as_json, :to_hash
 
   def to_html
-    ApplicationController.renderer.render partial: "promethee/show/#{type}", locals: { component: self }
+    ApplicationController.renderer.render partial: "promethee/components/#{type}", locals: { component: self }
+  end
+
+  def [](method)
+    send method
   end
 
   def class_name

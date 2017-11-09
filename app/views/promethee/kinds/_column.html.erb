@@ -1,8 +1,0 @@
-<%
-size = data[:attributes][:size]
-offset = data[:attributes][:offset]
-children = data[:children]
-%>
-<div class="col col-md-<%= size %><% if offset > 0 %> col-md-offset-<%= offset %><% end %> <%= classes %>">
-  <%= render partial: 'promethee/show_children', locals: { children: children } %>
-</div>

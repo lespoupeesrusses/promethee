@@ -2,5 +2,5 @@
 data = JSON.parse data, symbolize_names: true if data.is_a? String
 %>
 <div class="promethee">
-  <%= render partial: 'promethee/show_children', locals: { children: data } %>
+  <%= render partial: 'promethee/components', locals: { components: data } %>
 </div>
