@@ -6,17 +6,16 @@
   <div class="clearfix"></div>
 
 
-  <div ng-if="!oneTypeOnly()" class="dropdown">
-    <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-      Add Component
-      <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu">
-      <li ng-repeat="type in allowedTypes()" ng-click="add(type)">{{type | humanize}}</li>
-    </ul>
-  </div>
+  <div class="promethee-editor__wrapper">
+    <div ng-if="!oneTypeOnly()" class="list-group">
+      <a href="#" ng-click="toggleAdder()" class="list-group-item text-center {{adding ? 'active' : ''}}">{{adding ? 'Cancel' : 'Add Component'}}</a>
+      <a ng-repeat="type in allowedTypes()" href="#" ng-click="add(type)" class="list-group-item text-center" ng-if="adding">{{type | humanize}}</a>
+    </div>
 
-  <span ng-if="oneTypeOnly()" class="btn btn-default" ng-click="add(allowedTypes()[0])">Add {{allowedTypes()[0] | humanize}}</span>
+    <div ng-if="oneTypeOnly()" class="list-group">
+      <a href="#" class="list-group-item text-center" ng-click="add(allowedTypes()[0])">Add {{allowedTypes()[0] | humanize}}</a>
+    </div>
+  </div>
 
 </script>
 
@@ -47,7 +46,7 @@
       $scope.adding = false;
     };
 
-    $scope.togglerAdder = function() {
+    $scope.toggleAdder = function() {
       $scope.adding = !$scope.adding;
     };
 
