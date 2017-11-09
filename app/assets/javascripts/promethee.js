@@ -31,18 +31,27 @@ Promethee.prototype = {
         editing: false
       })
 
-    this.app.filter('htmlSafe', ['$sce', function($sce){
+    this.app.filter('htmlSafe', ['$sce', function($sce) {
       return function(val) {
         return $sce.trustAsHtml(val);
       };
     }]);
 
-    this.app.filter('urlSafe', ['$sce', function($sce){
+    this.app.filter('urlSafe', ['$sce', function($sce) {
       return function(val) {
         return $sce.trustAsResourceUrl(val);
       };
     }]);
 
+    this.app.filter('humanize', function() {
+      return function(val) {
+        val = (val + '').replace(/_/g, ' ').replace(/([A-Z])/g, ' $1').replace(/\s\s+/, ' ').trim();
+        return val[0].toUpperCase() + val.substring(1).toLowerCase();
+      };
+    });
+
     this.constructor.Controller.initialize(this);
+
+    Promethee.app = this.app;
   }
 };

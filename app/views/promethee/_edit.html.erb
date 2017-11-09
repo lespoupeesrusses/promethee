@@ -1,3 +1,28 @@
+<script>
+  var promethee = angular
+    .module(<%= promethee.id.to_json.html_safe %>, ['ui.tinymce', 'dndLists'])
+    .constant('data', <%= promethee.data.to_json.html_safe %>)
+    .value('state', {
+      editing: false
+    })
+    .filter('htmlSafe', ['$sce', function($sce) {
+      return function(val) {
+        return $sce.trustAsHtml(val);
+      };
+    }])
+    .filter('urlSafe', ['$sce', function($sce) {
+      return function(val) {
+        return $sce.trustAsResourceUrl(val);
+      };
+    }])
+    .filter('humanize', function() {
+      return function(val) {
+        val = (val + '').replace(/_/g, ' ').replace(/([A-Z])/g, ' $1').replace(/\s\s+/, ' ').trim();
+        return val[0].toUpperCase() + val.substring(1).toLowerCase();
+      };
+    });
+</script>
+
 <div id="<%= promethee.id %>"
      ng-app="<%= promethee.id %>"
      ng-controller="Promethee as promethee"
@@ -49,9 +74,9 @@
 </div>
 
 <script>
-  Promethee.Controller.for('Promethee', ['promethee', function(promethee) {
+  promethee.controller('Promethee', ['data', function(data) {
     var self = this;
-    this.data = promethee.data;
+    this.data = data;
     this.fullscreen = false;
     this.preview = false;
     this.previewMode = 'desktop';
@@ -66,11 +91,4 @@
       self.preview = false;
     }
   }]);
-</script>
-
-<script>
-  (function() {
-    var promethee = <%= promethee.to_js %>;
-    promethee.initialize();
-  })();
 </script>

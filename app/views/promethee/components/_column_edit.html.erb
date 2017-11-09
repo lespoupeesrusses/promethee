@@ -14,7 +14,7 @@
 </script>
 
 <script>
-  Promethee.Controller.for('Column', function($scope) {
+  promethee.controller('Column', function($scope) {
     $scope.move = function() {
       this.components.splice(this.components.indexOf(this.component), 1);
     };

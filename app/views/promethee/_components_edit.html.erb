@@ -3,11 +3,20 @@
   <div ng-controller="ComponentsController as componentsController" class="promethee-editor__components" ng-init="components = component ? component.children : promethee.data" dnd-list="components" dnd-allowed-types="allowedTypes()">
     <div ng-repeat="component in components track by $id(component)" ng-include="'promethee/component'"></div>
   </div>
+  <div ng-if="hasChildren()" class="promethee-editor__adder">
+    <span ng-if="oneTypeOnly()" class="btn btn-primary">Add {{allowedTypes()[0] | humanize}}</span>
+    <span ng-if="!oneTypeOnly()" class="btn btn-primary" ng-click="togglerAdder()">{{componentsController.adding ? 'Cancel' : 'Add a component'}}</span>
+    <ul ng-if="componentsController.adding">
+      <li ng-repeat="type in allowedTypes()" ng-click="components.push({})">{{type | humanize}}</li>
+    </ul>
+  </div>
   <div class="clearfix"></div>
 </script>
 
 <script>
-  Promethee.Controller.for('ComponentsController', function($scope) {
+  promethee.controller('ComponentsController', function($scope) {
+    var self = this;
+
     var types = {
       row: ['column'],
       column: ['row', 'text', 'image', 'video'],
@@ -16,8 +25,35 @@
       video: []
     };
 
+    this.adding = false;
+
+    $scope.add = function(type) {
+      self.adding = true;
+      this.components.push({
+        type: type,
+        attributes: {},
+        children: []
+      });
+    };
+
+    $scope.added = function() {
+      self.adding = false;
+    };
+
+    $scope.togglerAdder = function() {
+      self.adding = !self.adding;
+    };
+
     $scope.allowedTypes = function() {
       return this.component ? types[this.component.type] : Object.keys(types).filter(function(type) { return type !== 'column' });
+    };
+
+    $scope.hasChildren = function() {
+      return this.allowedTypes().length > 0;
+    };
+
+    $scope.oneTypeOnly = function() {
+      return this.allowedTypes().length === 1;
     };
   });
 </script>
