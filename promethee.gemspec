@@ -26,4 +26,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'material_icons'
 
   s.add_development_dependency 'sqlite3'
+  s.add_development_dependency 'byebug'
 end

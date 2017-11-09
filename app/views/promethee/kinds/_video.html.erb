@@ -1,0 +1,10 @@
+<%
+url = data[:attributes][:url]
+if 'vimeo'.in? url
+  video_id = url.to_s.gsub(/\A(?:https?:)?\/\/(?:(?:www|player)\.)?vimeo\.com\/(?:video\/)?(\d+).*?\z/, '\1')
+  iframe_src = "https://player.vimeo.com/video/#{video_id}?color=ffffff&title=0&byline=0&portrait=0"
+end
+%>
+<div class="embed-responsive embed-responsive-16by9 <%= classes %>">
+  <iframe frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="allowfullscreen" src="<%= iframe_src %>"></iframe>
+</div>

@@ -1,0 +1,6 @@
+<%
+body = data[:attributes][:body].to_s
+%>
+<div class="<%= classes %>">
+  <%= body.html_safe %>
+</div>

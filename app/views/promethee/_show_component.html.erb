@@ -1,0 +1,5 @@
+<% 
+type = component[:type]
+classes = "promethee__component promethee__component--#{type}"
+%>
+<%= render partial: "promethee/kinds/#{type}", locals: { data: component, classes: classes } %>
