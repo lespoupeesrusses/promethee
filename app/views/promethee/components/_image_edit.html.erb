@@ -18,7 +18,9 @@
         </div>
       </div>
 
-      <img ng-if="!image.editing" ng-click="edit()" ng-src="{{component.attributes.src}}" class="img-responsive">
+      <img ng-if="!image.editing && component.attributes.src" ng-click="edit()" ng-src="{{component.attributes.src}}" class="img-responsive">
+
+      <p ng-if="!image.editing && !component.attributes.src" ng-click="edit()" class="text-center">Click to set the image</p>
     </div>
   </div>
 </script>
