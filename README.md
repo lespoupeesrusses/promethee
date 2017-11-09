@@ -1,4 +1,4 @@
-![Prométhée](https://github.com/lespoupeesrusses/promethee/blob/master/app/assets/images/logo-promethee-horizontal.svg)
+![Prométhée](https://github.com/lespoupeesrusses/promethee/blob/master/app/assets/images/logo-promethee-vertical.svg)
 
 # Bring fire to your page
 
