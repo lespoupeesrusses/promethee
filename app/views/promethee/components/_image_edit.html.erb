@@ -6,21 +6,19 @@
         <span ng-if="image.editing" ng-click="complete()" class="promethee-editor__button pull-right"><%= fa_icon :close %></span>
       </div>
 
-      <div ng-if="image.editing" class="panel panel-default" style="width: 90%;max-width: 300px;position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);">
-        <div class="panel-body">
-          <div class="form-group">
-            <label class="label-control">Url</label>
-            <input ng-model="component.attributes.src" class="form-control" type="text"/>
-          </div>
+      <div ng-if="image.editing" class="promethee-editor__wrapper">
+        <div class="form-group">
+          <label class="label-control">Url</label>
+          <input ng-model="component.attributes.src" class="form-control" type="text"/>
+        </div>
 
-          <div class="form-group">
-            <label class="label-control">Alt</label>
-            <input ng-model="component.attributes.alt" class="form-control" type="text"/>
-          </div>
+        <div class="form-group">
+          <label class="label-control">Alt</label>
+          <input ng-model="component.attributes.alt" class="form-control" type="text"/>
         </div>
       </div>
 
-      <img ng-click="edit()" ng-src="{{component.attributes.src}}" class="img-responsive">
+      <img ng-if="!image.editing" ng-click="edit()" ng-src="{{component.attributes.src}}" class="img-responsive">
     </div>
   </div>
 </script>
