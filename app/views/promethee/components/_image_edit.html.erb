@@ -1,7 +1,7 @@
 <script type="text/ng-template" id="promethee/image">
   <div ng-controller="Image as image" style="position: relative">
-    <div class="promethee-editor__component promethee-editor__component--image promethee-editor__component--final">
-      <div dnd-draggable="component" dnd-moved="move()" class="promethee-editor__toolbar">
+    <div dnd-draggable="component" dnd-moved="move()" class="promethee-editor__component promethee-editor__component--image promethee-editor__component--final">
+      <div class="promethee-editor__toolbar">
         Image
         <span ng-if="image.editing" ng-click="complete()" class="promethee-editor__button pull-right"><%= fa_icon :close %></span>
       </div>
