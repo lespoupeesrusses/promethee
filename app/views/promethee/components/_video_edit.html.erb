@@ -1,11 +1,12 @@
 <script type="text/ng-template" id="promethee/video">
-  <div ng-controller="Video as video">
-    <div dnd-draggable="component" dnd-moved="move()" dnd-type="component.type" class="promethee-editor__component promethee-editor__component--video promethee-editor__component--final">
-
+  <div ng-controller="VideoController">
+    <div  dnd-draggable="component" 
+          dnd-moved="move()" 
+          dnd-type="component.type" 
+          class="promethee-editor__component promethee-editor__component--video promethee-editor__component--final">
       <div class="promethee-editor__toolbar">
         Video
       </div>
-
       <div class="embed-responsive embed-responsive-16by9">
         <iframe ng-if="embed" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="allowfullscreen" ng-src="{{embed | urlSafe}}"></iframe>
       </div>
@@ -14,7 +15,8 @@
 </script>
 
 <script>
-  promethee.controller('Video', function($scope) {
+  promethee.controller('VideoController', ['$scope', function($scope) {
+
     $scope.editing = false;
 
     $scope.move = function() {
@@ -39,5 +41,5 @@
         return embed;
       }
     })
-  });
+  }]);
 </script>

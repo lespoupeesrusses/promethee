@@ -1,12 +1,15 @@
 <script type="text/ng-template" id="promethee/image">
-  <div ng-controller="Image as image" style="position: relative">
-    <div dnd-draggable="component" dnd-moved="move()" dnd-type="component.type" class="promethee-editor__component promethee-editor__component--image promethee-editor__component--final">
+  <div ng-controller="ImageController" style="position: relative">
+    <div  dnd-draggable="component" 
+          dnd-moved="move()" 
+          dnd-type="component.type" 
+          class="promethee-editor__component promethee-editor__component--image promethee-editor__component--final">
       <div class="promethee-editor__toolbar">
         Image
-        <span ng-if="image.editing" ng-click="complete()" class="promethee-editor__button pull-right"><%= fa_icon :close %></span>
+        <span ng-show="editing" ng-click="complete()" class="promethee-editor__button pull-right"><%= fa_icon :close %></span>
       </div>
 
-      <div ng-if="image.editing" class="promethee-editor__wrapper">
+      <div ng-show="editing" class="promethee-editor__wrapper">
         <div class="form-group">
           <label class="label-control">Url</label>
           <input ng-model="component.attributes.src" class="form-control" type="text"/>
@@ -18,28 +21,33 @@
         </div>
       </div>
 
-      <img ng-if="!image.editing && component.attributes.src" ng-click="edit()" ng-src="{{component.attributes.src}}" class="img-responsive">
+      <div ng-show="component.attributes.src">
+        <img ng-click="edit()" ng-src="{{component.attributes.src}}" class="img-responsive">
+      </div>
 
-      <p ng-if="!image.editing && !component.attributes.src" ng-click="edit()" class="text-center">Click to set the image</p>
+      <div ng-hide="component.attributes.src">
+        <p ng-hide="editing" ng-click="edit()" class="text-center">Click to set the image</p>
+      </div>
     </div>
   </div>
 </script>
 
 <script>
-  promethee.controller('Image', function($scope) {
-    var self = this;
-    this.editing = false;
+  promethee.controller('ImageController', ['$scope', function($scope) {
+
+    $scope.editing = false;
 
     $scope.edit = function() {
-      self.editing = true;
+      this.editing = true;
     };
 
     $scope.complete = function() {
-      self.editing = false;
+      this.editing = false;
     };
 
     $scope.move = function() {
       this.components.splice(this.components.indexOf(this.component), 1);
     };
-  });
+
+  }]);
 </script>

@@ -1,5 +1,5 @@
 <script type="text/ng-template" id="promethee/row">
-  <div ng-controller="Row as row">
+  <div ng-controller="RowController">
     <div class="row">
       <div dnd-draggable="component" dnd-moved="move()" dnd-type="component.type" class="promethee-editor__component promethee-editor__component--row">
 
@@ -14,9 +14,11 @@
 </script>
 
 <script>
-  promethee.controller('Row', function($scope) {
+  promethee.controller('RowController', ['$scope', function($scope) {
+
     $scope.move = function() {
       this.components.splice(this.components.indexOf(this.component), 1);
     };
-  });
+    
+  }]);
 </script>

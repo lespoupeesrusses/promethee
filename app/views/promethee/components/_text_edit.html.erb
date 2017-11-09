@@ -1,29 +1,40 @@
 <script type="text/ng-template" id="promethee/text">
-  <div ng-controller="Text as text">
-    <div dnd-draggable="component" dnd-moved="move()" dnd-type="component.type" class="promethee-editor__component promethee-editor__component--text promethee-editor__component--final">
+  <div ng-controller="TextController">
+    <div  dnd-draggable="component" 
+          dnd-moved="move()" 
+          dnd-type="component.type" 
+          class="promethee-editor__component promethee-editor__component--text promethee-editor__component--final">
 
       <div class="promethee-editor__toolbar">
         Text
-        <span ng-if="text.editing" ng-click="complete()" class="promethee-editor__button pull-right"><%= fa_icon :close %></span>
+        <span ng-show="editing" ng-click="complete()" class="promethee-editor__button pull-right"><%= fa_icon :close %></span>
       </div>
 
-      <textarea ng-if="text.editing" ui-tinymce="tinymceOptions" ng-model="component.attributes.body"></textarea>
-      <div ng-if="!text.editing" class="promethee-editor__wrapper" ng-bind-html="component.attributes.body | htmlSafe" ng-click="edit()"></div>
+      <div ng-show="editing">
+        <textarea ui-tinymce="tinymceOptions" ng-model="component.attributes.body"></textarea>
+      </div>
+      <div ng-hide="editing">
+        <div class="promethee-editor__wrapper" ng-bind-html="component.attributes.body | htmlSafe" ng-click="edit()"></div>
+      </div>
     </div>
   </div>
 </script>
 
 <script>
-  promethee.controller('Text', ['$scope', function($scope) {
-    var self = this;
-    this.editing = false;
+  promethee.controller('TextController', ['$scope', function($scope) {
+
+    $scope.editing = false;
 
     $scope.edit = function() {
-      self.editing = true;
+      this.editing = true;
     };
 
     $scope.complete = function() {
-      self.editing = false;
+      this.editing = false;
+    };
+
+    $scope.move = function() {
+      this.components.splice(this.components.indexOf(this.component), 1);
     };
 
     $scope.tinymceOptions = {

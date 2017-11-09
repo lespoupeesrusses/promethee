@@ -25,14 +25,14 @@
 
 <div id="<%= promethee.id %>"
      ng-app="<%= promethee.id %>"
-     ng-controller="Promethee as promethee"
+     ng-controller="PrometheeController as prometheeController"
      class="promethee-editor"
      ng-class="{
-       'fullscreen': promethee.fullscreen,
-       'promethee-editor--preview': promethee.preview,
-       'promethee-editor--preview--mobile': promethee.preview && promethee.previewMode == 'mobile',
-       'promethee-editor--preview--tablet': promethee.preview && promethee.previewMode == 'tablet',
-       'promethee-editor--preview--desktop': promethee.preview && promethee.previewMode == 'desktop'
+       'fullscreen': fullscreen,
+       'promethee-editor--preview': preview,
+       'promethee-editor--preview--mobile': preview && previewMode == 'mobile',
+       'promethee-editor--preview--tablet': preview && previewMode == 'tablet',
+       'promethee-editor--preview--desktop': preview && previewMode == 'desktop'
      }">
 
   <%= promethee_template :component %>
@@ -47,26 +47,26 @@
       </div>
       <div id="navbar">
         <ul class="nav navbar-nav navbar-right">
-          <li ng-click="promethee.startPreview()" ng-hide="promethee.preview"><a><%= fa_icon :eye %></a></li>
-          <li ng-click="promethee.previewMode = 'mobile'" ng-class="{ active: promethee.previewMode == 'mobile' }" ng-show="promethee.preview">
+          <li ng-click="enablePreview()" ng-hide="preview"><a><%= fa_icon :eye %></a></li>
+          <li ng-click="previewMode = 'mobile'" ng-class="{ active: previewMode == 'mobile' }" ng-show="preview">
             <a><%= fa_icon :mobile %></a>
           </li>
-          <li ng-click="promethee.previewMode = 'tablet'" ng-class="{ active: promethee.previewMode == 'tablet' }" ng-show="promethee.preview"><a>
+          <li ng-click="previewMode = 'tablet'" ng-class="{ active: previewMode == 'tablet' }" ng-show="preview"><a>
             <%= fa_icon :tablet %></a>
           </li>
-          <li ng-click="promethee.previewMode = 'desktop'" ng-class="{ active: promethee.previewMode == 'desktop' }" ng-show="promethee.preview"><a>
+          <li ng-click="previewMode = 'desktop'" ng-class="{ active: previewMode == 'desktop' }" ng-show="preview"><a>
             <%= fa_icon :desktop %></a>
           </li>
-          <li ng-click="promethee.stopPreview()" ng-show="promethee.preview"><a><%= fa_icon 'eye-slash' %></a>
+          <li ng-click="disablePreview()" ng-show="preview"><a><%= fa_icon 'eye-slash' %></a>
           </li>
-          <li ng-click="promethee.fullscreen = true" ng-hide="promethee.fullscreen"><a><%= fa_icon :expand %></a></li>
-          <li ng-click="promethee.fullscreen = false" ng-show="promethee.fullscreen"><a><%= fa_icon :compress %></a></li>
+          <li ng-click="enableFullscreen()" ng-hide="fullscreen"><a><%= fa_icon :expand %></a></li>
+          <li ng-click="disableFullscreen()" ng-show="fullscreen"><a><%= fa_icon :compress %></a></li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <div class="promethee-editor__page" ng-class="{ 'container-fluid': promethee.fullscreen }">
+  <div class="promethee-editor__page" ng-class="{ 'container-fluid': prometheeController.fullscreen }">
     <ng-include src="'promethee/components'"></ng-include>
   </div>
   <!-- Work in progress -->
@@ -74,21 +74,29 @@
 </div>
 
 <script>
-  promethee.controller('Promethee', ['data', function(data) {
-    var self = this;
-    this.data = data;
-    this.fullscreen = false;
-    this.preview = false;
-    this.previewMode = 'desktop';
+  promethee.controller('PrometheeController', ['data', '$scope', function(data, $scope) {
+    $scope.data = data;
+    $scope.fullscreen = false;
+    $scope.preview = false;
+    $scope.previewMode = 'desktop';
 
-    this.startPreview = function() {
-      self.preview = true;
+    $scope.enablePreview = function() {
+      this.preview = true;
       // Work in progress
-      document.getElementById('iframe').contentWindow.document.documentElement.innerHTML = document.documentElement.innerHTML;
+      // document.getElementById('iframe').contentWindow.document.documentElement.innerHTML = document.documentElement.innerHTML;
     }
 
-    this.stopPreview = function() {
-      self.preview = false;
+    $scope.disablePreview = function() {
+      this.preview = false;
     }
+
+    $scope.enableFullscreen = function() {
+      this.fullscreen = true;
+    }
+
+    $scope.disableFullscreen = function() {
+      this.fullscreen = false;
+    }
+
   }]);
 </script>

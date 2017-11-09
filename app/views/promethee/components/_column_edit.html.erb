@@ -1,5 +1,5 @@
 <script type="text/ng-template" id="promethee/column">
-  <div ng-controller="Column as column">
+  <div ng-controller="ColumnController">
     <div class="col col-md-{{component.attributes.size}} col-md-offset-{{component.attributes.offset}}">
       <div dnd-draggable="component" dnd-moved="move()" dnd-type="component.type" class="promethee-editor__component promethee-editor__component--column">
 
@@ -14,9 +14,9 @@
 </script>
 
 <script>
-  promethee.controller('Column', function($scope) {
+  promethee.controller('ColumnController', ['$scope', function($scope) {
     $scope.move = function() {
       this.components.splice(this.components.indexOf(this.component), 1);
     };
-  });
+  }]);
 </script>

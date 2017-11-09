@@ -1,6 +1,6 @@
 <script type="text/ng-template" id="promethee/components">
   <div class="clearfix"></div>
-  <div ng-controller="ComponentsController as componentsController" class="promethee-editor__components" ng-init="components = component ? component.children : promethee.data" dnd-list="components" dnd-allowed-types="allowedTypes()">
+  <div ng-controller="ComponentsController as componentsController" class="promethee-editor__components" ng-init="components = component ? component.children : data" dnd-list="components" dnd-allowed-types="allowedTypes()">
     <div ng-repeat="component in components track by $id(component)" ng-include="'promethee/component'"></div>
   </div>
   <div class="clearfix"></div>
@@ -20,8 +20,7 @@
 </script>
 
 <script>
-  promethee.controller('ComponentsController', function($scope) {
-    var self = this;
+  promethee.controller('ComponentsController', ['$scope', function($scope) {
 
     var types = {
       row: ['column'],
@@ -51,6 +50,7 @@
     };
 
     $scope.allowedTypes = function() {
+      // FIXME
       return this.component ? types[this.component.type] : Object.keys(types).filter(function(type) { return type !== 'column' });
     };
 
@@ -61,5 +61,6 @@
     $scope.oneTypeOnly = function() {
       return this.allowedTypes().length === 1;
     };
-  });
+    
+  }]);
 </script>
