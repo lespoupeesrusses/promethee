@@ -4,28 +4,22 @@
 <svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 500 340" style="enable-background:new 0 0 500 340;" xml:space="preserve">
 <style type="text/css">
-	.st0{clip-path:url(#SVGID_2_);fill:#FF9900;}
-	.st1{fill:none;}
-	.st2{enable-background:new    ;}
+	.st0{fill:#FF9900;}
+	.st1{enable-background:new    ;}
 </style>
 <g>
 	<g>
 		<g>
 			<g>
-				<defs>
-					<rect id="SVGID_1_" x="220" y="86.7" width="60" height="87"/>
-				</defs>
-				<clipPath id="SVGID_2_">
-					<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
-				</clipPath>
-				<path class="st0" d="M263.6,96.1c-2.5-1-10.8-3.2-10.8-9.5c0,0-7.5,4.8,0.4,12.9c1.3,1.4,19.3,19.2-7.8,31.9
-					c7.6-19.3-6.5-33.2-6.5-33.2l-10.6-11.6v49.6l-0.2,8.4v25.3H220v3.7h33.5V170h-8.2v-30.3c3.2-0.1,6.4-0.2,8.4-0.2
-					c16.3,0,26.3-8.8,26.3-21.8C280,107.9,274.1,100.1,263.6,96.1z"/>
+				<g>
+					<path class="st0" d="M263.6,96.1c-2.5-1-10.8-3.2-10.8-9.5c0,0-7.5,4.8,0.4,12.9c1.3,1.4,19.3,19.2-7.8,31.9
+						c7.6-19.3-6.5-33.2-6.5-33.2l-10.6-11.6v49.6l-0.2,8.4v25.3H220v3.7h33.5V170h-8.2v-30.3c3.2-0.1,6.4-0.2,8.4-0.2
+						c16.3,0,26.3-8.8,26.3-21.8C280,107.9,274.1,100.1,263.6,96.1z"/>
+				</g>
 			</g>
 		</g>
 	</g>
-	<rect x="71.7" y="207.9" class="st1" width="356.6" height="45.4"/>
-	<g class="st2">
+	<g class="st1">
 		<path d="M99.6,227.5h-11v13.9H87v-31.3h12.5c5.7,0,9.3,3.3,9.3,8.7C108.8,223.9,105,227.5,99.6,227.5z M99.5,211.8H88.6v14h11
 			c3.7,0,7.5-2.2,7.5-7C107.1,214.4,104.3,211.8,99.5,211.8z"/>
 		<path d="M144.8,241.4h-1.7c-0.4-0.9-0.6-1.9-0.6-3.4v-4.6c0-5-3.6-6-6.6-6h-11.6v14h-1.7v-31.3h13.2c5.8,0,9.3,3.3,9.3,8.7
