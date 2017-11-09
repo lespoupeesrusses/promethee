@@ -1,4 +1,6 @@
-# Prométhée | Bring fire to your page
+![Prométhée](https://raw.githubusercontent.com/lespoupeesrusses/promethee/master/app/assets/images/logo-promethee-vertical.svg?sanitize=true)
+
+# Bring fire to your page
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/98a8649f411bc9f50786/maintainability)](https://codeclimate.com/github/lespoupeesrusses/promethee/maintainability)
 
