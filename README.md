@@ -114,6 +114,11 @@ Which renders to:
 </div>
 ```
 
+With stylesheets set:
+```
+@import promethee
+```
+
 ### Editor
 
 This would allow editing for a page model, with a jsonb data attribute:
@@ -132,6 +137,17 @@ This would do quite the same thing:
   <%= promethee_editor :page, :data, @page.data %>
   <input type="submit">
 </form>
+```
+
+With javascript set:
+```
+//= require promethee
+```
+
+With stylesheets set:
+```
+@import promethee
+@import promethee-editor
 ```
 
 #### The editor has components
