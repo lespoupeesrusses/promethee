@@ -1,7 +1,6 @@
 module Promethee::Rails::Helper
   def promethee(data)
     ApplicationController.renderer.render partial: 'promethee/show', locals: { data: data }
-    # Promethee::Grid.new(data).show
   end
 
   def promethee_template(type)

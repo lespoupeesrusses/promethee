@@ -1,14 +1,13 @@
 <script type="text/ng-template" id="promethee/column">
   <div ng-controller="ColumnController">
     <div class="col col-md-{{component.attributes.size}} col-md-offset-{{component.attributes.offset}}">
-      <div dnd-draggable="component" dnd-moved="move()" dnd-type="component.type" class="promethee-editor__component promethee-editor__component--column">
+      <div dnd-draggable="component" dnd-moved="remove()" dnd-type="component.type" class="promethee-editor__component promethee-editor__component--column">
 
         <div class="promethee-editor__toolbar">
           Column
+          <span ng-click="remove()" class="promethee-editor__button pull-right"><%= fa_icon :close %></span>
         </div>
-
         <ng-include src="'promethee/components'"></ng-include>
-
         <button type="button" class="btn btn-default btn-block" ng-click="addComponentTo(component.children)">Add component</button>
       </div>
     </div>
@@ -17,8 +16,10 @@
 
 <script>
   promethee.controller('ColumnController', ['$scope', function($scope) {
-    $scope.move = function() {
+
+    $scope.remove = function() {
       this.components.splice(this.components.indexOf(this.component), 1);
     };
+    
   }]);
 </script>

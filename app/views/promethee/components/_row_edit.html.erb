@@ -1,13 +1,16 @@
 <script type="text/ng-template" id="promethee/row">
   <div ng-controller="RowController">
     <div class="row">
-      <div dnd-draggable="component" dnd-moved="move()" dnd-type="component.type" class="promethee-editor__component promethee-editor__component--row">
+      <div dnd-draggable="component" dnd-moved="remove()" dnd-type="component.type" class="promethee-editor__component promethee-editor__component--row">
 
         <div class="promethee-editor__toolbar">
           Row
-          <button type="button" class="btn btn-default btn-sm pull-right" ng-click="addColumn()">
-            Add column
-          </button>
+          <div class="pull-right">
+            <button type="button" class="btn btn-default btn-sm" ng-click="addColumn()">
+              Add column
+            </button>
+            <span ng-click="remove()" class="promethee-editor__button pull-right"><%= fa_icon :close %></span>
+          </div>
         </div>
         <ng-include src="'promethee/components'"></ng-include>
       </div>
@@ -17,7 +20,7 @@
 
 <script>
 
-  angular.injector(['ng', <%= promethee.id.to_json.html_safe %>]).get('definitions').push({
+  angular.injector(['ng', '<%= promethee_id %>']).get('definitions').push({
     name: 'Row',
     thumb: 'http://via.placeholder.com/300x200',
     data: {
@@ -40,7 +43,7 @@
       })
     }
 
-    $scope.move = function() {
+    $scope.remove = function() {
       this.components.splice(this.components.indexOf(this.component), 1);
     };
 

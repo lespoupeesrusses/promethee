@@ -1,11 +1,12 @@
 <script type="text/ng-template" id="promethee/video">
   <div ng-controller="VideoController">
     <div  dnd-draggable="component"
-          dnd-moved="move()"
+          dnd-moved="remove()"
           dnd-type="component.type"
           class="promethee-editor__component promethee-editor__component--video promethee-editor__component--final">
       <div class="promethee-editor__toolbar">
         Video
+        <span ng-click="remove()" class="promethee-editor__button pull-right"><%= fa_icon :close %></span>
       </div>
       <div class="embed-responsive embed-responsive-16by9">
         <iframe ng-if="embed" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="allowfullscreen" ng-src="{{embed | urlSafe}}"></iframe>
@@ -16,13 +17,13 @@
 
 <script>
 
-  angular.injector(['ng', <%= promethee.id.to_json.html_safe %>]).get('definitions').push({
+  angular.injector(['ng', '<%= promethee_id %>']).get('definitions').push({
     name: 'Video',
     thumb: 'http://via.placeholder.com/300x200',
     data: {
       type: 'video',
       attributes: {
-        url: 'https://vimeo.com/193563043'
+        url: 'https://vimeo.com/115082758'
       }
     }
   });
@@ -31,7 +32,7 @@
 
     $scope.editing = false;
 
-    $scope.move = function() {
+    $scope.remove = function() {
       this.components.splice(this.components.indexOf(this.component), 1);
     };
 

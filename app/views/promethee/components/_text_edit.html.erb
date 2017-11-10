@@ -1,13 +1,13 @@
 <script type="text/ng-template" id="promethee/text">
   <div ng-controller="TextController">
     <div  dnd-draggable="component"
-          dnd-moved="move()"
+          dnd-moved="remove()"
           dnd-type="component.type"
           class="promethee-editor__component promethee-editor__component--text promethee-editor__component--final">
 
       <div class="promethee-editor__toolbar">
         Text
-        <span ng-show="editing" ng-click="complete()" class="promethee-editor__button pull-right"><%= fa_icon :close %></span>
+        <span ng-click="remove()" class="promethee-editor__button pull-right"><%= fa_icon :close %></span>
       </div>
 
       <div ng-show="editing">
@@ -21,7 +21,7 @@
 </script>
 
 <script>
-  angular.injector(['ng', <%= promethee.id.to_json.html_safe %>]).get('definitions').push({
+  angular.injector(['ng', '<%= promethee_id %>']).get('definitions').push({
     name: 'Text',
     thumb: 'http://via.placeholder.com/300x200',
     data: {
@@ -44,7 +44,7 @@
       this.editing = false;
     };
 
-    $scope.move = function() {
+    $scope.remove = function() {
       this.components.splice(this.components.indexOf(this.component), 1);
     };
 

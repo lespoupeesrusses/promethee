@@ -1,6 +1,8 @@
+<% promethee_id = "promethee-#{SecureRandom.hex 10}" %>
+
 <script>
   var promethee = angular
-    .module(<%= promethee.id.to_json.html_safe %>, ['ui.tinymce', 'dndLists'])
+    .module('<%= promethee_id %>', ['ui.tinymce', 'dndLists'])
     .constant('data', <%= promethee.data.to_json.html_safe %>)
     .value('state', {
       editing: false
@@ -24,9 +26,9 @@
     });
 </script>
 
-<div id="<%= promethee.id %>"
+<div id="<%= promethee_id %>"
      class="promethee-editor"
-     ng-app="<%= promethee.id %>"
+     ng-app="<%= promethee_id %>"
      ng-controller="PrometheeController as prometheeController"
      ng-class="{
        'fullscreen': fullscreen,
@@ -36,13 +38,16 @@
        'promethee-editor--preview--desktop': preview && previewMode == 'desktop'
      }">
 
-  <% # TODO iterate over views instead of these 3 calls, and pass locals: { promethee_id: promethee_id } %>
+  <% # TODO custom views %>
+  <% Dir['app/views/promethee/components/*'].each do |file| %>
+  <% end %>
+  <% # TODO iterate over files in gem %>
+  <% ['component', 'components', 'components/row', 'components/column', 'components/text', 'components/image', 'components/video'].each do |type| %>
+    <%= render partial: "promethee/#{type}_edit", locals: { promethee_id: promethee_id } %>
+  <% end %>
 
-  <%= promethee.template :component %>
-  <%= promethee.template :components %>
-  <%= promethee.templates %>
   <input type="hidden" name="page[data]" id="page_data" value="{{promethee.data}}" />
-
+  {{data | json}}
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
@@ -112,6 +117,9 @@
     $scope.fullscreen = false;
     $scope.preview = false;
     $scope.previewMode = 'desktop';
+    $scope.component = {
+      children: data
+    }
 
     $scope.enablePreview = function() {
       this.preview = true;
