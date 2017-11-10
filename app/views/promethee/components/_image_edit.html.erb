@@ -6,25 +6,21 @@
           class="promethee-editor__component promethee-editor__component--image promethee-editor__component--final">
       <div class="promethee-editor__toolbar">
         Image
-        <span ng-click="remove()" class="promethee-editor__button pull-right"><%= fa_icon :close %></span>
+        <%= render 'promethee/components/partials/toolbar_buttons' %>
       </div>
-
       <div ng-show="editing" class="promethee-editor__wrapper">
         <div class="form-group">
           <label class="label-control">Url</label>
           <input ng-model="component.attributes.src" class="form-control" type="text"/>
         </div>
-
         <div class="form-group">
           <label class="label-control">Alt</label>
           <input ng-model="component.attributes.alt" class="form-control" type="text"/>
         </div>
       </div>
-
       <div ng-show="component.attributes.src">
         <img ng-click="edit()" ng-src="{{component.attributes.src}}" class="img-responsive">
       </div>
-
       <div ng-hide="component.attributes.src">
         <p ng-hide="editing" ng-click="edit()" class="text-center">Click to set the image</p>
       </div>

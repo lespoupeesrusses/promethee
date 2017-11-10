@@ -4,12 +4,10 @@
           dnd-moved="remove()"
           dnd-type="component.type"
           class="promethee-editor__component promethee-editor__component--text promethee-editor__component--final">
-
       <div class="promethee-editor__toolbar">
         Text
-        <span ng-click="remove()" class="promethee-editor__button pull-right"><%= fa_icon :close %></span>
+        <%= render 'promethee/components/partials/toolbar_buttons' %>
       </div>
-
       <div ng-show="editing">
         <textarea ui-tinymce="tinymceOptions" ng-model="component.attributes.body"></textarea>
       </div>

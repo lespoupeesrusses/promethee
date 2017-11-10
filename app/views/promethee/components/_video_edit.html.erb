@@ -6,7 +6,13 @@
           class="promethee-editor__component promethee-editor__component--video promethee-editor__component--final">
       <div class="promethee-editor__toolbar">
         Video
-        <span ng-click="remove()" class="promethee-editor__button pull-right"><%= fa_icon :close %></span>
+        <%= render 'promethee/components/partials/toolbar_buttons' %>
+      </div>
+      <div ng-show="editing" class="promethee-editor__wrapper">
+        <div class="form-group">
+          <label class="label-control">Url</label>
+          <input ng-model="component.attributes.url" class="form-control" type="text"/>
+        </div>
       </div>
       <div class="embed-responsive embed-responsive-16by9">
         <iframe ng-if="embed" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="allowfullscreen" ng-src="{{embed | urlSafe}}"></iframe>
@@ -16,7 +22,6 @@
 </script>
 
 <script>
-
   angular.injector(['ng', '<%= promethee_id %>']).get('definitions').push({
     name: 'Video',
     thumb: 'http://via.placeholder.com/300x200',
