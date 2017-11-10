@@ -1,9 +1,13 @@
-<% promethee_id = "promethee-#{SecureRandom.hex 10}" %>
+<% 
+promethee_id = "promethee-#{SecureRandom.hex 10}" 
+promethee_data = promethee.data
+promethee_data = promethee_data.to_json unless promethee_data.is_a? String
+%>
 
 <script>
   var promethee = angular
     .module('<%= promethee_id %>', ['ui.tinymce', 'dndLists'])
-    .constant('data', <%= promethee.data.to_json.html_safe %>)
+    .constant('data', <%= promethee_data.html_safe %>)
     .value('state', {
       editing: false
     })
@@ -46,8 +50,8 @@
     <%= render partial: "promethee/#{type}_edit", locals: { promethee_id: promethee_id } %>
   <% end %>
 
-  <input type="hidden" name="page[data]" id="page_data" value="{{promethee.data}}" />
-  {{data | json}}
+  <input type="hidden" name="page[data]" id="page_data" value="{{data}}" />
+
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
@@ -74,10 +78,12 @@
     </div>
   </nav>
   <div class="promethee-editor__page" ng-class="{ 'container-fluid': fullscreen }">
-    <ng-include src="'promethee/components'"></ng-include>
+    <div class="promethee-editor__components" dnd-list="data" dnd-allowed-types="allowedTypes">
+      <ng-include src="'promethee/components'"></ng-include>
+    </div>
   </div>
 
-  <button type="button" class="btn btn-default btn-block" ng-click="addComponentTo(data)">Add component</button>
+  <span type="button" class="btn btn-default btn-block" ng-click="addComponentTo(data)" style="margin-bottom: 6px">Add component</span>
 
   <div class="promethee-editor__adder" ng-controller="AdderController">
     <div class="modal fade in" tabindex="-1" role="dialog" style="display: {{adding ? 'block' : 'none'}}">
@@ -109,7 +115,7 @@
 </div>
 
 <script>
-  promethee.controller('PrometheeController', ['data', '$scope', function(data, $scope) {
+  promethee.controller('PrometheeController', ['data', '$scope', 'definitions', function(data, $scope, definitions) {
     if (data === null || data === '') {
       data = [];
     }
@@ -120,6 +126,10 @@
     $scope.component = {
       children: data
     }
+
+    $scope.allowedTypes = definitions.map(function(definition) {
+      return definition.data.type;
+    });
 
     $scope.enablePreview = function() {
       this.preview = true;

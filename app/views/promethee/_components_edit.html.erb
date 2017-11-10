@@ -1,5 +1,5 @@
 <script type="text/ng-template" id="promethee/components">
-  <div class="promethee-editor__components" ng-init="components = component.children">
+  <div ng-init="components = component.children">
     <div ng-repeat="component in components">
       <ng-include src="'promethee/component'"></ng-include>
     </div>

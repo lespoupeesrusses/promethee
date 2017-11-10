@@ -6,13 +6,15 @@
         <div class="promethee-editor__toolbar">
           Row
           <div class="pull-right">
-            <button type="button" class="btn btn-default btn-sm" ng-click="addColumn()">
-              Add column
-            </button>
             <span ng-click="remove()" class="promethee-editor__button pull-right"><%= fa_icon :close %></span>
           </div>
         </div>
-        <ng-include src="'promethee/components'"></ng-include>
+
+        <div class="promethee-editor__components" dnd-list="component.children" dnd-allowed-types="['column']">
+          <ng-include src="'promethee/components'"></ng-include>
+        </div>
+        <div class="clearfix"></div>
+        <span class="btn btn-default btn-block" ng-click="addColumn()" style="margin: 0 6px 6px 6px;width: auto">Add column</span>
       </div>
     </div>
   </div>
