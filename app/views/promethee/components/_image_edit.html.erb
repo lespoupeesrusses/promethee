@@ -33,6 +33,17 @@
 </script>
 
 <script>
+  angular.injector(['ng', '<%= @promethee_id %>']).get('componentDescriptions').push({
+    name: 'Image',
+    thumb: 'http://via.placeholder.com/300x200',
+    data: {
+      type: 'image',
+      attributes: {
+        src: 'https://source.unsplash.com/random/1920x1080'
+      }
+    }
+  });
+
   promethee.controller('ImageController', ['$scope', function($scope) {
 
     $scope.editing = false;

@@ -21,6 +21,17 @@
 </script>
 
 <script>
+  angular.injector(['ng', '<%= @promethee_id %>']).get('componentDescriptions').push({
+    name: 'Text',
+    thumb: 'http://via.placeholder.com/300x200',
+    data: {
+      type: 'text',
+      attributes: {
+        body: 'Edit me'
+      }
+    }
+  });
+  
   promethee.controller('TextController', ['$scope', function($scope) {
 
     $scope.editing = false;
@@ -45,5 +56,6 @@
       branding: false,
       autoresize_bottom_margin: 0
     };
+
   }]);
 </script>

@@ -1,70 +1,14 @@
 <script type="text/ng-template" id="promethee/components">
   <div class="clearfix"></div>
-  <div  ng-controller="ComponentsController as componentsController" 
+  <div  ng-controller="ComponentsController" 
         class="promethee-editor__components" 
-        ng-init="components = component ? component.children : data" 
-        dnd-list="components" 
-        dnd-allowed-types="allowedTypes()">
+        ng-init="components = component ? component.children : data">
     <div ng-repeat="component in components" ng-include="'promethee/component'"></div>
   </div>
-  <div class="clearfix"></div>
-
-
-  <div class="promethee-editor__wrapper">
-    <div ng-if="!oneTypeOnly()" class="list-group">
-      <a href="#" ng-click="toggleAdder()" class="list-group-item text-center {{adding ? 'active' : ''}}">{{adding ? 'Cancel' : 'Add Component'}}</a>
-      <a ng-repeat="type in allowedTypes()" href="#" ng-click="add(type)" class="list-group-item text-center" ng-if="adding">{{type | humanize}}</a>
-    </div>
-
-    <div ng-if="oneTypeOnly()" class="list-group">
-      <a href="#" class="list-group-item text-center" ng-click="add(allowedTypes()[0])">Add {{allowedTypes()[0] | humanize}}</a>
-    </div>
-  </div>
-
 </script>
 
 <script>
   promethee.controller('ComponentsController', ['$scope', function($scope) {
 
-    var types = {
-      row: ['column'],
-      column: ['row', 'text', 'image', 'video'],
-      text: [],
-      image: [],
-      video: []
-    };
-
-    $scope.adding = false;
-
-    $scope.add = function(type) {
-      $scope.adding = true;
-      this.components.push({
-        type: type,
-        attributes: {},
-        children: []
-      });
-    };
-
-    $scope.added = function() {
-      $scope.adding = false;
-    };
-
-    $scope.toggleAdder = function() {
-      $scope.adding = !$scope.adding;
-    };
-
-    $scope.allowedTypes = function() {
-      // FIXME
-      return this.component ? types[this.component.type] : Object.keys(types).filter(function(type) { return type !== 'column' });
-    };
-
-    $scope.hasChildren = function() {
-      return this.allowedTypes().length > 0;
-    };
-
-    $scope.oneTypeOnly = function() {
-      return this.allowedTypes().length === 1;
-    };
-    
   }]);
 </script>

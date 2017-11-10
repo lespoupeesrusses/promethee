@@ -1,10 +1,15 @@
+<%
+# FIXME should not be a @var
+@promethee_id = "promethee-#{SecureRandom.hex 10}"
+%>
 <script>
   var promethee = angular
-    .module(<%= promethee.id.to_json.html_safe %>, ['ui.tinymce', 'dndLists'])
+    .module('<%= @promethee_id %>', ['ui.tinymce', 'dndLists'])
     .constant('data', <%= promethee.data.to_json.html_safe %>)
     .value('state', {
       editing: false
     })
+    .value('componentDescriptions', [])
     .filter('htmlSafe', ['$sce', function($sce) {
       return function(val) {
         return $sce.trustAsHtml(val);
@@ -23,9 +28,9 @@
     });
 </script>
 
-<div id="<%= promethee.id %>"
+<div id="<%= @promethee_id %>"
      class="promethee-editor"
-     ng-app="<%= promethee.id %>"
+     ng-app="<%= @promethee_id %>"
      ng-controller="PrometheeController as prometheeController"
      ng-class="{
        'fullscreen': fullscreen,
@@ -35,10 +40,11 @@
        'promethee-editor--preview--desktop': preview && previewMode == 'desktop'
      }">
 
+  <% # TODO iterate over views instead of these 3 calls, and pass locals: { promethee_id: promethee_id } %>
   <%= promethee_template :component %>
   <%= promethee_template :components %>
   <%= promethee_templates %>
-  <%= promethee.input %>
+  <input type="hidden" name="page[data]" id="page_data" value="{{promethee.data}}" />
 
   <nav class="navbar navbar-default">
     <div class="container-fluid">
@@ -65,7 +71,6 @@
       </div>
     </div>
   </nav>
-
   <div class="promethee-editor__page" ng-class="{ 'container-fluid': fullscreen }">
     <ng-include src="'promethee/components'"></ng-include>
   </div>
@@ -98,13 +103,15 @@
     </div>
   </div>
 
-
   <!-- Work in progress -->
   <!-- <iframe id="iframe"></iframe> !-->
 </div>
 
 <script>
   promethee.controller('PrometheeController', ['data', '$scope', function(data, $scope) {
+    if (data === null || data === '') {
+      data = [];
+    }
     $scope.data = data;
     $scope.fullscreen = false;
     $scope.preview = false;
@@ -130,30 +137,9 @@
 
   }]);
 
-  promethee.controller('AdderController', ['$scope', function($scope) {
+  promethee.controller('AdderController', ['$scope', 'componentDescriptions', function($scope, componentDescriptions) {
 
-    $scope.componentDescriptions = [
-      {
-        name: 'Text',
-        thumb: 'http://via.placeholder.com/300x200',
-        data: {
-          type: 'text',
-          attributes: {
-            body: 'Edit me'
-          }
-        }
-      },
-      {
-        name: 'Image',
-        thumb: 'http://via.placeholder.com/300x200',
-        data: {
-          type: 'image',
-          attributes: {
-            src: 'https://source.unsplash.com/random/1920x1080'
-          }
-        }
-      }
-    ];
+    $scope.componentDescriptions = componentDescriptions;
 
     $scope.addComponent = function(componentDescription, list) {
       var componentDescription = angular.copy(componentDescription.data);

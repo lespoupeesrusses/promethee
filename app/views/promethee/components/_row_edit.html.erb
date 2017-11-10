@@ -6,7 +6,9 @@
         <div class="promethee-editor__toolbar">
           Row
         </div>
-
+        <button type="button" class="btn btn-default" ng-click="addColumn()">
+          Add column
+        </button>
         <ng-include src="'promethee/components'"></ng-include>
       </div>
     </div>
@@ -14,11 +16,34 @@
 </script>
 
 <script>
+
+  angular.injector(['ng', '<%= @promethee_id %>']).get('componentDescriptions').push({
+    name: 'Row',
+    thumb: 'http://via.placeholder.com/300x200',
+    data: {
+      type: 'row',
+      attributes: {},
+      children: []
+    }
+  });
+
   promethee.controller('RowController', ['$scope', function($scope) {
+
+    $scope.addColumn = function() {
+      this.component.children.push({
+        type: 'column',
+        attributes: {
+          size: 3,
+          offset: 0
+        },
+        children: []
+      })
+    }
 
     $scope.move = function() {
       this.components.splice(this.components.indexOf(this.component), 1);
     };
     
   }]);
+
 </script>

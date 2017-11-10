@@ -15,6 +15,18 @@
 </script>
 
 <script>
+
+  angular.injector(['ng', '<%= @promethee_id %>']).get('componentDescriptions').push({
+    name: 'Video',
+    thumb: 'http://via.placeholder.com/300x200',
+    data: {
+      type: 'video',
+      attributes: {
+        url: 'https://vimeo.com/193563043'
+      }
+    }
+  });
+
   promethee.controller('VideoController', ['$scope', function($scope) {
 
     $scope.editing = false;

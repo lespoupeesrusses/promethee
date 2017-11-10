@@ -134,6 +134,24 @@ This would do quite the same thing:
 </form>
 ```
 
+#### The editor has components
+
+The component is made of a show and and edit.
+
+In the edit, the component description looks like:
+```
+{
+  name: 'Image',
+  thumb: 'http://via.placeholder.com/300x200',
+  data: {
+    type: 'image',
+    attributes: {
+      src: 'https://source.unsplash.com/random/1920x1080'
+    }
+  }
+}
+```
+
 #### An editor in an iframe
 
 At first, the editor was rendered in the view.
