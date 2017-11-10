@@ -191,10 +191,10 @@ Before the form is submit, we take the data from the angular app (through a plai
 - ~~Show Image (http)~~
 - ~~Show Video (http vimeo / youtube)~~
 - ~~Edit Row~~
-- ~~Edit Col~~
 - ~~Edit Text~~
 - ~~Edit Image (http)~~
 - ~~Edit Video (http)~~
+- Edit Column (drag and drop must be better)
 - Editor in iframe
 - UI et branding
 - Hooks (needed for image and video)
