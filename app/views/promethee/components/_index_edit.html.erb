@@ -1,5 +1,5 @@
 <script type="text/ng-template" id="promethee/components/index">
-  <div ng-init="components = component.children">
+  <div class="promethee-editor__components" ng-init="components = component.children" dnd-list="components" dnd-allowed-types="allowedTypes">
     <div ng-repeat="component in components">
       <ng-include src="'promethee/components/show'"></ng-include>
     </div>

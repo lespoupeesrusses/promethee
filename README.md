@@ -30,11 +30,11 @@ There are 2 parts: the editor, which lets you build the pages, and the renderer.
 
 ### Regarding wysiwyg editors like tinymce, trix...
 
-It's not only rich text: it lets you build complete pages, with a grid system. 
+It's not only rich text: it lets you build complete pages, with a grid system.
 
 ### Regarding page builders like Divi, Semplice, Shogun
 
-It's for Rails (unlike Divi or Semplice which are for Wordpress). 
+It's for Rails (unlike Divi or Semplice which are for Wordpress).
 It's open source.
 It does not provide as many options, as it's intended to be integrated in a website with specific brand guidelines through some custom css.
 
