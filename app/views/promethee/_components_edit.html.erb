@@ -1,7 +1,11 @@
 <script type="text/ng-template" id="promethee/components">
   <div class="clearfix"></div>
-  <div ng-controller="ComponentsController as componentsController" class="promethee-editor__components" ng-init="components = component ? component.children : data" dnd-list="components" dnd-allowed-types="allowedTypes()">
-    <div ng-repeat="component in components track by $id(component)" ng-include="'promethee/component'"></div>
+  <div  ng-controller="ComponentsController as componentsController" 
+        class="promethee-editor__components" 
+        ng-init="components = component ? component.children : data" 
+        dnd-list="components" 
+        dnd-allowed-types="allowedTypes()">
+    <div ng-repeat="component in components" ng-include="'promethee/component'"></div>
   </div>
   <div class="clearfix"></div>
 

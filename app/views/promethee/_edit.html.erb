@@ -24,9 +24,9 @@
 </script>
 
 <div id="<%= promethee.id %>"
+     class="promethee-editor"
      ng-app="<%= promethee.id %>"
      ng-controller="PrometheeController as prometheeController"
-     class="promethee-editor"
      ng-class="{
        'fullscreen': fullscreen,
        'promethee-editor--preview': preview,
@@ -66,9 +66,39 @@
     </div>
   </nav>
 
-  <div class="promethee-editor__page" ng-class="{ 'container-fluid': prometheeController.fullscreen }">
+  <div class="promethee-editor__page" ng-class="{ 'container-fluid': fullscreen }">
     <ng-include src="'promethee/components'"></ng-include>
   </div>
+
+  <div class="promethee-editor__adder" ng-controller="AdderController">
+    <button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#adder-modal">
+      Add component
+    </button>
+    <div class="modal fade" id="adder-modal" tabindex="-1" role="dialog" aria-labelledby="adderModal">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Select component</h4>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div  ng-repeat="componentDescription in componentDescriptions" 
+                    ng-click="addComponent(componentDescription, data)"
+                    class="col-md-3">
+                <div class="-thumbnail">
+                  <img ng-src="{{componentDescription.thumb}}" class="img-responsive">
+                  <h4>{{componentDescription.name}}</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
   <!-- Work in progress -->
   <!-- <iframe id="iframe"></iframe> !-->
 </div>
@@ -98,5 +128,36 @@
       this.fullscreen = false;
     }
 
+  }]);
+
+  promethee.controller('AdderController', ['$scope', function($scope) {
+
+    $scope.componentDescriptions = [
+      {
+        name: 'Text',
+        thumb: 'http://via.placeholder.com/300x200',
+        data: {
+          type: 'text',
+          attributes: {
+            body: 'Edit me'
+          }
+        }
+      },
+      {
+        name: 'Image',
+        thumb: 'http://via.placeholder.com/300x200',
+        data: {
+          type: 'image',
+          attributes: {
+            src: 'https://source.unsplash.com/random/1920x1080'
+          }
+        }
+      }
+    ];
+
+    $scope.addComponent = function(componentDescription, list) {
+      var componentDescription = angular.copy(componentDescription.data);
+      list.push(componentDescription);
+    }
   }]);
 </script>
