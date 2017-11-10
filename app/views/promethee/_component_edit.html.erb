@@ -1,3 +1,11 @@
 <script type="text/ng-template" id="promethee/component">
-  <ng-include src="'promethee/' + component.type"></ng-include>
+  <div ng-controller="ComponentController">
+    <ng-include src="'promethee/' + component.type"></ng-include>
+  </div>
+</script>
+
+<script>
+  promethee.controller('ComponentController', ['$scope', function($scope) {
+
+  }]);
 </script>

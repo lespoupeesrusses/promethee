@@ -1,14 +1,18 @@
 <script type="text/ng-template" id="promethee/components">
   <div class="clearfix"></div>
-  <div  ng-controller="ComponentsController" 
-        class="promethee-editor__components" 
-        ng-init="components = component ? component.children : data">
-    <div ng-repeat="component in components" ng-include="'promethee/component'"></div>
+  <div  ng-controller="ComponentsController"
+        class="promethee-editor__components">
+    <div ng-repeat="component in components() track by $id(component)" ng-include="'promethee/component'"></div>
   </div>
 </script>
 
 <script>
   promethee.controller('ComponentsController', ['$scope', function($scope) {
+    var component = $scope.component;
+    var components = component ? component.children : $scope.data;
 
+    $scope.components = function() {
+      return components;
+    };
   }]);
 </script>

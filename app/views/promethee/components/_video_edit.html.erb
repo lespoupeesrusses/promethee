@@ -1,8 +1,8 @@
 <script type="text/ng-template" id="promethee/video">
   <div ng-controller="VideoController">
-    <div  dnd-draggable="component" 
-          dnd-moved="move()" 
-          dnd-type="component.type" 
+    <div  dnd-draggable="component"
+          dnd-moved="move()"
+          dnd-type="component.type"
           class="promethee-editor__component promethee-editor__component--video promethee-editor__component--final">
       <div class="promethee-editor__toolbar">
         Video
@@ -16,7 +16,7 @@
 
 <script>
 
-  angular.injector(['ng', '<%= @promethee_id %>']).get('componentDescriptions').push({
+  angular.injector(['ng', <%= promethee.id.to_json.html_safe %>]).get('definitions').push({
     name: 'Video',
     thumb: 'http://via.placeholder.com/300x200',
     data: {

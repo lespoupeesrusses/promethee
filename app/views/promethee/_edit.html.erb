@@ -1,15 +1,11 @@
-<%
-# FIXME should not be a @var
-@promethee_id = "promethee-#{SecureRandom.hex 10}"
-%>
 <script>
   var promethee = angular
-    .module('<%= @promethee_id %>', ['ui.tinymce', 'dndLists'])
+    .module(<%= promethee.id.to_json.html_safe %>, ['ui.tinymce', 'dndLists'])
     .constant('data', <%= promethee.data.to_json.html_safe %>)
     .value('state', {
       editing: false
     })
-    .value('componentDescriptions', [])
+    .value('definitions', [])
     .filter('htmlSafe', ['$sce', function($sce) {
       return function(val) {
         return $sce.trustAsHtml(val);
@@ -28,9 +24,9 @@
     });
 </script>
 
-<div id="<%= @promethee_id %>"
+<div id="<%= promethee.id %>"
      class="promethee-editor"
-     ng-app="<%= @promethee_id %>"
+     ng-app="<%= promethee.id %>"
      ng-controller="PrometheeController as prometheeController"
      ng-class="{
        'fullscreen': fullscreen,
@@ -41,9 +37,10 @@
      }">
 
   <% # TODO iterate over views instead of these 3 calls, and pass locals: { promethee_id: promethee_id } %>
-  <%= promethee_template :component %>
-  <%= promethee_template :components %>
-  <%= promethee_templates %>
+
+  <%= promethee.template :component %>
+  <%= promethee.template :components %>
+  <%= promethee.templates %>
   <input type="hidden" name="page[data]" id="page_data" value="{{promethee.data}}" />
 
   <nav class="navbar navbar-default">
@@ -75,25 +72,24 @@
     <ng-include src="'promethee/components'"></ng-include>
   </div>
 
+  <button type="button" class="btn btn-default btn-block" ng-click="addComponentTo(data)">Add component</button>
+
   <div class="promethee-editor__adder" ng-controller="AdderController">
-    <button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#adder-modal">
-      Add component
-    </button>
-    <div class="modal fade" id="adder-modal" tabindex="-1" role="dialog" aria-labelledby="adderModal">
+    <div class="modal fade in" tabindex="-1" role="dialog" style="display: {{adding ? 'block' : 'none'}}">
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Select component</h4>
+            <button type="button" class="close" ng-click="close()"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Select component</h4>
           </div>
           <div class="modal-body">
             <div class="row">
-              <div  ng-repeat="componentDescription in componentDescriptions" 
-                    ng-click="addComponent(componentDescription, data)"
+              <div  ng-repeat="definition in definitions"
+                    ng-click="pushComponent(definition)"
                     class="col-md-3">
-                <div class="-thumbnail">
-                  <img ng-src="{{componentDescription.thumb}}" class="img-responsive">
-                  <h4>{{componentDescription.name}}</h4>
+                <div class="thumbnail">
+                  <img ng-src="{{definition.thumb}}" class="img-responsive">
+                  <h4>{{definition.name}}</h4>
                 </div>
               </div>
             </div>
@@ -137,13 +133,24 @@
 
   }]);
 
-  promethee.controller('AdderController', ['$scope', 'componentDescriptions', function($scope, componentDescriptions) {
+  promethee.controller('AdderController', ['$scope', '$rootScope', 'definitions', function($scope, $rootScope, definitions) {
 
-    $scope.componentDescriptions = componentDescriptions;
+    $scope.adding = null;
+    $scope.definitions = definitions;
 
-    $scope.addComponent = function(componentDescription, list) {
-      var componentDescription = angular.copy(componentDescription.data);
-      list.push(componentDescription);
-    }
+    $scope.close = function() {
+      $scope.adding = null;
+    };
+
+    $scope.pushComponent = function(definition) {
+      var definition = angular.copy(definition.data);
+      $scope.adding.push(definition);
+      $scope.close();
+    };
+
+    $rootScope.addComponentTo = function(components) {
+      $scope.adding = components;
+    };
+
   }]);
 </script>

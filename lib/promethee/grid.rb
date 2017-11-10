@@ -21,12 +21,20 @@ class Promethee::Grid
     hidden_field_tag name, '{{promethee.data}}', options
   end
 
-  def to_javascript
-    <<-JAVASCRIPT.html_safe
-      new Promethee(#{id.to_json}, #{data.to_json})
-    JAVASCRIPT
+  # def to_javascript
+  #   <<-JAVASCRIPT.html_safe
+  #     new Promethee(#{id.to_json}, #{data.to_json})
+  #   JAVASCRIPT
+  # end
+  # alias_method :to_js, :to_javascript
+
+  def template(type)
+    ApplicationController.renderer.render partial: "/promethee/#{'components/' unless [:component, :components].include? type.to_s.to_sym }#{type}_edit", locals: { promethee: self }
   end
-  alias_method :to_js, :to_javascript
+
+  def templates
+    Promethee::Component.types.map{ |type| template type }.join.html_safe
+  end
 
   def edit
     ApplicationController.renderer.render partial: 'promethee/edit', locals: { promethee: self }

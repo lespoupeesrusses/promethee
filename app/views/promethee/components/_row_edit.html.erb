@@ -5,10 +5,10 @@
 
         <div class="promethee-editor__toolbar">
           Row
+          <button type="button" class="btn btn-default btn-sm pull-right" ng-click="addColumn()">
+            Add column
+          </button>
         </div>
-        <button type="button" class="btn btn-default" ng-click="addColumn()">
-          Add column
-        </button>
         <ng-include src="'promethee/components'"></ng-include>
       </div>
     </div>
@@ -17,7 +17,7 @@
 
 <script>
 
-  angular.injector(['ng', '<%= @promethee_id %>']).get('componentDescriptions').push({
+  angular.injector(['ng', <%= promethee.id.to_json.html_safe %>]).get('definitions').push({
     name: 'Row',
     thumb: 'http://via.placeholder.com/300x200',
     data: {
@@ -43,7 +43,7 @@
     $scope.move = function() {
       this.components.splice(this.components.indexOf(this.component), 1);
     };
-    
+
   }]);
 
 </script>
