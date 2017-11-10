@@ -69,10 +69,12 @@
     </div>
   </nav>
   <div class="promethee-editor__page" ng-class="{ 'container-fluid': fullscreen }">
-    <ng-include src="'promethee/components'"></ng-include>
+    <div class="promethee-editor__components" dnd-list="data" dnd-allowed-types="allowedTypes">
+      <ng-include src="'promethee/components'"></ng-include>
+    </div>
   </div>
 
-  <button type="button" class="btn btn-default btn-block" ng-click="addComponentTo(data)">Add component</button>
+  <span type="button" class="btn btn-default btn-block" ng-click="addComponentTo(data)" style="margin-bottom: 6px">Add component</span>
 
   <div class="promethee-editor__adder" ng-controller="AdderController">
     <div class="modal fade in" tabindex="-1" role="dialog" style="display: {{adding ? 'block' : 'none'}}">
@@ -104,7 +106,7 @@
 </div>
 
 <script>
-  promethee.controller('PrometheeController', ['data', '$scope', function(data, $scope) {
+  promethee.controller('PrometheeController', ['data', '$scope', 'definitions', function(data, $scope, definitions) {
     if (data === null || data === '') {
       data = [];
     }
@@ -112,6 +114,10 @@
     $scope.fullscreen = false;
     $scope.preview = false;
     $scope.previewMode = 'desktop';
+
+    $scope.allowedTypes = definitions.map(function(definition) {
+      return definition.data.type;
+    });
 
     $scope.enablePreview = function() {
       this.preview = true;
