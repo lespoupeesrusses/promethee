@@ -1,4 +1,4 @@
-<script type="text/ng-template" id="promethee/video">
+<script type="text/ng-template" id="promethee/components/video">
   <div ng-controller="VideoController">
     <div  dnd-draggable="component"
           dnd-moved="remove()"
@@ -6,7 +6,7 @@
           class="promethee-editor__component promethee-editor__component--video promethee-editor__component--final">
       <div class="promethee-editor__toolbar">
         Video
-        <%= render 'promethee/components/partials/toolbar_buttons' %>
+        <%= render 'promethee/partials/toolbar_buttons' %>
       </div>
       <div ng-show="editing" class="promethee-editor__wrapper">
         <div class="form-group">

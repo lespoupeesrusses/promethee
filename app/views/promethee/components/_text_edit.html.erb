@@ -1,4 +1,4 @@
-<script type="text/ng-template" id="promethee/text">
+<script type="text/ng-template" id="promethee/components/text">
   <div ng-controller="TextController">
     <div  dnd-draggable="component"
           dnd-moved="remove()"
@@ -6,7 +6,7 @@
           class="promethee-editor__component promethee-editor__component--text promethee-editor__component--final">
       <div class="promethee-editor__toolbar">
         Text
-        <%= render 'promethee/components/partials/toolbar_buttons' %>
+        <%= render 'promethee/partials/toolbar_buttons' %>
       </div>
       <div ng-show="editing">
         <textarea ui-tinymce="tinymceOptions" ng-model="component.attributes.body"></textarea>
