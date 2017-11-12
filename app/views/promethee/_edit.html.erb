@@ -28,103 +28,24 @@ promethee_data = promethee_data.to_json unless promethee_data.is_a? String
         return val[0].toUpperCase() + val.substring(1).toLowerCase();
       };
     });
-</script>
-
-<div id="<%= promethee_id %>"
-     class="promethee-editor"
-     ng-app="<%= promethee_id %>"
-     ng-controller="PrometheeController as prometheeController"
-     ng-class="{
-       'fullscreen': fullscreen,
-       'promethee-editor--preview': preview,
-       'promethee-editor--preview--mobile': preview && previewMode == 'mobile',
-       'promethee-editor--preview--tablet': preview && previewMode == 'tablet',
-       'promethee-editor--preview--desktop': preview && previewMode == 'desktop'
-     }">
-
-  <% # TODO custom views %>
-  <% Dir['app/views/promethee/components/*'].each do |file| %>
-  <% end %>
-  <% # TODO iterate over files in gem %>
-  <% ['index', 'show', 'row', 'column', 'text', 'image', 'video'].each do |type| %>
-    <%= render partial: "promethee/components/#{type}_edit", locals: { promethee_id: promethee_id } %>
-  <% end %>
-
-  <input type="hidden" name="page[data]" id="page_data" value="{{data}}" />
-
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <%= image_tag 'icon-promethee.png', class: 'navbar-brand' %>
-      </div>
-      <div id="navbar">
-        <ul class="nav navbar-nav navbar-right">
-          <li ng-click="enablePreview()" ng-hide="preview"><a><%= fa_icon :eye %></a></li>
-          <li ng-click="previewMode = 'mobile'" ng-class="{ active: previewMode == 'mobile' }" ng-show="preview">
-            <a><%= fa_icon :mobile %></a>
-          </li>
-          <li ng-click="previewMode = 'tablet'" ng-class="{ active: previewMode == 'tablet' }" ng-show="preview"><a>
-            <%= fa_icon :tablet %></a>
-          </li>
-          <li ng-click="previewMode = 'desktop'" ng-class="{ active: previewMode == 'desktop' }" ng-show="preview"><a>
-            <%= fa_icon :desktop %></a>
-          </li>
-          <li ng-click="disablePreview()" ng-show="preview"><a><%= fa_icon 'eye-slash' %></a>
-          </li>
-          <li ng-click="enableFullscreen()" ng-hide="fullscreen"><a><%= fa_icon :expand %></a></li>
-          <li ng-click="disableFullscreen()" ng-show="fullscreen"><a><%= fa_icon :compress %></a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-  <div class="promethee-editor__page" ng-class="{ 'container-fluid': fullscreen }">
-    <ng-include src="'promethee/components/index'"></ng-include>
-  </div>
-
-  <span type="button" class="btn btn-default btn-block" ng-click="addComponentTo(data)" style="margin-bottom: 6px">Add component</span>
-
-  <div class="promethee-editor__adder" ng-controller="AdderController">
-    <div class="modal fade in" tabindex="-1" role="dialog" style="display: {{adding ? 'block' : 'none'}}">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" ng-click="close()"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">Select component</h4>
-          </div>
-          <div class="modal-body">
-            <div class="row">
-              <div  ng-repeat="definition in definitions"
-                    ng-click="pushComponent(definition)"
-                    class="col-md-3">
-                <div class="thumbnail">
-                  <img ng-src="{{definition.thumb}}" class="img-responsive">
-                  <h4>{{definition.name}}</h4>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Work in progress -->
-  <!-- <iframe id="iframe"></iframe> !-->
-</div>
-
-<script>
+  
   promethee.controller('PrometheeController', ['data', '$scope', 'definitions', function(data, $scope, definitions) {
+    
+    // Data
     if (data === null || data === '') {
       data = [];
     }
     $scope.data = data;
-    $scope.fullscreen = false;
-    $scope.preview = false;
-    $scope.previewMode = 'desktop';
     $scope.component = {
       children: data
     };
 
+    // Preview modes
+    $scope.fullscreen = false;
+    $scope.preview = false;
+    $scope.previewMode = 'desktop';
+
+    // Drag and drop utility
     $scope.allowedTypes = definitions.map(function(definition) {
       return definition.data.type;
     });
@@ -149,24 +70,26 @@ promethee_data = promethee_data.to_json unless promethee_data.is_a? String
 
   }]);
 
-  promethee.controller('AdderController', ['$scope', '$rootScope', 'definitions', function($scope, $rootScope, definitions) {
-
-    $scope.adding = null;
-    $scope.definitions = definitions;
-
-    $scope.close = function() {
-      $scope.adding = null;
-    };
-
-    $scope.pushComponent = function(definition) {
-      var definition = angular.copy(definition.data);
-      $scope.adding.push(definition);
-      $scope.close();
-    };
-
-    $rootScope.addComponentTo = function(components) {
-      $scope.adding = components;
-    };
-
-  }]);
 </script>
+
+<div id="<%= promethee_id %>"
+     class="promethee-editor"
+     ng-app="<%= promethee_id %>"
+     ng-controller="PrometheeController as prometheeController"
+     ng-class="{
+       'promethee-editor--fullscreen': fullscreen,
+       'promethee-editor--preview': preview,
+       'promethee-editor--preview--mobile': preview && previewMode == 'mobile',
+       'promethee-editor--preview--tablet': preview && previewMode == 'tablet',
+       'promethee-editor--preview--desktop': preview && previewMode == 'desktop'
+     }">
+  <input type="hidden" name="page[data]" id="page_data" value="{{data}}" />
+
+  <%= render 'promethee/partials/include_components', promethee_id: promethee_id %>
+  <%= render 'promethee/partials/navbar' %>
+  <%= render 'promethee/partials/page' %>
+  <%= render 'promethee/partials/adder' %>
+
+  <!-- Work in progress -->
+  <!-- <iframe id="iframe"></iframe> !-->
+</div>
