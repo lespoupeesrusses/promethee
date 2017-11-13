@@ -189,10 +189,10 @@ This is used to generate a live responsive preview.
 - ~~Edit Text~~
 - ~~Edit Image (http)~~
 - ~~Edit Video (http)~~
-- Edit Column (drag and drop must be better)
-- Editor in iframe
-- UI et branding
+- ~~Preview in iframe~~
 - Hooks (needed for image and video)
+- Edit Column (drag and drop must be better)
+- UI et branding
 - Gallery
 - Menu
 - Tab
