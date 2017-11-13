@@ -190,6 +190,8 @@ This is used to generate a live responsive preview.
 - ~~Edit Image (http)~~
 - ~~Edit Video (http)~~
 - ~~Preview in iframe~~
+- ~~Preview~~
+- ~~Fullscreen~~
 - Hooks (needed for image and video)
 - Edit Column (drag and drop must be better)
 - UI et branding
@@ -198,8 +200,6 @@ This is used to generate a live responsive preview.
 - Tab
 - Cover
 - Chapter (or maybe it's a cover too?)
-- Preview
-- Fullscreen
 
 ## Development
 After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
