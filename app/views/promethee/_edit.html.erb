@@ -28,8 +28,8 @@ promethee_data = promethee_data.to_json unless promethee_data.is_a? String
         return val[0].toUpperCase() + val.substring(1).toLowerCase();
       };
     });
-  
-  promethee.controller('PrometheeController', ['data', '$scope', 'definitions', function(data, $scope, definitions) {
+
+  promethee.controller('PrometheeController', ['data', '$scope', 'definitions', '$http', function(data, $scope, definitions, $http) {
     
     // Data
     if (data === null || data === '') {
@@ -52,8 +52,19 @@ promethee_data = promethee_data.to_json unless promethee_data.is_a? String
 
     $scope.enablePreview = function() {
       this.preview = true;
-      // Work in progress
-      // document.getElementById('iframe').contentWindow.document.documentElement.innerHTML = document.documentElement.innerHTML;
+
+      var form = document.createElement('form');
+      document.body.appendChild(form);
+      form.method = 'POST';
+      form.action = 'promethee/preview';
+      form.target = 'preview';
+      var input = document.createElement('input');
+      input.type = 'text';
+      input.value = JSON.stringify(data);
+      input.name = 'data';
+      form.appendChild(input);
+      form.submit();
+      document.body.removeChild(form);
     }
 
     $scope.disablePreview = function() {
@@ -78,18 +89,13 @@ promethee_data = promethee_data.to_json unless promethee_data.is_a? String
      ng-controller="PrometheeController as prometheeController"
      ng-class="{
        'promethee-editor--fullscreen': fullscreen,
-       'promethee-editor--preview': preview,
-       'promethee-editor--preview--mobile': preview && previewMode == 'mobile',
-       'promethee-editor--preview--tablet': preview && previewMode == 'tablet',
-       'promethee-editor--preview--desktop': preview && previewMode == 'desktop'
+       'promethee-editor--preview': preview
      }">
   <input type="hidden" name="page[data]" id="page_data" value="{{data}}" />
 
   <%= render 'promethee/partials/include_components', promethee_id: promethee_id %>
   <%= render 'promethee/partials/navbar' %>
+  <%= render 'promethee/partials/preview' %>
   <%= render 'promethee/partials/page' %>
   <%= render 'promethee/partials/adder' %>
-
-  <!-- Work in progress -->
-  <!-- <iframe id="iframe"></iframe> !-->
 </div>

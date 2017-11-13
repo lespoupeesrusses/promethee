@@ -1,0 +1,12 @@
+<div  class="promethee-editor__preview" ng-show="preview"
+      ng-class="{
+       'promethee-editor__preview--mobile': preview && previewMode == 'mobile',
+       'promethee-editor__preview--tablet': preview && previewMode == 'tablet',
+       'promethee-editor__preview--desktop': preview && previewMode == 'desktop'
+      }">
+  <iframe class="promethee-editor__preview--frame"
+          name="preview" 
+          sandbox="allow-scripts" 
+          frameBorder="0">
+  </iframe>
+</div>

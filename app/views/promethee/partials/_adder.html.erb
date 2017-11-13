@@ -1,4 +1,8 @@
-<span type="button" class="btn btn-default btn-block" ng-click="addComponentTo(data)" style="margin-bottom: 6px">Add component</span>
+<span type="button" 
+      class="btn btn-default btn-block" 
+      ng-click="addComponentTo(data)" 
+      ng-hide="preview"
+      style="margin-bottom: 6px">Add component</span>
 
 <div class="promethee-editor__adder" ng-controller="AdderController">
   <div class="modal fade in" tabindex="-1" role="dialog" style="display: {{adding ? 'block' : 'none'}}">

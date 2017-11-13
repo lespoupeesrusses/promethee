@@ -168,17 +168,12 @@ In the edit, the component description looks like:
 }
 ```
 
-#### An editor in an iframe
+#### The editor previews in an iframe
 
-At first, the editor was rendered in the view.
-When trying to create a preview, it was impossible to manage responsivity, because it relies on the page width, and the page width does not change.
-This is the first problem of the kind, but many others would follow: stylesheet conflicts, bootstrap parameters (number of columns...) conflicts, maybe javascript conflicts...
+To be able to preview responsivity, there is a POST "promethee/preview" route.
+When you send your data, it renders the page in the default layout.
 
-The solution is to put the editor in an iframe.
-The editor creates an iframe.
-The global scheme is illustrated in docs/iframe.html.
-The idea is to create the angular app inside the iframe so it's completely independant.
-Before the form is submit, we take the data from the angular app (through a plain javascript variable) and put it in the form input.
+This is used to generate a live responsive preview.
 
 ### Roadmap
 - ~~Gem setup~~

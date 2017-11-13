@@ -11,6 +11,7 @@ $promethee-color: #ff9900
   +grid-builder-set-gutter-width(0)
 
   background: white
+  position: relative
 
   .navbar
     border-radius: 0
@@ -29,23 +30,32 @@ $promethee-color: #ff9900
     margin-right: -6px
 
   &--preview
-    .promethee-editor__toolbar
-      display: none
-    .promethee-editor__component
-      border: none
-      margin: 0
-    .promethee-editor__page
-      margin: 0 auto
+    overflow: hidden
+  &__preview
+    position: relative
+    height: 100%
+    min-height: 500px
+    background: black
+    margin-top: -20px
+    &--frame
+      transition: width 1s, left 1s, margin 1s
+      position: absolute
+      height: 100%
     &--mobile
-      .promethee-editor__page
+      .promethee-editor__preview--frame
+        left: 50%
+        margin-left: -187px
         width: 375px
-        border-left: 1px dotted #eee
-        border-right: 1px dotted #eee
     &--tablet
-      .promethee-editor__page
+      .promethee-editor__preview--frame
+        left: 50%
+        margin-left: -384px
         width: 768px
-        border-left: 1px dotted #eee
-        border-right: 1px dotted #eee
+    &--desktop
+      .promethee-editor__preview--frame
+        width: 100%
+        left: 0
+        right: 0
 
   &__sidebar
     background: $promethee-light-grey
