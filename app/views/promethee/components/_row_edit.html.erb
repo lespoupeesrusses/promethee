@@ -1,7 +1,7 @@
 <script type="text/ng-template" id="promethee/components/row">
   <div ng-controller="RowController">
     <div class="row">
-      <div dnd-draggable="component" dnd-moved="remove()" dnd-type="component.type" class="promethee-editor__component promethee-editor__component--row">
+      <div class="promethee-editor__component promethee-editor__component--row">
         <div class="promethee-editor__toolbar">
           Row
           <%= render 'promethee/partials/toolbar_buttons' %>
@@ -20,7 +20,7 @@
 </script>
 
 <script>
-  angular.injector(['ng', '<%= promethee_id %>']).get('definitions').push({
+  angular.injector(['ng', 'Promethee']).get('definitions').push({
     name: 'Row',
     thumb: 'http://via.placeholder.com/300x200',
     data: {
@@ -44,10 +44,6 @@
         children: []
       })
     }
-
-    $scope.remove = function() {
-      this.components.splice(this.components.indexOf(this.component), 1);
-    };
 
   }]);
 </script>

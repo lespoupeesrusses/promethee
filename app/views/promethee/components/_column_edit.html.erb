@@ -1,7 +1,7 @@
 <script type="text/ng-template" id="promethee/components/column">
   <div ng-controller="ColumnController">
     <div class="col col-md-{{component.attributes.size}} col-md-offset-{{component.attributes.offset}}">
-      <div dnd-draggable="component" dnd-moved="remove()" dnd-type="component.type" class="promethee-editor__component promethee-editor__component--column">
+      <div class="promethee-editor__component promethee-editor__component--column">
         <div class="promethee-editor__toolbar">
           Column
           <%= render 'promethee/partials/toolbar_buttons' %>
@@ -32,9 +32,9 @@
       return definition.data.type;
     });
 
-    $scope.remove = function() {
-      this.components.splice(this.components.indexOf(this.component), 1);
-    };
+    // $scope.remove = function() {
+    //   this.components.splice(this.components.indexOf(this.component), 1);
+    // };
 
   }]);
 </script>

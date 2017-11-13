@@ -1,12 +1,11 @@
 <%
-promethee_id = "promethee-#{SecureRandom.hex 10}"
-promethee_data = promethee.data
-promethee_data = promethee_data.to_json unless promethee_data.is_a? String
+data = data
+promethee_data = data.to_json unless promethee_data.is_a? String
 %>
 
 <script>
   var promethee = angular
-    .module('<%= promethee_id %>', ['ui.tinymce', 'dndLists'])
+    .module('Promethee', ['ui.tinymce', 'dndLists'])
     .constant('data', <%= promethee_data.html_safe %>)
     .value('state', {
       editing: false
@@ -79,13 +78,18 @@ promethee_data = promethee_data.to_json unless promethee_data.is_a? String
       this.fullscreen = false;
     }
 
+    $scope.remove = function(component, components) {
+      var index = components.indexOf(component);
+      components.splice(index, 1);
+    }
+
   }]);
 
 </script>
 
-<div id="<%= promethee_id %>"
+<div id="promethee"
      class="promethee-editor"
-     ng-app="<%= promethee_id %>"
+     ng-app="Promethee"
      ng-controller="PrometheeController as prometheeController"
      ng-class="{
        'promethee-editor--fullscreen': fullscreen,
@@ -93,9 +97,10 @@ promethee_data = promethee_data.to_json unless promethee_data.is_a? String
      }">
   <input type="hidden" name="page[data]" id="page_data" value="{{data}}" />
 
-  <%= render 'promethee/partials/include_components', promethee_id: promethee_id %>
+  <%= render 'promethee/partials/include_components' %>
   <%= render 'promethee/partials/navbar' %>
   <%= render 'promethee/partials/preview' %>
+  <%= render 'promethee/partials/mover' %>
   <%= render 'promethee/partials/page' %>
   <%= render 'promethee/partials/adder' %>
 </div>

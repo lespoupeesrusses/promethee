@@ -1,9 +1,6 @@
 <script type="text/ng-template" id="promethee/components/text">
   <div ng-controller="TextController">
-    <div  dnd-draggable="component"
-          dnd-moved="remove()"
-          dnd-type="component.type"
-          class="promethee-editor__component promethee-editor__component--text promethee-editor__component--final">
+    <div class="promethee-editor__component promethee-editor__component--text promethee-editor__component--final">
       <div class="promethee-editor__toolbar">
         Text
         <%= render 'promethee/partials/toolbar_buttons' %>
@@ -19,7 +16,7 @@
 </script>
 
 <script>
-  angular.injector(['ng', '<%= promethee_id %>']).get('definitions').push({
+  angular.injector(['ng', 'Promethee']).get('definitions').push({
     name: 'Text',
     thumb: 'http://via.placeholder.com/300x200',
     data: {
@@ -40,10 +37,6 @@
 
     $scope.complete = function() {
       this.editing = false;
-    };
-
-    $scope.remove = function() {
-      this.components.splice(this.components.indexOf(this.component), 1);
     };
 
     $scope.tinymceOptions = {

@@ -1,0 +1,25 @@
+<script type="text/ng-template" id="promethee/partials/mover">
+  <ul ng-init="components = component.children" 
+      dnd-list="components">
+    <li ng-repeat="component in components"
+        dnd-draggable="component"
+        dnd-effect-allowed="move"
+        dnd-moved="components.splice($index, 1)"
+        class="promethee-editor__mover--{{component.type}}">
+        {{component.type}} ({{component.id}})
+        <ng-include src="'promethee/partials/mover'"></ng-include>
+    </li>
+  </ul>
+</script>
+
+
+<div class="promethee-editor__mover" ng-hide="preview">
+  <div class="row">
+    <div class="col-md-6">
+      <pre>{{component | json}}</pre>
+    </div>
+    <div class="col-md-6">
+      <ng-include src="'promethee/partials/mover'"></ng-include>
+    </div>
+  </div>
+</div>

@@ -19,15 +19,16 @@ $promethee-color: #ff9900
     border-bottom: 2px solid $promethee-color
     background: transparent
 
-  .dndPlaceholder
-    height: 30px
-    border: 2px dotted transparentize($promethee-color, .5)
-    list-style: none
-    margin: 6px
-
   &__page
     margin-left: -6px
     margin-right: -6px
+
+  &__mover
+    .dndPlaceholder
+      height: 20px
+      background-color: $promethee-color
+    .dndDragging
+      opacity: 0.5
 
   &--preview
     overflow: hidden

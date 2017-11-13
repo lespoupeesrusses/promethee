@@ -40,12 +40,21 @@
 
     $scope.pushComponent = function(definition) {
       var definition = angular.copy(definition.data);
+      definition.id = $scope.createIdentifier();
       $scope.adding.push(definition);
       $scope.close();
     };
 
     $rootScope.addComponentTo = function(components) {
       $scope.adding = components;
+    };
+
+    // https://gist.github.com/gordonbrander/2230317
+    $scope.createIdentifier = function () {
+      // Math.random should be unique because of its seeding algorithm.
+      // Convert it to base 36 (numbers + letters), and grab the first 9 characters
+      // after the decimal.
+      return '' + Math.random().toString(36).substr(2, 9);
     };
 
   }]);
