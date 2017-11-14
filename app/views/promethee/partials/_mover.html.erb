@@ -1,17 +1,13 @@
 <script type="text/ng-template" id="promethee/partials/mover">
-  <ul ng-init="components = component.children" 
-      dnd-list="components">
-    <li ng-repeat="component in components"
-        dnd-draggable="component"
-        dnd-effect-allowed="move"
-        dnd-moved="components.splice($index, 1)"
-        class="promethee-editor__mover--{{component.type}}">
+  <div ng-init="components = component.children" class="list">
+    <div class="dropzone" droppable data-index="0"></div>
+    <div ng-repeat="component in components" class="promethee-editor__mover--{{component.type}}" draggable data-index="{{$index}}">
         {{component.type}} ({{component.id}})
-        <ng-include src="'promethee/partials/mover'"></ng-include>
-    </li>
-  </ul>
+        <ng-include src="'promethee/partials/mover'" ng-if="component.children"></ng-include>
+        <div class="dropzone" droppable data-index="{{$index+1}}"></div>
+    </div>
+  </div>
 </script>
-
 
 <div class="promethee-editor__mover" ng-hide="preview">
   <div class="row">
@@ -23,3 +19,44 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  promethee
+    .directive('draggable', function() {
+      return {
+        restrict:'A',
+        link: function(scope, element, attrs) {
+          element.draggable({
+            scroll: true,
+            cursorAt: { top: 6, left: 6 },
+            helper: function( event ) {
+              return $( '<div><%= fa_icon :file %></div>' );
+            }
+          });      
+        }
+      }
+    })
+    .directive('droppable', function($compile) {
+      return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+          element.droppable({
+            drop: function(event, ui) {
+              var draggedFromList = angular.element(ui.draggable).parent().scope().components;
+              var draggedFromIndex = parseInt(ui.draggable[0].getAttribute('data-index'));
+              draggedFromList.splice(draggedFromIndex, 1);
+
+
+              var component = angular.element(ui.draggable).scope().component;
+              var droppedToList = angular.element(this).scope().components;
+              // TODO manage same list from and to
+              var droppedToIndex = parseInt(this.getAttribute('data-index'));
+              droppedToList.splice(droppedToIndex, 0, component);
+
+              scope.$apply();
+            }
+          });
+        }
+      }
+    });
+</script>
