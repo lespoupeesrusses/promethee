@@ -19,8 +19,10 @@
 </script>
 
 <script type="text/ng-template" id="promethee/components/video/move">
-  <div class="limited-height">
-    <div class="text-center"><%= fa_icon 'video-camera 2x' %></div>
+  <div ng-controller="VideoController">
+    <div class="embed-responsive embed-responsive-16by9">
+      <iframe ng-if="embed" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="allowfullscreen" ng-src="{{embed | urlSafe}}"></iframe>
+    </div>
   </div>
 </script>
 

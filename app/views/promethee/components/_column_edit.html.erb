@@ -24,10 +24,7 @@
 </script>
 
 <script type="text/ng-template" id="promethee/components/column/move">
-  <h4>Column</h4>
-  <ng-include src="'promethee/partials/mover'"></ng-include>
-</script>
-
-<script>
-
+  <div class="col col-md-{{component.attributes.size}} col-md-offset-{{component.attributes.offset}}">
+    <ng-include src="'promethee/partials/mover'"></ng-include>
+  </div>
 </script>

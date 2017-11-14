@@ -22,18 +22,13 @@ $promethee-color: #ff9900
   &__page
     margin-left: -6px
     margin-right: -6px
-  &--move &__page
-    margin-right: 515px
+  &--move &__mover
+    transform: scale(0.3)
 
   &__mover
-    position: absolute
-    top: 52px
-    width: 500px
-    right: 0
-    background: white
-    border-left: 1px solid $promethee-color
-    border-bottom: 1px solid $promethee-color
-    padding-top: 20px
+    transform: scale(1)
+    transform-origin: top
+    transition: transform 1s
     &--draggable
       h4
         font-size: 11px
@@ -46,7 +41,7 @@ $promethee-color: #ff9900
         padding-left: 10px
     &--droppable
       background: white
-      height: 10px
+      height: 50px
     &--dragged
       opacity: 0.25
     .ui-droppable-hover
@@ -63,9 +58,6 @@ $promethee-color: #ff9900
         display: none
         &.promethee-editor__mover--droppable.promethee-editor__mover--droppable--row
           display: block
-    .limited-height
-      max-height: 70px
-      overflow: hidden
 
   &--preview
     overflow: hidden

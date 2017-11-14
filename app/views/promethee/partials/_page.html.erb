@@ -1,5 +1,6 @@
-<div class="promethee-editor__page" ng-hide="preview">
+<div class="promethee-editor__page" ng-hide="preview || move">
   <div ng-class="{ 'container-fluid': fullscreen }">
   	<ng-include src="'promethee/components/index'"></ng-include>
   </div>
+  <%= render 'promethee/partials/adder' %>
 </div>

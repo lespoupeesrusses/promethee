@@ -35,7 +35,8 @@
         link: function(scope, element, attrs) {
           element.draggable({
             scroll: true,
-            cursorAt: { top: 6, left: 6 },
+            cursor: "pointer",
+            cursorAt: { top: 0, left: 0 },
             start: function() {
               var $elementDragged = $(element[0]);
               $elementDragged.addClass('promethee-editor__mover--dragged');
@@ -49,7 +50,7 @@
               $('.promethee-editor__mover').removeClass('promethee-editor__mover--dragging promethee-editor__mover--dragging--' + type);
             },
             helper: function( event ) {
-              return $( '<div><%= fa_icon :file %></div>' );
+              return $( '<div></div>' );
             }
           });      
         }
