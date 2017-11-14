@@ -40,6 +40,7 @@ data = data.to_json unless data.is_a? String
 
     // Preview modes
     $scope.fullscreen = false;
+    $scope.move = false;
     $scope.preview = false;
     $scope.previewMode = 'desktop';
 
@@ -87,6 +88,7 @@ data = data.to_json unless data.is_a? String
      ng-controller="PrometheeController as prometheeController"
      ng-class="{
        'promethee-editor--fullscreen': fullscreen,
+       'promethee-editor--move': move,
        'promethee-editor--preview': preview
      }">
   <input type="hidden" name="page[data]" id="page_data" value="{{data}}" />

@@ -22,23 +22,48 @@ $promethee-color: #ff9900
   &__page
     margin-left: -6px
     margin-right: -6px
+  &--move &__page
+    margin-right: 280px
 
   &__mover
-    .list
-      border: 1px solid black
-      margin: 10px
-      padding: 5px
-    .dropzone
-      background: $promethee-color
+    position: absolute
+    top: 52px
+    width: 250px
+    right: 0
+    background: white
+    border-left: 1px solid $promethee-color
+    padding-top: 30px
+    &--draggable
+      h4
+        font-size: 11px
+        text-transform: uppercase
+        font-weight: bold
+        color: $promethee-color
+        padding: 0
+        margin: 0
+      &--row
+        padding-left: 10px        
+    &--droppable
+      background: white
       height: 10px
-    .ui-draggable-dragging
-      z-index: 1000
-      width: 20px
-      height: 20px
+    &--dragged
+      opacity: 0.25
     .ui-droppable-hover
-      background: red !important
+      opacity: 1 !important
     .ui-droppable-active
-      background: blue
+      background: $promethee-color
+      opacity: 0.5
+    &--dragging
+      .promethee-editor__mover--droppable.promethee-editor__mover--droppable--row
+        display: none
+    &--dragging.promethee-editor__mover--dragging--column 
+      .promethee-editor__mover--droppable
+        display: none
+        &.promethee-editor__mover--droppable.promethee-editor__mover--droppable--row
+          display: block
+    .limited-height
+      max-height: 70px
+      overflow: hidden
 
   &--preview
     overflow: hidden

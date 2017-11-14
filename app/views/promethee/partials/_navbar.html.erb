@@ -5,6 +5,7 @@
     </div>
     <div id="navbar">
       <ul class="nav navbar-nav navbar-right">
+        <li ng-click="move = !move"><a><%= fa_icon :arrows %></a></li>
         <li ng-click="enablePreview()" ng-hide="preview"><a><%= fa_icon :eye %></a></li>
         <li ng-click="previewMode = 'mobile'" ng-class="{ active: previewMode == 'mobile' }" ng-show="preview">
           <a><%= fa_icon :mobile %></a>

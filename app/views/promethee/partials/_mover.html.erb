@@ -1,23 +1,56 @@
 <script type="text/ng-template" id="promethee/partials/mover">
-  <div ng-init="components = component.children" class="list">
-    <div class="dropzone" droppable data-index="0"></div>
-    <div ng-repeat="component in components" class="promethee-editor__mover--{{component.type}}" draggable data-index="{{$index}}">
-        {{component.type}} ({{component.id}})
-        <ng-include src="'promethee/partials/mover'" ng-if="component.children"></ng-include>
-        <div class="dropzone" droppable data-index="{{$index+1}}"></div>
+  <div  ng-init="components = component.children; type = component.type ? component.type : 'page'" 
+        class="promethee-editor__mover--list">
+    <div  class="promethee-editor__mover--droppable promethee-editor__mover--droppable--{{type}}" 
+          droppable 
+          data-index="0"
+          >
+    </div>
+    <div  ng-repeat="component in components" 
+          class="promethee-editor__mover--draggable promethee-editor__mover--draggable--{{type}}" 
+          draggable 
+          data-index="{{$index}}" 
+          data-type="{{component.type}}"
+          >
+        <ng-include src="'promethee/partials/mover/' + component.type"></ng-include>
+        <div  class="promethee-editor__mover--droppable promethee-editor__mover--droppable--{{type}}" 
+              droppable 
+              data-index="{{$index+1}}"
+              data-type="{{type}}"
+              >
+        </div>
     </div>
   </div>
 </script>
 
-<div class="promethee-editor__mover" ng-hide="preview">
-  <div class="row">
-    <div class="col-md-6">
-      <pre>{{component | json}}</pre>
-    </div>
-    <div class="col-md-6">
-      <ng-include src="'promethee/partials/mover'"></ng-include>
-    </div>
+<script type="text/ng-template" id="promethee/partials/mover/row">
+  <h4>Row</h4>
+  <ng-include src="'promethee/partials/mover'"></ng-include>
+</script>
+<script type="text/ng-template" id="promethee/partials/mover/column">
+  <h4>Column</h4>
+  <ng-include src="'promethee/partials/mover'"></ng-include>
+</script>
+<script type="text/ng-template" id="promethee/partials/mover/text">
+  <div class="limited-height">
+    <div ng-bind-html="component.attributes.body | htmlSafe"></div>
   </div>
+</script>
+<script type="text/ng-template" id="promethee/partials/mover/video">
+  <div class="limited-height">
+    <div class="text-center"><%= fa_icon 'video-camera 2x' %></div>
+  </div>
+</script>
+<script type="text/ng-template" id="promethee/partials/mover/image">
+  <div class="limited-height">
+    <img ng-src="{{component.attributes.src}}" class="img-responsive" />
+  </div>
+</script>
+
+
+<div class="promethee-editor__mover" ng-show="move">
+  <strong>Move</strong>
+  <ng-include src="'promethee/partials/mover'"></ng-include>
 </div>
 
 <script type="text/javascript">
@@ -29,6 +62,18 @@
           element.draggable({
             scroll: true,
             cursorAt: { top: 6, left: 6 },
+            start: function() {
+              var $elementDragged = $(element[0]);
+              $elementDragged.addClass('promethee-editor__mover--dragged');
+              var type = $elementDragged.data('type');
+              $('.promethee-editor__mover').addClass('promethee-editor__mover--dragging promethee-editor__mover--dragging--' + type);
+            },
+            stop: function() {
+              var $elementDragged = $(element[0]);
+              $elementDragged.removeClass('promethee-editor__mover--dragged');
+              var type = $elementDragged.data('type');
+              $('.promethee-editor__mover').removeClass('promethee-editor__mover--dragging promethee-editor__mover--dragging--' + type);
+            },
             helper: function( event ) {
               return $( '<div><%= fa_icon :file %></div>' );
             }
@@ -46,11 +91,16 @@
               var draggedFromIndex = parseInt(ui.draggable[0].getAttribute('data-index'));
               draggedFromList.splice(draggedFromIndex, 1);
 
-
               var component = angular.element(ui.draggable).scope().component;
               var droppedToList = angular.element(this).scope().components;
-              // TODO manage same list from and to
               var droppedToIndex = parseInt(this.getAttribute('data-index'));
+              if (draggedFromList == droppedToList) {
+                // The object we dragged was removed from the list
+                if (draggedFromIndex < droppedToIndex) {
+                  // It was before the dropped index, so removing it changed the index
+                  droppedToIndex -= 1;
+                }
+              }
               droppedToList.splice(droppedToIndex, 0, component);
 
               scope.$apply();
