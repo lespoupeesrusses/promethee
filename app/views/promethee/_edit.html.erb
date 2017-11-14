@@ -46,6 +46,7 @@ data = data.to_json unless data.is_a? String
 
     $scope.enablePreview = function() {
       this.preview = true;
+      this.move = false;
 
       var form = document.createElement('form');
       document.body.appendChild(form);

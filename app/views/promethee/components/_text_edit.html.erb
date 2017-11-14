@@ -15,6 +15,12 @@
   </div>
 </script>
 
+<script type="text/ng-template" id="promethee/components/text/move">
+  <div class="limited-height">
+    <div ng-bind-html="component.attributes.body | htmlSafe"></div>
+  </div>
+</script>
+
 <script>
   angular.injector(['ng', 'Promethee']).get('definitions').push({
     name: 'Text',

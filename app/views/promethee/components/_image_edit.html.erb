@@ -23,6 +23,12 @@
   </div>
 </script>
 
+<script type="text/ng-template" id="promethee/components/image/move">
+  <div class="limited-height">
+    <img ng-src="{{component.attributes.src}}" class="img-responsive" />
+  </div>
+</script>
+
 <script>
   angular.injector(['ng', 'Promethee']).get('definitions').push({
     name: 'Image',

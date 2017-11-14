@@ -12,7 +12,7 @@
           data-index="{{$index}}" 
           data-type="{{component.type}}"
           >
-        <ng-include src="'promethee/partials/mover/' + component.type"></ng-include>
+        <ng-include src="'promethee/components/' + component.type + '/move'"></ng-include>
         <div  class="promethee-editor__mover--droppable promethee-editor__mover--droppable--{{type}}" 
               droppable 
               data-index="{{$index+1}}"
@@ -23,33 +23,7 @@
   </div>
 </script>
 
-<script type="text/ng-template" id="promethee/partials/mover/row">
-  <h4>Row</h4>
-  <ng-include src="'promethee/partials/mover'"></ng-include>
-</script>
-<script type="text/ng-template" id="promethee/partials/mover/column">
-  <h4>Column</h4>
-  <ng-include src="'promethee/partials/mover'"></ng-include>
-</script>
-<script type="text/ng-template" id="promethee/partials/mover/text">
-  <div class="limited-height">
-    <div ng-bind-html="component.attributes.body | htmlSafe"></div>
-  </div>
-</script>
-<script type="text/ng-template" id="promethee/partials/mover/video">
-  <div class="limited-height">
-    <div class="text-center"><%= fa_icon 'video-camera 2x' %></div>
-  </div>
-</script>
-<script type="text/ng-template" id="promethee/partials/mover/image">
-  <div class="limited-height">
-    <img ng-src="{{component.attributes.src}}" class="img-responsive" />
-  </div>
-</script>
-
-
 <div class="promethee-editor__mover" ng-show="move">
-  <strong>Move</strong>
   <ng-include src="'promethee/partials/mover'"></ng-include>
 </div>
 
