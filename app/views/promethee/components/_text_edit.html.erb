@@ -1,16 +1,15 @@
 <script type="text/ng-template" id="promethee/components/text">
-  <div ng-controller="TextController">
-    <div class="promethee-editor__component promethee-editor__component--text promethee-editor__component--final">
-      <div class="promethee-editor__toolbar">
-        Text
-        <%= render 'promethee/partials/toolbar_buttons' %>
-      </div>
-      <div ng-show="editing">
-        <textarea ui-tinymce="tinymceOptions" ng-model="component.attributes.body"></textarea>
-      </div>
-      <div ng-hide="editing">
-        <div class="promethee-editor__wrapper" ng-bind-html="component.attributes.body | htmlSafe" ng-click="edit()"></div>
-      </div>
+  <div  ng-controller="TextController" 
+        class="promethee-editor__component promethee-editor__component--text promethee-editor__component--final">
+    <div class="promethee-editor__toolbar">
+      Text
+      <%= render 'promethee/partials/toolbar_buttons' %>
+    </div>
+    <div ng-show="editing">
+      <textarea ui-tinymce="tinymceOptions" ng-model="component.attributes.body"></textarea>
+    </div>
+    <div ng-hide="editing">
+      <div class="promethee-editor__wrapper" ng-bind-html="component.attributes.body | htmlSafe" ng-click="edit()"></div>
     </div>
   </div>
 </script>

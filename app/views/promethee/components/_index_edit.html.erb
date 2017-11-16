@@ -1,7 +1,5 @@
 <script type="text/ng-template" id="promethee/components/index">
-  <div class="promethee-editor__components">
-    <div ng-repeat="component in component.children">
-      <ng-include src="'promethee/components/show'"></ng-include>
-    </div>
+  <div ng-repeat="component in component.children">
+    <ng-include src="'promethee/components/show'"></ng-include>
   </div>
 </script>

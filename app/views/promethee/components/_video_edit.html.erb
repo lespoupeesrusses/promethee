@@ -1,19 +1,18 @@
 <script type="text/ng-template" id="promethee/components/video">
-  <div ng-controller="VideoController">
-    <div class="promethee-editor__component promethee-editor__component--video promethee-editor__component--final">
-      <div class="promethee-editor__toolbar">
-        Video
-        <%= render 'promethee/partials/toolbar_buttons' %>
+  <div  ng-controller="VideoController" 
+        class="promethee-editor__component promethee-editor__component--video promethee-editor__component--final">
+    <div class="promethee-editor__toolbar">
+      Video
+      <%= render 'promethee/partials/toolbar_buttons' %>
+    </div>
+    <div ng-show="editing" class="promethee-editor__wrapper">
+      <div class="form-group">
+        <label class="label-control">Url</label>
+        <input ng-model="component.attributes.url" class="form-control" type="text"/>
       </div>
-      <div ng-show="editing" class="promethee-editor__wrapper">
-        <div class="form-group">
-          <label class="label-control">Url</label>
-          <input ng-model="component.attributes.url" class="form-control" type="text"/>
-        </div>
-      </div>
-      <div class="embed-responsive embed-responsive-16by9">
-        <iframe ng-if="embed" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="allowfullscreen" ng-src="{{embed | urlSafe}}"></iframe>
-      </div>
+    </div>
+    <div class="embed-responsive embed-responsive-16by9">
+      <iframe ng-if="embed" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="allowfullscreen" ng-src="{{embed | urlSafe}}"></iframe>
     </div>
   </div>
 </script>

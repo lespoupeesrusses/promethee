@@ -1,19 +1,26 @@
 @import 'bootstrap'
-
-@import 'promethee-editor/variables'
 @import 'font-awesome.css'
 @import 'material_icons.css'
-@import 'promethee-editor/mixins'
 
+$promethee-grey: #bbb
+$promethee-transparent-grey: transparentize($promethee-grey, .8)
+$promethee-light-grey: #eee
 $promethee-color: #ff9900
 
 .promethee-editor
-  +grid-builder-set-gutter-width(0)
-
   background: white
   position: relative
+  &--fullscreen
+    position: fixed
+    left: 0
+    right: 0
+    bottom: 0
+    top: 0
+    overflow: auto
+  &--preview
+    overflow: hidden
 
-  .navbar
+  &__navbar
     border-radius: 0
     border: none
     border-bottom: 2px solid $promethee-color
@@ -22,6 +29,7 @@ $promethee-color: #ff9900
   &__page
     margin-left: -6px
     margin-right: -6px
+
   &--move &__mover
     transform: scale(0.3)
 
@@ -64,8 +72,6 @@ $promethee-color: #ff9900
         &.promethee-editor__mover--droppable.promethee-editor__mover--droppable--row
           display: block
 
-  &--preview
-    overflow: hidden
   &__preview
     position: relative
     height: 100%
@@ -102,9 +108,6 @@ $promethee-color: #ff9900
     flex-grow: 1
     flex-shrink: 1
 
-  &__components
-    min-height: 30px
-
   &__component
     background: #fff
     border: 1px solid #eee
@@ -127,6 +130,16 @@ $promethee-color: #ff9900
     &--final
       background: #fff
 
+    &--row
+      margin-left: 6px
+      margin-right: 6px
+
+    &--column
+      margin-left: 0
+      margin-right: 0
+      padding-left: 0
+      padding-right: 0
+
   &__toolbar
     background: #fff
     padding: 10px
@@ -136,17 +149,7 @@ $promethee-color: #ff9900
     color: $promethee-color
     &, *
       user-select: none
-      cursor: move
 
   &__wrapper
     padding: 10px
-
-  &--fullscreen
-    position: fixed
-    left: 0
-    right: 0
-    bottom: 0
-    top: 0
-    overflow: auto
-
 
