@@ -142,6 +142,7 @@ This would do quite the same thing:
 With javascript set:
 ```
 //= require promethee
+//= require promethee-editor
 ```
 
 With stylesheets set:

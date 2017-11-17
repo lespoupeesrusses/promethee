@@ -1,5 +1,9 @@
 <script type="text/ng-template" id="promethee/components/column">
-  <div class="col col-md-{{component.attributes.size}} col-md-offset-{{component.attributes.offset}} promethee-editor__component promethee-editor__component--column">
+  <div class="col 
+              col-md-{{component.attributes.size}} 
+              col-md-offset-{{component.attributes.offset}} 
+              promethee-editor__component 
+              promethee-editor__component--column">
     <div class="promethee-editor__toolbar">
       Column
       <%= render 'promethee/partials/toolbar_buttons' %>
@@ -17,7 +21,9 @@
 
     <ng-include src="'promethee/components/index'"></ng-include>
 
-    <span type="button" class="btn btn-default btn-block" ng-click="addComponentTo(component.children)" style="margin: 0 6px 6px 6px;width: auto">Add component</span>
+    <span type="button" 
+          class="btn btn-default btn-block" 
+          ng-click="addComponentTo(component.children)">Add component</span>
   </div>
 </script>
 
@@ -25,5 +31,12 @@
   <div class="col col-md-{{component.attributes.size}} col-md-offset-{{component.attributes.offset}}">
     <h1>Column</h1>
     <ng-include src="'promethee/partials/mover'"></ng-include>
+    <div  class=" promethee-editor__mover--droppable 
+                  promethee-editor__mover--droppable--row 
+                  promethee-editor__mover--droppable--row--inside-column" 
+          droppable 
+          data-index="{{$index+1}}"
+          data-type="{{type}}"
+          >
   </div>
 </script>

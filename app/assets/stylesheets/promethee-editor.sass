@@ -26,17 +26,14 @@ $promethee-color: #ff9900
     border-bottom: 2px solid $promethee-color
     background: transparent
 
-  // &__page
-    // margin-left: -6px
-    // margin-right: -6px
-
-  &--move &__mover
-    transform: scale(0.3)
-
   &__mover
-    transform: scale(1)
     transform-origin: top
-    transition: transform 1s
+    transition: transform ease-out 0.5s
+    transform: scale(0.3)
+    &.ng-hide
+      transform: scale(1)
+    .row, .col
+      position: relative
     &--draggable
       h4
         font-size: 11px
@@ -51,10 +48,23 @@ $promethee-color: #ff9900
       position: relative
       background: white
       height: 50px
-    &--droppable--row
-      width: 50px
-      height: 200px
-      position: absolute
+      &--hidden
+        visibility: hidden
+      &--row
+        display: none
+        &--first
+          display: block
+          position: absolute
+          top: 0
+          left: -25px
+          width: 50px
+          height: 200px
+        &--inside-column
+          position: absolute
+          top: 0
+          right: -25px
+          width: 50px
+          height: 200px
     &--dragged
       opacity: 0.25
     .ui-droppable-hover
@@ -63,13 +73,17 @@ $promethee-color: #ff9900
     .ui-droppable-active
       background: $promethee-color
       opacity: 0.5
+    // By default, nothing is dropped in rows
     &--dragging
       .promethee-editor__mover--droppable.promethee-editor__mover--droppable--row
         display: none
+    // Except for columns, which can be dropped only on rows
     &--dragging.promethee-editor__mover--dragging--column 
       .promethee-editor__mover--droppable
         display: none
-        &.promethee-editor__mover--droppable.promethee-editor__mover--droppable--row
+        // It's a little specific, columns can be dropped on rows "first droppable", or on columns "inside droppables"
+        &.promethee-editor__mover--droppable.promethee-editor__mover--droppable--row--inside-column,
+        &.promethee-editor__mover--droppable.promethee-editor__mover--droppable--row--first
           display: block
 
   &__preview
@@ -118,6 +132,10 @@ $promethee-color: #ff9900
         border-left-color: $promethee-transparent-grey
       .mce-top-part::before
         box-shadow: none
+
+  &__button
+    color: $promethee-color
+    margin-left: 10px
 
   &__toolbar
     background: #eee

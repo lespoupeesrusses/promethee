@@ -1,7 +1,7 @@
 <script type="text/ng-template" id="promethee/partials/mover">
   <div  ng-init="components = component.children; type = component.type ? component.type : 'page'" 
         class="promethee-editor__mover--list">
-    <div  class="promethee-editor__mover--droppable promethee-editor__mover--droppable--{{type}}" 
+    <div  class="promethee-editor__mover--droppable promethee-editor__mover--droppable--{{type}} promethee-editor__mover--droppable--{{type}}--first" 
           droppable 
           data-index="0"
           >
@@ -42,12 +42,22 @@
               $elementDragged.addClass('promethee-editor__mover--dragged');
               var type = $elementDragged.data('type');
               $('.promethee-editor__mover').addClass('promethee-editor__mover--dragging promethee-editor__mover--dragging--' + type);
+
+              // The droppable zone immediately before has no use, it would put the object at the same position
+              var $droppableBefore = $elementDragged.prev('.promethee-editor__mover--draggable').find('.promethee-editor__mover--droppable');
+              if ($droppableBefore.length === 0) {
+                // First object in a list
+                $droppableBefore = $elementDragged.prev('.promethee-editor__mover--droppable');
+              }
+              $droppableBefore.addClass('promethee-editor__mover--droppable--hidden');
             },
             stop: function() {
               var $elementDragged = $(element[0]);
               $elementDragged.removeClass('promethee-editor__mover--dragged');
               var type = $elementDragged.data('type');
               $('.promethee-editor__mover').removeClass('promethee-editor__mover--dragging promethee-editor__mover--dragging--' + type);
+
+              $('.promethee-editor__mover--droppable').removeClass('promethee-editor__mover--droppable--hidden');
             },
             helper: function( event ) {
               return $( '<div></div>' );

@@ -4,7 +4,7 @@ data = data.to_json unless data.is_a? String
 
 <script>
   var promethee = angular
-    .module('Promethee', ['ui.tinymce'])
+    .module('Promethee', ['ui.tinymce', 'ngAnimate'])
     .constant('data', <%= data.html_safe %>)
     .value('state', {
       editing: false
