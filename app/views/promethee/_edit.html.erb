@@ -5,10 +5,7 @@ data = data.to_json unless data.is_a? String
 <script>
   var promethee = angular
     .module('Promethee', ['ui.tinymce', 'ngAnimate'])
-    .constant('data', <%= data.html_safe %>)
-    .value('state', {
-      editing: false
-    })
+    .value('data', <%= data.html_safe %>)
     .value('definitions', [])
     .filter('htmlSafe', ['$sce', function($sce) {
       return function(val) {
@@ -29,14 +26,17 @@ data = data.to_json unless data.is_a? String
 
   promethee.controller('PrometheeController', ['data', '$scope', 'definitions', '$http', function(data, $scope, definitions, $http) {
     
-    // Data
+    // Data (TODO use Adder and probably page definition to init)
     if (data === null || data === '') {
-      data = [];
+      data = {
+        type: 'page', 
+        children: []
+      };
     }
     $scope.data = data;
-    $scope.component = {
-      children: data
-    };
+    // $scope.component = {
+    //   children: data
+    // };
 
     // Preview modes
     $scope.fullscreen = false;

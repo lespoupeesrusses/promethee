@@ -1,5 +1,5 @@
 <script type="text/ng-template" id="promethee/partials/mover">
-  <div  ng-init="components = component.children; type = component.type ? component.type : 'page'" 
+  <div  ng-init="components = component.children; type = component.type" 
         class="promethee-editor__mover--list">
     <div  class="promethee-editor__mover--droppable promethee-editor__mover--droppable--{{type}} promethee-editor__mover--droppable--{{type}}--first" 
           droppable 
@@ -23,7 +23,7 @@
   </div>
 </script>
 
-<div class="promethee-editor__mover" ng-show="move">
+<div class="promethee-editor__mover" ng-show="move" ng-init="component = data">
   <ng-include src="'promethee/partials/mover'"></ng-include>
 </div>
 
@@ -37,6 +37,7 @@
             scroll: true,
             cursor: "pointer",
             cursorAt: { top: 0, left: 0 },
+            refreshPositions: true,
             start: function() {
               var $elementDragged = $(element[0]);
               $elementDragged.addClass('promethee-editor__mover--dragged');
@@ -44,9 +45,9 @@
               $('.promethee-editor__mover').addClass('promethee-editor__mover--dragging promethee-editor__mover--dragging--' + type);
 
               // The droppable zone immediately before has no use, it would put the object at the same position
-              var $droppableBefore = $elementDragged.prev('.promethee-editor__mover--draggable').find('.promethee-editor__mover--droppable');
+              var $droppableBefore = $elementDragged.prev('.promethee-editor__mover--draggable').find('.promethee-editor__mover--droppable').last();
               if ($droppableBefore.length === 0) {
-                // First object in a list
+                // For the first child, we look for the previous droppable zone
                 $droppableBefore = $elementDragged.prev('.promethee-editor__mover--droppable');
               }
               $droppableBefore.addClass('promethee-editor__mover--droppable--hidden');
@@ -62,7 +63,7 @@
             helper: function( event ) {
               return $( '<div></div>' );
             }
-          });      
+          });
         }
       }
     })

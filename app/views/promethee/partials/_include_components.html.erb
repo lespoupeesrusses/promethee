@@ -1,5 +1,5 @@
 <% # TODO iterate over files in gem, instead of a predefined array %>
-<% ['index', 'show', 'row', 'column', 'text', 'image', 'video'].each do |type| %>
+<% ['page', 'children', 'row', 'column', 'text', 'image', 'video'].each do |type| %>
   <%= render "promethee/components/#{type}_edit" %>
 <% end %>
 

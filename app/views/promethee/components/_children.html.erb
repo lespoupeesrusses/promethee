@@ -1,0 +1,4 @@
+<% children.each do |component| %>
+  <% type = component[:type] %>
+  <%= render "promethee/components/#{type}", component: component %>
+<% end %>

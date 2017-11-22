@@ -7,6 +7,10 @@ $promethee-transparent-grey: transparentize($promethee-grey, .8)
 $promethee-light-grey: #eee
 $promethee-color: #ff9900
 
+@import 'promethee-editor/mover'
+@import 'promethee-editor/preview'
+@import 'promethee-editor/component'
+
 .promethee-editor
   background: white
   position: relative
@@ -26,113 +30,6 @@ $promethee-color: #ff9900
     border-bottom: 2px solid $promethee-color
     background: transparent
 
-  &__mover
-    transform-origin: top
-    transition: transform ease-out 0.5s
-    transform: scale(0.3)
-    &.ng-hide
-      transform: scale(1)
-    .row, .col
-      position: relative
-    &--draggable
-      h4
-        font-size: 11px
-        text-transform: uppercase
-        font-weight: bold
-        color: $promethee-color
-        padding: 0 0 0 3px
-        margin: 0
-      &--row
-        padding-left: 10px
-    &--droppable
-      position: relative
-      background: white
-      height: 50px
-      &--hidden
-        visibility: hidden
-      &--row
-        display: none
-        &--first
-          display: block
-          position: absolute
-          top: 0
-          left: -25px
-          width: 50px
-          height: 200px
-        &--inside-column
-          position: absolute
-          top: 0
-          right: -25px
-          width: 50px
-          height: 200px
-    &--dragged
-      opacity: 0.25
-    .ui-droppable-hover
-      opacity: 1 !important
-      margin-bottom: 0
-    .ui-droppable-active
-      background: $promethee-color
-      opacity: 0.5
-    // By default, nothing is dropped in rows
-    &--dragging
-      .promethee-editor__mover--droppable.promethee-editor__mover--droppable--row
-        display: none
-    // Except for columns, which can be dropped only on rows
-    &--dragging.promethee-editor__mover--dragging--column 
-      .promethee-editor__mover--droppable
-        display: none
-        // It's a little specific, columns can be dropped on rows "first droppable", or on columns "inside droppables"
-        &.promethee-editor__mover--droppable.promethee-editor__mover--droppable--row--inside-column,
-        &.promethee-editor__mover--droppable.promethee-editor__mover--droppable--row--first
-          display: block
-
-  &__preview
-    position: relative
-    height: 100%
-    min-height: 500px
-    background: black
-    margin-top: -20px
-    &--frame
-      transition: width 1s, left 1s, margin 1s
-      position: absolute
-      height: 100%
-    &--mobile
-      .promethee-editor__preview--frame
-        left: 50%
-        margin-left: -187px
-        width: 375px
-    &--tablet
-      .promethee-editor__preview--frame
-        left: 50%
-        margin-left: -384px
-        width: 768px
-    &--desktop
-      .promethee-editor__preview--frame
-        width: 100%
-        left: 0
-        right: 0
-
-  &__sidebar
-    background: $promethee-light-grey
-    width: 300px
-    flex-grow: 0
-    flex-shrink: 0
-
-  &__content
-    flex-grow: 1
-    flex-shrink: 1
-
-  &__component
-    &--text
-      .mce-tinymce
-        border: none
-      .mce-panel
-        border-top-color: $promethee-transparent-grey
-      .mce-btn-group:not(:first-child)
-        border-left-color: $promethee-transparent-grey
-      .mce-top-part::before
-        box-shadow: none
-
   &__button
     color: $promethee-color
     margin-left: 10px
@@ -150,11 +47,4 @@ $promethee-color: #ff9900
   &__wrapper
     padding: 10px
 
-  .neutralizing-overlay
-    background: transparent
-    position: absolute
-    top: 0
-    left: 0
-    right: 0
-    bottom: 0
 

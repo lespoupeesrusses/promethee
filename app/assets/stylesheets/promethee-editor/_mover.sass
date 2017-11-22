@@ -1,0 +1,67 @@
+.promethee-editor__mover
+  transform-origin: top
+  transition: transform ease-out 0.5s
+  transform: scale(0.3)
+  &.ng-hide
+    transform: scale(1)
+  .row, .col
+    position: relative
+  &--draggable
+    h4
+      font-size: 11px
+      text-transform: uppercase
+      font-weight: bold
+      color: $promethee-color
+      padding: 0 0 0 3px
+      margin: 0
+    &--row
+      padding-left: 10px
+  &--droppable
+    position: relative
+    background: white
+    width: 200px
+    height: 50px
+    &--hidden
+      visibility: hidden
+    &--row
+      display: none
+      &--first
+        display: block
+        position: absolute
+        top: 0
+        left: -25px
+        width: 50px
+        height: 200px
+      &--inside-column
+        position: absolute
+        top: 0
+        right: -25px
+        width: 50px
+        height: 200px
+  &--dragged
+    opacity: 0.25
+  .ui-droppable-hover
+    opacity: 1 !important
+    margin-bottom: 0
+  .ui-droppable-active
+    background: $promethee-color
+    opacity: 0.5
+  // By default, nothing is dropped in rows
+  &--dragging
+    .promethee-editor__mover--droppable.promethee-editor__mover--droppable--row
+      display: none
+  // Except for columns, which can be dropped only on rows
+  &--dragging.promethee-editor__mover--dragging--column 
+    .promethee-editor__mover--droppable
+      display: none
+      // It's a little specific, columns can be dropped on rows "first droppable", or on columns "inside droppables"
+      &.promethee-editor__mover--droppable.promethee-editor__mover--droppable--row--inside-column,
+      &.promethee-editor__mover--droppable.promethee-editor__mover--droppable--row--first
+        display: block
+  .video-neutralizing-overlay
+    background: transparent
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0

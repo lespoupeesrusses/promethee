@@ -62,35 +62,38 @@ In this example, we have a page with a title (string) and a data (jsonb) attribu
 The data is:
 
 ```ruby
-@page.data = [
-  {
-    type: 'row',
-    children: [
-      {
-        type: 'col',
-        attributes: {
-          size: 4,
-          offset: 0
-        },
-        children: [
-          {
-            type: 'text',
-            attributes: {
-              body: '<p><b>This</b> is a text</p>'
-            }
+@page.data = {
+  type: 'page',
+  children: [
+    {
+      type: 'row',
+      children: [
+        {
+          type: 'col',
+          attributes: {
+            size: 4,
+            offset: 0
           },
-          {
-            type: 'image',
-            attributes: {
-              src: 'https://c1.staticflickr.com/5/4089/4975306844_f849232195_b.jpg',
-              alt: 'Prométhée'
+          children: [
+            {
+              type: 'text',
+              attributes: {
+                body: '<p><b>This</b> is a text</p>'
+              }
+            },
+            {
+              type: 'image',
+              attributes: {
+                src: 'https://c1.staticflickr.com/5/4089/4975306844_f849232195_b.jpg',
+                alt: 'Prométhée'
+              }
             }
-          }
-        ]
-      }
-    ]
-  }
-]
+          ]
+        }
+      ]
+    }
+  ]
+}
 ```
 
 The view is:
@@ -102,13 +105,15 @@ The view is:
 Which renders to:
 
 ```html
-<div class="row promethee__component promethee__component--row">
-  <div class="col-md-4 promethee__component promethee__component--col">
-    <div class="promethee__component promethee__component--text">
-      <p><b>This</b> is a text</p>
-    </div>
-    <div class="promethee__component promethee__component--image">
-      <img src="https://c1.staticflickr.com/5/4089/4975306844_f849232195_b.jpg" alt="Prométhée">
+<div class="promethee">
+  <div class="row promethee__component promethee__component--row">
+    <div class="col-md-4 promethee__component promethee__component--col">
+      <div class="promethee__component promethee__component--text">
+        <p><b>This</b> is a text</p>
+      </div>
+      <div class="promethee__component promethee__component--image">
+        <img src="https://c1.staticflickr.com/5/4089/4975306844_f849232195_b.jpg" alt="Prométhée">
+      </div>
     </div>
   </div>
 </div>
@@ -194,7 +199,9 @@ This is used to generate a live responsive preview.
 - ~~Preview~~
 - ~~Fullscreen~~
 - Hooks (needed for image and video)
-- Edit Column (drag and drop must be better)
+- promethee-i18n
+- Component versioning
+- Edit in a column
 - UI et branding
 - Gallery
 - Menu

@@ -1,6 +1,6 @@
 <span type="button" 
       class="btn btn-default btn-block" 
-      ng-click="addComponentTo(data)" 
+      ng-click="addComponentTo(data.children)" 
       ng-hide="preview"
       style="margin-bottom: 6px">Add component</span>
 
@@ -31,22 +31,25 @@
 <script type="text/javascript">
   promethee.controller('AdderController', ['$scope', '$rootScope', 'definitions', function($scope, $rootScope, definitions) {
 
-    $scope.adding = null;
+    $scope.adding = false;
+    $scope.childrenToAddTo = null;
     $scope.definitions = definitions;
 
     $scope.close = function() {
-      $scope.adding = null;
+      $scope.adding = false;
+      $scope.addingToChildren = null;
     };
 
     $scope.pushComponent = function(definition) {
       var definition = angular.copy(definition.data);
       definition.id = $scope.createIdentifier();
-      $scope.adding.push(definition);
+      $scope.childrenToAddTo.push(definition);
       $scope.close();
     };
 
     $rootScope.addComponentTo = function(components) {
-      $scope.adding = components;
+      $scope.adding = true;
+      $scope.childrenToAddTo = components;
     };
 
     // https://gist.github.com/gordonbrander/2230317
