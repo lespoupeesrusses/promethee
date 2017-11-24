@@ -29,14 +29,13 @@ data = data.to_json unless data.is_a? String
     // Data (TODO use Adder and probably page definition to init)
     if (data === null || data === '') {
       data = {
+        id: '',
         type: 'page', 
+        version: 1,
         children: []
       };
     }
     $scope.data = data;
-    // $scope.component = {
-    //   children: data
-    // };
 
     // Preview modes
     $scope.fullscreen = false;

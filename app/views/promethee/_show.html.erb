@@ -1,5 +1,7 @@
 <%
-data = JSON.parse data, symbolize_names: true if data.is_a? String
+data = Promethee::Data.prepare data
+l10n = Promethee::Data.prepare l10n
+Promethee::Localization.localize! data, l10n unless l10n.nil?
 %>
 <div class="promethee">
   <%= render 'promethee/components/page', page: data %>

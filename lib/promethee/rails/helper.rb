@@ -1,6 +1,6 @@
 module Promethee::Rails::Helper
-  def promethee(data)
-    ApplicationController.renderer.render partial: 'promethee/show', locals: { data: data }
+  def promethee(data, options = {})
+    ApplicationController.renderer.render partial: 'promethee/show', locals: { data: data, l10n: options[:l10n] }
   end
 
   def promethee_template(type)

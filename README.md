@@ -63,26 +63,36 @@ The data is:
 
 ```ruby
 @page.data = {
+  id: 'ero342ezr',
   type: 'page',
+  version: 1,
   children: [
     {
+      id: '7lebjl4j6',
       type: 'row',
+      version: 1,
       children: [
         {
-          type: 'col',
+          id: '8lebjl4j6',
+          type: 'column',
+          version: 1,
           attributes: {
             size: 4,
             offset: 0
           },
           children: [
             {
+              id: '9lebjl4j6',
               type: 'text',
+              version: 1,
               attributes: {
                 body: '<p><b>This</b> is a text</p>'
               }
             },
             {
+              id: '12lebjl4j6',
               type: 'image',
+              version: 1,
               attributes: {
                 src: 'https://c1.staticflickr.com/5/4089/4975306844_f849232195_b.jpg',
                 alt: 'Prométhée'
@@ -159,7 +169,7 @@ With stylesheets set:
 #### The editor has components
 
 The component is made of a show and and edit.
-
+The component has to be registered in order to be addable to the page.
 In the edit, the component description looks like:
 ```
 {
@@ -173,6 +183,21 @@ In the edit, the component description looks like:
   }
 }
 ```
+The name and thumbs are used in the list of components, whereas the data is what will be injected in the page when component is added.
+
+To register a component, the code is:
+```javascript
+  angular.injector(['ng', 'Promethee']).get('definitions').push({
+    name: 'Image',
+    thumb: 'http://via.placeholder.com/300x200',
+    data: {
+      type: 'image',
+      attributes: {
+        src: 'https://source.unsplash.com/random/1920x1080'
+      }
+    }
+  });
+```
 
 #### The editor previews in an iframe
 
@@ -180,6 +205,51 @@ To be able to preview responsivity, there is a POST "promethee/preview" route.
 When you send your data, it renders the page in the default layout.
 
 This is used to generate a live responsive preview.
+
+### Localization (l10n)
+
+The page can be localized.
+
+The l10n data looks like:
+```
+@localization.data = {
+  locale: 'fr',
+  components: [
+    {
+      id: '9lebjl4j6'
+      version: 1,
+      master_version: 1,
+      attributes: {
+        body: '<p><b>Ceci</b> est un texte</p>'
+      }
+    }
+  ]
+}
+```
+
+The view is:
+
+```erb
+<%= promethee @page.data, l10n: @localization.data %>
+```
+
+Which renders to:
+
+```html
+<div class="promethee">
+  <div class="row promethee__component promethee__component--row">
+    <div class="col-md-4 promethee__component promethee__component--col">
+      <div class="promethee__component promethee__component--text">
+        <p><b>Ceci</b> est un texte</p>
+      </div>
+      <div class="promethee__component promethee__component--image">
+        <img src="https://c1.staticflickr.com/5/4089/4975306844_f849232195_b.jpg" alt="Prométhée">
+      </div>
+    </div>
+  </div>
+</div>
+```
+
 
 ### Roadmap
 - ~~Gem setup~~

@@ -18,4 +18,7 @@ module Promethee
   require 'promethee/core_ext/tags'
   require 'promethee/core_ext/form_helper'
   require 'promethee/core_ext/form_builder'
+
+  require 'promethee/data'
+  require 'promethee/localization'
 end

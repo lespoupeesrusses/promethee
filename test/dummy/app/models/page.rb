@@ -1,5 +1,5 @@
 class Page < ApplicationRecord
   def to_s
-    "#{title}"
+    "#{title.blank? ? 'Untitled page' : title}"
   end
 end
