@@ -5,4 +5,6 @@
 //= require angular
 //= require angular-animate
 //= require angular-ui-tinymce-rails
+//= require summernote
+//= require angular-summernote
 //= require_self

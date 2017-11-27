@@ -3,4 +3,8 @@ ActionView::Helpers::FormBuilder.class_eval do
   def promethee(method, options = {})
     @template.promethee_editor(@object_name, method, objectify_options(options))
   end
+
+  def promethee_localizer(method, options = {})
+    @template.promethee_localizer(@object_name, method, objectify_options(options))
+  end
 end

@@ -11,6 +11,15 @@ module ActionView
           ApplicationController.renderer.render partial: 'promethee/edit', locals: { data: data }
         end
       end
+
+      class PrometheeLocalizer < Base
+        def render
+          data = object.send @method_name unless object.nil?
+          data = @options[:value] if @options.include? :value
+          master = @options[:master]
+          ApplicationController.renderer.render partial: 'promethee/localize', locals: { data: data, master: master }
+        end
+      end
     end
   end
 end

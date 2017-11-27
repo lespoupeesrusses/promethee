@@ -183,6 +183,7 @@ localization = {
   ]
 }
 %>
+
 <div>
   <%= link_to 'Try with your own pages', pages_path, class: 'btn btn-default pull-right' %>
   <ul class="nav nav-tabs" role="tablist">
@@ -200,6 +201,11 @@ localization = {
     </div>
     <div role="tabpanel" class="tab-pane" id="show">
       <%= promethee data %>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="localize">
+      <%= form_for :record do |f| %>
+        <%= f.promethee_localizer :data, master: data, value: localization %>
+      <% end %>
     </div>
     <div role="tabpanel" class="tab-pane" id="show-localized">
       <%= promethee data, l: localization %>

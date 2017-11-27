@@ -3,4 +3,8 @@ ActionView::Helpers::FormHelper.class_eval do
   def promethee_editor(object_name, method, options = {})
     ActionView::Helpers::Tags::PrometheeEditor.new(object_name, method, self, options).render
   end
+
+  def promethee_localizer(object_name, method, options = {})
+    ActionView::Helpers::Tags::PrometheeLocalizer.new(object_name, method, self, options).render
+  end
 end

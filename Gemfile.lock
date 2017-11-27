@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    promethee (0.1.6)
+    promethee (0.1.7)
       angular-ui-tinymce-rails
       angular_rails_csrf
       angularjs-rails (~> 1.6.2)
@@ -150,7 +150,7 @@ GEM
     thor (0.20.0)
     thread_safe (0.3.6)
     tilt (2.0.8)
-    tinymce-rails (4.7.2)
+    tinymce-rails (4.7.3)
       railties (>= 3.1.1)
     tzinfo (1.2.4)
       thread_safe (~> 0.1)
