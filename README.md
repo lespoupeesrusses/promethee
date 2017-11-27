@@ -206,17 +206,18 @@ When you send your data, it renders the page in the default layout.
 
 This is used to generate a live responsive preview.
 
-### Localization (l10n)
+### Render localized (l10n)
 
 The page can be localized.
 
-The l10n data looks like:
+The localization data looks like:
 ```
 @localization.data = {
   locale: 'fr',
   components: [
     {
-      id: '9lebjl4j6'
+      id: '9lebjl4j6',
+      type: 'text',
       version: 1,
       master_version: 1,
       attributes: {
@@ -230,7 +231,7 @@ The l10n data looks like:
 The view is:
 
 ```erb
-<%= promethee @page.data, l10n: @localization.data %>
+<%= promethee @page.data, l: @localization.data %>
 ```
 
 Which renders to:
@@ -248,6 +249,24 @@ Which renders to:
     </div>
   </div>
 </div>
+```
+
+### Edit localization
+
+```erb
+<%= form_for @localization do |f| %>
+  <%= f.promethee_localizer :data, master: @page.data %>
+  <%= f.submit %>
+<% end %>
+```
+
+This would do quite the same thing:
+
+```erb
+<form action="/localization" method="post">
+  <%= promethee_localizer :localization, :data, localization_data: @localization.data, master_data: @page.data %>
+  <input type="submit">
+</form>
 ```
 
 

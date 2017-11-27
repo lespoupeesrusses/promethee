@@ -143,6 +143,7 @@ localization = {
   components: [
     {
       id: '6lebjl4j6',
+      type: 'text',
       version: 1,
       master_version: 1,
       attributes: {
@@ -201,7 +202,7 @@ localization = {
       <%= promethee data %>
     </div>
     <div role="tabpanel" class="tab-pane" id="show-localized">
-      <%= promethee data, l10n: localization %>
+      <%= promethee data, l: localization %>
     </div>
     <div role="tabpanel" class="tab-pane" id="data">
       <div class="row">
