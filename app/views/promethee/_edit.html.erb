@@ -2,22 +2,6 @@
 data = data.to_json unless data.is_a? String
 %>
 
-<div id="promethee"
-     class="promethee-editor"
-     ng-app="Promethee"
-     ng-controller="PrometheeController as prometheeController"
-     ng-class="{
-       'promethee-editor--fullscreen': fullscreen,
-       'promethee-editor--move': move,
-       'promethee-editor--preview': preview
-     }">
-  <input type="hidden" name="page[data]" id="page_data" value="{{data}}" />
-  <%= render 'promethee/partials/include_components' %>
-  <%= render 'promethee/partials/navbar' %>
-  <%= render 'promethee/partials/preview' %>
-  <%= render 'promethee/partials/mover' %>
-  <%= render 'promethee/partials/page' %>
-</div>
 
 <script>
   var promethee = angular
@@ -98,3 +82,21 @@ data = data.to_json unless data.is_a? String
   }]);
 
 </script>
+
+<div id="promethee"
+     class="promethee-editor"
+     ng-app="Promethee"
+     ng-controller="PrometheeController as prometheeController"
+     ng-class="{
+       'promethee-editor--fullscreen': fullscreen,
+       'promethee-editor--move': move,
+       'promethee-editor--preview': preview
+     }">
+  <input type="hidden" name="page[data]" id="page_data" value="{{data}}" />
+  <%= render 'promethee/partials/include_components' %>
+  <%= render 'promethee/partials/navbar' %>
+  <%= render 'promethee/partials/preview' %>
+  <%= render 'promethee/partials/mover' %>
+  <%= render 'promethee/partials/page' %>
+</div>
+

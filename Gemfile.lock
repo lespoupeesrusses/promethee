@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    promethee (0.1.7)
+    promethee (0.1.8)
       angular-ui-tinymce-rails
       angular_rails_csrf
       angularjs-rails (~> 1.6.2)

@@ -3,33 +3,14 @@ data = data.to_json unless data.is_a? String
 master = master.to_json unless master.is_a? String
 %>
 
-<div id="prometheeLocalizer"
-     class="promethee-localizer"
-     ng-app="PrometheeLocalizer"
-     ng-controller="PrometheeLocalizerController as prometheeLocalizerController">
-  <input type="hidden" name="page[data]" id="page_data" value="{{data}}" />
-  <%= render 'promethee/partials/include_components' %>
-  <div ng-repeat="component in data.components">
-    <ng-include src="'promethee/components/' + component.type + '/localize'"></ng-include>
-  </div>
-</div>
-
 <script>
   var prometheeLocalizer = angular
     .module('PrometheeLocalizer', ['summernote'])
-    .value('data', <%= data.html_safe %>)
-    .value('master', <%= master.html_safe %>);
+    .value('data', <%= data.html_safe %>);
 
-  prometheeLocalizer.controller('PrometheeLocalizerController', ['data', 'master', '$scope', '$http', function(data, master, $scope, $http) {
-    
-    if (data === null || data === '') {
-      data = {
-        locale: '',
-        components: []
-      };
-    }
+  prometheeLocalizer.controller('PrometheeLocalizerController', ['$scope', 'data', function($scope, data) {
+
     $scope.data = data;
-    $scope.master = master;
 
     $scope.options = {
       toolbar: [
@@ -45,5 +26,15 @@ master = master.to_json unless master.is_a? String
   angular.element(function() {
     angular.bootstrap(document.getElementById('prometheeLocalizer'), ['PrometheeLocalizer']);
   });
-
 </script>
+
+<div id="prometheeLocalizer"
+     class="promethee-localizer"
+     ng-app="PrometheeLocalizer"
+     ng-controller="PrometheeLocalizerController as prometheeLocalizerController">
+  <input type="hidden" name="page[data]" id="page_data" value="{{data}}" />
+  <%= render 'promethee/partials/include_components' %>
+  <div ng-repeat="component in data.components">
+    <ng-include src="'promethee/components/' + component.type + '/localize'"></ng-include>
+  </div>
+</div>
