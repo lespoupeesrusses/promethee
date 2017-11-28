@@ -1,8 +1,7 @@
 <%
-data = Promethee::Data.prepare data
-l = Promethee::Data.prepare l
-Promethee::Localization.localize! data, l unless l.nil?
+promethee_data = Promethee::Data.new master_data, localization_data: localization_data
 %>
+
 <div class="promethee">
-  <%= render 'promethee/components/page', page: data %>
+  <%= render 'promethee/components/page', page: promethee_data.to_h %>
 </div>

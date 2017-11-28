@@ -17,6 +17,7 @@
       <%= image_tag 'logo-promethee-vertical.svg', class: 'logo' %>
     <% end %>
     <div class="container">
+      <% if notice %><p id="notice"><%= notice %></p><% end %>
       <%= yield %>
     </div>
     <footer class="text-muted text-center">

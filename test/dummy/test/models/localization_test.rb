@@ -1,17 +1,17 @@
 # == Schema Information
 #
-# Table name: pages
+# Table name: localizations
 #
 #  id         :integer          not null, primary key
-#  title      :string
-#  data       :text
+#  page_id    :integer
+#  data       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
 require 'test_helper'
 
-class PageTest < ActiveSupport::TestCase
+class LocalizationTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    promethee (0.1.8)
+    promethee (0.1.9)
       angular-ui-tinymce-rails
       angular_rails_csrf
       angularjs-rails (~> 1.6.2)
@@ -59,6 +59,9 @@ GEM
     angular_rails_csrf (2.1.1)
       railties (>= 3, < 5.2)
     angularjs-rails (1.6.2)
+    annotate (2.7.2)
+      activerecord (>= 3.2, < 6.0)
+      rake (>= 10.4, < 13.0)
     arel (8.0.0)
     autoprefixer-rails (7.1.6)
       execjs
@@ -162,6 +165,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  annotate
   byebug
   promethee!
   sqlite3

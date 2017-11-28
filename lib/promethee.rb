@@ -20,5 +20,4 @@ module Promethee
   require 'promethee/core_ext/form_builder'
 
   require 'promethee/data'
-  require 'promethee/localization'
 end

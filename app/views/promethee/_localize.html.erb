@@ -1,12 +1,11 @@
 <%
-data = data.to_json unless data.is_a? String
-master = master.to_json unless master.is_a? String
+promethee_data = Promethee::Data.new master_data, localization_data: localization_data
 %>
 
 <script>
   var prometheeLocalizer = angular
     .module('PrometheeLocalizer', ['summernote'])
-    .value('data', <%= data.html_safe %>);
+    .value('data', <%= promethee_data.localization_data_to_json.html_safe %>);
 
   prometheeLocalizer.controller('PrometheeLocalizerController', ['$scope', 'data', function($scope, data) {
 

@@ -213,7 +213,7 @@ The page can be localized.
 The localization data looks like:
 ```
 @localization.data = {
-  locale: 'fr',
+  version: 1,
   components: [
     {
       id: '9lebjl4j6',

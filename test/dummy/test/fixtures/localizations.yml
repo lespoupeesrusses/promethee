@@ -1,10 +1,10 @@
 # == Schema Information
 #
-# Table name: pages
+# Table name: localizations
 #
 #  id         :integer          not null, primary key
-#  title      :string
-#  data       :text
+#  page_id    :integer
+#  data       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
@@ -12,9 +12,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyString
-  data: 
+  page: one
+  data: MyString
 
 two:
-  title: MyString
-  data: 
+  page: two
+  data: MyString

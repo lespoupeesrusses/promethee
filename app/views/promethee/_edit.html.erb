@@ -1,12 +1,11 @@
 <%
-data = data.to_json unless data.is_a? String
+promethee_data = Promethee::Data.new master_data
 %>
-
 
 <script>
   var promethee = angular
     .module('Promethee', ['summernote', 'ngAnimate'])
-    .value('data', <%= data.html_safe %>)
+    .value('data', <%= promethee_data.to_json.html_safe %>)
     .value('definitions', [])
     .filter('htmlSafe', ['$sce', function($sce) {
       return function(val) {
