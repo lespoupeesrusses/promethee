@@ -39,7 +39,7 @@ module Promethee
     def merge!
       @master_data[:attributes].merge! localized_component[:attributes] if localized?
     end
-    
+
     # Look for localized component with the same id
     def localized_component
       @localized_component ||= components.select { |component| component[:id] == @master_data[:id] }.first
@@ -54,7 +54,7 @@ module Promethee
     end
 
     def localize_children!
-      children.each do |child_hash| 
+      children.each do |child_hash|
         child_data = Promethee::Data.new child_hash, localization_data: @localization_data
         child_data.localize!
       end
@@ -68,6 +68,37 @@ module Promethee
     def prepare_localization
       # TODO extract localizable components from master data, in the correct order, merged with existing ones
       # TODO update master_version
+
+      # Flattens master data, and select only text components
+      flat_master_data = self.class.flatten_components(@master_data[:children]).select do |component|
+        component[:type].to_sym === :text
+      end
+
+      if @localization_data
+        # If localization_data has been provided, we merge flat_master_data components with its components
+        @localization_data[:components] = flat_master_data.map do |component|
+          localized_component = @localization_data[:components].find do |localized_component|
+            localized_component[:id] == component[:id]
+          end
+
+          localized_component || component
+        end
+      else
+        # In the other case, localization_data components are flat_master_data components
+        @localization_data = {
+          version: @master_data[:version],
+          components: flat_master_data
+        }
+      end
+    end
+
+    # This method take an array of components and puts every components and their children into a unique flat array
+    def self.flatten_components components
+      components.reduce [] do |flat_components, component|
+        flat_components +
+        [component.except(:children)] +
+        flatten_components(component[:children] || [])
+      end
     end
   end
 end

@@ -2,6 +2,8 @@
 promethee_data = Promethee::Data.new master_data, localization_data: localization_data
 %>
 
+<%= promethee_data.localization_data_to_json %>
+
 <script>
   var prometheeLocalizer = angular
     .module('PrometheeLocalizer', ['summernote'])
@@ -19,7 +21,7 @@ promethee_data = Promethee::Data.new master_data, localization_data: localizatio
         ['code', ['codeview']]
       ]
     };
-    
+
   }]);
 
   angular.element(function() {
