@@ -1,4 +1,5 @@
 <%
+master_data ||= {}
 promethee_data = Promethee::Data.new master_data
 %>
 
@@ -25,12 +26,12 @@ promethee_data = Promethee::Data.new master_data
     });
 
   promethee.controller('PrometheeController', ['data', '$scope', 'definitions', '$http', function(data, $scope, definitions, $http) {
-    
+
     // Data (TODO use Adder and probably page definition to init)
     if (data === null || data === '') {
       data = {
         id: '',
-        type: 'page', 
+        type: 'page',
         version: 1,
         children: []
       };
