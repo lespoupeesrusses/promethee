@@ -30,8 +30,27 @@ module Promethee
 
     protected
 
-    def convert_if_necessary(string_or_hash)
-      string_or_hash.is_a?(String) ? JSON.parse(string_or_hash, symbolize_names: true) : string_or_hash
+    def convert_if_necessary(string_or_hash_or_anything)
+      # string_or_hash_or_anything could be a string a hash or anything so we need to handle potential exception to keep this method safe
+      begin
+        converted = string_or_hash_or_anything.is_a?(String) ? JSON.parse(string_or_hash_or_anything, symbolize_names: true) : string_or_hash_or_anything
+      rescue
+        converted = {}
+      end
+
+      # The parsed json could be anything: "\"hey\"" => "hey", "[\"hey\"]" => ["hey"], "null" => nil, ...
+      converted = {} unless converted.is_a? Hash
+
+      # The data might not be a json string so the "symbolize_names" options wouldn't do anything on a ruby hash because JSON.parse wouldn't be called
+      converted.deep_symbolize_keys!
+
+      # The children array is required in order to make this class work
+      converted[:children] = [] unless converted[:children].is_a?(Array)
+
+      # The type is required in order to make this class work
+      converted[:type] = converted[:type].is_a?(String) || converted[:type].is_a?(Symbol) ? converted[:type].to_s : 'page'
+
+      converted
     end
 
     def deep_clone(hash)
