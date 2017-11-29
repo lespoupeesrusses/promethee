@@ -3,7 +3,7 @@ module Promethee
   class Data
     def initialize(data, options = {})
       @master_data = convert_if_necessary data
-      @master_data_unlocalized = @master_data.clone
+      @master_data_unlocalized = deep_clone @master_data
       localization_data = options[:localization_data]
       unless localization_data.nil?
         @localization_data = convert_if_necessary localization_data
@@ -11,9 +11,13 @@ module Promethee
       end
     end
 
-    def localization_data_to_json
+    def localization_data
       prepare_localization
-      @localization_data.to_json
+      @localization_data
+    end
+
+    def localization_data_to_json
+      localization_data.to_json
     end
 
     def to_json
@@ -28,6 +32,10 @@ module Promethee
 
     def convert_if_necessary(string_or_hash)
       string_or_hash.is_a?(String) ? JSON.parse(string_or_hash, symbolize_names: true) : string_or_hash
+    end
+
+    def deep_clone(hash)
+      JSON.parse(hash.to_json, symbolize_names: true)
     end
 
     # This will recursively merge the localization_data into the master_data
@@ -70,8 +78,13 @@ module Promethee
       # TODO update master_version
 
       # Flattens master data, and select only text components
-      flat_master_data = self.class.flatten_components(@master_data[:children]).select do |component|
+      flat_master_data = self.class.flatten_components(@master_data_unlocalized[:children]).select do |component|
         component[:type].to_sym === :text
+      end
+
+      # We add master reference
+      flat_master_data.each do |data|
+        data[:master] = data.clone
       end
 
       if @localization_data
@@ -80,6 +93,9 @@ module Promethee
           localized_component = @localization_data[:components].find do |localized_component|
             localized_component[:id] == component[:id]
           end
+
+          # Update master reference
+          localized_component[:master] = component[:master] unless localized_component.nil?
 
           localized_component || component
         end

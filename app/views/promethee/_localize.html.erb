@@ -2,12 +2,15 @@
 promethee_data = Promethee::Data.new master_data, localization_data: localization_data
 %>
 
-<%= promethee_data.localization_data_to_json %>
-
 <script>
   var prometheeLocalizer = angular
     .module('PrometheeLocalizer', ['summernote'])
-    .value('data', <%= promethee_data.localization_data_to_json.html_safe %>);
+    .value('data', <%= promethee_data.localization_data_to_json.html_safe %>)
+    .filter('htmlSafe', ['$sce', function($sce) {
+      return function(val) {
+        return $sce.trustAsHtml(val);
+      };
+    }]);
 
   prometheeLocalizer.controller('PrometheeLocalizerController', ['$scope', 'data', function($scope, data) {
 
