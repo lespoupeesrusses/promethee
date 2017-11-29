@@ -89,7 +89,7 @@ module Promethee
             localized_component[:id] == component[:id]
           end
 
-          # If the localized_component isn't found, we create it content with the master (component)
+          # If the localized_component isn't found, we create it with the master (component)
           # Eventually, we add a reference to the master in the localized component
           (localized_component || component).merge master: component.deep_dup
         end
