@@ -73,14 +73,16 @@ module Promethee
       @master_data[:children]
     end
 
+    def flat_children
+      self.class.flatten_components @master_data_unlocalized[:children]
+    end
+
     def prepare_localization
       # TODO extract localizable components from master data, in the correct order, merged with existing ones
       # TODO update master_version
 
-      # Flattens master data, and select only text components
-      flat_master_data = self.class.flatten_components(@master_data_unlocalized[:children]).select do |component|
-        component[:type].to_sym === :text
-      end
+      # Selects only text components within the children components flat array
+      flat_master_data = flat_children.select { |component| component[:type].to_sym === :text }
 
       if @localization_data
         # If localization_data has been provided, we merge flat_master_data components with its components
