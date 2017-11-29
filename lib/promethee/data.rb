@@ -82,11 +82,6 @@ module Promethee
         component[:type].to_sym === :text
       end
 
-      # We add master reference
-      flat_master_data.each do |data|
-        data[:master] = data.clone
-      end
-
       if @localization_data
         # If localization_data has been provided, we merge flat_master_data components with its components
         @localization_data[:components] = flat_master_data.map do |component|
@@ -94,10 +89,9 @@ module Promethee
             localized_component[:id] == component[:id]
           end
 
-          # Update master reference
-          localized_component[:master] = component[:master] unless localized_component.nil?
-
-          localized_component || component
+          # If the localized_component isn't found, we create it content with the master (component)
+          # Eventually, we add a reference to the master in the localized component
+          (localized_component || component).merge master: component.deep_dup
         end
       else
         # In the other case, localization_data components are flat_master_data components
