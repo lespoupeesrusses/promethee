@@ -1,3 +1,5 @@
 Rails.application.routes.draw do
-  post 'promethee/preview' => 'promethee#preview', as: 'promethee_preview'
+  namespace :promethee, path: Promethee.configuration.route_scope, module: nil  do
+    post 'preview' => 'promethee#preview', as: :preview
+  end
 end

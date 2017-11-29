@@ -19,5 +19,6 @@ module Promethee
   require 'promethee/core_ext/form_helper'
   require 'promethee/core_ext/form_builder'
 
+  require 'promethee/configuration'
   require 'promethee/data'
 end
