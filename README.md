@@ -131,7 +131,11 @@ Which renders to:
 
 With stylesheets set:
 ```
-@import promethee
+@import 'bootstrap'
+@import 'font-awesome.css'
+@import 'material_icons.css'
+@import 'summernote'
+@import 'promethee'
 ```
 
 ### Editor
@@ -156,14 +160,25 @@ This would do quite the same thing:
 
 With javascript set:
 ```
+//= require jquery
+//= require jquery-ui
+//= require bootstrap
+//= require angular
+//= require angular-animate
+//= require summernote
+//= require angular-summernote
 //= require promethee
 //= require promethee-editor
 ```
 
 With stylesheets set:
 ```
-@import promethee
-@import promethee-editor
+@import 'bootstrap'
+@import 'font-awesome.css'
+@import 'material_icons.css'
+@import 'summernote'
+@import 'promethee'
+@import 'promethee-editor'
 ```
 
 #### The editor has components
