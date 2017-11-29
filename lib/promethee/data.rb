@@ -82,6 +82,7 @@ module Promethee
       # TODO update master_version
 
       # Selects only text components within the children components flat array
+      # TODO think about a better way to handle localized attributes among all the components (not only text type)
       flat_master_data = flat_children.select { |component| component[:type].to_sym === :text }
 
       if @localization_data
