@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    promethee (1.0.6)
+    promethee (1.0.7)
       angular-ui-tinymce-rails
       angular_rails_csrf
       angularjs-rails (~> 1.6.2)
@@ -63,7 +63,7 @@ GEM
       activerecord (>= 3.2, < 6.0)
       rake (>= 10.4, < 13.0)
     arel (8.0.0)
-    autoprefixer-rails (7.1.6)
+    autoprefixer-rails (7.2.1)
       execjs
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)

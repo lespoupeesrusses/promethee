@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default promethee-editor__navbar">
   <div class="container-fluid">
-    <div class="navbar-header">
-      <%= image_tag 'icon-promethee.png', class: 'navbar-brand' %>
+    <div class="navbar-header promethee-editor__icon">
+      <div class="navbar-brand"><%= File.read(__dir__ + '/../../../assets/images/icon-promethee.svg').html_safe %></div>
     </div>
     <div id="navbar">
       <ul class="nav navbar-nav navbar-right">

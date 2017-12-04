@@ -1,7 +1,7 @@
 $promethee-grey: #bbb
 $promethee-transparent-grey: transparentize($promethee-grey, .8)
 $promethee-light-grey: #eee
-$promethee-color: #ff9900
+$promethee-color: #ff9900 !default
 
 @import 'promethee-editor/mover'
 @import 'promethee-editor/preview'
@@ -26,6 +26,10 @@ $promethee-color: #ff9900
     border: none
     border-bottom: 2px solid $promethee-color
     background: transparent
+
+  &__icon
+    svg path
+      fill: $promethee-color
 
   &__button
     color: $promethee-color
