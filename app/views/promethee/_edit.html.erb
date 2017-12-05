@@ -42,7 +42,7 @@ promethee_data = Promethee::Data.new master_data
     $scope.fullscreen = false;
     $scope.move = false;
     $scope.preview = false;
-    $scope.hide = false;
+    $scope.pageHidden = false;
     $scope.previewMode = 'desktop';
 
     var moveTimeout;
@@ -55,10 +55,10 @@ promethee_data = Promethee::Data.new master_data
     $scope.disableMove = function() {
       var self = this;
 
-      this.hide = true;
+      this.pageHidden = true;
       this.move = false;
       moveTimeout = setTimeout(function() {
-        self.hide = false;
+        self.pageHidden = false;
         self.$apply();
       }, 500);
     };
