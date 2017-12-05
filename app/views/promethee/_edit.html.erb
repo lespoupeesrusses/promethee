@@ -59,6 +59,7 @@ promethee_data = Promethee::Data.new master_data
       this.move = false;
       moveTimeout = setTimeout(function() {
         self.hide = false;
+        self.$apply();
       }, 500);
     };
 
