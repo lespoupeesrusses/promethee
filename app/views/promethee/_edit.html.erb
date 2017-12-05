@@ -42,7 +42,29 @@ promethee_data = Promethee::Data.new master_data
     $scope.fullscreen = false;
     $scope.move = false;
     $scope.preview = false;
+    $scope.hide = false;
     $scope.previewMode = 'desktop';
+
+    var moveTimeout;
+
+    $scope.enableMove = function() {
+      clearTimeout(moveTimeout);
+      this.move = true;
+    };
+
+    $scope.disableMove = function() {
+      var self = this;
+
+      this.hide = true;
+      this.move = false;
+      moveTimeout = setTimeout(function() {
+        self.hide = false;
+      }, 500);
+    };
+
+    $scope.toggleMove = function() {
+      this.move ? this.disableMove() : this.enableMove();
+    };
 
     $scope.enablePreview = function() {
       this.preview = true;

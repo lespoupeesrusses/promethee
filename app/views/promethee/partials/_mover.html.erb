@@ -1,20 +1,20 @@
 <script type="text/ng-template" id="promethee/partials/mover">
-  <div  ng-init="components = component.children; type = component.type" 
+  <div  ng-init="components = component.children; type = component.type"
         class="promethee-editor__mover--list">
-    <div  class="promethee-editor__mover--droppable promethee-editor__mover--droppable--{{type}} promethee-editor__mover--droppable--{{type}}--first" 
-          droppable 
+    <div  class="promethee-editor__mover--droppable promethee-editor__mover--droppable--{{type}} promethee-editor__mover--droppable--{{type}}--first"
+          droppable
           data-index="0"
           >
     </div>
-    <div  ng-repeat="component in components" 
-          class="promethee-editor__mover--draggable promethee-editor__mover--draggable--{{type}}" 
-          draggable 
-          data-index="{{$index}}" 
+    <div  ng-repeat="component in components"
+          class="promethee-editor__mover--draggable promethee-editor__mover--draggable--{{type}}"
+          draggable
+          data-index="{{$index}}"
           data-type="{{component.type}}"
           >
         <ng-include src="'promethee/components/' + component.type + '/move'"></ng-include>
-        <div  class="promethee-editor__mover--droppable promethee-editor__mover--droppable--{{type}}" 
-              droppable 
+        <div  class="promethee-editor__mover--droppable promethee-editor__mover--droppable--{{type}}"
+              droppable
               data-index="{{$index+1}}"
               data-type="{{type}}"
               >
@@ -23,7 +23,7 @@
   </div>
 </script>
 
-<div class="promethee-editor__mover" ng-show="move" ng-init="component = data">
+<div class="promethee-editor__mover" ng-show="move || moverVisible" ng-init="component = data">
   <ng-include src="'promethee/partials/mover'"></ng-include>
 </div>
 
