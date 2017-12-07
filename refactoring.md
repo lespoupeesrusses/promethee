@@ -12,7 +12,7 @@ They are meant to be overwritten, updated, and extended. And so everything needs
 
 To do that, we should:
 - Wrap everything into **actions**, nothing could exists outside (if we meet a point where actions have to share things, then we might put them in a shared folder)
-- Nest things in terms of their **dependencies**
+- Nest things in terms of their **dependencies** and **abstraction level**
 - Avoid naming redundancy
 - Name actions with verbs
 - Name objects/resources with nouns
@@ -33,15 +33,17 @@ Thus we need 3 views **_show.html.erb**, **_edit.html.erb**, and **_localize.htm
 Here, logic is to say:
 > The navbar is for editing, lets put it in the edit folder.
 
+→ Nest thing in terms of their dependencies: the navbar doesn't exist without the edit view.
+
 Or:
 > The image component belongs to the component group, so we will put it in a component folder.
 
-The idea is to nest thing in terms of their dependencies: the navbar doesn't exist without the edit view.
+→ Nest thing in terms of their abstraction level: a component is less abstract than the navbar; it should live in a deeper folder.
 
 Or:
 > If the edit action folder has *this* structure, the localize action must have the same. Because they are the same thing, **they are both actions**.
 
-The idea is to keep our project strong and understable, developer-friendly, maintenance-friendly.
+→ Keep our project strong and understable, developer-friendly, maintenance-friendly.
 
 ### File tree
 *Because everything is better with pictures*
