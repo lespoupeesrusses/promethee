@@ -1,9 +1,0 @@
-<% # TODO iterate over files in gem, instead of a predefined array %>
-<% ['page', 'children', 'row', 'column', 'text', 'image', 'video'].each do |type| %>
-  <%= render "promethee/components/#{type}_edit" %>
-<% end %>
-
-<% # TODO iterate over custom views to add custom types and override existing types %>
-<% Dir['app/views/promethee/components/*'].each do |file| %>
-  
-<% end %>

@@ -1,22 +1,15 @@
-<script type="text/ng-template" id="promethee/components/row">
+<script type="text/ng-template" id="promethee/write/component/row">
   <div  ng-controller="RowController"
         class="row promethee-editor__component promethee-editor__component--row">
     <div class="promethee-editor__toolbar">
       Row
-      <%= render 'promethee/partials/toolbar_buttons' %>
+      <ng-include src="'promethee/write/toolbar'"></ng-include>
     </div>
     <div ng-show="editing" class="promethee-editor__wrapper">
     </div>
-    <ng-include src="'promethee/components/children'"></ng-include>
+    <ng-include src="'promethee/write/components'"></ng-include>
     <div class="clearfix"></div>
     <span class="btn btn-default btn-block" ng-click="addColumn()" style="margin: 0 6px 6px 6px;width: auto">Add column</span>
-  </div>
-</script>
-
-<script type="text/ng-template" id="promethee/components/row/move">
-  <h1>Row</h1>
-  <div class="row">
-    <ng-include src="'promethee/partials/mover'"></ng-include>
   </div>
 </script>
 

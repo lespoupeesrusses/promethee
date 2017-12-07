@@ -1,31 +1,20 @@
-<script type="text/ng-template" id="promethee/partials/mover">
-  <div  ng-init="components = component.children; type = component.type"
-        class="promethee-editor__mover--list">
-    <div  class="promethee-editor__mover--droppable promethee-editor__mover--droppable--{{type}} promethee-editor__mover--droppable--{{type}}--first"
-          droppable
-          data-index="0"
-          >
+<%= render 'promethee/edit/move/component' %>
+<%= render 'promethee/edit/move/components' %>
+<% Dir[__dir__ + '/move/component/*.html.erb'].map do |file| %>
+  <%= render "promethee/edit/move/component/#{File.basename(file, '.html.erb').sub(/\A_/, '')}" %>
+<% end %>
+
+<script type="text/ng-template" id="promethee/move">
+  <div class="promethee-editor__mover--list">
+    <div
+      class="promethee-editor__mover--droppable promethee-editor__mover--droppable--{{component.type}} promethee-editor__mover--droppable--{{component.type}}--first"
+      droppable
+      data-index="0"
+    >
     </div>
-    <div  ng-repeat="component in components"
-          class="promethee-editor__mover--draggable promethee-editor__mover--draggable--{{type}}"
-          draggable
-          data-index="{{$index}}"
-          data-type="{{component.type}}"
-          >
-        <ng-include src="'promethee/components/' + component.type + '/move'"></ng-include>
-        <div  class="promethee-editor__mover--droppable promethee-editor__mover--droppable--{{type}}"
-              droppable
-              data-index="{{$index+1}}"
-              data-type="{{type}}"
-              >
-        </div>
-    </div>
+    <ng-include src="'promethee/move/components'"></ng-include>
   </div>
 </script>
-
-<div class="promethee-editor__mover" ng-show="move || moverVisible" ng-init="component = data">
-  <ng-include src="'promethee/partials/mover'"></ng-include>
-</div>
 
 <script type="text/javascript">
   promethee

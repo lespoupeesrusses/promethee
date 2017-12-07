@@ -1,0 +1,21 @@
+<%= render 'promethee/edit/write/add_button' %>
+<%= render 'promethee/edit/write/toolbar' %>
+<%= render 'promethee/edit/write/component' %>
+<%= render 'promethee/edit/write/components' %>
+<% Dir[__dir__ + '/write/component/_*.html.erb'].map do |file| %>
+  <%= render "promethee/edit/write/component/#{File.basename(file, '.html.erb').sub(/\A_/, '')}" %>
+<% end %>
+
+<script type="text/ng-template" id="promethee/write">
+  <div class="promethee-editor__page">
+    <div ng-class="{ 'container': fullscreen }">
+      <div
+        ng-init="component = component || data"
+        class="promethee-editor__component promethee-editor__component--page"
+      >
+        <ng-include src="'promethee/write/components'"></ng-include>
+      </div>
+    </div>
+    <ng-include src="'promethee/write/add_button'"></ng-include>
+  </div>
+</script>

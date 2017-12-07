@@ -1,0 +1,31 @@
+<nav class="navbar navbar-default promethee-editor__navbar">
+  <div class="container-fluid">
+    <div class="navbar-header promethee-editor__icon">
+      <div class="navbar-brand"><%= File.read(__dir__ + '/../../../../assets/images/icon-promethee.svg').html_safe %></div>
+    </div>
+    <div id="navbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li ng-click="action.toggle('move')" ng-class="{active: action.is('move')}"><a><%= fa_icon :arrows %></a></li>
+
+        <li
+          ng-show="action.is('preview')"
+          ng-repeat="device in ['desktop', 'tablet', 'mobile']"
+          ng-click="preview.set(device)"
+          ng-class="{active: preview.is(device)}"
+        >
+          <a><i class="fa fa-{{device}}"></i></a>
+        </li>
+
+        <li ng-click="action.toggle('preview')" ng-class="{active: action.is('preview')}">
+          <a ng-hide="action.is('preview')"><%= fa_icon :eye %></a>
+          <a ng-show="action.is('preview')"><%= fa_icon 'eye-slash' %></a>
+        </li>
+
+        <li ng-click="fullscreen.toggle()" ng-class="{active: fullscreen.enabled}">
+          <a ng-show="fullscreen.disabled"><%= fa_icon :expand %></a>
+          <a ng-show="fullscreen.enabled"><%= fa_icon :compress %></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

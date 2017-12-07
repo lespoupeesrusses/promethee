@@ -1,9 +1,9 @@
-<script type="text/ng-template" id="promethee/components/video">
-  <div  ng-controller="VideoController" 
+<script type="text/ng-template" id="promethee/write/component/video">
+  <div  ng-controller="VideoController"
         class="promethee-editor__component promethee-editor__component--video">
     <div class="promethee-editor__toolbar">
       Video
-      <%= render 'promethee/partials/toolbar_buttons' %>
+      <ng-include src="'promethee/write/toolbar'"></ng-include>
     </div>
     <div ng-show="editing" class="promethee-editor__wrapper">
       <div class="form-group">
@@ -13,15 +13,6 @@
     </div>
     <div class="embed-responsive embed-responsive-16by9">
       <iframe ng-if="embed" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="allowfullscreen" ng-src="{{embed | urlSafe}}"></iframe>
-    </div>
-  </div>
-</script>
-
-<script type="text/ng-template" id="promethee/components/video/move">
-  <div ng-controller="VideoController">
-    <div class="embed-responsive embed-responsive-16by9">
-      <iframe ng-if="embed" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="allowfullscreen" ng-src="{{embed | urlSafe}}"></iframe>
-      <div class="video-neutralizing-overlay"></div>
     </div>
   </div>
 </script>

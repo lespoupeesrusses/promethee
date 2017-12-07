@@ -1,0 +1,36 @@
+<script type="text/ng-template" id="promethee/preview">
+  <div ng-controller="PreviewController" class="promethee-editor__preview promethee-editor__preview--{{preview.current}}">
+
+    <i class="fa fa-refresh fa-spin fa-3x fa-fw promethee-editor__preview-loader"></i>
+
+    <iframe
+      class="promethee-editor__preview-frame"
+      name="preview"
+      sandbox="allow-scripts"
+      frameBorder="0"
+    >
+    </iframe>
+  </div>
+</script>
+
+<script>
+  promethee.controller('PreviewController', ['data', '$scope', function(data, $scope) {
+    var update = function() {
+      var form = document.createElement('form');
+      form.method = 'post';
+      form.action = <%= promethee_preview_path.to_json.html_safe %>;
+      form.target = 'preview';
+
+      var input = document.createElement('input');
+      input.name = 'data';
+      input.value = JSON.stringify($scope.data);
+
+      form.appendChild(input);
+      form.submit();
+    };
+
+    $scope.$watch('action.current', function(newValue, oldValue) {
+      if(newValue !== oldValue && newValue == 'preview') update();
+    });
+  }]);
+</script>

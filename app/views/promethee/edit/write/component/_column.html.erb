@@ -1,0 +1,34 @@
+<script type="text/ng-template" id="promethee/write/component/column">
+  <div class="
+    col
+    col-md-{{component.attributes.size}}
+    col-md-offset-{{component.attributes.offset}}
+    promethee-editor__component
+    promethee-editor__component--column"
+  >
+    <div class="promethee-editor__toolbar">
+      Column
+      <ng-include src="'promethee/write/toolbar'"></ng-include>
+    </div>
+    <div ng-show="editing" class="promethee-editor__wrapper">
+      <div class="form-group">
+        <label class="label-control">Size</label>
+        <input ng-model="component.attributes.size" class="form-control" type="number"/>
+      </div>
+      <div class="form-group">
+        <label class="label-control">Offset</label>
+        <input ng-model="component.attributes.offset" class="form-control" type="number"/>
+      </div>
+    </div>
+
+    <ng-include src="'promethee/write/components'"></ng-include>
+
+    <span
+      type="button"
+      class="btn btn-default btn-block"
+      ng-click="addComponentTo(component.children)"
+    >
+      Add component
+    </span>
+  </div>
+</script>

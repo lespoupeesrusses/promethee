@@ -1,8 +1,8 @@
-<script type="text/ng-template" id="promethee/components/image">
+<script type="text/ng-template" id="promethee/write/component/image">
   <div ng-controller="ImageController" class="promethee-editor__component promethee-editor__component--image">
     <div class="promethee-editor__toolbar">
       Image
-      <%= render 'promethee/partials/toolbar_buttons' %>
+      <ng-include src="'promethee/write/toolbar'"></ng-include>
     </div>
     <div ng-show="editing" class="promethee-editor__wrapper">
       <div class="form-group">
@@ -21,10 +21,6 @@
       <p ng-hide="editing" ng-click="edit()" class="text-center">Click to set the image</p>
     </div>
   </div>
-</script>
-
-<script type="text/ng-template" id="promethee/components/image/move">
-  <img ng-src="{{component.attributes.src}}" class="img-responsive">
 </script>
 
 <script>

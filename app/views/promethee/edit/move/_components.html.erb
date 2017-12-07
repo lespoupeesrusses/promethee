@@ -1,0 +1,20 @@
+<script type="text/ng-template" id="promethee/move/components">
+  <div ng-init="type = component.type; components = component.children">
+    <div
+      ng-repeat="component in components"
+      class="promethee-editor__mover--draggable promethee-editor__mover--draggable--{{type}}"
+      draggable
+      data-index="{{$index}}"
+      data-type="{{component.type}}"
+    >
+      <ng-include src="'promethee/move/component'"></ng-include>
+      <div
+        class="promethee-editor__mover--droppable promethee-editor__mover--droppable--{{type}}"
+        droppable
+        data-index="{{$index+1}}"
+        data-type="{{type}}"
+      >
+      </div>
+    </div>
+  </div>
+</script>

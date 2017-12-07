@@ -1,0 +1,13 @@
+<script type="text/ng-template" id="promethee/move/component/column">
+  <div class="col col-md-{{component.attributes.size}} col-md-offset-{{component.attributes.offset}}">
+    <h1>Column</h1>
+    <ng-include src="'promethee/move'"></ng-include>
+    <div  class=" promethee-editor__mover--droppable
+                  promethee-editor__mover--droppable--row
+                  promethee-editor__mover--droppable--row--inside-column"
+          droppable
+          data-index="{{$index+1}}"
+          data-type="{{type}}"
+          >
+  </div>
+</script>

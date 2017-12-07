@@ -8,6 +8,9 @@ promethee_data = Promethee::Data.new master_data
     .module('Promethee', ['summernote', 'ngAnimate'])
     .value('data', <%= promethee_data.to_json.html_safe %>)
     .value('definitions', [])
+    .config(function($rootScopeProvider) {
+      $rootScopeProvider.digestTtl(20);
+    })
     .filter('htmlSafe', ['$sce', function($sce) {
       return function(val) {
         return $sce.trustAsHtml(val);
@@ -28,7 +31,7 @@ promethee_data = Promethee::Data.new master_data
   promethee.controller('PrometheeController', ['data', '$scope', 'definitions', '$http', function(data, $scope, definitions, $http) {
 
     // Data (TODO use Adder and probably page definition to init)
-    if (data === null || data === '') {
+    if(data === null || data === '') {
       data = {
         id: '',
         type: 'page',
@@ -36,66 +39,82 @@ promethee_data = Promethee::Data.new master_data
         children: []
       };
     }
-    $scope.data = data;
 
-    // Preview modes
-    $scope.fullscreen = false;
-    $scope.move = false;
-    $scope.preview = false;
-    $scope.pageHidden = false;
-    $scope.previewMode = 'desktop';
+    $scope.data = $scope.component = data;
 
-    var moveTimeout;
-
-    $scope.enableMove = function() {
-      clearTimeout(moveTimeout);
-      this.move = true;
+    var State = function(value) {
+      this.default = this.current = value;
     };
 
-    $scope.disableMove = function() {
-      var self = this;
+    State.prototype = {
+      get enabled() {
+        return !!this.current;
+      },
 
-      this.pageHidden = true;
-      this.move = false;
-      moveTimeout = setTimeout(function() {
-        self.pageHidden = false;
-        self.$apply();
-      }, 500);
+      get disabled() {
+        return !this.enabled;
+      },
+
+      enable: function() {
+        this.set(true);
+      },
+
+      disable: function() {
+        this.set(false);
+      },
+
+      is: function(state) {
+        return this.current === state;
+      },
+
+      set: function(state) {
+        this.current = state
+      },
+
+      exit: function(state) {
+        if(this.is(state)) this.current = this.default;
+      },
+
+      toggle: function(state) {
+        if(arguments.length === 0) state = true;
+        this.is(state) ? this.exit(state) : this.set(state)
+      }
     };
 
-    $scope.toggleMove = function() {
-      this.move ? this.disableMove() : this.enableMove();
-    };
+    // Application states
+    $scope.action = new State('write');
+    $scope.preview = new State('desktop');
+    $scope.fullscreen = new State(false);
 
-    $scope.enablePreview = function() {
-      this.preview = true;
-      this.move = false;
+    // $scope.enablePreview = function() {
+    //   this.preview = true;
+    //   this.move = false;
 
-      var form = document.createElement('form');
-      document.body.appendChild(form);
-      form.method = 'POST';
-      form.action = <%= promethee_preview_path.to_json.html_safe %>;
-      form.target = 'preview';
-      var input = document.createElement('input');
-      input.type = 'text';
-      input.value = JSON.stringify(data);
-      input.name = 'data';
-      form.appendChild(input);
-      form.submit();
-      document.body.removeChild(form);
-    }
+    //   var form = document.createElement('form');
+    //   document.body.appendChild(form);
+    //   form.method = 'POST';
+    //   form.action = <%= promethee_preview_path.to_json.html_safe %>;
+    //   form.target = 'preview';
+    //   var input = document.createElement('input');
+    //   input.type = 'text';
+    //   input.value = JSON.stringify(data);
+    //   input.name = 'data';
+    //   form.appendChild(input);
+    //   form.submit();
+    //   document.body.removeChild(form);
+    // }
 
-    $scope.disablePreview = function() {
-      this.preview = false;
-    }
+    // $scope.disablePreview = function() {
+    //   this.preview = false;
+    // }
 
-    $scope.enableFullscreen = function() {
-      this.fullscreen = true;
-    }
+    // $scope.enableFullscreen = function() {
+    //   this.fullscreen = true;
+    // }
 
-    $scope.disableFullscreen = function() {
-      this.fullscreen = false;
-    }
+    // $scope.disableFullscreen = function() {
+    //   this.fullscreen = false;
+    // }
 
     $scope.remove = function(component, components) {
       var index = components.indexOf(component);
@@ -106,20 +125,33 @@ promethee_data = Promethee::Data.new master_data
 
 </script>
 
-<div id="promethee"
-     class="promethee-editor"
-     ng-app="Promethee"
-     ng-controller="PrometheeController as prometheeController"
-     ng-class="{
-       'promethee-editor--fullscreen': fullscreen,
-       'promethee-editor--move': move,
-       'promethee-editor--preview': preview
-     }">
+<div
+  id="promethee"
+  ng-class="{
+    'promethee-editor': true,
+    'promethee-editor--fullscreen': fullscreen.enabled
+  }"
+  ng-app="Promethee"
+  ng-controller="PrometheeController as prometheeController"
+>
+  <%= render 'promethee/edit/shared/navbar' %>
+
+  <%= render 'promethee/edit/write' %>
+  <%= render 'promethee/edit/move' %>
+  <%= render 'promethee/edit/preview' %>
+
   <input type="hidden" name="page[data]" id="page_data" value="{{data}}" />
-  <%= render 'promethee/partials/include_components' %>
-  <%= render 'promethee/partials/navbar' %>
-  <%= render 'promethee/partials/preview' %>
-  <%= render 'promethee/partials/mover' %>
-  <%= render 'promethee/partials/page' %>
+
+  <div ng-show="action.is('write')" class="promethee__write">
+    <ng-include src="'promethee/write'"></ng-include>
+  </div>
+
+  <div ng-show="action.is('move')" class="promethee__mover">
+    <ng-include src="'promethee/move'"></ng-include>
+  </div>
+
+  <div ng-show="action.is('preview')" class="promethee__preview">
+    <ng-include src="'promethee/preview'"></ng-include>
+  </div>
 </div>
 
