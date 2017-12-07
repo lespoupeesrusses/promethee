@@ -6,6 +6,10 @@ The purpose of our views structure is to bring out:
 - **Actions** → *What does it do?*
 - **Logic** → *How does it work?*, *What are/mean the rules?*
 
+> Because ?
+
+They are meant to be overwritten, updated, and extended. And so everything have to be clean.
+
 To do that, we should:
 - Wrap everything into **actions**, nothing could exists outside (if we meet a point where actions have to share things, then we might put them in a shared folder).
 - Nest things in terms of their **dependencies**
