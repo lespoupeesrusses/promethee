@@ -1,21 +1,4 @@
-<%
-  except ||= []
-  except = [except] unless except.is_a? Array
-  except.map! { |button| button.to_s.to_sym }
-
-  only ||= []
-  only = [only] unless only.is_a? Array
-  only.map! { |button| button.to_s.to_sym }
-
-  buttons = [:edit, :remove].map{ |button| [button, (only.empty? || button.in?(only)) &&  !button.in?(except)] }.to_h
-%>
-
 <div class="pull-right">
-  <% if buttons[:edit] %>
-    <span ng-click="editing = !editing" class="promethee-editor__button"><%= fa_icon 'pencil-square' %></span>
-  <% end %>
-
-  <% if buttons[:remove] %>
-    <span ng-click="remove(component, components)" class="promethee-editor__button"><%= fa_icon 'window-close' %></span>
-  <% end %>
+  <span ng-click="editing = !editing" class="promethee-editor__button"><%= fa_icon 'pencil-square' %></span>
+  <span ng-click="remove(component, components)" class="promethee-editor__button"><%= fa_icon 'window-close' %></span>
 </div>
