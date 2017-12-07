@@ -8,7 +8,7 @@ The purpose of our views structure is to bring out:
 
 > Because ?
 
-They are meant to be overwritten, updated, and extended. And so everything have to be clean.
+They are meant to be overwritten, updated, and extended. And so everything have to be clean and have a strong structure which can live for a long time through evolutions.
 
 To do that, we should:
 - Wrap everything into **actions**, nothing could exists outside (if we meet a point where actions have to share things, then we might put them in a shared folder).
