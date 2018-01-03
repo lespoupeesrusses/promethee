@@ -33,15 +33,15 @@
     $scope.editing = false;
 
     $scope.edit = function() {
-      this.editing = true;
+      $scope.editing = true;
     };
 
     $scope.complete = function() {
-      this.editing = false;
+      $scope.editing = false;
     };
 
     $scope.toggleEdit = function() {
-      this.editing = !this.editing;
+      $scope.editing = !$scope.editing;
     };
 
     Object.defineProperty($scope, 'embed', {

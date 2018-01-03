@@ -4,6 +4,7 @@
       Image
       <ng-include src="'promethee/write/toolbar'"></ng-include>
     </div>
+    {{editing}}
     <div ng-show="editing" class="promethee-editor__wrapper">
       <div class="form-group">
         <label class="label-control">Url</label>
@@ -39,15 +40,15 @@
     $scope.editing = false;
 
     $scope.edit = function() {
-      this.editing = true;
+      $scope.editing = true;
     };
 
     $scope.complete = function() {
-      this.editing = false;
+      $scope.editing = false;
     };
 
     $scope.toggleEdit = function() {
-      this.editing = !this.editing;
+      $scope.editing = !$scope.editing;
     };
   }]);
 </script>
