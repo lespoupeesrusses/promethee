@@ -1,10 +1,13 @@
 <script type="text/ng-template" id="promethee/write/component/column">
-  <div class="
-    col
-    col-md-{{component.attributes.size}}
-    col-md-offset-{{component.attributes.offset}}
-    promethee-editor__component
-    promethee-editor__component--column"
+  <div
+    class="
+      col
+      col-md-{{component.attributes.size}}
+      col-md-offset-{{component.attributes.offset}}
+      promethee-editor__component
+      promethee-editor__component--column
+    "
+    ng-controller="ColumnController"
   >
     <div class="promethee-editor__toolbar">
       Column
@@ -31,4 +34,22 @@
       Add component
     </span>
   </div>
+</script>
+
+<script>
+  promethee.controller('ColumnController', ['$scope', function($scope) {
+    $scope.editing = false;
+
+    $scope.edit = function() {
+      this.editing = true;
+    };
+
+    $scope.complete = function() {
+      this.editing = false;
+    };
+
+    $scope.toggleEdit = function() {
+      this.editing = !this.editing;
+    };
+  }]);
 </script>

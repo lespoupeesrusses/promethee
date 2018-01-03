@@ -30,8 +30,19 @@
   });
 
   promethee.controller('VideoController', ['$scope', function($scope) {
-
     $scope.editing = false;
+
+    $scope.edit = function() {
+      this.editing = true;
+    };
+
+    $scope.complete = function() {
+      this.editing = false;
+    };
+
+    $scope.toggleEdit = function() {
+      this.editing = !this.editing;
+    };
 
     Object.defineProperty($scope, 'embed', {
       get: function() {

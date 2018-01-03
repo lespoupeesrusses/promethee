@@ -36,7 +36,6 @@
   });
 
   promethee.controller('ImageController', ['$scope', function($scope) {
-
     $scope.editing = false;
 
     $scope.edit = function() {
@@ -47,5 +46,8 @@
       this.editing = false;
     };
 
+    $scope.toggleEdit = function() {
+      this.editing = !this.editing;
+    };
   }]);
 </script>

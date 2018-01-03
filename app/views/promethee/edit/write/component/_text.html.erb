@@ -27,7 +27,6 @@
   });
 
   promethee.controller('TextController', ['$scope', function($scope) {
-
     $scope.editing = false;
 
     $scope.edit = function() {
@@ -38,6 +37,10 @@
       this.editing = false;
     };
 
+    $scope.toggleEdit = function() {
+      this.editing = !this.editing;
+    };
+
     $scope.options = {
       toolbar: [
         ['headline', ['style']],
@@ -46,6 +49,5 @@
         ['code', ['codeview']]
       ]
     };
-
   }]);
 </script>
