@@ -17,35 +17,42 @@
     &--row
       padding-left: 10px
   &--droppable
+    margin: 10px 0
     position: relative
-    background: white
-    width: 200px
-    height: 50px
+    border-radius: 6px
+    border: 5px solid transparent
+    width: 400px
+    height: 40px
+    transition: .2s
     &--hidden
       visibility: hidden
+      pointer-events: none
+
     &--row
-      display: none
+      &:not(&--first)
+        visibility: hidden
+        pointer-events: none
+
       &--first
-        display: block
         position: absolute
         top: 0
         left: -25px
-        width: 50px
-        height: 200px
+        width: 40px
+        height: 400px
       &--inside-column
         position: absolute
         top: 0
         right: -25px
-        width: 50px
-        height: 200px
+        width: 40px
+        height: 400px
   &--dragged
     opacity: 0.25
-  .ui-droppable-hover
-    opacity: 1 !important
-    margin-bottom: 0
   .ui-droppable-active
-    background: $promethee-color
-    opacity: 0.5
+    border-color: $promethee-color
+
+  .ui-droppable-hover
+    background: transparentize($promethee-color, .6)
+
   // By default, nothing is dropped in rows
   &--dragging
     .promethee__move--droppable.promethee__move--droppable--row
