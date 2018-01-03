@@ -3,7 +3,7 @@
     type="button"
     class="btn btn-default btn-block"
     ng-click="addComponentTo(data.children)"
-    ng-hide="preview"
+    ng-hide="action.is('preview')"
     style="margin-bottom: 6px"
   >
     Add component
@@ -38,8 +38,9 @@
 </script>
 
 <script type="text/javascript">
-  promethee.controller('AdderController', ['$scope', '$rootScope', 'definitions', function($scope, $rootScope, definitions) {
+  promethee.controller('AdderController', ['$scope', '$rootScope', 'definitions', 'action', function($scope, $rootScope, definitions, action) {
 
+    $scope.action = action;
     $scope.adding = false;
     $scope.childrenToAddTo = null;
     $scope.definitions = definitions;

@@ -4,10 +4,52 @@ promethee_data = Promethee::Data.new master_data
 %>
 
 <script>
+  var State = function(value) {
+    this.default = this.current = value;
+  };
+
+  State.prototype = {
+    get enabled() {
+      return !!this.current;
+    },
+
+    get disabled() {
+      return !this.enabled;
+    },
+
+    enable: function() {
+      this.set(true);
+    },
+
+    disable: function() {
+      this.set(false);
+    },
+
+    is: function(state) {
+      return this.current === state;
+    },
+
+    set: function(state) {
+      this.current = state
+    },
+
+    exit: function(state) {
+      if(this.is(state)) this.current = this.default;
+    },
+
+    toggle: function(state) {
+      if(arguments.length === 0) state = true;
+      this.is(state) ? this.exit(state) : this.set(state)
+    }
+  };
+
   var promethee = angular
     .module('Promethee', ['summernote', 'ngAnimate'])
     .value('data', <%= promethee_data.to_json.html_safe %>)
     .value('definitions', [])
+    .value('action', new State('write'))
+    .value('preview', new State('desktop'))
+    .value('fullscreen', new State(false))
     .config(function($rootScopeProvider) {
       $rootScopeProvider.digestTtl(20);
     })
@@ -28,7 +70,7 @@ promethee_data = Promethee::Data.new master_data
       };
     });
 
-  promethee.controller('PrometheeController', ['data', '$scope', 'definitions', '$http', function(data, $scope, definitions, $http) {
+  promethee.controller('PrometheeController', ['data', '$scope', 'definitions', '$http', 'action', 'preview', 'fullscreen', function(data, $scope, definitions, $http, action, preview, fullscreen) {
 
     // Data (TODO use Adder and probably page definition to init)
     if(data === null || data === '') {
@@ -42,49 +84,10 @@ promethee_data = Promethee::Data.new master_data
 
     $scope.data = $scope.component = data;
 
-    var State = function(value) {
-      this.default = this.current = value;
-    };
-
-    State.prototype = {
-      get enabled() {
-        return !!this.current;
-      },
-
-      get disabled() {
-        return !this.enabled;
-      },
-
-      enable: function() {
-        this.set(true);
-      },
-
-      disable: function() {
-        this.set(false);
-      },
-
-      is: function(state) {
-        return this.current === state;
-      },
-
-      set: function(state) {
-        this.current = state
-      },
-
-      exit: function(state) {
-        if(this.is(state)) this.current = this.default;
-      },
-
-      toggle: function(state) {
-        if(arguments.length === 0) state = true;
-        this.is(state) ? this.exit(state) : this.set(state)
-      }
-    };
-
     // Application states
-    $scope.action = new State('write');
-    $scope.preview = new State('desktop');
-    $scope.fullscreen = new State(false);
+    $scope.action = action;
+    $scope.preview = preview;
+    $scope.fullscreen = fullscreen;
 
     // $scope.enablePreview = function() {
     //   this.preview = true;
