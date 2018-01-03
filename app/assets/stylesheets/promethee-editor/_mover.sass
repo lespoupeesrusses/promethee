@@ -1,4 +1,4 @@
-.promethee-editor__mover
+.promethee__move
   transform-origin: top
   transition: transform ease-out 0.5s
   transform: scale(0.3)
@@ -48,15 +48,15 @@
     opacity: 0.5
   // By default, nothing is dropped in rows
   &--dragging
-    .promethee-editor__mover--droppable.promethee-editor__mover--droppable--row
+    .promethee__move--droppable.promethee__move--droppable--row
       display: none
   // Except for columns, which can be dropped only on rows
-  &--dragging.promethee-editor__mover--dragging--column
-    .promethee-editor__mover--droppable
+  &--dragging.promethee__move--dragging--column
+    .promethee__move--droppable
       display: none
       // It's a little specific, columns can be dropped on rows "first droppable", or on columns "inside droppables"
-      &.promethee-editor__mover--droppable.promethee-editor__mover--droppable--row--inside-column,
-      &.promethee-editor__mover--droppable.promethee-editor__mover--droppable--row--first
+      &.promethee__move--droppable.promethee__move--droppable--row--inside-column,
+      &.promethee__move--droppable.promethee__move--droppable--row--first
         display: block
   .video-neutralizing-overlay
     background: transparent
