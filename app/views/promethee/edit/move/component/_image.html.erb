@@ -1,3 +1,6 @@
 <script type="text/ng-template" id="promethee/move/component/image">
-  <img ng-src="{{component.attributes.src}}" class="img-responsive">
+  <figure>
+    <img ng-src="{{component.attributes.src}}" class="img-responsive">
+    <figcaption ng-show="component.attributes.caption" ng-bind-html="component.attributes.caption | htmlSafe"></figcaption>
+  </figure>
 </script>
