@@ -14,7 +14,8 @@ promethee_data = Promethee::Data.new master_data, localization_data: localizatio
 
   prometheeLocalizer.controller('PrometheeLocalizerController', ['$scope', 'data', function($scope, data) {
 
-    $scope.data = $scope.component = data;
+    $scope.data = data;
+    $scope.component = {children: data.components};
 
     $scope.options = {
       toolbar: [
@@ -38,11 +39,12 @@ promethee_data = Promethee::Data.new master_data, localization_data: localizatio
      ng-controller="PrometheeLocalizerController as prometheeLocalizerController">
   <input type="hidden" name="page[data]" id="page_data" value="{{data}}" />
 
+  <%= render 'promethee/localize/component' %>
   <% Dir[__dir__ + '/localize/component/*.html.erb'].map do |file| %>
     <%= render "promethee/localize/component/#{File.basename(file, '.html.erb').sub(/\A_/, '')}" %>
   <% end %>
 
   <div ng-repeat="component in component.children">
-    <ng-include src="'promethee/localize/components'"></ng-include>
+    <ng-include src="'promethee/localize/component'"></ng-include>
   </div>
 </div>

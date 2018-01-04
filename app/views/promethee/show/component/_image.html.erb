@@ -1,7 +1,14 @@
 <%
 src = component[:attributes][:src]
 alt = component[:attributes][:alt]
+caption = component[:attributes][:caption].to_s
 %>
-<div class="<%= promethee_class_for component %>">
+<figure class="<%= promethee_class_for component %>">
   <img class="img-responsive" src="<%= src %>" alt="<%= alt %>">
-</div>
+
+  <% if caption.present? %>
+    <figcaption>
+      <%= caption.html_safe %>
+    </figcaption>
+  <% end %>
+</figure>
