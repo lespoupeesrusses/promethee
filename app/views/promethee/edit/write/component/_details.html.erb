@@ -1,0 +1,68 @@
+<script type="text/ng-template" id="promethee/write/component/details">
+  <div  ng-controller="DetailsController"
+        class="promethee-editor__component promethee-editor__component--details">
+    <div class="promethee-editor__toolbar">
+      Details
+      <ng-include src="'promethee/write/toolbar'"></ng-include>
+    </div>
+
+    <div ng-show="editing" class="promethee-editor__wrapper">
+      <div class="form-group">
+        <label class="label-control">Summary</label>
+        <input ng-model="component.attributes.summary" class="form-control" type="text"/>
+      </div>
+    </div>
+
+    <details>
+      <summary>{{component.attributes.summary}}</summary>
+      <ng-include src="'promethee/write/components'"></ng-include>
+
+      <span
+        type="button"
+        class="btn btn-default btn-block"
+        ng-click="addComponentTo(component.children)"
+      >
+        Add component
+      </span>
+    </details>
+  </div>
+</script>
+
+<script>
+  angular.injector(['ng', 'Promethee']).get('definitions').push({
+    name: 'Details',
+    thumb: 'http://via.placeholder.com/300x200',
+    data: {
+      type: 'details',
+      children: [],
+      attributes: {
+        summary: 'Edit me'
+      }
+    }
+  });
+
+  promethee.controller('DetailsController', ['$scope', function($scope) {
+    $scope.editing = false;
+
+    $scope.edit = function() {
+      $scope.editing = true;
+    };
+
+    $scope.complete = function() {
+      $scope.editing = false;
+    };
+
+    $scope.toggleEdit = function() {
+      $scope.editing = !$scope.editing;
+    };
+
+    $scope.options = {
+      toolbar: [
+        ['headline', ['style']],
+        ['style', ['bold', 'italic']],
+        ['alignment', ['ul', 'ol', 'paragraph']],
+        ['code', ['codeview']]
+      ]
+    };
+  }]);
+</script>
