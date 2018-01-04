@@ -163,9 +163,10 @@ With javascript set:
 //= require jquery
 //= require jquery-ui
 //= require bootstrap
+//= require summernote
 //= require angular
 //= require angular-animate
-//= require summernote
+//= require angular-ui-bootstrap
 //= require angular-summernote
 //= require promethee
 //= require promethee-editor
@@ -306,12 +307,15 @@ This would do quite the same thing:
 - promethee-i18n
 - Component versioning
 - Edit in a column
-- UI et branding
+- UI and branding
 - Gallery
 - Menu
 - Tab
-- Cover
-- Chapter (or maybe it's a cover too?)
+- ~~Cover~~
+- ~~Chapter (or maybe it's a cover too? *Yes it is, but see next line*)~~
+- Section (in order to organize page contents within distincts parts which can be referenced. eg: scrollspy, hyperlink, tabs, ...)
+- Utils rake tasks (generate, destroy, override, ...)
+- Doc (to be updated in terms of the new component concept and structure)
 
 ## Development
 After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
