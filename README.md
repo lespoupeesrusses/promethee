@@ -311,6 +311,7 @@ This would do quite the same thing:
 - Gallery
 - Menu
 - Tab
+- Grid background helper
 - ~~Cover~~
 - ~~Chapter (or maybe it's a cover too? *Yes it is, but see next line*)~~
 - Section (in order to organize page contents within distincts parts which can be referenced. eg: scrollspy, hyperlink, tabs, ...)
