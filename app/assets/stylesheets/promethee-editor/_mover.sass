@@ -2,10 +2,13 @@
   transform-origin: top
   transition: transform ease-out 0.5s
   transform: scale(0.3)
+
   &.ng-hide
     transform: scale(1)
+
   .row, .col
     position: relative
+
   &--draggable
     h4
       font-size: 11px
@@ -14,8 +17,10 @@
       color: $promethee-color
       padding: 0 0 0 3px
       margin: 0
+
     &--row
       padding-left: 10px
+
   &--droppable
     margin: 10px 0
     position: relative
@@ -24,6 +29,7 @@
     width: 400px
     height: 40px
     transition: .2s
+
     &--hidden
       visibility: hidden
       pointer-events: none
@@ -39,14 +45,17 @@
         left: -25px
         width: 40px
         height: 400px
+
       &--inside-column
         position: absolute
         top: 0
         right: -25px
         width: 40px
         height: 400px
+
   &--dragged
     opacity: 0.25
+
   .ui-droppable-active
     border-color: $promethee-color
 
@@ -57,6 +66,7 @@
   &--dragging
     .promethee__move--droppable.promethee__move--droppable--row
       display: none
+
   // Except for columns, which can be dropped only on rows
   &--dragging.promethee__move--dragging--column
     .promethee__move--droppable
@@ -65,6 +75,7 @@
       &.promethee__move--droppable.promethee__move--droppable--row--inside-column,
       &.promethee__move--droppable.promethee__move--droppable--row--first
         display: block
+
   .video-neutralizing-overlay
     background: transparent
     position: absolute
