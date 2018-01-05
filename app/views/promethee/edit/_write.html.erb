@@ -5,13 +5,13 @@
 <% Dir[__dir__ + '/write/component/_*.html.erb'].map do |file| %>
   <%= render "promethee/edit/write/component/#{File.basename(file, '.html.erb').sub(/\A_/, '')}" %>
 <% end %>
-<% Dir[__dir__ + '/write/toolbar/_*.html.erb'].map do |file| %>
-  <%= render "promethee/edit/write/toolbar/#{File.basename(file, '.html.erb').sub(/\A_/, '')}" %>
+<% Dir[__dir__ + '/inspector/component/_*.html.erb'].map do |file| %>
+  <%= render "promethee/edit/inspector/component/#{File.basename(file, '.html.erb').sub(/\A_/, '')}" %>
 <% end %>
 
 <script type="text/ng-template" id="promethee/write">
   <div class="promethee-editor__page">
-    <div ng-class="{ 'container': fullscreen }">
+    <div ng-class="{ 'container': fullscreen.enabled, 'container-fluid': fullscreen.disabled }">
       <div
         ng-init="component = component || data"
         class="promethee-editor__component promethee-editor__component--page"
@@ -20,5 +20,18 @@
       </div>
     </div>
     <ng-include src="'promethee/write/add_button'"></ng-include>
+  </div>
+
+  <div class="promethee-editor__inspector" ng-class="{'promethee-editor__inspector--open': inspected.component}">
+    <div class="promethee-editor__inspector-header">
+      <div class="pull-right">
+        <span ng-click="inspected.component = null"><%= fa_icon 'window-close' %></span>
+      </div>
+      <h5 ng-if="inspected.component">{{inspected.component.type}}</h5>
+    </div>
+
+    <div ng-if="inspected.component" class="promethee-editor__inspector-content">
+      <ng-include src="'promethee/inspector/component/' + inspected.component.type"></ng-include>
+    </div>
   </div>
 </script>

@@ -8,48 +8,46 @@
       promethee-editor__component--column
     "
     ng-controller="ColumnController"
+    ng-click="edit($event);"
   >
-    <div class="promethee-editor__toolbar">
-      Column
-      <ng-include src="'promethee/write/toolbar'"></ng-include>
-    </div>
-    <div ng-show="editing" class="promethee-editor__wrapper">
-      <div class="form-group">
-        <label class="label-control">Size</label>
-        <input ng-model="component.attributes.size" class="form-control" type="number"/>
+    <div class="promethee-editor__component-selected" ng-class="{'promethee-editor__component-selected--visible': inspected.component === component}">
+      <div class="promethee-editor__toolbar">
+        Column
+        <ng-include src="'promethee/write/toolbar'"></ng-include>
       </div>
-      <div class="form-group">
-        <label class="label-control">Offset</label>
-        <input ng-model="component.attributes.offset" class="form-control" type="number"/>
-      </div>
+
+      <ng-include src="'promethee/write/components'"></ng-include>
+
+      <span
+        type="button"
+        class="btn btn-default btn-block"
+        ng-click="addComponentTo(component.children)"
+      >
+        Add component
+      </span>
     </div>
-
-    <ng-include src="'promethee/write/components'"></ng-include>
-
-    <span
-      type="button"
-      class="btn btn-default btn-block"
-      ng-click="addComponentTo(component.children)"
-    >
-      Add component
-    </span>
   </div>
 </script>
 
 <script>
-  promethee.controller('ColumnController', ['$scope', function($scope) {
-    $scope.editing = false;
+  promethee.controller('ColumnController', ['$scope', 'inspected', function($scope, inspected) {
+    Object.defineProperty($scope, 'editing', {
+      get: function() {
+        return inspected.component == $scope.component;
+      }
+    });
 
-    $scope.edit = function() {
-      $scope.editing = true;
+    $scope.edit = function(event) {
+      event.stopPropagation();
+      inspected.component = $scope.component;
     };
 
     $scope.complete = function() {
-      $scope.editing = false;
+      inspected.component = null;
     };
 
     $scope.toggleEdit = function() {
-      $scope.editing = !$scope.editing;
+      $scope[$scope.editing ? 'complete' : 'edit']();
     };
   }]);
 </script>

@@ -1,30 +1,28 @@
 <script type="text/ng-template" id="promethee/write/component/details">
-  <div  ng-controller="DetailsController"
-        class="promethee-editor__component promethee-editor__component--details">
-    <div class="promethee-editor__toolbar">
-      Details
-      <ng-include src="'promethee/write/toolbar'"></ng-include>
-    </div>
-
-    <div ng-show="editing" class="promethee-editor__wrapper">
-      <div class="form-group">
-        <label class="label-control">Summary</label>
-        <input ng-model="component.attributes.summary" class="form-control" type="text"/>
+  <div
+    ng-controller="DetailsController"
+    class="promethee-editor__component promethee-editor__component--details"
+    ng-click="edit($event);"
+  >
+    <div class="promethee-editor__component-selected" ng-class="{'promethee-editor__component-selected--visible': inspected.component === component}">
+      <div class="promethee-editor__toolbar">
+        Details
+        <ng-include src="'promethee/write/toolbar'"></ng-include>
       </div>
+
+      <details>
+        <summary>{{component.attributes.summary}}</summary>
+        <ng-include src="'promethee/write/components'"></ng-include>
+
+        <span
+          type="button"
+          class="btn btn-default btn-block"
+          ng-click="addComponentTo(component.children)"
+        >
+          Add component
+        </span>
+      </details>
     </div>
-
-    <details>
-      <summary>{{component.attributes.summary}}</summary>
-      <ng-include src="'promethee/write/components'"></ng-include>
-
-      <span
-        type="button"
-        class="btn btn-default btn-block"
-        ng-click="addComponentTo(component.children)"
-      >
-        Add component
-      </span>
-    </details>
   </div>
 </script>
 
@@ -41,19 +39,24 @@
     }
   });
 
-  promethee.controller('DetailsController', ['$scope', function($scope) {
-    $scope.editing = false;
+  promethee.controller('DetailsController', ['$scope', 'inspected', function($scope, inspected) {
+    Object.defineProperty($scope, 'editing', {
+      get: function() {
+        return inspected.component == $scope.component;
+      }
+    });
 
-    $scope.edit = function() {
-      $scope.editing = true;
+    $scope.edit = function(event) {
+      event.stopPropagation();
+      inspected.component = $scope.component;
     };
 
     $scope.complete = function() {
-      $scope.editing = false;
+      inspected.component = null;
     };
 
     $scope.toggleEdit = function() {
-      $scope.editing = !$scope.editing;
+      $scope[$scope.editing ? 'complete' : 'edit']();
     };
 
     $scope.options = {

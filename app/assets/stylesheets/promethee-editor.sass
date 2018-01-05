@@ -48,4 +48,40 @@ $promethee-color: #ff9900 !default
   &__wrapper
     padding: 10px
 
+  &__component-selected
+    border: 2px solid transparent
 
+    &--visible
+      border-color: $promethee-color
+
+  &__inspector
+    background: #fff
+    border: 1px solid rgba(0, 0, 0, .1)
+    width: 300px
+    height: calc(100vh - 30px)
+    top: 15px
+    left: 100%
+    margin-left: -15px
+    transform: translateX(-100%)
+    z-index: 1000
+    display: none
+    position: fixed
+
+    &--open
+      display: block
+
+  &__inspector-header
+    padding: 15px
+    border-bottom: 1px solid rgba(0, 0, 0, .1)
+
+    &, h5
+      font-size: 11px
+
+  h5
+    margin: 0
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif
+    font-weight: bold
+    text-transform: uppercase
+
+.promethee-editor__inspector-content
+  padding: 15px

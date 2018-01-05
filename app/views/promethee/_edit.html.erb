@@ -47,6 +47,7 @@ promethee_data = Promethee::Data.new master_data
     .module('Promethee', ['summernote', 'ngAnimate'])
     .value('data', <%= promethee_data.to_json.html_safe %>)
     .value('definitions', [])
+    .value('inspected', {component: null})
     .value('action', new State('write'))
     .value('preview', new State('desktop'))
     .value('fullscreen', new State(false))
@@ -68,9 +69,40 @@ promethee_data = Promethee::Data.new master_data
         val = (val + '').replace(/_/g, ' ').replace(/([A-Z])/g, ' $1').replace(/\s\s+/, ' ').trim();
         return val[0].toUpperCase() + val.substring(1).toLowerCase();
       };
+    })
+    .filter('textContentFromHTML', function() {
+      return function(val, distinctParagraphs) {
+        var element = document.createElement('div');
+        element.innerHTML = val;
+
+        if(distinctParagraphs === 'distinctParagraphs') {
+          var paragraphs = element.querySelectorAll('p');
+          for(var i = 0; i < paragraphs.length; i++) paragraphs[i].textContent += ' ';
+        }
+
+        return element.textContent;
+      }
+    })
+    .filter('numberOfCharacters', function() {
+      return function(val) {
+        return val.length;
+      };
+    })
+    .filter('numberOfWords', function() {
+      return function(val) {
+        var words = val
+          .replace(/\bhttps?:\/\/[a-z0-9\-\._]+(?:\/[^\s\n\r]+)?/gi, 'a') // A URL is one word
+          .replace(/\b[a-z0-9\-\._]+@[a-z0-9\-\._]+\.[a-z0-9\-\._]+\b/gi, 'a') // An email is one word
+          .replace(/[^a-z0-9\s\n\r]/gi, ' ')
+          .replace(/[\s\n\r]+/g, ' ')
+          .trim()
+          .split(' ');
+
+        return words[0] === '' ? 0 : words.length;
+      };
     });
 
-  promethee.controller('PrometheeController', ['data', '$scope', 'definitions', '$http', 'action', 'preview', 'fullscreen', function(data, $scope, definitions, $http, action, preview, fullscreen) {
+  promethee.controller('PrometheeController', ['data', '$scope', 'definitions', '$http', 'action', 'preview', 'fullscreen', 'inspected', function(data, $scope, definitions, $http, action, preview, fullscreen, inspected) {
 
     // Data (TODO use Adder and probably page definition to init)
     if(data === null || data === '') {
@@ -83,6 +115,7 @@ promethee_data = Promethee::Data.new master_data
     }
 
     $scope.data = $scope.component = data;
+    $scope.inspected = inspected;
 
     // Application states
     $scope.action = action;

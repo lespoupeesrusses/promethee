@@ -313,6 +313,7 @@ This would do quite the same thing:
 - Tab
 - Better col sizing/positioning UX
 - Grid background helper
+- File upload?
 - ~~Cover~~
 - ~~Chapter (or maybe it's a cover too? *Yes it is, but see next line*)~~
 - Section (in order to organize page contents within distincts parts which can be referenced. eg: scrollspy, hyperlink, tabs, ...)

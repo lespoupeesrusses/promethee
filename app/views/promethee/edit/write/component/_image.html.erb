@@ -1,29 +1,23 @@
 <script type="text/ng-template" id="promethee/write/component/image">
-  <div ng-controller="ImageController" class="promethee-editor__component promethee-editor__component--image">
-    <div class="promethee-editor__toolbar">
-      Image
-      <ng-include src="'promethee/write/toolbar'"></ng-include>
-    </div>
-    <div ng-show="editing" class="promethee-editor__wrapper">
-      <div class="form-group">
-        <label class="label-control">Url</label>
-        <input ng-model="component.attributes.src" class="form-control" type="text"/>
+  <div
+    ng-controller="ImageController"
+    class="promethee-editor__component promethee-editor__component--image"
+    ng-click="edit($event);"
+  >
+    <div class="promethee-editor__component-selected" ng-class="{'promethee-editor__component-selected--visible': inspected.component === component}">
+      <div class="promethee-editor__toolbar">
+        Image
+        <ng-include src="'promethee/write/toolbar'"></ng-include>
       </div>
-      <div class="form-group">
-        <label class="label-control">Alt</label>
-        <input ng-model="component.attributes.alt" class="form-control" type="text"/>
+
+      <figure ng-show="component.attributes.src">
+        <img ng-src="{{component.attributes.src}}" class="img-responsive">
+        <figcaption ng-show="component.attributes.caption" ng-bind-html="component.attributes.caption | htmlSafe"></figcaption>
+      </figure>
+
+      <div ng-hide="component.attributes.src">
+        <p ng-hide="editing" class="text-center">Click to set the image</p>
       </div>
-      <div class="form-group">
-        <label class="label-control">Caption</label>
-        <summernote config="options" ng-model="component.attributes.caption"></summernote>
-      </div>
-    </div>
-    <figure ng-show="component.attributes.src">
-      <img ng-click="edit()" ng-src="{{component.attributes.src}}" class="img-responsive">
-      <figcaption ng-show="component.attributes.caption" ng-bind-html="component.attributes.caption | htmlSafe"></figcaption>
-    </figure>
-    <div ng-hide="component.attributes.src">
-      <p ng-hide="editing" ng-click="edit()" class="text-center">Click to set the image</p>
     </div>
   </div>
 </script>
@@ -42,19 +36,24 @@
     }
   });
 
-  promethee.controller('ImageController', ['$scope', function($scope) {
-    $scope.editing = false;
+  promethee.controller('ImageController', ['$scope', 'inspected', function($scope, inspected) {
+    Object.defineProperty($scope, 'editing', {
+      get: function() {
+        return inspected.component == $scope.component;
+      }
+    });
 
-    $scope.edit = function() {
-      $scope.editing = true;
+    $scope.edit = function(event) {
+      event.stopPropagation();
+      inspected.component = $scope.component;
     };
 
     $scope.complete = function() {
-      $scope.editing = false;
+      inspected.component = null;
     };
 
     $scope.toggleEdit = function() {
-      $scope.editing = !$scope.editing;
+      $scope[$scope.editing ? 'complete' : 'edit']();
     };
 
     $scope.options = {

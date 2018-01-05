@@ -1,39 +1,44 @@
 <script type="text/ng-template" id="promethee/write/component/slider">
-  <div  ng-controller="SliderController"
-        class="row promethee-editor__component promethee-editor__component--slider">
-    <div class="promethee-editor__toolbar">
-      Slider
+  <div
+    ng-controller="SliderController"
+    class="row promethee-editor__component promethee-editor__component--slider"
+    ng-click="edit($event);"
+  >
+    <div class="promethee-editor__component-selected" ng-class="{'promethee-editor__component-selected--visible': inspected.component === component}">
+      <div class="promethee-editor__toolbar">
+        Slider
 
-      <ng-include src="'promethee/write/toolbar'"></ng-include>
+        <ng-include src="'promethee/write/toolbar'"></ng-include>
 
-      <div class="pull-right">
-        <span ng-show="editing" ng-click="prev()" class="promethee-editor__button"><%= fa_icon 'chevron-left' %></span>
-        <span ng-show="editing" ng-click="next()" class="promethee-editor__button"><%= fa_icon 'chevron-right' %></span>
-      </div>
-    </div>
-
-    <div id="{{sliderId}}" class="carousel slide" data-ride="carousel" ng-init="components = component.children">
-      <div class="carousel-inner" style="min-height: 100px">
-        <div ng-repeat="component in components track by $index" class="item" ng-class="{active: $index === 0}">
-          <ng-include src="'promethee/' + (editing ? 'write' : 'move') + '/component'"></ng-include>
+        <div class="pull-right">
+          <span ng-show="editing" ng-click="prev()" class="promethee-editor__button"><%= fa_icon 'chevron-left' %></span>
+          <span ng-show="editing" ng-click="next()" class="promethee-editor__button"><%= fa_icon 'chevron-right' %></span>
         </div>
       </div>
 
-      <a ng-hide="editing" ng-click="$event.preventDefault()" class="left carousel-control fontawesome-carousel-control" href="#{{sliderId}}" data-slide="prev">
-        <%= fa_icon 'angle-left' %>
-      </a>
-      <a ng-hide="editing" ng-click="$event.preventDefault()" class="right carousel-control fontawesome-carousel-control" href="#{{sliderId}}" data-slide="next">
-        <%= fa_icon 'angle-right' %>
-      </a>
-    </div>
+      <div id="{{sliderId}}" class="carousel slide" data-ride="carousel" ng-init="components = component.children">
+        <div class="carousel-inner" style="min-height: 100px">
+          <div ng-repeat="component in components track by $index" class="item" ng-class="{active: $index === 0}">
+            <ng-include src="'promethee/' + (editing ? 'write' : 'move') + '/component'"></ng-include>
+          </div>
+        </div>
 
-    <span
-      type="button"
-      class="btn btn-default btn-block"
-      ng-click="addComponentTo(component.children);goToLastItem();"
-    >
-      Add item
-    </span>
+        <a ng-hide="editing" ng-click="$event.preventDefault()" class="left carousel-control fontawesome-carousel-control" href="#{{sliderId}}" data-slide="prev">
+          <%= fa_icon 'angle-left' %>
+        </a>
+        <a ng-hide="editing" ng-click="$event.preventDefault()" class="right carousel-control fontawesome-carousel-control" href="#{{sliderId}}" data-slide="next">
+          <%= fa_icon 'angle-right' %>
+        </a>
+      </div>
+
+      <span
+        type="button"
+        class="btn btn-default btn-block"
+        ng-click="addComponentTo(component.children);goToLastItem();"
+      >
+        Add item
+      </span>
+    </div>
   </div>
 </script>
 
@@ -48,7 +53,24 @@
     }
   });
 
-  promethee.controller('SliderController', ['$scope', '$element', function($scope, $element) {
+  promethee.controller('SliderController', ['$scope', '$element', 'inspected', function($scope, $element, inspected) {
+    $scope.editing = false;
+
+    $scope.edit = function(event) {
+      event.stopPropagation();
+      $scope.editing = true;
+      inspected.component = $scope.component;
+    };
+
+    $scope.complete = function() {
+      $scope.editing = false;
+      inspected.component = null;
+    };
+
+    $scope.toggleEdit = function() {
+      $scope[$scope.editing ? 'complete' : 'edit']();
+    };
+
     $scope.sliderId = 'slider-' + Date.now() + '-' + Math.floor(Math.random()*1000000);
 
     $scope.$watch('editing', function(newVal) {
@@ -71,7 +93,5 @@
     };
 
     $element.find('.carousel').carousel();
-
-    // element.ready(function() { this.find('.carousel').carousel() });
   }]);
 </script>

@@ -1,18 +1,18 @@
 <script type="text/ng-template" id="promethee/write/component/video">
-  <div  ng-controller="VideoController"
-        class="promethee-editor__component promethee-editor__component--video">
-    <div class="promethee-editor__toolbar">
-      Video
-      <ng-include src="'promethee/write/toolbar'"></ng-include>
-    </div>
-    <div ng-show="editing" class="promethee-editor__wrapper">
-      <div class="form-group">
-        <label class="label-control">Url</label>
-        <input ng-model="component.attributes.url" class="form-control" type="text"/>
+  <div
+    ng-controller="VideoController"
+    class="promethee-editor__component promethee-editor__component--video"
+    ng-click="edit($event);"
+  >
+    <div class="promethee-editor__component-selected" ng-class="{'promethee-editor__component-selected--visible': inspected.component === component}">
+      <div class="promethee-editor__toolbar">
+        Video
+        <ng-include src="'promethee/write/toolbar'"></ng-include>
       </div>
-    </div>
-    <div class="embed-responsive embed-responsive-16by9">
-      <iframe ng-if="embed" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="allowfullscreen" ng-src="{{embed | urlSafe}}"></iframe>
+
+      <div class="embed-responsive embed-responsive-16by9">
+        <iframe ng-if="embed" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="allowfullscreen" ng-src="{{embed | urlSafe}}"></iframe>
+      </div>
     </div>
   </div>
 </script>
@@ -29,19 +29,24 @@
     }
   });
 
-  promethee.controller('VideoController', ['$scope', function($scope) {
-    $scope.editing = false;
+  promethee.controller('VideoController', ['$scope', 'inspected', function($scope, inspected) {
+    Object.defineProperty($scope, 'editing', {
+      get: function() {
+        return inspected.component == $scope.component;
+      }
+    });
 
-    $scope.edit = function() {
-      $scope.editing = true;
+    $scope.edit = function(event) {
+      event.stopPropagation();
+      inspected.component = $scope.component;
     };
 
     $scope.complete = function() {
-      $scope.editing = false;
+      inspected.component = null;
     };
 
     $scope.toggleEdit = function() {
-      $scope.editing = !$scope.editing;
+      $scope[$scope.editing ? 'complete' : 'edit']();
     };
 
     Object.defineProperty($scope, 'embed', {

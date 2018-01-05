@@ -1,15 +1,18 @@
 <script type="text/ng-template" id="promethee/write/component/row">
-  <div  ng-controller="RowController"
-        class="row promethee-editor__component promethee-editor__component--row">
-    <div class="promethee-editor__toolbar">
-      Row
-      <ng-include src="'promethee/write/toolbar'"></ng-include>
+  <div
+    ng-controller="RowController"
+    class="row promethee-editor__component promethee-editor__component--row"
+    ng-click="edit($event);"
+  >
+    <div class="promethee-editor__component-selected" ng-class="{'promethee-editor__component-selected--visible': inspected.component === component}">
+      <div class="promethee-editor__toolbar">
+        Row
+        <ng-include src="'promethee/write/toolbar'"></ng-include>
+      </div>
+      <ng-include src="'promethee/write/components'"></ng-include>
+      <div class="clearfix"></div>
+      <span class="btn btn-default btn-block" ng-click="addColumn()" style="margin: 0 6px 6px 6px;width: auto">Add column</span>
     </div>
-    <div ng-show="editing" class="promethee-editor__wrapper">
-    </div>
-    <ng-include src="'promethee/write/components'"></ng-include>
-    <div class="clearfix"></div>
-    <span class="btn btn-default btn-block" ng-click="addColumn()" style="margin: 0 6px 6px 6px;width: auto">Add column</span>
   </div>
 </script>
 
@@ -24,7 +27,25 @@
     }
   });
 
-  promethee.controller('RowController', ['$scope', function($scope) {
+  promethee.controller('RowController', ['$scope', 'inspected', function($scope, inspected) {
+    Object.defineProperty($scope, 'editing', {
+      get: function() {
+        return inspected.component == $scope.component;
+      }
+    });
+
+    $scope.edit = function(event) {
+      event.stopPropagation();
+      inspected.component = $scope.component;
+    };
+
+    $scope.complete = function() {
+      inspected.component = null;
+    };
+
+    $scope.toggleEdit = function() {
+      $scope[$scope.editing ? 'complete' : 'edit']();
+    };
 
     $scope.allowedTypes = ['column'];
 
@@ -38,19 +59,5 @@
         children: []
       })
     }
-
-    $scope.editing = false;
-
-    $scope.edit = function() {
-      $scope.editing = true;
-    };
-
-    $scope.complete = function() {
-      $scope.editing = false;
-    };
-
-    $scope.toggleEdit = function() {
-      $scope.editing = !$scope.editing;
-    };
   }]);
 </script>
