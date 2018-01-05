@@ -311,6 +311,7 @@ This would do quite the same thing:
 - Gallery
 - Menu
 - Tab
+- Better col sizing/positioning UX
 - Grid background helper
 - ~~Cover~~
 - ~~Chapter (or maybe it's a cover too? *Yes it is, but see next line*)~~
