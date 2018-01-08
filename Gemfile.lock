@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    promethee (1.0.19)
+    promethee (1.0.20)
       angular-ui-tinymce-rails
       angular_rails_csrf
       angularjs-rails (~> 1.6.2)
@@ -171,4 +171,4 @@ DEPENDENCIES
   sqlite3
 
 BUNDLED WITH
-   1.16.0
+   1.16.1
