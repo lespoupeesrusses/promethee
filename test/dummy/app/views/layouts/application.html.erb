@@ -6,24 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Prométhée</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
     <%= favicon_link_tag 'icon-promethee.png' %>
   </head>
-
   <body>
-    <%= link_to root_path do %>
-      <%= image_tag 'logo-promethee-vertical.svg', class: 'logo' %>
-    <% end %>
     <div class="container">
-      <% if notice %><p id="notice"><%= notice %></p><% end %>
       <%= yield %>
     </div>
-    <footer class="text-muted text-center">
-      <small>
-        Prométhée is crafted with <%= fa_icon :heart %> by <a href="https://www.agencepoupeesrusses.com/">Les Poupées Russes</a>
-      </small>
-    </footer>
   </body>
 </html>

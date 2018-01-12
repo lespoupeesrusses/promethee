@@ -1,10 +1,10 @@
 <script type="text/ng-template" id="promethee/move/component/column">
   <div class="col col-md-{{component.attributes.size}} col-md-offset-{{component.attributes.offset}}">
     <h1>Column</h1>
-    <ng-include src="'promethee/move'"></ng-include>
-    <div  class=" promethee__move--droppable
-                  promethee__move--droppable--row
-                  promethee__move--droppable--row--inside-column"
+    <ng-include src="'promethee/move/components'"></ng-include>
+    <div  class=" promethee-editor__move--droppable
+                  promethee-editor__move--droppable--row
+                  promethee-editor__move--droppable--row--inside-column"
           droppable
           data-index="{{$index+1}}"
           data-type="{{type}}"

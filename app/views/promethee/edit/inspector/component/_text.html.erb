@@ -1,13 +1,4 @@
 <script type="text/ng-template" id="promethee/inspector/component/text">
-  <ul class="list-group">
-    <li class="list-group-item">
-      Number of words
-      <span class="badge badge-primary badge-pill">{{inspected.component.attributes.body | textContentFromHTML: 'distinctParagraphs' | numberOfWords}}</span>
-    </li>
-
-    <li class="list-group-item">
-      Number of characters
-      <span class="badge badge-primary badge-pill">{{inspected.component.attributes.body | textContentFromHTML | numberOfCharacters}}</span>
-    </li>
-  </ul>
+  {{inspected.component.attributes.body | textContentFromHTML: 'distinctParagraphs' | numberOfWords}} words<br>
+  {{inspected.component.attributes.body | textContentFromHTML | numberOfCharacters}} characters
 </script>

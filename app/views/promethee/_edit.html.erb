@@ -4,53 +4,15 @@ promethee_data = Promethee::Data.new master_data
 %>
 
 <script>
-  var State = function(value) {
-    this.default = this.current = value;
-  };
-
-  State.prototype = {
-    get enabled() {
-      return !!this.current;
-    },
-
-    get disabled() {
-      return !this.enabled;
-    },
-
-    enable: function() {
-      this.set(true);
-    },
-
-    disable: function() {
-      this.set(false);
-    },
-
-    is: function(state) {
-      return this.current === state;
-    },
-
-    set: function(state) {
-      this.current = state
-    },
-
-    exit: function(state) {
-      if(this.is(state)) this.current = this.default;
-    },
-
-    toggle: function(state) {
-      if(arguments.length === 0) state = true;
-      this.is(state) ? this.exit(state) : this.set(state)
-    }
-  };
 
   var promethee = angular
     .module('Promethee', ['summernote', 'ngAnimate'])
     .value('data', <%= promethee_data.to_json.html_safe %>)
     .value('definitions', [])
-    .value('inspected', {component: null})
-    .value('action', new State('write'))
-    .value('preview', new State('desktop'))
-    .value('fullscreen', new State(false))
+    .value('inspected', { component: null })
+    .value('mode', 'write')
+    .value('preview', 'desktop')
+    .value('fullscreen', false)
     .config(function($rootScopeProvider) {
       $rootScopeProvider.digestTtl(20);
     })
@@ -102,7 +64,8 @@ promethee_data = Promethee::Data.new master_data
       };
     });
 
-  promethee.controller('PrometheeController', ['data', '$scope', 'definitions', '$http', 'action', 'preview', 'fullscreen', 'inspected', function(data, $scope, definitions, $http, action, preview, fullscreen, inspected) {
+  promethee.controller('PrometheeController', ['data', '$scope', 'definitions', '$http', 'mode', 'preview', 'fullscreen', 'inspected', 
+                                        function(data, $scope, definitions, $http, mode, preview, fullscreen, inspected) {
 
     // Data (TODO use Adder and probably page definition to init)
     if(data === null || data === '') {
@@ -116,41 +79,28 @@ promethee_data = Promethee::Data.new master_data
 
     $scope.data = $scope.component = data;
     $scope.inspected = inspected;
-
-    // Application states
-    $scope.action = action;
+    $scope.mode = mode;
     $scope.preview = preview;
     $scope.fullscreen = fullscreen;
 
-    // $scope.enablePreview = function() {
-    //   this.preview = true;
-    //   this.move = false;
+    $scope.enablePreview = function() {
+      if (this.mode === 'preview') return;
+      this.mode = 'preview';
 
-    //   var form = document.createElement('form');
-    //   document.body.appendChild(form);
-    //   form.method = 'POST';
-    //   form.action = <%= promethee_preview_path.to_json.html_safe %>;
-    //   form.target = 'preview';
-    //   var input = document.createElement('input');
-    //   input.type = 'text';
-    //   input.value = JSON.stringify(data);
-    //   input.name = 'data';
-    //   form.appendChild(input);
-    //   form.submit();
-    //   document.body.removeChild(form);
-    // }
-
-    // $scope.disablePreview = function() {
-    //   this.preview = false;
-    // }
-
-    // $scope.enableFullscreen = function() {
-    //   this.fullscreen = true;
-    // }
-
-    // $scope.disableFullscreen = function() {
-    //   this.fullscreen = false;
-    // }
+      var form = document.createElement('form');
+      document.body.appendChild(form);
+      form.method = 'POST';
+      form.action = <%= promethee_preview_path.to_json.html_safe %>;
+      form.target = 'preview';
+      
+      var input = document.createElement('input');
+      input.type = 'text';
+      input.value = JSON.stringify(data);
+      input.name = 'data';
+      form.appendChild(input);
+      form.submit();
+      document.body.removeChild(form);
+    }
 
     $scope.remove = function(component, components) {
       var index = components.indexOf(component);
@@ -163,31 +113,15 @@ promethee_data = Promethee::Data.new master_data
 
 <div
   id="promethee"
-  ng-class="{
-    'promethee-editor': true,
-    'promethee-editor--fullscreen': fullscreen.enabled
-  }"
+  class="promethee-editor"
+  ng-class="{ 'promethee-editor--fullscreen': fullscreen }"
   ng-app="Promethee"
   ng-controller="PrometheeController as prometheeController"
->
+  >
+  <%= render 'promethee/edit/shared/data' %>
   <%= render 'promethee/edit/shared/navbar' %>
-
   <%= render 'promethee/edit/write' %>
   <%= render 'promethee/edit/move' %>
   <%= render 'promethee/edit/preview' %>
-
-  <input type="hidden" name="page[data]" id="page_data" value="{{data}}" />
-
-  <div ng-show="action.is('write')" class="promethee__write">
-    <ng-include src="'promethee/write'"></ng-include>
-  </div>
-
-  <div ng-show="action.is('move')" class="promethee__move">
-    <ng-include src="'promethee/move'"></ng-include>
-  </div>
-
-  <div ng-show="action.is('preview')" class="promethee__preview">
-    <ng-include src="'promethee/preview'"></ng-include>
-  </div>
 </div>
 

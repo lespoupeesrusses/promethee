@@ -1,33 +1,26 @@
 <script type="text/ng-template" id="promethee/write/add_button">
-  <span
-    type="button"
-    class="btn btn-default btn-block"
-    ng-click="addComponentTo(data.children)"
-    ng-hide="action.is('preview')"
-    style="margin-bottom: 6px"
-  >
-    Add component
-  </span>
+  <a ng-click="addComponentTo(component.children)" class="promethee-editor__adder__button"><%= fa_icon 'plus-circle', class: "fa-3x" %></a>
+</script>
 
-  <div class="promethee-editor__adder" ng-controller="AdderController">
-    <div class="modal fade in" tabindex="-1" role="dialog" style="display: {{adding ? 'block' : 'none'}}">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" ng-click="close()"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">Select component</h4>
-          </div>
-          <div class="modal-body">
-            <div class="row">
-              <div
-                ng-repeat="definition in definitions"
-                ng-click="pushComponent(definition)"
-                class="col-md-3"
-              >
-                <div class="thumbnail">
-                  <img ng-src="{{definition.thumb}}" class="img-responsive">
-                  <h4>{{definition.name}}</h4>
-                </div>
+<div class="promethee-editor__adder" ng-controller="AdderController">
+  <div class="modal fade in" tabindex="-1" role="dialog" style="display: {{adding ? 'block' : 'none'}}">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" ng-click="close()"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Select component</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div
+              ng-repeat="definition in definitions"
+              ng-click="pushComponent(definition)"
+              class="col-md-3"
+            >
+              <div class="thumbnail">
+                <img ng-src="{{definition.thumb}}" class="img-responsive">
+                <h4>{{definition.name}}</h4>
+                <p>{{definition.description}}</p>
               </div>
             </div>
           </div>
@@ -35,12 +28,11 @@
       </div>
     </div>
   </div>
-</script>
+</div>
 
 <script type="text/javascript">
-  promethee.controller('AdderController', ['$scope', '$rootScope', 'definitions', 'action', function($scope, $rootScope, definitions, action) {
+  promethee.controller('AdderController', ['$scope', '$rootScope', 'definitions', function($scope, $rootScope, definitions) {
 
-    $scope.action = action;
     $scope.adding = false;
     $scope.childrenToAddTo = null;
     $scope.definitions = definitions;

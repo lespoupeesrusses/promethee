@@ -8,23 +8,15 @@
       promethee-editor__component--column
     "
     ng-controller="ColumnController"
-    ng-click="edit($event);"
-  >
+    ng-click="edit($event)"
+    >
     <div class="promethee-editor__component-selected" ng-class="{'promethee-editor__component-selected--visible': inspected.component === component}">
       <div class="promethee-editor__toolbar">
         Column
         <ng-include src="'promethee/write/toolbar'"></ng-include>
       </div>
-
       <ng-include src="'promethee/write/components'"></ng-include>
-
-      <span
-        type="button"
-        class="btn btn-default btn-block"
-        ng-click="addComponentTo(component.children)"
-      >
-        Add component
-      </span>
+      <ng-include src="'promethee/write/add_button'"></ng-include>
     </div>
   </div>
 </script>
