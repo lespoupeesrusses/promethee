@@ -4,32 +4,6 @@
   <%= render "promethee/edit/move/component/#{File.basename(file, '.html.erb').sub(/\A_/, '')}" %>
 <% end %>
 
-<% 
-# <script type="text/ng-template" id="promethee/move">
-#   <div class="promethee-editor__move--list" ng-init="components = component.children; type = component.type">
-#     <div  class="promethee-editor__move--droppable promethee-editor__move--droppable--{{type}} promethee-editor__move--droppable--{{type}}--first"
-#           droppable
-#           data-index="0"
-#           >
-#     </div>
-#     <div  ng-repeat="component in components"
-#           class="promethee-editor__move--draggable promethee-editor__move--draggable--{{type}}"
-#           draggable
-#           data-index="{{$index}}"
-#           data-type="{{component.type}}"
-#           >
-#         <ng-include src="'promethee/move/component/' + component.type"></ng-include>
-#         <div  class="promethee-editor__move--droppable promethee-editor__move--droppable--{{type}}"
-#               droppable
-#               data-index="{{$index+1}}"
-#               data-type="{{type}}"
-#               >
-#         </div>
-#     </div>
-#   </div>
-# </script>
-%>
-
 <div class="promethee-editor__move" ng-show="mode == 'move'">
   <ng-include src="'promethee/move/components'"></ng-include>
 </div>
@@ -41,34 +15,31 @@
         restrict:'A',
         link: function(scope, element, attrs) {
           element.draggable({
+            revert: true,
+            revertDuration: 0,
             scroll: true,
-            cursor: "pointer",
-            cursorAt: { top: 0, left: 0 },
             refreshPositions: true,
             start: function() {
               var $elementDragged = $(element[0]);
-              $elementDragged.addClass('promethee-editor__move--dragged');
               var type = $elementDragged.data('type');
               $('.promethee-editor__move').addClass('promethee-editor__move--dragging promethee-editor__move--dragging--' + type);
 
               // The droppable zone immediately before has no use, it would put the object at the same position
-              var $droppableBefore = $elementDragged.prev('.promethee-editor__move--draggable').find('.promethee-editor__move--droppable').last();
+              // FIXME the selector is not correct
+              /*
+              var $droppableBefore = $elementDragged.prev('.promethee-editor__move__draggable').find('.promethee-editor__move__droppable').last();
               if ($droppableBefore.length === 0) {
                 // For the first child, we look for the previous droppable zone
-                $droppableBefore = $elementDragged.prev('.promethee-editor__move--droppable');
+                $droppableBefore = $elementDragged.prev('.promethee-editor__move__droppable');
               }
-              $droppableBefore.addClass('promethee-editor__move--droppable--hidden');
+              $droppableBefore.addClass('promethee-editor__move__droppable--hidden');
+              */
             },
             stop: function() {
               var $elementDragged = $(element[0]);
-              $elementDragged.removeClass('promethee-editor__move--dragged');
               var type = $elementDragged.data('type');
               $('.promethee-editor__move').removeClass('promethee-editor__move--dragging promethee-editor__move--dragging--' + type);
-
-              $('.promethee-editor__move--droppable').removeClass('promethee-editor__move--droppable--hidden');
-            },
-            helper: function( event ) {
-              return $( '<div></div>' );
+              // $('.promethee-editor__move__droppable').removeClass('promethee-editor__move__droppable--hidden');
             }
           });
         }
@@ -79,9 +50,11 @@
         restrict: 'A',
         link: function(scope, element, attrs) {
           element.droppable({
+            tolerance: 'pointer',
             drop: function(event, ui) {
               var draggedFromList = angular.element(ui.draggable).parent().scope().components;
               var draggedFromIndex = parseInt(ui.draggable[0].getAttribute('data-index'));
+              // console.log('dragged', draggedFromList, draggedFromIndex);
               draggedFromList.splice(draggedFromIndex, 1);
 
               var component = angular.element(ui.draggable).scope().component;
@@ -94,6 +67,7 @@
                   droppedToIndex -= 1;
                 }
               }
+              // console.log('dropped', component, droppedToList, droppedToIndex);
               droppedToList.splice(droppedToIndex, 0, component);
 
               scope.$apply();

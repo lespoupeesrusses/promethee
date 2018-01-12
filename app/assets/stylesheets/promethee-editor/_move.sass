@@ -1,79 +1,102 @@
 .promethee-editor__move
-  transform-origin: top
-  transition: transform ease-out 0.5s
-  transform: scale(0.3)
+  width: 432px
+  margin: 0 auto
+  padding-bottom: 200px
+  *
+    font-size: 100%
+    line-height: 100%
+    margin: 0
+  .header
+    padding: 5px 0
+    font-size: 9px
+    text-transform: uppercase
+    border-bottom: 1px solid #ccc
+  &__component
+    user-select: none
 
-  &.ng-hide
-    transform: scale(1)
+  .row
+    margin-left: -5px
+    margin-right: -5px
+  .col
+    padding-left: 5px
+    padding-right: 5px
 
-  .row, .col
-    position: relative
-
-  &--draggable
-    h4
-      font-size: 11px
-      text-transform: uppercase
-      font-weight: bold
-      color: $promethee-color
-      padding: 0 0 0 3px
-      margin: 0
-
-    &--row
-      padding-left: 10px
-
-  &--droppable
+  &__droppable
+    visibility: hidden
     margin: 10px 0
     position: relative
-    border-radius: 6px
-    border: 5px solid transparent
-    width: 400px
-    height: 40px
-    transition: .2s
-
-    &--hidden
-      visibility: hidden
-      pointer-events: none
-
+    background: #253742
+    width: 100%
+    height: 10px
+    transition: width .2s, height .2s
+    &.ui-droppable-active
+      visibility: visible
+      height: 10px
+    &.ui-droppable-hover
+      height: 20px
     &--row
-      &:not(&--first)
-        visibility: hidden
-        pointer-events: none
-
+      position: absolute
+      display: none
+      width: 10px
+      height: 100%
+      &.ui-droppable-active
+        width: 10px
+        height: 100%
+      &.ui-droppable-hover
+        width: 20px
+        height: 100%
       &--first
-        position: absolute
-        top: 0
-        left: -25px
-        width: 40px
-        height: 400px
-
+        display: block
+        left: -10px
+        top: 9px
       &--inside-column
-        position: absolute
-        top: 0
-        right: -25px
-        width: 40px
-        height: 400px
+        display: block
+        right: -10px
+        top: -11px
 
-  &--dragged
-    opacity: 0.25
+  // All this is done to mask droppable that would put the draggable at the same position 
+    // &--hidden
+    //   visibility: hidden
+    //   pointer-events: none
+  //   &--row
+  //     &:not(&--first)
+  //       visibility: hidden
+  //       pointer-events: none
 
-  .ui-droppable-active
-    border-color: $promethee-color
+  //     &--first
+  //       position: absolute
+  //       top: 0
+  //       left: -25px
+  //       width: 40px
+  //       height: 400px
 
-  .ui-droppable-hover
-    background: transparentize($promethee-color, .6)
+  //     &--inside-column
+  //       position: absolute
+  //       top: 0
+  //       right: -25px
+  //       width: 40px
+  //       height: 400px
+
+
+  .ui-draggable-dragging
+    z-index: 1000
+    opacity: 0.5
+    // Nothing is droppable inside components being dragged
+    .promethee-editor__move__droppable
+      visibility: hidden !important
 
   // By default, nothing is dropped in rows
   &--dragging
-    .promethee-editor__move--droppable.promethee-editor__move--droppable--row
+    .promethee-editor__move__droppable--row
       display: none
 
   // Except for columns, which can be dropped only on rows
   &--dragging.promethee-editor__move--dragging--column
-    .promethee-editor__move--droppable
+    .promethee-editor__move__droppable
       display: none
       // It's a little specific, columns can be dropped on rows "first droppable", or on columns "inside droppables"
-      &.promethee-editor__move--droppable.promethee-editor__move--droppable--row--inside-column,
-      &.promethee-editor__move--droppable.promethee-editor__move--droppable--row--first
+      &.promethee-editor__move__droppable--row--inside-column,
+      &.promethee-editor__move__droppable--row--first
         display: block
 
 
