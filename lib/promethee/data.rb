@@ -63,11 +63,20 @@ module Promethee
     end
 
     def self.localize_component(component, localization_data)
-      if component.include? :attributes
-        localized_component = Promethee::Data.find_localized_component component[:id], localization_data
-        component[:attributes].merge! localized_component[:attributes] unless localized_component.nil?
-      end
-      component[:children].each { |child| localize_component child, localization_data } if component.include? :children
+      localize_component_attributes component, localization_data
+      localize_component_children component, localization_data
+    end
+
+    def self.localize_component_attributes(component, localization_data)
+      return unless component.include? :attributes
+      localized_component = Promethee::Data.find_localized_component component[:id], localization_data
+      return if localized_component.nil?
+      component[:attributes].merge! localized_component[:attributes]
+    end
+
+    def self.localize_component_children(component, localization_data)
+      return unless component.include? :children
+      component[:children].each { |child| localize_component child, localization_data }
     end
 
     # Takes an array of components and puts every component and their children into a unique flat array
