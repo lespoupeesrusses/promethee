@@ -1,14 +1,2 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Page:</strong>
-  <%= @localization.page %>
-</p>
-
-<p>
-  <strong>Data:</strong>
-  <%= @localization.data %>
-</p>
-
-<%= link_to 'Edit', edit_localization_path(@localization) %> |
-<%= link_to 'Back', localizations_path %>
+<%= link_to 'Edit', edit_page_localization_path(page_id: @page.id, id: @localization.id), class: 'btn btn-default' %>
+<%= promethee @page.data, l: @localization.data %>

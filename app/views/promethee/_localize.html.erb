@@ -37,7 +37,7 @@ promethee_data = Promethee::Data.new master_data, localization_data: localizatio
      class="promethee-localizer"
      ng-app="PrometheeLocalizer"
      ng-controller="PrometheeLocalizerController as prometheeLocalizerController">
-  <input type="hidden" name="page[data]" id="page_data" value="{{data}}" />
+  <input type="hidden" name="localization[data]" id="page_data" value="{{data}}" />
 
   <%= render 'promethee/localize/component' %>
   <% Dir[__dir__ + '/localize/component/*.html.erb'].map do |file| %>

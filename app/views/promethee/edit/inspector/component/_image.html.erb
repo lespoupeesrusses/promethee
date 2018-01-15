@@ -1,12 +1,12 @@
 <script type="text/ng-template" id="promethee/inspector/component/image">
   <div class="form-group">
     <label class="label-control">Url</label>
-    <input class="form-control" ng-model="inspected.component.attributes.src">
+    <input class="form-control" ng-model="promethee.inspected.attributes.src">
   </div>
 
   <div class="form-group">
     <label class="label-control">Alt</label>
-    <input class="form-control" ng-model="inspected.component.attributes.alt">
+    <input class="form-control" ng-model="promethee.inspected.attributes.alt">
   </div>
 
   <div class="form-group">
@@ -18,6 +18,6 @@
         ['alignment', ['ul', 'ol', 'paragraph']],
         ['code', ['codeview']]
       ]
-    }" ng-model="inspected.component.attributes.caption"></summernote>
+    }" ng-model="promethee.inspected.attributes.caption"></summernote>
   </div>
 </script>

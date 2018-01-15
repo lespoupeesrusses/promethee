@@ -3,20 +3,19 @@
 <table class="table">
   <thead>
     <tr>
-      <th>Page</th>
-      <th>Data</th>
-      <th colspan="3"></th>
+      <th>Localization</th>
+      <th></th>
     </tr>
   </thead>
 
   <tbody>
     <% @localizations.each do |localization| %>
       <tr>
-        <td><%= localization.page %></td>
-        <td><%= localization.data %></td>
-        <td><%= link_to 'Show', localization %></td>
-        <td><%= link_to 'Edit', edit_localization_path(localization) %></td>
-        <td><%= link_to 'Destroy', localization, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to localization, [@page, localization] %></td>
+        <td>
+          <%= link_to 'Edit', [:edit, @page, localization] %>
+          <%= link_to 'Destroy', [@page, localization], method: :delete, data: { confirm: 'Are you sure?' } %>            
+        </td>
       </tr>
     <% end %>
   </tbody>

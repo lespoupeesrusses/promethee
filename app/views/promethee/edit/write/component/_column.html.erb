@@ -1,5 +1,6 @@
 <script type="text/ng-template" id="promethee/write/component/column">
   <div
+    ng-click="inspect(component, $event)"
     class="
       col
       col-md-{{component.attributes.size}}
@@ -7,10 +8,8 @@
       promethee-editor__component
       promethee-editor__component--column
     "
-    ng-controller="ColumnController"
-    ng-click="edit($event)"
     >
-    <div class="promethee-editor__component-selected" ng-class="{'promethee-editor__component-selected--visible': inspected.component === component}">
+    <div class="promethee-editor__component-selected" ng-class="{'promethee-editor__component-selected--visible': promethee.inspected === component}">
       <div class="promethee-editor__toolbar">
         Column
         <ng-include src="'promethee/write/toolbar'"></ng-include>
@@ -19,27 +18,4 @@
       <ng-include src="'promethee/write/add_button'"></ng-include>
     </div>
   </div>
-</script>
-
-<script>
-  promethee.controller('ColumnController', ['$scope', 'inspected', function($scope, inspected) {
-    Object.defineProperty($scope, 'editing', {
-      get: function() {
-        return inspected.component == $scope.component;
-      }
-    });
-
-    $scope.edit = function(event) {
-      event.stopPropagation();
-      inspected.component = $scope.component;
-    };
-
-    $scope.complete = function() {
-      inspected.component = null;
-    };
-
-    $scope.toggleEdit = function() {
-      $scope[$scope.editing ? 'complete' : 'edit']();
-    };
-  }]);
 </script>

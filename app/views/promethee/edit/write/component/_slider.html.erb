@@ -1,10 +1,10 @@
 <script type="text/ng-template" id="promethee/write/component/slider">
   <div
     ng-controller="SliderController"
+    ng-click="inspect(component, $event)"
     class="row promethee-editor__component promethee-editor__component--slider"
-    ng-click="edit($event);"
   >
-    <div class="promethee-editor__component-selected" ng-class="{'promethee-editor__component-selected--visible': inspected.component === component}">
+    <div class="promethee-editor__component-selected" ng-class="{'promethee-editor__component-selected--visible': promethee.inspected === component}">
       <div class="promethee-editor__toolbar">
         Slider
 
@@ -53,24 +53,7 @@
     }
   });
 
-  promethee.controller('SliderController', ['$scope', '$element', 'inspected', function($scope, $element, inspected) {
-    $scope.editing = false;
-
-    $scope.edit = function(event) {
-      event.stopPropagation();
-      $scope.editing = true;
-      inspected.component = $scope.component;
-    };
-
-    $scope.complete = function() {
-      $scope.editing = false;
-      inspected.component = null;
-    };
-
-    $scope.toggleEdit = function() {
-      $scope[$scope.editing ? 'complete' : 'edit']();
-    };
-
+  promethee.controller('SliderController', ['$scope', '$element', function($scope, $element) {
     $scope.sliderId = 'slider-' + Date.now() + '-' + Math.floor(Math.random()*1000000);
 
     $scope.$watch('editing', function(newVal) {

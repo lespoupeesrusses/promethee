@@ -1,10 +1,10 @@
 <script type="text/ng-template" id="promethee/write/component/row">
   <div
     ng-controller="RowController"
+    ng-click="inspect(component, $event)"
     class="row promethee-editor__component promethee-editor__component--row"
-    ng-click="edit($event);"
   >
-    <div class="promethee-editor__component-selected" ng-class="{'promethee-editor__component-selected--visible': inspected.component === component}">
+    <div class="promethee-editor__component-selected" ng-class="{'promethee-editor__component-selected--visible': promethee.inspected === component}">
       <div class="promethee-editor__toolbar">
         Row
         <ng-include src="'promethee/write/toolbar'"></ng-include>
@@ -27,28 +27,7 @@
     }
   });
 
-  promethee.controller('RowController', ['$scope', 'inspected', function($scope, inspected) {
-    Object.defineProperty($scope, 'editing', {
-      get: function() {
-        return inspected.component == $scope.component;
-      }
-    });
-
-    $scope.edit = function(event) {
-      event.stopPropagation();
-      inspected.component = $scope.component;
-    };
-
-    $scope.complete = function() {
-      inspected.component = null;
-    };
-
-    $scope.toggleEdit = function() {
-      $scope[$scope.editing ? 'complete' : 'edit']();
-    };
-
-    $scope.allowedTypes = ['column'];
-
+  promethee.controller('RowController', ['$scope', function($scope) {
     $scope.addColumn = function() {
       this.component.children.push({
         type: 'column',

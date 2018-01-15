@@ -11,4 +11,8 @@
 
 class Localization < ApplicationRecord
   belongs_to :page
+
+  def to_s
+    "Localization #{id}"
+  end
 end

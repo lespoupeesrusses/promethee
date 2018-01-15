@@ -9,10 +9,6 @@ promethee_data = Promethee::Data.new master_data
     .module('Promethee', ['summernote', 'ngAnimate'])
     .value('data', <%= promethee_data.to_json.html_safe %>)
     .value('definitions', [])
-    .value('inspected', { component: null })
-    .value('mode', 'write')
-    .value('preview', 'desktop')
-    .value('fullscreen', false)
     .config(function($rootScopeProvider) {
       $rootScopeProvider.digestTtl(20);
     })
@@ -64,8 +60,8 @@ promethee_data = Promethee::Data.new master_data
       };
     });
 
-  promethee.controller('PrometheeController', ['data', '$scope', 'definitions', '$http', 'mode', 'preview', 'fullscreen', 'inspected', 
-                                        function(data, $scope, definitions, $http, mode, preview, fullscreen, inspected) {
+  promethee.controller('PrometheeController', ['data', '$scope', 'definitions', '$http', 
+                                        function(data, $scope, definitions, $http) {
 
     // Data (TODO use Adder and probably page definition to init)
     if(data === null || data === '') {
@@ -77,11 +73,16 @@ promethee_data = Promethee::Data.new master_data
       };
     }
 
+    $scope.promethee = { inspected: null };
     $scope.data = $scope.component = data;
-    $scope.inspected = inspected;
-    $scope.mode = mode;
-    $scope.preview = preview;
-    $scope.fullscreen = fullscreen;
+    $scope.mode = 'write';
+    $scope.preview = 'desktop';
+    $scope.fullscreen = false;
+
+    $scope.inspect = function(component, event) {
+      $scope.promethee.inspected = component;
+      event.stopPropagation();
+    }
 
     $scope.enablePreview = function() {
       if (this.mode === 'preview') return;

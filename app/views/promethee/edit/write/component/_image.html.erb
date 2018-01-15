@@ -1,10 +1,10 @@
 <script type="text/ng-template" id="promethee/write/component/image">
   <div
     ng-controller="ImageController"
+    ng-click="inspect(component, $event)"
     class="promethee-editor__component promethee-editor__component--image"
-    ng-click="edit($event);"
-  >
-    <div class="promethee-editor__component-selected" ng-class="{'promethee-editor__component-selected--visible': inspected.component === component}">
+    >
+    <div class="promethee-editor__component-selected" ng-class="{'promethee-editor__component-selected--visible': promethee.inspected === component}">
       <div class="promethee-editor__toolbar">
         Image
         <ng-include src="'promethee/write/toolbar'"></ng-include>
@@ -36,26 +36,7 @@
     }
   });
 
-  promethee.controller('ImageController', ['$scope', 'inspected', function($scope, inspected) {
-    Object.defineProperty($scope, 'editing', {
-      get: function() {
-        return inspected.component == $scope.component;
-      }
-    });
-
-    $scope.edit = function(event) {
-      event.stopPropagation();
-      inspected.component = $scope.component;
-    };
-
-    $scope.complete = function() {
-      inspected.component = null;
-    };
-
-    $scope.toggleEdit = function() {
-      $scope[$scope.editing ? 'complete' : 'edit']();
-    };
-
+  promethee.controller('ImageController', ['$scope', function($scope) {
     $scope.options = {
       toolbar: [
         ['headline', ['style']],

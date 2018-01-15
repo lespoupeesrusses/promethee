@@ -1,10 +1,10 @@
 <script type="text/ng-template" id="promethee/write/component/video">
   <div
     ng-controller="VideoController"
+    ng-click="inspect(component, $event)"
     class="promethee-editor__component promethee-editor__component--video"
-    ng-click="edit($event);"
   >
-    <div class="promethee-editor__component-selected" ng-class="{'promethee-editor__component-selected--visible': inspected.component === component}">
+    <div class="promethee-editor__component-selected" ng-class="{'promethee-editor__component-selected--visible': promethee.inspected === component}">
       <div class="promethee-editor__toolbar">
         Video
         <ng-include src="'promethee/write/toolbar'"></ng-include>
@@ -30,20 +30,20 @@
     }
   });
 
-  promethee.controller('VideoController', ['$scope', 'inspected', function($scope, inspected) {
+  promethee.controller('VideoController', ['$scope', function($scope) {
     Object.defineProperty($scope, 'editing', {
       get: function() {
-        return inspected.component == $scope.component;
+        return inspected == $scope.component;
       }
     });
 
     $scope.edit = function(event) {
       event.stopPropagation();
-      inspected.component = $scope.component;
+      inspected = $scope.component;
     };
 
     $scope.complete = function() {
-      inspected.component = null;
+      inspected = null;
     };
 
     $scope.toggleEdit = function() {

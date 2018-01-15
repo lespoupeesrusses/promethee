@@ -8,13 +8,11 @@
 <% Dir[__dir__ + '/inspector/component/_*.html.erb'].map do |file| %>
   <%= render "promethee/edit/inspector/component/#{File.basename(file, '.html.erb').sub(/\A_/, '')}" %>
 <% end %>
-
 <div class="promethee-editor__write" ng-show="mode == 'write'">
   <div ng-class="{ 'container-fluid': fullscreen }">
-    <div
-      ng-init="component = component || data"
-      class="promethee-editor__component promethee-editor__component--page"
-      >
+    <div  ng-init="component = component || data"
+          class="promethee-editor__component promethee-editor__component--page"
+          >
       <ng-include src="'promethee/write/components'"></ng-include>
     </div>
   </div>

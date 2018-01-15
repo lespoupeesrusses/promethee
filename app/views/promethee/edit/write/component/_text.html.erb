@@ -1,18 +1,18 @@
 <script type="text/ng-template" id="promethee/write/component/text">
   <div
     ng-controller="TextController"
+    ng-click="inspect(component, $event)"
     class="promethee-editor__component promethee-editor__component--text"
-    ng-click="edit($event);"
   >
-    <div class="promethee-editor__component-selected" ng-class="{'promethee-editor__component-selected--visible': inspected.component === component}">
+    <div class="promethee-editor__component-selected" ng-class="{'promethee-editor__component-selected--visible': promethee.inspected === component}">
       <div class="promethee-editor__toolbar">
         Text
         <ng-include src="'promethee/write/toolbar'"></ng-include>
       </div>
-      <div ng-show="editing">
+      <div ng-show="promethee.inspected === component">
         <summernote config="options" ng-model="component.attributes.body"></summernote>
       </div>
-      <div ng-hide="editing">
+      <div ng-hide="promethee.inspected === component">
         <div class="promethee-editor__wrapper" ng-bind-html="component.attributes.body | htmlSafe"></div>
       </div>
     </div>
@@ -31,26 +31,7 @@
     }
   });
 
-  promethee.controller('TextController', ['$scope', 'inspected', function($scope, inspected) {
-    Object.defineProperty($scope, 'editing', {
-      get: function() {
-        return inspected.component == $scope.component;
-      }
-    });
-
-    $scope.edit = function(event) {
-      event.stopPropagation();
-      inspected.component = $scope.component;
-    };
-
-    $scope.complete = function() {
-      inspected.component = null;
-    };
-
-    $scope.toggleEdit = function() {
-      $scope[$scope.editing ? 'complete' : 'edit']();
-    };
-
+  promethee.controller('TextController', ['$scope', function($scope) {
     $scope.options = {
       toolbar: [
         ['headline', ['style']],
