@@ -1,21 +1,71 @@
-<%= render 'promethee/edit/write/add_button' %>
-<%= render 'promethee/edit/write/toolbar' %>
-<%= render 'promethee/edit/write/component' %>
-<%= render 'promethee/edit/write/components' %>
-<% Dir[__dir__ + '/write/component/_*.html.erb'].map do |file| %>
-  <%= render "promethee/edit/write/component/#{File.basename(file, '.html.erb').sub(/\A_/, '')}" %>
-<% end %>
-<% Dir[__dir__ + '/inspector/component/_*.html.erb'].map do |file| %>
-  <%= render "promethee/edit/inspector/component/#{File.basename(file, '.html.erb').sub(/\A_/, '')}" %>
-<% end %>
-<div class="promethee-editor__write" ng-show="mode == 'write'">
-  <div ng-class="{ 'container-fluid': fullscreen }">
-    <div  ng-init="component = component || data"
-          class="promethee-editor__component promethee-editor__component--page"
-          >
+<div class="promethee-edit__write" ng-show="promethee.mode == 'write'">
+  <div ng-class="{ 'container-fluid': promethee.fullscreen }">
+    <div  ng-init="component = promethee.data"
+          class=" promethee-edit__component 
+                  promethee-edit__component--page">
       <ng-include src="'promethee/write/components'"></ng-include>
     </div>
   </div>
   <ng-include src="'promethee/write/add_button'"></ng-include>
-  <%= render 'promethee/edit/inspector/inspector' %>
+  <div class="promethee-edit__inspect" ng-show="promethee.inspected">
+    <div class="promethee-edit__inspect-header">
+      <div class="pull-right">
+        <span ng-click="promethee.inspected = null"><%= fa_icon :times %></span>
+      </div>
+      <h5>{{promethee.inspected.type}}</h5>
+    </div>
+    <div class="promethee-edit__inspect-content">
+      <ng-include ng-if="promethee.inspected" src="'promethee/components/' + promethee.inspected.type + '/edit/inspect'"></ng-include>
+    </div>
+  </div>
+</div>
+
+<script type="text/ng-template" id="promethee/write/components">
+  <div ng-init="components = component.children">
+    <div ng-repeat="component in components">
+      <ng-include src="'promethee/write/component'"></ng-include>
+    </div>
+  </div>
+</script>
+
+<script type="text/ng-template" id="promethee/write/component">
+  <ng-include src="'promethee/components/' + component.type + '/edit/write'"></ng-include>
+</script>
+
+<script type="text/ng-template" id="promethee/write/toolbar">
+  <div class="pull-right">
+    <span ng-click="remove(component, components)" class="promethee-edit__button"><%= fa_icon :times %></span>
+  </div>
+</script>
+
+<script type="text/ng-template" id="promethee/write/add_button">
+  <a ng-click="addComponentTo(component.children)" class="promethee-edit__adder__button"><%= fa_icon 'plus-circle', class: "fa-3x" %></a>
+</script>
+
+<div class="promethee-edit__adder" ng-controller="AdderController">
+  <% # FIXME le style comme ça ce n'est pas propre, sortir de la modal bootstrap et utiliser ng-show %>
+  <div class="modal fade in" tabindex="-1" role="dialog" style="display: {{adding ? 'block' : 'none'}}">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" ng-click="close()"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Select component</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div
+              ng-repeat="definition in definitions"
+              ng-click="pushComponent(definition)"
+              class="col-md-3">
+              <div class="thumbnail">
+                <img ng-src="{{definition.thumb}}" class="img-responsive">
+                <h4>{{definition.name}}</h4>
+                <p>{{definition.description}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

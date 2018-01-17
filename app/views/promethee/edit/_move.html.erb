@@ -1,79 +1,40 @@
-<%= render 'promethee/edit/move/component' %>
-<%= render 'promethee/edit/move/components' %>
-<% Dir[__dir__ + '/move/component/*.html.erb'].map do |file| %>
-  <%= render "promethee/edit/move/component/#{File.basename(file, '.html.erb').sub(/\A_/, '')}" %>
-<% end %>
-
-<div class="promethee-editor__move" ng-show="mode == 'move'">
+<div class="promethee-edit__move" ng-show="promethee.mode == 'move'">
   <ng-include src="'promethee/move/components'"></ng-include>
 </div>
 
-<script type="text/javascript">
-  promethee
-    .directive('draggable', function() {
-      return {
-        restrict:'A',
-        link: function(scope, element, attrs) {
-          element.draggable({
-            revert: true,
-            revertDuration: 0,
-            scroll: true,
-            refreshPositions: true,
-            start: function() {
-              var $elementDragged = $(element[0]);
-              var type = $elementDragged.data('type');
-              $('.promethee-editor__move').addClass('promethee-editor__move--dragging promethee-editor__move--dragging--' + type);
+<script type="text/ng-template" id="promethee/move/component">
+  <div class="promethee-edit__move__component">
+    <ng-include src="'promethee/components/' + component.type + '/edit/move'"></ng-include>
+  </div>
+</script>
 
-              // The droppable zone immediately before has no use, it would put the object at the same position
-              // FIXME the selector is not correct
-              /*
-              var $droppableBefore = $elementDragged.prev('.promethee-editor__move__draggable').find('.promethee-editor__move__droppable').last();
-              if ($droppableBefore.length === 0) {
-                // For the first child, we look for the previous droppable zone
-                $droppableBefore = $elementDragged.prev('.promethee-editor__move__droppable');
-              }
-              $droppableBefore.addClass('promethee-editor__move__droppable--hidden');
-              */
-            },
-            stop: function() {
-              var $elementDragged = $(element[0]);
-              var type = $elementDragged.data('type');
-              $('.promethee-editor__move').removeClass('promethee-editor__move--dragging promethee-editor__move--dragging--' + type);
-              // $('.promethee-editor__move__droppable').removeClass('promethee-editor__move__droppable--hidden');
-            }
-          });
-        }
-      }
-    })
-    .directive('droppable', function($compile) {
-      return {
-        restrict: 'A',
-        link: function(scope, element, attrs) {
-          element.droppable({
-            tolerance: 'pointer',
-            drop: function(event, ui) {
-              var draggedFromList = angular.element(ui.draggable).parent().scope().components;
-              var draggedFromIndex = parseInt(ui.draggable[0].getAttribute('data-index'));
-              // console.log('dragged', draggedFromList, draggedFromIndex);
-              draggedFromList.splice(draggedFromIndex, 1);
-
-              var component = angular.element(ui.draggable).scope().component;
-              var droppedToList = angular.element(this).scope().components;
-              var droppedToIndex = parseInt(this.getAttribute('data-index'));
-              if (draggedFromList == droppedToList) {
-                // The object we dragged was removed from the list
-                if (draggedFromIndex < droppedToIndex) {
-                  // It was before the dropped index, so removing it changed the index
-                  droppedToIndex -= 1;
-                }
-              }
-              // console.log('dropped', component, droppedToList, droppedToIndex);
-              droppedToList.splice(droppedToIndex, 0, component);
-
-              scope.$apply();
-            }
-          });
-        }
-      }
-    });
+<script type="text/ng-template" id="promethee/move/components">
+  <div ng-init="type = component.type; components = component.children">
+    <div 
+      droppable
+      class=" promethee-edit__move__droppable 
+              promethee-edit__move__droppable--{{type}} 
+              promethee-edit__move__droppable--{{type}}--first"
+      data-index="0"
+      >
+    </div>
+    <div
+      draggable
+      ng-repeat="component in components"
+      class=" promethee-edit__move__draggable
+              promethee-edit__move__draggable--{{type}}"
+      data-index="{{$index}}"
+      data-type="{{component.type}}"
+      >
+      <ng-include src="'promethee/move/component'"></ng-include>
+      <div
+        droppable
+        class=" promethee-edit__move__droppable 
+                promethee-edit__move__droppable--{{type}}"
+        data-index="{{$index+1}}"
+        data-type="{{type}}"
+        >
+      </div>
+    </div>
+  </div>
 </script>

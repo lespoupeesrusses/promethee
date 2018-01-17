@@ -133,7 +133,7 @@ With javascript set:
 //= require angular-ui-bootstrap
 //= require angular-summernote
 //= require promethee
-//= require promethee-editor
+//= require promethee-edit
 ```
 
 With stylesheets set:
@@ -143,7 +143,7 @@ With stylesheets set:
 @import 'material_icons.css'
 @import 'summernote'
 @import 'promethee'
-@import 'promethee-editor'
+@import 'promethee-edit'
 ```
 
 #### The editor has components

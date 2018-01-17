@@ -1,8 +1,0 @@
-<%
-summary = component[:attributes][:summary]
-%>
-
-<details class="<%= promethee_class_for component %>">
-  <summary><%= summary %></summary>
-  <%= render 'promethee/show/components', components: component[:children] %>
-</details>

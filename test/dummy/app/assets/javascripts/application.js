@@ -7,5 +7,5 @@
 //= require angular-animate
 //= require angular-summernote
 //= require promethee
-//= require promethee-editor
+//= require promethee-edit
 //= require_self

@@ -27,22 +27,26 @@ promethee_data = Promethee::Data.new master_data, localization_data: localizatio
     };
 
   }]);
-
-  angular.element(function() {
-    angular.bootstrap(document.getElementById('prometheeLocalizer'), ['PrometheeLocalizer']);
-  });
 </script>
+
 
 <div id="prometheeLocalizer"
      class="promethee-localizer"
      ng-app="PrometheeLocalizer"
      ng-controller="PrometheeLocalizerController as prometheeLocalizerController">
+
+  <script type="text/ng-template" id="promethee/localize/component">
+    <ng-include src="'promethee/components/' + component.type + '/localize'"></ng-include>
+  </script>
+  
   <input type="hidden" name="localization[data]" id="page_data" value="{{data}}" />
 
-  <%= render 'promethee/localize/component' %>
-  <% Dir[__dir__ + '/localize/component/*.html.erb'].map do |file| %>
-    <%= render "promethee/localize/component/#{File.basename(file, '.html.erb').sub(/\A_/, '')}" %>
+  <% Dir["#{__dir__}/components/*/_localize.html.erb"].map do |file| %>
+    <% partial = file.split('app/views/').last.gsub('.html.erb', '').gsub('/_', '/') %>
+    <%= render partial %>
   <% end %>
+
+  <% #TODO override templates from current project %>
 
   <div ng-repeat="component in component.children">
     <ng-include src="'promethee/localize/component'"></ng-include>

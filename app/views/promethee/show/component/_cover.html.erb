@@ -1,6 +1,0 @@
-<%
-src = component[:attributes][:src].to_s
-body = component[:attributes][:body].to_s
-%>
-
-<%= content_tag :div, body.html_safe, class: promethee_class_for(component), style: 'background-image: url(' + src.to_json.html_safe + ')' %>
