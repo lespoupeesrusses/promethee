@@ -1,0 +1,14 @@
+<script>
+  angular.injector(['ng', 'Promethee']).get('definitions').push({
+    name: 'Image',
+    thumb: 'http://via.placeholder.com/300x200',
+    data: {
+      type: 'image',
+      attributes: {
+        src: 'https://picsum.photos/1920/1080/?random',
+        alt: '',
+        caption: ''
+      }
+    }
+  });
+</script>

@@ -1,0 +1,33 @@
+<script type="text/ng-template" id="promethee/components/image/edit/write">
+  <div  ng-controller="ImageController"
+        ng-click="inspect(component, $event)"
+        class=" promethee-edit__component
+                promethee-edit__component--image">
+    <div class="promethee-edit__component-selected" ng-class="{'promethee-edit__component-selected--visible': promethee.inspected === component}">
+      <div class="promethee-edit__toolbar">
+        Image
+        <ng-include src="'promethee/write/toolbar'"></ng-include>
+      </div>
+      <figure ng-show="component.attributes.src">
+        <img ng-src="{{component.attributes.src}}" class="img-responsive">
+        <figcaption ng-show="component.attributes.caption" ng-bind-html="component.attributes.caption | htmlSafe"></figcaption>
+      </figure>
+      <div ng-hide="component.attributes.src">
+        <p ng-hide="editing" class="text-center">Click to set the image</p>
+      </div>
+    </div>
+  </div>
+</script>
+
+<script>
+  promethee.controller('ImageController', ['$scope', function($scope) {
+    $scope.options = {
+      toolbar: [
+        ['headline', ['style']],
+        ['style', ['bold', 'italic']],
+        ['alignment', ['ul', 'ol', 'paragraph']],
+        ['code', ['codeview']]
+      ]
+    };
+  }]);
+</script>

@@ -1,0 +1,16 @@
+<script type="text/ng-template" id="promethee/components/image/localize">
+  <div class="row">
+    <div class="col-md-6">
+      <b>Local</b>
+      <input ng-model="component.attributes.alt" type="text" class="form-control">
+      <summernote config="options" ng-model="component.attributes.caption"></summernote>
+    </div>
+    <div class="col-md-6">
+      <b>Master</b>
+      <img ng-src="{{component.master.attributes.src}}" class="img-responsive" />
+      <input ng-model="component.master.attributes.alt" type="text" class="form-control" disabled/>
+      <div class="promethee-edit__wrapper" ng-bind-html="component.master.attributes.caption | htmlSafe"></div>
+    </div>
+  </div>
+  <hr>
+</script>

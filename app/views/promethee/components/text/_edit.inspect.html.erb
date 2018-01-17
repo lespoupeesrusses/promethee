@@ -1,0 +1,4 @@
+<script type="text/ng-template" id="promethee/components/text/edit/inspect">
+  {{promethee.inspected.attributes.body | textContentFromHTML: 'distinctParagraphs' | numberOfWords}} words<br>
+  {{promethee.inspected.attributes.body | textContentFromHTML | numberOfCharacters}} characters
+</script>

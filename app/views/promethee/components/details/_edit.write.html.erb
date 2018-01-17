@@ -1,0 +1,35 @@
+<script type="text/ng-template" id="promethee/components/details/edit/write">
+  <div  ng-controller="DetailsController"
+        ng-click="inspect(component, $event)"
+        class=" promethee-edit__component 
+                promethee-edit__component--details">
+    <div class="promethee-edit__component-selected" ng-class="{'promethee-edit__component-selected--visible': promethee.inspected === component}">
+      <div class="promethee-edit__toolbar">
+        Details
+        <ng-include src="'promethee/write/toolbar'"></ng-include>
+      </div>
+      <details>
+        <summary>{{component.attributes.summary}}</summary>
+        <ng-include src="'promethee/write/components'"></ng-include>
+        <span type="button"
+              class="btn btn-default btn-block"
+              ng-click="addComponentTo(component.children)">
+          Add component
+        </span>
+      </details>
+    </div>
+  </div>
+</script>
+
+<script>
+  promethee.controller('ImageController', ['$scope', function($scope) {
+    $scope.options = {
+      toolbar: [
+        ['headline', ['style']],
+        ['style', ['bold', 'italic']],
+        ['alignment', ['ul', 'ol', 'paragraph']],
+        ['code', ['codeview']]
+      ]
+    };
+  }]);
+</script>
