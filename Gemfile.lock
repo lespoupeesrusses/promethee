@@ -56,7 +56,7 @@ GEM
       tzinfo (~> 1.1)
     angular-ui-tinymce-rails (0.1.1)
       rails (~> 5.1.4)
-    angular_rails_csrf (2.1.1)
+    angular_rails_csrf (3.0.0)
       railties (>= 3, < 5.2)
     angularjs-rails (1.6.8)
     annotate (2.7.2)
