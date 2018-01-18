@@ -132,8 +132,6 @@ With javascript set:
 //= require angular-animate
 //= require angular-ui-bootstrap
 //= require angular-summernote
-//= require promethee
-//= require promethee-edit
 ```
 
 With stylesheets set:
@@ -248,6 +246,18 @@ This would do quite the same thing:
   <input type="submit">
 </form>
 ```
+
+## Database 
+
+### PostgreSQL
+
+To generate the standard models, you might use this:
+```
+rails g scaffold Page title:string data:jsonb
+rails g scaffold Localization page:references data:jsonb
+```
+Usually, the Localization will reference a language or a locale, or maybe use a locale stored as a String ("fr-FR").
+
 ### SQLite (or other not native json storage)
 
 Prométhée takes a ruby hash.
@@ -276,6 +286,10 @@ JSON.parse(data, symbolize_names: true)
 - ~~Preview in iframe~~
 - ~~Preview~~
 - ~~Fullscreen~~
+- ~~Cover~~
+- ~~Chapter (or maybe it's a cover too? *Yes it is, but see next line*)~~
+- ~~Grid background helper~
+- Section (in order to organize page contents within distincts parts which can be referenced. eg: scrollspy, hyperlink, tabs, ...)
 - Hooks (needed for image and video)
 - promethee-i18n
 - Component versioning
@@ -285,11 +299,7 @@ JSON.parse(data, symbolize_names: true)
 - Menu
 - Tab
 - Better col sizing/positioning UX
-- Grid background helper
 - File upload?
-- ~~Cover~~
-- ~~Chapter (or maybe it's a cover too? *Yes it is, but see next line*)~~
-- Section (in order to organize page contents within distincts parts which can be referenced. eg: scrollspy, hyperlink, tabs, ...)
 - Utils rake tasks (generate, destroy, override, ...)
 - Doc (to be updated in terms of the new component concept and structure)
 

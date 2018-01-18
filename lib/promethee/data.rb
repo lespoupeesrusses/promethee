@@ -2,10 +2,14 @@
 module Promethee
   class Data
     def initialize(data, options = {})
-      @master_data = hashify data
-      @localization_data_raw = hashify options[:localization_data] if options.include? :localization_data
+      @master_data = data.nil? ? master_data_default : data
+      @localization_data_raw = options[:localization_data] if options.include? :localization_data
       prepare_localization_data
       localize_master_data
+    end
+
+    def master_data_default
+      { version: 1, components: [] }
     end
 
     def localization_data_to_json
@@ -22,10 +26,6 @@ module Promethee
     end 
 
     protected
-
-    def hashify(string_or_hash)
-      string_or_hash.is_a?(String) ? JSON.parse(string_or_hash, symbolize_names: true) : string_or_hash
-    end
 
     # We merge the localization data in the components from the master data.
     # This will :
