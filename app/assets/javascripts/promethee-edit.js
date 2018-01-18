@@ -68,7 +68,8 @@ promethee.controller('PrometheeController', ['$scope', 'definitions', '$http', f
   $scope.promethee = { 
     data: $scope.data,
     inspected: null,
-    mode: 'write',
+    //mode: 'write',
+    mode: 'move',
     preview: 'desktop',
     fullscreen: false
   };
@@ -150,6 +151,7 @@ promethee
           revertDuration: 0,
           scroll: true,
           refreshPositions: true,
+          cursor: 'move', 
           start: function() {
             var $elementDragged = $(element[0]);
             var type = $elementDragged.data('type');

@@ -248,7 +248,16 @@ This would do quite the same thing:
   <input type="submit">
 </form>
 ```
+### SQLite (or other not native json storage)
 
+Prométhée takes a ruby hash.
+With Postgresql, there's a native jsonb storage, which results in a ruby hash.
+If you use SQLite, you'll store json as string, and will need to convert it to a hash.
+The code example below does this properly, with keys as symbols and not as strings.
+
+```erb
+JSON.parse(data, symbolize_names: true)
+```
 
 ### Roadmap
 - ~~Gem setup~~

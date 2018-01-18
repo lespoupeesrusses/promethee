@@ -1,5 +1,12 @@
 <div class="promethee-edit__move" ng-show="promethee.mode == 'move'">
-  <ng-include src="'promethee/move/components'"></ng-include>
+  <div class="promethee-edit__move__columns row">
+    <% 12.times do %>
+      <div class="col col-md-1"><div class="color"></div></div>
+    <% end %>
+  </div>
+  <div class="promethee-edit__move__page">
+    <ng-include src="'promethee/move/components'"></ng-include>
+  </div>
 </div>
 
 <script type="text/ng-template" id="promethee/move/component">
