@@ -258,6 +258,33 @@ rails g scaffold Localization page:references data:jsonb
 ```
 Usually, the Localization will reference a language or a locale, or maybe use a locale stored as a String ("fr-FR").
 
+Add the null false, default '{}' like this:
+```
+class CreatePages < ActiveRecord::Migration[5.1]
+  def change
+    create_table :pages do |t|
+      t.string :title
+      t.jsonb :data, null: false, default: {}
+
+      t.timestamps
+    end
+  end
+end
+```
+and this:
+```
+class CreateLocalizations < ActiveRecord::Migration[5.1]
+  def change
+    create_table :localizations do |t|
+      t.references :page, foreign_key: true
+      t.jsonb :data, null: false, default: {}
+
+      t.timestamps
+    end
+  end
+end
+```
+
 ### SQLite (or other not native json storage)
 
 Prométhée takes a ruby hash.
