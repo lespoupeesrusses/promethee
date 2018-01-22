@@ -65,8 +65,8 @@ promethee.controller('PrometheeController', ['$scope', function($scope) {
       children: []
     };
   }
-  
-  $scope.promethee = { 
+
+  $scope.promethee = {
     data: $scope.data,
     inspected: null,
     mode: 'write',
@@ -76,8 +76,9 @@ promethee.controller('PrometheeController', ['$scope', function($scope) {
   };
 
   $scope.inspect = function(component, event) {
-    $scope.promethee.inspected = component;
-    event.stopPropagation();
+    if(event.target.closest('.promethee-edit__component') === event.currentTarget) {
+      $scope.promethee.inspected = component;
+    }
   }
 
   $scope.enablePreview = function() {
@@ -89,7 +90,7 @@ promethee.controller('PrometheeController', ['$scope', function($scope) {
     form.method = 'POST';
     form.action = '/promethee/preview';
     form.target = 'preview';
-    
+
     var input = document.createElement('input');
     input.type = 'text';
     input.value = JSON.stringify($scope.promethee.data);
