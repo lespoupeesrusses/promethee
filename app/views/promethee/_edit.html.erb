@@ -103,7 +103,7 @@ promethee.controller('PrometheeController', ['$scope', function($scope) {
     var form = document.createElement('form');
     document.body.appendChild(form);
     form.method = 'POST';
-    form.action = '/promethee/preview';
+    form.action = <%= promethee_preview_path.to_json.html_safe %>;
     form.target = 'preview';
 
     var input = document.createElement('input');
