@@ -1,7 +1,7 @@
 <script type="text/ng-template" id="promethee/components/row/edit/write">
   <div  ng-controller="RowController"
         ng-click="inspect(component, $event)"
-        class=" row 
+        class=" row
                 promethee-edit__component
                 promethee-edit__component--row">
     <div class="promethee-edit__component-selected" ng-class="{'promethee-edit__component-selected--visible': promethee.inspected === component}">
@@ -17,10 +17,11 @@
 </script>
 
 <script>
-  promethee.controller('RowController', ['$scope', function($scope) {
+  promethee.controller('RowController', ['$scope', 'identifier', function($scope, identifier) {
     $scope.addColumn = function() {
       this.component.children.push({
         type: 'column',
+        id: identifier.generate(),
         attributes: {
           size: 4,
           offset: 0

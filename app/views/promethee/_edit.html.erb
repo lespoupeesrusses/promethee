@@ -52,6 +52,21 @@ var promethee = angular
 
       return words[0] === '' ? 0 : words.length;
     };
+  })
+  // Why doesn't this method just live in the adder controller ?
+  // Because the row component also need a special access to it in order to create cols with an id. So we make it global to the application.
+  .provider('identifier', function() {
+    this.$get = function() {
+      return {
+        // https://gist.github.com/gordonbrander/2230317
+        generate: function() {
+          // Math.random should be unique because of its seeding algorithm.
+          // Convert it to base 36 (numbers + letters), and grab the first 9 characters
+          // after the decimal.
+          return '' + Math.random().toString(36).substr(2, 9);
+        }
+      };
+    };
   });
 
 promethee.controller('PrometheeController', ['$scope', function($scope) {

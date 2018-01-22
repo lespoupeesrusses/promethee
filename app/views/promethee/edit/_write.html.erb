@@ -1,5 +1,5 @@
 <script type="text/javascript">
-promethee.controller('AdderController', ['$scope', '$rootScope', 'definitions', function($scope, $rootScope, definitions) {
+promethee.controller('AdderController', ['$scope', '$rootScope', 'definitions', 'identifier', function($scope, $rootScope, definitions, identifier) {
 
   $scope.adding = false;
   $scope.childrenToAddTo = null;
@@ -12,7 +12,7 @@ promethee.controller('AdderController', ['$scope', '$rootScope', 'definitions', 
 
   $scope.pushComponent = function(definition) {
     var definition = angular.copy(definition.data);
-    definition.id = $scope.createIdentifier();
+    definition.id = identifier.generate();
     $scope.childrenToAddTo.push(definition);
     $scope.close();
   };
@@ -22,21 +22,13 @@ promethee.controller('AdderController', ['$scope', '$rootScope', 'definitions', 
     $scope.childrenToAddTo = components;
   };
 
-  // https://gist.github.com/gordonbrander/2230317
-  $scope.createIdentifier = function () {
-    // Math.random should be unique because of its seeding algorithm.
-    // Convert it to base 36 (numbers + letters), and grab the first 9 characters
-    // after the decimal.
-    return '' + Math.random().toString(36).substr(2, 9);
-  };
-
 }])
 </script>
 
 <div class="promethee-edit__write" ng-show="promethee.mode == 'write'">
   <div ng-class="{ 'container-fluid': promethee.fullscreen }">
     <div  ng-init="component = promethee.data"
-          class=" promethee-edit__component 
+          class=" promethee-edit__component
                   promethee-edit__component--page">
       <ng-include src="'promethee/write/components'"></ng-include>
     </div>
