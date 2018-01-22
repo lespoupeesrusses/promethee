@@ -11,7 +11,11 @@
         <ng-include src="'promethee/write/toolbar'"></ng-include>
       </div>
       <ng-include src="'promethee/write/components'"></ng-include>
-      <ng-include src="'promethee/write/add_button'"></ng-include>
+      <span type="button"
+            class="btn btn-default btn-block"
+            ng-click="addComponentTo(component.children)">
+        Add component
+      </span>
     </div>
   </div>
 </script>
