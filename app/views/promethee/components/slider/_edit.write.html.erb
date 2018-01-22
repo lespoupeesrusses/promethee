@@ -12,10 +12,11 @@
 
       <div class="row">
         <div ng-init="components = component.children">
-          <div ng-repeat="component in components">
-            <div class="col-md-3">
+          <div ng-repeat="component in components track by $index">
+            <div class="col-md-{{itemColSize}}">
               <ng-include src="'promethee/write/component'"></ng-include>
             </div>
+            <div ng-if="($index + 1)%itemsPerLine === 0" class="clearfix"></div>
           </div>
         </div>
       </div>
@@ -34,6 +35,14 @@
 
 <script>
   promethee.controller('SliderController', ['$scope', '$element', function($scope, $element) {
+    $scope.itemsPerLine = 4;
 
+    Object.defineProperties($scope, {
+      itemColSize: {
+        get: function() {
+          return Math.floor(12/$scope.itemsPerLine);
+        }
+      }
+    });
   }]);
 </script>
