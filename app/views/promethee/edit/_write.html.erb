@@ -37,9 +37,9 @@ promethee.controller('AdderController', ['$scope', '$rootScope', 'definitions', 
   <div class="promethee-edit__inspect" ng-show="promethee.inspected">
     <div class="promethee-edit__inspect-header">
       <div class="pull-right">
-        <span ng-click="promethee.inspected = null"><%= fa_icon :times %></span>
+        <span class="promethee-edit__button promethee-edit__button--squared" ng-click="promethee.inspected = null"><%= fa_icon :times %></span>
       </div>
-      <h5>{{promethee.inspected.type}}</h5>
+      {{promethee.inspected.type}}
     </div>
     <div class="promethee-edit__inspect-content">
       <ng-include ng-if="promethee.inspected" src="'promethee/components/' + promethee.inspected.type + '/edit/inspect'"></ng-include>
@@ -61,7 +61,7 @@ promethee.controller('AdderController', ['$scope', '$rootScope', 'definitions', 
 
 <script type="text/ng-template" id="promethee/write/toolbar">
   <div class="pull-right">
-    <span ng-click="remove(component, components)" class="promethee-edit__button"><%= fa_icon :times %></span>
+    <span ng-click="remove(component, components)" class="promethee-edit__button promethee-edit__button--squared"><%= fa_icon :times %></span>
   </div>
 </script>
 

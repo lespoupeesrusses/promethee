@@ -1,35 +1,58 @@
 .promethee-edit__write
-  
+
   .promethee-edit__toolbar
     background: #253742
-    padding: 10px
+    height: 36px
+    padding: 0 8px
     font-size: 11px
     text-transform: uppercase
     color: white
+    line-height: 36px
     text-align: center
     &, *
       user-select: none
+
+    &--transparent
+      background: none
+      width: 100%
+      opacity: 0
+      z-index: 2
+      position: absolute
+      transition: .2s
+      transform: translateX(20px)
+
+  .promethee-edit__component:hover
+    > .promethee-edit__toolbar--transparent, > * > .promethee-edit__toolbar--transparent
+      opacity: 1
+      transform: translateX(0)
 
   .promethee-edit__inspect
     background: #fff
     width: 300px
     top: 15px
-    right: 0
+    right: 15px
     bottom: 15px
     z-index: 1000
     position: fixed
-    border-left: 1px solid #253742
-    border-bottom: 1px solid #253742
+    display: flex
+    flex-direction: column
+    border: 1px solid #253742
     &-header
       background: #253742
-      padding: 15px
+      height: 36px
+      padding: 0 8px
       color: white
-      &, h5
-        font-size: 11px
-        margin: 0
-        text-transform: uppercase
+      flex-grow: 0
+      flex-shrink: 0
+      line-height: 36px
+      text-transform: uppercase
+      font-size: 11px
+
     &-content
+      flex-grow: 1
+      flex-shrink: 1
       padding: 15px
+      overflow: scroll
 
   .promethee-edit__adder__button
     display: block
@@ -38,6 +61,7 @@
 
   .promethee-edit__component
     margin-bottom: 5px
+    position: relative
     &--cover
       .promethee-edit__cover-content
         padding: 150px 30px
@@ -54,5 +78,8 @@
           position: absolute
           transform: translateY(-50%)
           font-size: 30px
-    &-selected--visible
-      border: 2px solid #253742
+    &-selected
+      position: relative
+      border: 2px solid transparent
+      &--visible
+        border-color: #253742
