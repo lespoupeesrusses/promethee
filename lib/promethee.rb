@@ -9,6 +9,10 @@ require 'angular-ui-tinymce/rails'
 require 'angular_rails_csrf'
 
 module Promethee
+  def self.root
+    Pathname.new(__dir__).parent.realpath
+  end
+
   module Rails
     require 'promethee/rails/helper'
     require 'promethee/rails/engine'

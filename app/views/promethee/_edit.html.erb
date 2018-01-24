@@ -68,7 +68,9 @@ var promethee = angular
       };
     };
   });
+</script>
 
+<script type="text/javascript">
 promethee.controller('PrometheeController', ['$scope', function($scope) {
 
   // Data (TODO use Adder and probably page definition to init)
@@ -157,10 +159,11 @@ promethee.controller('PrometheeController', ['$scope', function($scope) {
       </div>
     </div>
   </nav>
-  <% Dir["#{__dir__}/components/*/_edit.*.html.erb"].map do |file| %>
-    <% partial = file.split('app/views/').last.gsub('.html.erb', '').gsub('/_', '/') %>
+
+  <% promethee_component_partials.each do |partial| %>
     <%= render partial %>
   <% end %>
+
   <%= render 'promethee/edit/write' %>
   <%= render 'promethee/edit/move' %>
   <%= render 'promethee/edit/preview' %>
