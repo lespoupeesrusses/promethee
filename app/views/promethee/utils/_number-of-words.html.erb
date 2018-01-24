@@ -1,0 +1,15 @@
+<script>
+  promethee.filter('numberOfWords', function() {
+    return function(val) {
+      var words = val
+        .replace(/\bhttps?:\/\/[a-z0-9\-\._]+(?:\/[^\s\n\r]+)?/gi, 'a') // A URL is one word
+        .replace(/\b[a-z0-9\-\._]+@[a-z0-9\-\._]+\.[a-z0-9\-\._]+\b/gi, 'a') // An email is one word
+        .replace(/[^a-z0-9\s\n\r]/gi, ' ')
+        .replace(/[\s\n\r]+/g, ' ')
+        .trim()
+        .split(' ');
+
+      return words[0] === '' ? 0 : words.length;
+    };
+  });
+</script>

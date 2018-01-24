@@ -1,0 +1,8 @@
+<script>
+  promethee.filter('humanize', function() {
+    return function(val) {
+      val = (val + '').replace(/_/g, ' ').replace(/([A-Z])/g, ' $1').replace(/\s\s+/, ' ').trim();
+      return val[0].toUpperCase() + val.substring(1).toLowerCase();
+    };
+  });
+</script>
