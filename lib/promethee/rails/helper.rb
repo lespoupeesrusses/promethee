@@ -7,13 +7,14 @@ module Promethee::Rails::Helper
     "promethee__component promethee__component--#{component[:type]}"
   end
 
+  # Example:
   # [
-  #   Pathname:promethee/components/column/edit.define,
-  #   Pathname:promethee/components/column/edit.inspect,
-  #   Pathname:promethee/components/column/edit.move,
-  #   Pathname:promethee/components/column/edit.write,
-  #   Pathname:promethee/components/cover/edit.define,
-  #   Pathname:promethee/components/cover/edit.inspect,
+  #   'promethee/components/column/edit.define',
+  #   'promethee/components/column/edit.inspect',
+  #   'promethee/components/column/edit.move',
+  #   'promethee/components/column/edit.write',
+  #   'promethee/components/cover/edit.define',
+  #   'promethee/components/cover/edit.inspect',
   #   ...
   # ]
   def promethee_component_partials
@@ -22,6 +23,7 @@ module Promethee::Rails::Helper
 
   protected
 
+  # Example:
   # [
   #   Pathname:promethee/components/column/_edit.define.html.erb,
   #   Pathname:promethee/components/column/_edit.inspect.html.erb,
@@ -37,6 +39,7 @@ module Promethee::Rails::Helper
     end.flatten.uniq(&:to_s)
   end
 
+  # Example:
   # [
   #   Pathname:/Users/lespoupeesrusses/Developer/a-rails-app/app/views,
   #   Pathname:/Users/lespoupeesrusses/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/promethee-1.2.12/app/views
