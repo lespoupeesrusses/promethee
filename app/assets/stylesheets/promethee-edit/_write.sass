@@ -9,22 +9,27 @@
     color: white
     line-height: 36px
     text-align: center
+
     &, *
       user-select: none
 
     &--transparent
       background: none
       width: 100%
-      opacity: 0
+      color: transparent
       z-index: 2
       position: absolute
-      transition: .2s
-      transform: translateX(20px)
+
+  .promethee-edit__toolbar-buttons
+    opacity: 0
+    transition: .2s
+    transform: translateX(20px)
 
   .promethee-edit__component:hover
     > .promethee-edit__toolbar--transparent, > * > .promethee-edit__toolbar--transparent
-      opacity: 1
-      transform: translateX(0)
+      .promethee-edit__toolbar-buttons
+        opacity: 1
+        transform: translateX(0)
 
   .promethee-edit__inspect
     background: #fff

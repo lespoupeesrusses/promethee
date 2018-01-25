@@ -60,8 +60,8 @@ promethee.controller('AdderController', ['$scope', '$rootScope', 'definitions', 
 </script>
 
 <script type="text/ng-template" id="promethee/write/toolbar">
-  <div class="pull-right">
-    <span ng-click="remove(component, components)" class="promethee-edit__button promethee-edit__button--squared"><%= fa_icon :times %></span>
+  <div class="promethee-edit__toolbar-buttons pull-right">
+    <span ng-click="remove(component, components)" class="promethee-edit__button promethee-edit__button--squared promethee-edit__button--bordered"><%= fa_icon :times %></span>
   </div>
 </script>
 
