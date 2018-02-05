@@ -7,6 +7,49 @@ $promethee-color: #ff9900 !default
 @import 'promethee-edit/move'
 @import 'promethee-edit/preview'
 
+.promethee-open
+  $real-width: 300px
+  $real-height: 500px
+  $rendered-width: 1280px
+  $rendered-height: $real-height/$real-width*$rendered-width
+  $size-ratio: $real-width/$rendered-width
+
+  width: $real-width
+  height: $real-height
+  overflow: hidden
+  position: relative
+  display: inline-block
+
+  &, &::after, &__button, &__thumb-preview
+    cursor: pointer
+
+  &::after
+    content: ''
+    width: 100%
+    height: 100%
+    top: 0
+    left: 0
+    border: 2px solid #253742
+    box-sizing: border-box
+    position: absolute
+    display: block
+
+  &__button
+    background: #253742
+    padding: 10px
+    margin-bottom: 5px
+    display: block
+    text-align: center
+    color: #fff
+
+  &__thumb-preview
+    width: $rendered-width
+    height: $rendered-height
+    border: none
+    display: block
+    transform: scale(#{$size-ratio})
+    transform-origin: 0 0
+
 .promethee-edit
   background: white
   position: fixed

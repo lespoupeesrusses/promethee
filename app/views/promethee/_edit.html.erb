@@ -43,12 +43,15 @@ promethee.controller('PrometheeController', ['$scope', function($scope) {
   $scope.enablePreview = function() {
     if (this.promethee.mode === 'preview') return;
     this.promethee.mode = 'preview';
+    this.sendPreviewData('preview');
+  }
 
+  $scope.sendPreviewData = function(target) {
     var form = document.createElement('form');
     document.body.appendChild(form);
     form.method = 'POST';
     form.action = <%= promethee_preview_path.to_json.html_safe %>;
-    form.target = 'preview';
+    form.target = target;
 
     var input = document.createElement('input');
     input.type = 'text';
@@ -64,6 +67,9 @@ promethee.controller('PrometheeController', ['$scope', function($scope) {
     components.splice(index, 1);
   }
 
+  $scope.promethee.data = <%= promethee_data.to_json.html_safe %>;
+
+  $scope.sendPreviewData('thumb-preview');
 }]);
 </script>
 
@@ -71,11 +77,11 @@ promethee.controller('PrometheeController', ['$scope', function($scope) {
   id="promethee"
   ng-app="Promethee"
   ng-controller="PrometheeController as prometheeController"
-  ng-init="promethee.data=<%= promethee_data.to_json %>"
-  >
+>
 
-  <div class="text-center">
-    <span class="btn btn-info" ng-click="opened = true">Open Prométhée Editor</span>
+  <div class="promethee-open" ng-click="opened = true">
+    <span class="promethee-open__button">Open Prométhée Editor</span>
+    <iframe class="promethee-open__thumb-preview" id="thumb-preview"></iframe>
   </div>
 
   <div class="promethee-edit" ng-class="{'promethee-edit--closed': !opened}">

@@ -1,4 +1,6 @@
 <%= render 'application/header' %>
 <%= form_for :record do |f| %>
-  <%= f.promethee :data, value: @data %>
+  <div class="text-center">
+    <%= f.promethee :data, value: @data %>
+  </div>
 <% end %>
