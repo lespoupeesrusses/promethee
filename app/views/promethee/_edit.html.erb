@@ -69,44 +69,48 @@ promethee.controller('PrometheeController', ['$scope', function($scope) {
 
 <div
   id="promethee"
-  class="promethee-edit"
   ng-app="Promethee"
-  ng-class="{ 'promethee-edit--fullscreen': promethee.fullscreen }"
   ng-controller="PrometheeController as prometheeController"
   ng-init="promethee.data=<%= promethee_data.to_json %>"
   >
-  <input type="hidden" name="page[data]" id="page_data" value="{{promethee.data}}" />
-  <nav class="navbar navbar-default promethee-edit__navbar" ng-class="{'navbar-fixed-top': promethee.fullscreen }">
-    <div class="container-fluid">
-      <div class="navbar-header promethee-edit__icon">
-        <div class="navbar-brand"><%= File.read(__dir__ + '/../../assets/images/icon-promethee.svg').html_safe %></div>
-      </div>
-      <div id="navbar">
-        <ul class="nav navbar-nav navbar-right">
-          <li ng-click="promethee.mode = 'write'" ng-class="{active: promethee.mode == 'write'}"><a><%= fa_icon :pencil %></a></li>
-          <li ng-click="promethee.mode = 'move'" ng-class="{active: promethee.mode == 'move'}"><a><%= fa_icon :arrows %></a></li>
-          <li ng-click="enablePreview()" ng-class="{active: promethee.mode == 'preview'}">
-            <a data-toggle="dropdown"><%= fa_icon :eye %></a>
-            <ul class="dropdown-menu" ng-show="promethee.mode == 'preview'">
-              <li ng-click="promethee.preview = 'desktop'" ng-class="{active: promethee.preview == 'desktop'}"><a><i class="fa fa-desktop"></i></a></li>
-              <li ng-click="promethee.preview = 'tablet'" ng-class="{active: promethee.preview == 'tablet'}"><a><i class="fa fa-tablet"></i></a></li>
-              <li ng-click="promethee.preview = 'mobile'" ng-class="{active: promethee.preview == 'mobile'}"><a><i class="fa fa-mobile"></i></a></li>
-            </ul>
-          </li>
-          <li ng-click="promethee.fullscreen = !promethee.fullscreen">
-            <a ng-show="promethee.fullscreen"><%= fa_icon :expand %></a>
-            <a ng-hide="promethee.fullscreen"><%= fa_icon :compress %></a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
 
-  <% promethee_component_partials.each do |partial| %>
-    <%= render partial %>
-  <% end %>
+  <div class="text-center">
+    <span class="btn btn-info" ng-click="opened = true">Open Prométhée Editor</span>
+  </div>
 
-  <%= render 'promethee/edit/write' %>
-  <%= render 'promethee/edit/move' %>
-  <%= render 'promethee/edit/preview' %>
+  <div class="promethee-edit" ng-class="{'promethee-edit--closed': !opened}">
+    <input type="hidden" name="page[data]" id="page_data" value="{{promethee.data}}" />
+    <nav class="navbar navbar-default promethee-edit__navbar" ng-class="{'navbar-fixed-top': promethee.fullscreen }">
+      <div class="container-fluid">
+        <div class="navbar-header promethee-edit__icon">
+          <div class="navbar-brand"><%= File.read(__dir__ + '/../../assets/images/icon-promethee.svg').html_safe %></div>
+        </div>
+        <div id="navbar">
+          <ul class="nav navbar-nav navbar-right">
+            <li ng-click="promethee.mode = 'write'" ng-class="{active: promethee.mode == 'write'}"><a><%= fa_icon :pencil %></a></li>
+            <li ng-click="promethee.mode = 'move'" ng-class="{active: promethee.mode == 'move'}"><a><%= fa_icon :arrows %></a></li>
+            <li ng-click="enablePreview()" ng-class="{active: promethee.mode == 'preview'}">
+              <a data-toggle="dropdown"><%= fa_icon :eye %></a>
+              <ul class="dropdown-menu" ng-show="promethee.mode == 'preview'">
+                <li ng-click="promethee.preview = 'desktop'" ng-class="{active: promethee.preview == 'desktop'}"><a><i class="fa fa-desktop"></i></a></li>
+                <li ng-click="promethee.preview = 'tablet'" ng-class="{active: promethee.preview == 'tablet'}"><a><i class="fa fa-tablet"></i></a></li>
+                <li ng-click="promethee.preview = 'mobile'" ng-class="{active: promethee.preview == 'mobile'}"><a><i class="fa fa-mobile"></i></a></li>
+              </ul>
+            </li>
+            <li ng-click="opened = false">
+              <a><%= fa_icon :close %></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <% promethee_component_partials.each do |partial| %>
+      <%= render partial %>
+    <% end %>
+
+    <%= render 'promethee/edit/write' %>
+    <%= render 'promethee/edit/move' %>
+    <%= render 'promethee/edit/preview' %>
+  </div>
 </div>

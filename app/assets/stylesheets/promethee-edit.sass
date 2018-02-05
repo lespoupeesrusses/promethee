@@ -9,26 +9,33 @@ $promethee-color: #ff9900 !default
 
 .promethee-edit
   background: white
-  position: relative
-  &--fullscreen
-    position: fixed
-    left: 0
-    right: 0
-    bottom: 0
-    top: 50px
-    z-index: 10000
-    overflow: auto
-    .promethee-edit__write
-      padding-right: 300px
-      padding-top: 15px
-    .promethee-edit__inspect
-      top: 65px
+  position: fixed
+  left: 0
+  right: 0
+  bottom: 0
+  top: 0
+  padding-top: 50px
+  z-index: 10000
+  overflow: auto
+  .promethee-edit__write
+    padding-right: 300px
+    padding-top: 15px
+  .promethee-edit__inspect
+    top: 65px
+
+  &--closed
+    display: none
 
   &__navbar
+    background: #232323
+    width: 100%
+    margin-bottom: 0
+    top: 0
+    left: 0
     border-radius: 0
     border: none
-    background: #232323
-    margin-bottom: 0
+    z-index: 10000
+    position: fixed
     ul.nav li a
       color: white
       &:hover
