@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    promethee (1.2.16)
+    promethee (1.2.17)
       angular-ui-tinymce-rails
       angular_rails_csrf
       angularjs-rails (~> 1.6.2)
@@ -94,11 +94,11 @@ GEM
     method_source (0.9.0)
     mini_mime (1.0.0)
     mini_portile2 (2.3.0)
-    minitest (5.11.1)
+    minitest (5.11.3)
     nio4r (2.2.0)
-    nokogiri (1.8.1)
+    nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
-    rack (2.0.3)
+    rack (2.0.4)
     rack-test (0.8.2)
       rack (>= 1.0, < 3)
     rails (5.1.4)
@@ -149,9 +149,9 @@ GEM
     thor (0.20.0)
     thread_safe (0.3.6)
     tilt (2.0.8)
-    tinymce-rails (4.7.5)
+    tinymce-rails (4.7.6)
       railties (>= 3.1.1)
-    tzinfo (1.2.4)
+    tzinfo (1.2.5)
       thread_safe (~> 0.1)
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
