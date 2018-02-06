@@ -67,6 +67,10 @@ promethee.controller('PrometheeController', ['$scope', function($scope) {
     components.splice(index, 1);
   }
 
+  $scope.submit = function() {
+    $('#promethee').closest('form').submit();
+  };
+
   $scope.promethee.data = <%= promethee_data.to_json.html_safe %>;
 
   $scope.sendPreviewData('thumb-preview');
@@ -102,6 +106,9 @@ promethee.controller('PrometheeController', ['$scope', function($scope) {
                 <li ng-click="promethee.preview = 'tablet'" ng-class="{active: promethee.preview == 'tablet'}"><a><i class="fa fa-tablet"></i></a></li>
                 <li ng-click="promethee.preview = 'mobile'" ng-class="{active: promethee.preview == 'mobile'}"><a><i class="fa fa-mobile"></i></a></li>
               </ul>
+            </li>
+            <li ng-click="submit()">
+              <a><%= fa_icon :save %></a>
             </li>
             <li ng-click="opened = false">
               <a><%= fa_icon :close %></a>
