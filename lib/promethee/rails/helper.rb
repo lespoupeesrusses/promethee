@@ -3,8 +3,15 @@ module Promethee::Rails::Helper
     ApplicationController.renderer.render partial: 'promethee/show', locals: { master_data: data, localization_data: options[:l] }
   end
 
-  def promethee_class_for component
-    "promethee__component promethee__component--#{component[:type]}"
+  def promethee_class_for component, *modifiers
+    base = "promethee__component"
+    component_base = "#{base}--#{component[:type]}"
+
+    [
+      base,
+      component_base,
+      modifiers.map { |modifier| "#{component_base}--#{modifier}" }
+    ].flatten.join ' '
   end
 
   def promethee_component_partials
