@@ -11,7 +11,7 @@ module Promethee::Rails::Helper
       base,
       component_base,
       modifiers.map { |modifier| "#{component_base}--#{modifier}" }
-    ].flatten.join ' '
+    ].flatten.select(&:present?).join ' '
   end
 
   def promethee_component_partials
