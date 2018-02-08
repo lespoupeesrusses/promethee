@@ -9,8 +9,10 @@ elsif 'youtube'.in? url
   iframe_src = "http://www.youtube.com/embed/#{video_id}"
 end
 %>
-<div class="embed-responsive embed-responsive-16by9 <%= promethee_class_for component %>">
-  <% if iframe_src.present? %>
-    <iframe frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="allowfullscreen" src="<%= iframe_src %>"></iframe>
-  <% end %>
+<div class="<%= promethee_class_for component %>">
+  <div class="embed-responsive embed-responsive-16by9">
+    <% if iframe_src.present? %>
+      <iframe frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="allowfullscreen" src="<%= iframe_src %>"></iframe>
+    <% end %>
+  </div>
 </div>
