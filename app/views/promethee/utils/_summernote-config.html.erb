@@ -4,7 +4,7 @@
     callbacks: {
       onPaste: function(event) {
         // Remove text styles on paste
-        var bufferText = '<p>' + ((event.originalEvent || event).clipboardData || window.clipboardData).getData('Text').trim() + '</p>';
+        var bufferText = ((event.originalEvent || event).clipboardData || window.clipboardData).getData('Text').trim();
         event.preventDefault();
         setTimeout(function() {
           document.execCommand('insertParagraph', false);
