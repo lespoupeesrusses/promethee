@@ -1,0 +1,21 @@
+<script>
+  promethee.constant('summernoteConfig', {
+    disableDragAndDrop: true,
+    callbacks: {
+      onPaste: function(event) {
+        // Remove text styles on paste
+        var bufferText = ((event.originalEvent || event).clipboardData || window.clipboardData).getData('Text');
+        event.preventDefault();
+        setTimeout(function() {
+          document.execCommand('insertText', false, bufferText);
+        }, 10);
+      }
+    },
+    toolbar: [
+      ['headline', ['style']],
+      ['style', ['bold', 'italic']],
+      ['alignment', ['ul', 'ol', 'paragraph']],
+      ['code', ['codeview']]
+    ]
+  });
+</script>

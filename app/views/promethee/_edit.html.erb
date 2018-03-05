@@ -13,7 +13,7 @@ var promethee = angular
 <% end %>
 
 <script type="text/javascript">
-promethee.controller('PrometheeController', ['$scope', function($scope) {
+promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', function($scope, summernoteConfig) {
 
   // Data (TODO use Adder and probably page definition to init)
   if ($scope.data === null || $scope.data === '') {
@@ -70,6 +70,8 @@ promethee.controller('PrometheeController', ['$scope', function($scope) {
   $scope.submit = function() {
     $('#promethee').closest('form').submit();
   };
+
+  $scope.summernoteConfig = summernoteConfig;
 
   $scope.promethee.data = <%= promethee_data.to_json.html_safe %>;
 

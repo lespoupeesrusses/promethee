@@ -1,23 +1,6 @@
 <script type="text/ng-template" id="promethee/components/text/edit/inspect">
   <div class="form-group">
-    <summernote config="{
-      disableDragAndDrop: true,
-      callbacks: {
-        onPaste: function(event) {
-          var bufferText = ((event.originalEvent || event).clipboardData || window.clipboardData).getData('Text');
-          event.preventDefault();
-          setTimeout(function() {
-            document.execCommand('insertText', false, bufferText);
-          }, 10);
-        }
-      },
-      toolbar: [
-        ['headline', ['style']],
-        ['style', ['bold', 'italic']],
-        ['alignment', ['ul', 'ol', 'paragraph']],
-        ['code', ['codeview']]
-      ]
-    }" ng-model="promethee.inspected.attributes.body"></summernote>
+    <summernote config="summernoteConfig" ng-model="promethee.inspected.attributes.body"></summernote>
   </div>
 
   {{promethee.inspected.attributes.body | textContentFromHTML: 'distinctParagraphs' | numberOfWords}} words<br>
