@@ -2,7 +2,24 @@
   <div class="row">
     <div class="col-md-6">
       <b>Local</b>
-      <summernote config="options" ng-model="component.attributes.body"></summernote>
+      <summernote config="{
+      disableDragAndDrop: true,
+      callbacks: {
+        onPaste: function(event) {
+          var bufferText = ((event.originalEvent || event).clipboardData || window.clipboardData).getData('Text');
+          event.preventDefault();
+          setTimeout(function() {
+            document.execCommand('insertText', false, bufferText);
+          }, 10);
+        }
+      },
+      toolbar: [
+        ['headline', ['style']],
+        ['style', ['bold', 'italic']],
+        ['alignment', ['ul', 'ol', 'paragraph']],
+        ['code', ['codeview']]
+      ]
+    }" ng-model="component.attributes.body"></summernote>
     </div>
     <div class="col-md-6">
       <b>Master</b>

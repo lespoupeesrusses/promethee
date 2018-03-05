@@ -7,18 +7,10 @@
       <div class="promethee-edit__toolbar promethee-edit__toolbar--transparent">
         <ng-include src="'promethee/write/toolbar'"></ng-include>
       </div>
-      <div  ng-hide="editing"
-            class=" promethee-edit__wrapper
+      <div  class=" promethee-edit__wrapper
                     promethee-edit__cover-content"
             ng-bind-html="component.attributes.body | htmlSafe"
-            ng-click="edit()"
             style="background-image: url('{{component.attributes.src}}')">
-      </div>
-      <div  ng-show="editing"
-            class=" promethee-edit__wrapper
-                    promethee-edit__cover-content"
-            style="background-image: url('{{component.attributes.src}}')">
-        <summernote config="options" ng-model="component.attributes.body"></summernote>
       </div>
     </div>
   </div>
@@ -26,13 +18,6 @@
 
 <script>
   promethee.controller('CoverController', ['$scope', function($scope) {
-    $scope.options = {
-      toolbar: [
-        ['headline', ['style']],
-        ['style', ['bold', 'italic']],
-        ['alignment', ['ul', 'ol', 'paragraph']],
-        ['code', ['codeview']]
-      ]
-    };
+
   }]);
 </script>
