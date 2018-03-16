@@ -1,6 +1,25 @@
-
 <script type="text/javascript">
 promethee
+  .directive('addable', function() {
+    return {
+      restrict:'A',
+      link: function(scope, element, attrs) {
+        element.draggable({
+          revert: true,
+          revertDuration: 0,
+          scroll: true,
+          refreshPositions: true,
+          cursor: 'move', 
+          helper: 'clone',
+          appendTo: '.promethee-edit__move',
+          start: function() {
+          },
+          stop: function() {
+          }
+        });
+      }
+    }
+  })
   .directive('draggable', function() {
     return {
       restrict:'A',
@@ -44,19 +63,38 @@ promethee
         element.droppable({
           tolerance: 'pointer',
           drop: function(event, ui) {
+            var draggedFromLibrary = false;
             var draggedFromList = angular.element(ui.draggable).parent().scope().components;
-            var draggedFromIndex = parseInt(ui.draggable[0].getAttribute('data-index'));
-            // console.log('dragged', draggedFromList, draggedFromIndex);
-            draggedFromList.splice(draggedFromIndex, 1);
-
-            var component = angular.element(ui.draggable).scope().component;
             var droppedToList = angular.element(this).scope().components;
             var droppedToIndex = parseInt(this.getAttribute('data-index'));
-            if (draggedFromList == droppedToList) {
-              // The object we dragged was removed from the list
-              if (draggedFromIndex < droppedToIndex) {
-                // It was before the dropped index, so removing it changed the index
-                droppedToIndex -= 1;
+            if (draggedFromList === undefined) {
+              draggedFromLibrary = true;
+            }
+            if (draggedFromLibrary) {
+              var definition = angular.element(ui.draggable).scope().definition;
+              var component = angular.copy(definition.data);
+              // FIXME dirty
+              function guid() {
+                function s4() {
+                  return Math.floor((1 + Math.random()) * 0x10000)
+                    .toString(16)
+                    .substring(1);
+                }
+                return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+              }
+              component.id = guid();
+            } else {
+              var draggedFromIndex = parseInt(ui.draggable[0].getAttribute('data-index'));
+              // console.log('dragged', draggedFromList, draggedFromIndex);
+              draggedFromList.splice(draggedFromIndex, 1);
+
+              var component = angular.element(ui.draggable).scope().component;
+              if (draggedFromList == droppedToList) {
+                // The object we dragged was removed from the list
+                if (draggedFromIndex < droppedToIndex) {
+                  // It was before the dropped index, so removing it changed the index
+                  droppedToIndex -= 1;
+                }
               }
             }
             // console.log('dropped', component, droppedToList, droppedToIndex);
@@ -68,16 +106,75 @@ promethee
       }
     }
   });
+
+promethee.controller('AdderController', 
+  ['$scope', '$rootScope', 'definitions', 'identifier', 
+  function($scope, $rootScope, definitions, identifier) {
+
+  $scope.adding = false;
+  $scope.childrenToAddTo = null;
+  $scope.definitions = definitions;
+
+  $scope.close = function() {
+    $scope.adding = false;
+    $scope.addingToChildren = null;
+  };
+
+  $scope.pushComponent = function(definition) {
+    var definition = angular.copy(definition.data);
+    definition.id = identifier.generate();
+    $scope.childrenToAddTo.push(definition);
+    $scope.close();
+  };
+
+  $rootScope.addComponentTo = function(components) {
+    $scope.adding = true;
+    $scope.childrenToAddTo = components;
+  };
+
+}])
 </script>
 
 <div class="promethee-edit__move" ng-show="promethee.mode == 'move'">
-  <div class="promethee-edit__move__columns row">
-    <% 12.times do %>
-      <div class="col col-md-1"><div class="color"></div></div>
-    <% end %>
+  <div class="promethee-edit__library">
+    <div class="promethee-edit__library-header">Library</div>
+    <div class="promethee-edit__library-content">
+      <div class="row">
+        <div  ng-repeat="definition in promethee.definitions"
+              class="col-md-4">
+          <div class="promethee-edit__library__item thumbnail" addable>
+            <img ng-src="{{definition.thumb}}" class="img-responsive">
+            <h4>{{definition.name}}</h4>
+            <p>{{definition.description}}</p>
+          </div>
+        </div>
+    </div>
+    </div>
   </div>
+
+  <div class="promethee-edit__move__columns">
+    <div class="row">
+      <% 12.times do %>
+        <div class="col col-md-1"><div class="color"></div></div>
+      <% end %>
+    </div>
+  </div>
+
   <div class="promethee-edit__move__page">
     <ng-include src="'promethee/move/components'"></ng-include>
+  </div>
+
+  <div class="promethee-edit__inspect" ng-show="promethee.inspected">
+    <div class="promethee-edit__inspect-header">
+      <div class="pull-right">
+        <span ng-click="promethee.inspected = null"><%= fa_icon 'minus-square' %></span>
+      </div>
+      {{promethee.inspected.type}}
+    </div>
+    <div class="promethee-edit__inspect-content">
+      <ng-include ng-if="promethee.inspected" 
+                  src="'promethee/components/' + promethee.inspected.type + '/edit/inspect'"></ng-include>
+    </div>
   </div>
 </div>
 
@@ -85,6 +182,12 @@ promethee
   <div class="promethee-edit__move__component">
     <ng-include src="'promethee/components/' + component.type + '/edit/move'"></ng-include>
   </div>
+</script>
+
+<script type="text/ng-template" id="promethee/move/close">
+    <div  class="promethee-edit__component__close"
+          ng-click="remove(component, components)"
+          ng-show="promethee.inspected === component"><%= fa_icon :times %></div>
 </script>
 
 <script type="text/ng-template" id="promethee/move/components">

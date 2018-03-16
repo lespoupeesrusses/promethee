@@ -1,5 +1,6 @@
 <%
 promethee_data = Promethee::Data.new master_data
+logo = File.read "#{__dir__}/../../assets/images/icon-promethee.svg"
 %>
 
 <script type="text/javascript">
@@ -27,11 +28,13 @@ promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', funct
 
   $scope.promethee = {
     data: $scope.data,
+    definitions: [],
     inspected: null,
-    mode: 'write',
-    //mode: 'move',
+    // mode: 'write',
+    mode: 'move',
     preview: 'desktop',
-    fullscreen: false
+    // fullscreen: false
+    fullscreen: true
   };
 
   $scope.inspect = function(component, event) {
@@ -79,23 +82,23 @@ promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', funct
 }]);
 </script>
 
-<div
-  id="promethee"
-  ng-app="Promethee"
-  ng-controller="PrometheeController as prometheeController"
->
+<div  id="promethee"
+      ng-app="Promethee"
+      ng-controller="PrometheeController as prometheeController"
+      ng-init="component = promethee.data">
 
-  <div class="promethee-open" ng-click="opened = true">
-    <span class="promethee-open__button">Open Prométhée Editor</span>
-    <iframe class="promethee-open__thumb-preview" id="thumb-preview"></iframe>
+  <div class="promethee-open" ng-click="promethee.fullscreen = true">
+    <div class="promethee-open__logo"><%= logo.html_safe %></div>
+    <div class="promethee-open__button">Click to edit page</div>
+    <iframe class="promethee-open__thumb-preview" id="thumb-preview" name="thumb-preview"></iframe>
   </div>
 
-  <div class="promethee-edit" ng-class="{'promethee-edit--closed': !opened}">
+  <div class="promethee-edit" ng-show="promethee.fullscreen">
     <input type="hidden" name="page[data]" id="page_data" value="{{promethee.data}}" />
     <nav class="navbar navbar-default promethee-edit__navbar" ng-class="{'navbar-fixed-top': promethee.fullscreen }">
       <div class="container-fluid">
         <div class="navbar-header promethee-edit__icon">
-          <div class="navbar-brand"><%= File.read(__dir__ + '/../../assets/images/icon-promethee.svg').html_safe %></div>
+          <div class="navbar-brand"><%= logo.html_safe %></div>
         </div>
         <div id="navbar">
           <ul class="nav navbar-nav navbar-right">
@@ -104,17 +107,19 @@ promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', funct
             <li ng-click="enablePreview()" ng-class="{active: promethee.mode == 'preview'}">
               <a data-toggle="dropdown"><%= fa_icon :eye %></a>
               <ul class="dropdown-menu" ng-show="promethee.mode == 'preview'">
-                <li ng-click="promethee.preview = 'desktop'" ng-class="{active: promethee.preview == 'desktop'}"><a><i class="fa fa-desktop"></i></a></li>
-                <li ng-click="promethee.preview = 'tablet'" ng-class="{active: promethee.preview == 'tablet'}"><a><i class="fa fa-tablet"></i></a></li>
-                <li ng-click="promethee.preview = 'mobile'" ng-class="{active: promethee.preview == 'mobile'}"><a><i class="fa fa-mobile"></i></a></li>
+                <li ng-click="promethee.preview = 'desktop'" 
+                    ng-class="{active: promethee.preview == 'desktop'}">
+                    <a><i class="fa fa-desktop"></i></a></li>
+                <li ng-click="promethee.preview = 'tablet'" 
+                    ng-class="{active: promethee.preview == 'tablet'}">
+                    <a><i class="fa fa-tablet"></i></a></li>
+                <li ng-click="promethee.preview = 'mobile'" 
+                    ng-class="{active: promethee.preview == 'mobile'}">
+                    <a><i class="fa fa-mobile"></i></a></li>
               </ul>
             </li>
-            <li ng-click="submit()">
-              <a><%= fa_icon :save %></a>
-            </li>
-            <li ng-click="opened = false">
-              <a><%= fa_icon :close %></a>
-            </li>
+            <li ng-click="submit()"><a><%= fa_icon :save %></a></li>
+            <li ng-click="promethee.fullscreen = false"><a><%= fa_icon :close %></a></li>
           </ul>
         </div>
       </div>
@@ -124,7 +129,7 @@ promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', funct
       <%= render partial %>
     <% end %>
 
-    <%= render 'promethee/edit/write' %>
+    <%#= render 'promethee/edit/write' %>
     <%= render 'promethee/edit/move' %>
     <%= render 'promethee/edit/preview' %>
   </div>

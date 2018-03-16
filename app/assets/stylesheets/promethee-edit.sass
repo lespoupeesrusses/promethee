@@ -3,7 +3,7 @@ $promethee-transparent-grey: transparentize($promethee-grey, .8)
 $promethee-light-grey: #eee
 $promethee-color: #ff9900 !default
 
-@import 'promethee-edit/write'
+//@import 'promethee-edit/write'
 @import 'promethee-edit/move'
 @import 'promethee-edit/preview'
 
@@ -20,7 +20,7 @@ $promethee-color: #ff9900 !default
   position: relative
   display: inline-block
 
-  &, &::after, &__button, &__thumb-preview
+  &, &::after, &__logo, &__button, &__thumb-preview
     cursor: pointer
 
   &::after
@@ -29,20 +29,23 @@ $promethee-color: #ff9900 !default
     height: 100%
     top: 0
     left: 0
-    border: 2px solid #253742
+    border: 1px solid #253742
     box-sizing: border-box
     position: absolute
     display: block
 
+  &__logo
+    padding: 20px
+    svg
+      width: 50px
+      height: 50px
+
   &__button
-    background: #253742
-    padding: 10px
-    margin-bottom: 5px
-    display: block
     text-align: center
-    color: #fff
+    padding: 20px 0
 
   &__thumb-preview
+    background: #eee
     width: $rendered-width
     height: $rendered-height
     border: none
@@ -63,11 +66,6 @@ $promethee-color: #ff9900 !default
   .promethee-edit__write
     padding-right: 300px
     padding-top: 15px
-  .promethee-edit__inspect
-    top: 65px
-
-  &--closed
-    display: none
 
   &__navbar
     background: #232323

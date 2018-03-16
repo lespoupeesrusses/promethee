@@ -1,25 +1,45 @@
 .promethee-edit__move
   width: 720px
   margin: 0 auto
-  padding-bottom: 200px
-  *
+  .promethee-edit__component
     font-size: 100%
     line-height: 100%
     margin: 0
+    margin-bottom: 10px
+    border: 1px solid #ccc
+    min-height: 50px
+    &--selected
+      border-color: black
+    &__close
+      position: absolute
+      top: 5px
+      right: 5px
+      padding: 1px 2px 2px 3px
+      background: white
   &__columns
-    user-select: none
-    height: 100%
-    position: absolute
-    width: 730px
-    z-index: 0
-    opacity: 0.03
-    .col
-      height: 100%  
-      .color
-        height: 100%
-        background: black
+    .row
+      user-select: none
+      height: 100%
+      position: fixed
+      top: 0
+      bottom: 0
+      width: 730px
+      z-index: 0
+      opacity: 0.03
+      .col
+        height: 100%  
+        .color
+          height: 100%
+          background: black
   &__page
     z-index: 1
+  &__columns, &__page
+    .row
+      margin-left: -5px
+      margin-right: -5px
+    .col
+      padding-left: 5px
+      padding-right: 5px
   .header
     background: #253742
     padding: 5px 5px
@@ -29,12 +49,6 @@
     margin-bottom: 5px
   &__component
     user-select: none
-  .row
-    margin-left: -5px
-    margin-right: -5px
-  .col
-    padding-left: 5px
-    padding-right: 5px
   &__droppable
     visibility: hidden
     opacity: .2
@@ -73,30 +87,6 @@
         right: -5px
         top: -10px
 
-  // All this is done to mask droppable that would put the draggable at the same position 
-    // &--hidden
-    //   visibility: hidden
-    //   pointer-events: none
-  //   &--row
-  //     &:not(&--first)
-  //       visibility: hidden
-  //       pointer-events: none
-
-  //     &--first
-  //       position: absolute
-  //       top: 0
-  //       left: -25px
-  //       width: 40px
-  //       height: 400px
-
-  //     &--inside-column
-  //       position: absolute
-  //       top: 0
-  //       right: -25px
-  //       width: 40px
-  //       height: 400px
-
-
   .ui-draggable-dragging
     z-index: 1000
     opacity: 0.5
@@ -118,4 +108,37 @@
       &.promethee-edit__move__droppable--row--first
         display: block
 
+  .promethee-edit__inspect
+    position: fixed
+    width: calc(50vw - 390px)
+    min-width: 300px
+    top: 80px
+    right: 15px
+    bottom: 15px
+    z-index: 1000
+    &-header
+      font-size: 18px
+      font-weight: bold
+      text-transform: uppercase
+      margin-bottom: 20px
+    &-content
+      overflow: scroll
 
+  .promethee-edit__library
+    position: fixed
+    width: calc(50vw - 390px)
+    min-width: 300px
+    top: 80px
+    left: 15px
+    bottom: 15px
+    z-index: 1000
+    &-header
+      font-size: 18px
+      font-weight: bold
+      text-transform: uppercase
+      margin-bottom: 20px
+    &-content
+      overflow: scroll
+    &__item
+      max-width: 300px
+      z-index: 100000
