@@ -11,11 +11,7 @@ promethee
           refreshPositions: true,
           cursor: 'move', 
           helper: 'clone',
-          appendTo: '.promethee-edit__move',
-          start: function() {
-          },
-          stop: function() {
-          }
+          appendTo: '.promethee-edit__move'
         });
       }
     }
@@ -141,11 +137,10 @@ promethee.controller('AdderController',
     <div class="promethee-edit__library-content">
       <div class="row">
         <div  ng-repeat="definition in promethee.definitions"
-              class="col-md-4">
-          <div class="promethee-edit__library__item thumbnail" addable>
-            <img ng-src="{{definition.thumb}}" class="img-responsive">
-            <h4>{{definition.name}}</h4>
-            <p>{{definition.description}}</p>
+              class="col-md-12 col-lg-6">
+          <div class="promethee-edit__library__item" addable>
+            <div class="promethee-edit__library__item__icon" ng-bind-html="definition.icon | htmlSafe"></div>
+            <div class="promethee-edit__library__item__name">{{definition.name}}</div>
           </div>
         </div>
     </div>

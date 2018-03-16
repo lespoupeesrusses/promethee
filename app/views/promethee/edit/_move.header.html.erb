@@ -1,0 +1,7 @@
+  <div  ng-click="inspect(component, $event)"
+        ng-class="{'promethee-edit__component--selected': promethee.inspected === component}"
+        class=" promethee-edit__component
+                promethee-edit__component--<%= type %>">
+    <div  class="promethee-edit__component__close"
+          ng-click="remove(component, components)"
+          ng-show="promethee.inspected === component"><%= fa_icon :times %></div>

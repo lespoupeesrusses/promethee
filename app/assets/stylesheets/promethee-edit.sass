@@ -3,7 +3,6 @@ $promethee-transparent-grey: transparentize($promethee-grey, .8)
 $promethee-light-grey: #eee
 $promethee-color: #ff9900 !default
 
-//@import 'promethee-edit/write'
 @import 'promethee-edit/move'
 @import 'promethee-edit/preview'
 
@@ -18,7 +17,7 @@ $promethee-color: #ff9900 !default
   height: $real-height
   overflow: hidden
   position: relative
-  display: inline-block
+  text-align: center
 
   &, &::after, &__logo, &__button, &__thumb-preview
     cursor: pointer
@@ -40,11 +39,8 @@ $promethee-color: #ff9900 !default
       width: 50px
       height: 50px
 
-  &__button
-    text-align: center
-    padding: 20px 0
-
   &__thumb-preview
+    margin-top: 20px
     background: #eee
     width: $rendered-width
     height: $rendered-height
@@ -63,9 +59,6 @@ $promethee-color: #ff9900 !default
   padding-top: 50px
   z-index: 10000
   overflow: auto
-  .promethee-edit__write
-    padding-right: 300px
-    padding-top: 15px
 
   &__navbar
     background: #232323
@@ -88,31 +81,6 @@ $promethee-color: #ff9900 !default
   &__icon
     svg path
       fill: white
-
-  &__button
-    background: white
-    padding: 10px 15px
-    box-sizing: border-box
-    display: inline-block
-    font-size: 12px
-    color: #253742
-    text-align: center
-    line-height: normal
-    border-radius: 20px
-    cursor: pointer
-
-    &--squared
-      min-width: 20px
-      height: 20px
-      padding: 0 0 0 1px
-      line-height: 20px
-
-    &--bordered
-      border: 1px solid #253742
-
-    &--bordered#{&}--squared
-      min-width: 22px
-      height: 22px
 
   &__wrapper
     padding: 10px

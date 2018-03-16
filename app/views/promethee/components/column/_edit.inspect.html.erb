@@ -1,10 +1,11 @@
 <script type="text/ng-template" id="promethee/components/column/edit/inspect">
+  <b>Desktop</b>
   <div class="form-group">
-    <label class="label-control">Size</label>
-    <input ng-model="promethee.inspected.attributes.size" class="form-control" type="number"/>
+    <label class="label-control">Size: {{promethee.inspected.attributes.size}}</label>
+    <input ng-model="promethee.inspected.attributes.size" type="range" min="1" max="12">
   </div>
   <div class="form-group">
-    <label class="label-control">Offset</label>
-    <input ng-model="promethee.inspected.attributes.offset" class="form-control" type="number"/>
+    <label class="label-control">Offset: {{promethee.inspected.attributes.offset}}</label>
+    <input ng-model="promethee.inspected.attributes.offset" type="range" min="0" max="{{12-promethee.inspected.attributes.size}}">
   </div>
 </script>

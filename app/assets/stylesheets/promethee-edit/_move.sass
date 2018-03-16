@@ -4,8 +4,6 @@
   .promethee-edit__component
     font-size: 100%
     line-height: 100%
-    margin: 0
-    margin-bottom: 10px
     border: 1px solid #ccc
     min-height: 50px
     &--selected
@@ -109,9 +107,10 @@
         display: block
 
   .promethee-edit__inspect
+    background: white
     position: fixed
     width: calc(50vw - 390px)
-    min-width: 300px
+    min-width: 100px
     top: 80px
     right: 15px
     bottom: 15px
@@ -125,9 +124,10 @@
       overflow: scroll
 
   .promethee-edit__library
+    background: white
     position: fixed
     width: calc(50vw - 390px)
-    min-width: 300px
+    min-width: 100px
     top: 80px
     left: 15px
     bottom: 15px
@@ -142,3 +142,19 @@
     &__item
       max-width: 300px
       z-index: 100000
+      background-color: #253742
+      margin-bottom: 30px
+      height: 100px
+      min-width: 100px
+      padding-top: 10px
+      text-align: center
+      color: white
+      &__icon
+        display: block
+        svg
+          width: 60px
+      &__name
+        margin-top: -10px
+        font-size: 11px
+        font-weight: normal
+        text-transform: uppercase

@@ -1,11 +1,5 @@
 <script type="text/ng-template" id="promethee/components/image/edit/move">
-  <div  ng-click="inspect(component, $event)"
-        ng-class="{'promethee-edit__component--selected': promethee.inspected === component}"
-        class=" promethee-edit__component
-                promethee-edit__component--image">
-    <div  class="promethee-edit__component__close"
-          ng-click="remove(component, components)"
-          ng-show="promethee.inspected === component"><%= fa_icon :times %></div>
+  <%= render 'promethee/edit/move.header', type: 'image' %>
     <figure ng-show="component.attributes.src">
       <img  ng-src="{{component.attributes.src}}" 
             class="img-responsive">
