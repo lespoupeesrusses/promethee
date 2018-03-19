@@ -7,9 +7,7 @@
                 col-md-{{component.attributes.size}} 
                 col-md-offset-{{component.attributes.offset}}">
     <div class="promethee-edit__component__inner">
-      <div  class="promethee-edit__component__close"
-            ng-click="remove(component, components)"
-            ng-show="promethee.inspected === component"><%= fa_icon :times %></div>
+      <%= render 'promethee/edit/move.close' %>
         <div class="header">Column</div>
         <ng-include src="'promethee/move/components'"></ng-include>
         <div 
