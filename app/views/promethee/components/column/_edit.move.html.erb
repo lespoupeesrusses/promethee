@@ -6,19 +6,21 @@
                 col 
                 col-md-{{component.attributes.size}} 
                 col-md-offset-{{component.attributes.offset}}">
-    <div  class="promethee-edit__component__close"
-          ng-click="remove(component, components)"
-          ng-show="promethee.inspected === component"><%= fa_icon :times %></div>
-      <div class="header">Column</div>
-      <ng-include src="'promethee/move/components'"></ng-include>
-      <div 
-        class=" promethee-edit__move__droppable
-                promethee-edit__move__droppable--row
-                promethee-edit__move__droppable--row--inside-column"
-        droppable
-        data-index="{{$index+1}}"
-        data-type="{{type}}"
-        >
+    <div class="promethee-edit__component__inner">
+      <div  class="promethee-edit__component__close"
+            ng-click="remove(component, components)"
+            ng-show="promethee.inspected === component"><%= fa_icon :times %></div>
+        <div class="header">Column</div>
+        <ng-include src="'promethee/move/components'"></ng-include>
+        <div 
+          class=" promethee-edit__move__droppable
+                  promethee-edit__move__droppable--row
+                  promethee-edit__move__droppable--row--inside-column"
+          droppable
+          data-index="{{$index+1}}"
+          data-type="{{type}}"
+          >
+        </div>
       </div>
     </div>
   </div>

@@ -1,14 +1,15 @@
 <script type="text/ng-template" id="promethee/components/image/edit/move">
   <%= render 'promethee/edit/move.header', type: 'image' %>
-    <figure ng-show="component.attributes.src">
-      <img  ng-src="{{component.attributes.src}}" 
-            class="img-responsive">
-      <figcaption ng-show="component.attributes.caption" 
-                  ng-bind-html="component.attributes.caption | htmlSafe"></figcaption>
-    </figure>
-    <div  ng-hide="component.attributes.src">
-      <p  ng-hide="editing" 
-          class="text-center">Click to set the image</p>
+      <figure ng-show="component.attributes.src">
+        <img  ng-src="{{component.attributes.src}}" 
+              class="img-responsive">
+        <figcaption ng-show="component.attributes.caption" 
+                    ng-bind-html="component.attributes.caption | htmlSafe"></figcaption>
+      </figure>
+      <div  ng-hide="component.attributes.src">
+        <p  ng-hide="editing" 
+            class="text-center">Click to set the image</p>
+      </div>
     </div>
   </div>
 </script>

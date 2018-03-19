@@ -1,13 +1,14 @@
 <script type="text/ng-template" id="promethee/components/aside/edit/move">
   <%= render 'promethee/edit/move.header', type: 'aside' %>
-    <ng-include src="'promethee/move/components'"></ng-include>
-    <div
-      class=" promethee-edit__move__droppable
-              promethee-edit__move__droppable--row"
-      droppable
-      data-index="{{$index+1}}"
-      data-type="{{type}}"
-      >
+      <ng-include src="'promethee/move/components'"></ng-include>
+      <div
+        class=" promethee-edit__move__droppable
+                promethee-edit__move__droppable--row"
+        droppable
+        data-index="{{$index+1}}"
+        data-type="{{type}}"
+        >
+      </div>
     </div>
-  </script>
+  </div>
 </script>
