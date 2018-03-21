@@ -97,7 +97,6 @@ With stylesheets set:
 ```
 @import 'bootstrap'
 @import 'font-awesome.css'
-@import 'material_icons.css'
 @import 'summernote'
 @import 'promethee'
 ```
@@ -138,7 +137,6 @@ With stylesheets set:
 ```
 @import 'bootstrap'
 @import 'font-awesome.css'
-@import 'material_icons.css'
 @import 'summernote'
 @import 'promethee'
 @import 'promethee-edit'

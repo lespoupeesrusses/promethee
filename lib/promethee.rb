@@ -1,11 +1,8 @@
 require 'bootstrap-sass'
 require 'font-awesome-rails'
-require 'material_icons'
 require 'jquery-rails'
 require 'jquery-ui-rails'
-require 'tinymce-rails'
 require 'angularjs-rails'
-require 'angular-ui-tinymce/rails'
 require 'angular_rails_csrf'
 
 module Promethee

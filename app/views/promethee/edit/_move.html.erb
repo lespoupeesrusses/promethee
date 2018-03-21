@@ -10,8 +10,17 @@ promethee
           scroll: true,
           refreshPositions: true,
           cursor: 'move', 
+          cursorAt: { top: 0, left: 0 },
           helper: 'clone',
-          appendTo: '.promethee-edit__move'
+          appendTo: '.promethee-edit__move',
+          start: function(event, ui) {
+            var type = $(element[0]).data('type');
+            $('.promethee-edit__move').addClass('promethee-edit__move--dragging promethee-edit__move--dragging--' + type);
+          },
+          stop: function(event, ui) {
+            var type = $(element[0]).data('type');
+            $('.promethee-edit__move').removeClass('promethee-edit__move--dragging promethee-edit__move--dragging--' + type);
+          }
         });
       }
     }
@@ -30,23 +39,11 @@ promethee
             var $elementDragged = $(element[0]);
             var type = $elementDragged.data('type');
             $('.promethee-edit__move').addClass('promethee-edit__move--dragging promethee-edit__move--dragging--' + type);
-
-            // The droppable zone immediately before has no use, it would put the object at the same position
-            // FIXME the selector is not correct
-            /*
-            var $droppableBefore = $elementDragged.prev('.promethee-edit__move__draggable').find('.promethee-edit__move__droppable').last();
-            if ($droppableBefore.length === 0) {
-              // For the first child, we look for the previous droppable zone
-              $droppableBefore = $elementDragged.prev('.promethee-edit__move__droppable');
-            }
-            $droppableBefore.addClass('promethee-edit__move__droppable--hidden');
-            */
           },
           stop: function() {
             var $elementDragged = $(element[0]);
             var type = $elementDragged.data('type');
             $('.promethee-edit__move').removeClass('promethee-edit__move--dragging promethee-edit__move--dragging--' + type);
-            // $('.promethee-edit__move__droppable').removeClass('promethee-edit__move__droppable--hidden');
           }
         });
       }
@@ -138,12 +135,17 @@ promethee.controller('AdderController',
       <div class="row">
         <div  ng-repeat="definition in promethee.definitions"
               class="col-md-12 col-lg-6">
-          <div class="promethee-edit__library__item" addable>
+          <div  addable 
+                class="promethee-edit__library__item" 
+                data-type="{{definition.data.type}}">
             <div class="promethee-edit__library__item__icon" ng-bind-html="definition.icon | htmlSafe"></div>
             <div class="promethee-edit__library__item__name">{{definition.name}}</div>
           </div>
         </div>
+      </div>
     </div>
+    <div class="promethee-edit__library-header">Presets</div>
+    <div class="promethee-edit__library-content">
     </div>
   </div>
 
