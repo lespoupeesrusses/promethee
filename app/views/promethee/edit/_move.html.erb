@@ -39,11 +39,17 @@ promethee
             var $elementDragged = $(element[0]);
             var type = $elementDragged.data('type');
             $('.promethee-edit__move').addClass('promethee-edit__move--dragging promethee-edit__move--dragging--' + type);
+            var listId = $elementDragged.data('list-id');
+            var listIndex = $elementDragged.data('list-index');
+            $('.promethee-edit__move__droppable[data-id="' + listId + '"][data-index="' + listIndex + '"]').hide();
           },
           stop: function() {
             var $elementDragged = $(element[0]);
             var type = $elementDragged.data('type');
             $('.promethee-edit__move').removeClass('promethee-edit__move--dragging promethee-edit__move--dragging--' + type);
+            var listId = $elementDragged.data('list-id');
+            var listIndex = $elementDragged.data('list-index');
+            $('.promethee-edit__move__droppable[data-id="' + listId + '"][data-index="' + listIndex + '"]').show();
           }
         });
       }
@@ -77,7 +83,7 @@ promethee
               }
               component.id = guid();
             } else {
-              var draggedFromIndex = parseInt(ui.draggable[0].getAttribute('data-index'));
+              var draggedFromIndex = parseInt(ui.draggable[0].getAttribute('data-list-index'));
               // console.log('dragged', draggedFromList, draggedFromIndex);
               draggedFromList.splice(draggedFromIndex, 1);
 
@@ -182,30 +188,32 @@ promethee.controller('AdderController',
 </script>
 
 <script type="text/ng-template" id="promethee/move/components">
-  <div ng-init="type = component.type; components = component.children">
+  <div ng-init="parent_id = component.id; parent_type = component.type; components = component.children">
     <div 
       droppable
-      class=" promethee-edit__move__droppable 
-              promethee-edit__move__droppable--{{type}} 
-              promethee-edit__move__droppable--{{type}}--first"
+      class="<%= promethee_bem_classes 'promethee-edit__move__droppable', '--{{parent_type}}', '--first' %>"
+      data-id="{{parent_id}}"
+      data-type="{{parent_type}}"
       data-index="0"
       >
     </div>
     <div
       draggable
       ng-repeat="component in components"
-      class=" promethee-edit__move__draggable
-              promethee-edit__move__draggable--{{type}}"
-      data-index="{{$index}}"
+      class="<%= promethee_bem_classes 'promethee-edit__move__draggable', '--{{component.type}}' %>"
+      data-id="{{component.id}}"
       data-type="{{component.type}}"
+      data-list-id="{{parent_id}}"
+      data-list-type="{{parent_type}}"
+      data-list-index="{{$index}}"
       >
       <ng-include src="'promethee/move/component'"></ng-include>
       <div
         droppable
-        class=" promethee-edit__move__droppable 
-                promethee-edit__move__droppable--{{type}}"
+        class="<%= promethee_bem_classes 'promethee-edit__move__droppable', '--{{parent_type}}' %>"
+        data-id="{{parent_id}}"
+        data-type="{{parent_type}}"
         data-index="{{$index+1}}"
-        data-type="{{type}}"
         >
       </div>
     </div>

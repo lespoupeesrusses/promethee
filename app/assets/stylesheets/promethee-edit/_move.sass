@@ -112,47 +112,35 @@
     .promethee-edit__move__droppable
       display: none
       // It's a little specific, columns can be dropped on rows "first droppable", or on columns "inside droppables"
-      &.promethee-edit__move__droppable--row--inside-column,
-      &.promethee-edit__move__droppable--row--first
+      &.promethee-edit__move__droppable--row--first,
+      &.promethee-edit__move__droppable--row--inside-column
         display: block
 
   .promethee-edit
-    &__inspect
+    &__inspect, &__library
+      min-width: 100px
+      max-width: 400px
       background: white
       position: fixed
-      width: calc(50vw - 420px)
-      min-width: 100px
       top: 80px
-      right: 30px
       bottom: 15px
       z-index: 1000
+      width: calc(50vw - 420px)
+      overflow-x: hidden
+      overflow-y: scroll
       &-header
         font-size: 18px
         font-weight: bold
         text-transform: uppercase
         margin-bottom: 20px
-      &-content
-        overflow: scroll
+
+    &__inspect
+      right: 30px
       label.label-control
         font-weight: normal
 
     &__library
-      background: white
-      position: fixed
-      width: calc(50vw - 420px)
-      min-width: 100px
-      top: 80px
       left: 30px
-      bottom: 15px
-      z-index: 1000
-      overflow-y: scroll
-      overflow-x: hidden
-      &-header
-        font-size: 18px
-        font-weight: bold
-        text-transform: uppercase
-        margin-bottom: 20px
-      &-content
       &__item
         max-width: 300px
         z-index: 100000

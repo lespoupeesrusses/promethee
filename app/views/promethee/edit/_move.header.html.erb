@@ -1,7 +1,6 @@
 <%# This causes an infinite loop when imported as angular, so i import it as erb %>
 <div  ng-click="inspect(component, $event)"
       ng-class="{'promethee-edit__component--selected': promethee.inspected === component}"
-      class=" promethee-edit__component
-              promethee-edit__component--<%= type %>">
+      class="<%= promethee_bem_classes 'promethee-edit__component', "--#{type}" %>">
   <div class="promethee-edit__component__inner">
     <%= render 'promethee/edit/move.close' %>
