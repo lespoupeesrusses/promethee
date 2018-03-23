@@ -175,8 +175,10 @@ promethee.controller('AdderController',
       {{promethee.inspected.type}}
     </div>
     <div class="promethee-edit__inspect-content">
-      <ng-include ng-if="promethee.inspected" 
-                  src="'promethee/components/' + promethee.inspected.type + '/edit/inspect'"></ng-include>
+      <div ng-repeat="definition in promethee.definitions">
+        <ng-include src="'promethee/components/' + definition.data.type + '/edit/inspect'" 
+                    ng-show="promethee.inspected.type == definition.data.type"></ng-include>
+      </div>
     </div>
   </div>
 </div>
