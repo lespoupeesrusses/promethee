@@ -10,7 +10,7 @@ promethee
           scroll: true,
           refreshPositions: true,
           cursor: 'move', 
-          cursorAt: { top: 0, left: 0 },
+          cursorAt: { top: 50, left: 50 },
           helper: 'clone',
           appendTo: '.promethee-edit__move',
           start: function(event, ui) {
@@ -167,7 +167,7 @@ promethee.controller('AdderController',
     <ng-include src="'promethee/move/components'"></ng-include>
   </div>
 
-  <div class="promethee-edit__inspect" ng-show="promethee.inspected">
+  <div class="promethee-edit__inspect" ng-show="promethee.inspected.type">
     <div class="promethee-edit__inspect-header">
       <div class="pull-right">
         <span ng-click="promethee.inspected = null"><%= fa_icon 'minus-square' %></span>
