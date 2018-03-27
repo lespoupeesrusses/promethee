@@ -6,15 +6,20 @@ logo = File.read "#{__dir__}/../../assets/images/icon-promethee.svg"
 <script type="text/javascript">
 var promethee = angular
   .module('Promethee', ['summernote', 'ngAnimate'])
-  .value('definitions', []);
+  .value('definitions', [])
+  .value('presets', []);
 </script>
 
 <% promethee_util_partials.each do |partial| %>
   <%= render partial %>
 <% end %>
 
+<% promethee_preset_partials.each do |partial| %>
+    <%= render partial %>
+<% end %>
+
 <script type="text/javascript">
-promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', function($scope, summernoteConfig) {
+promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'presets', function($scope, summernoteConfig, presets) {
 
   // Data (TODO use Adder and probably page definition to init)
   if ($scope.data === null || $scope.data === '') {
@@ -29,6 +34,7 @@ promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', funct
   $scope.promethee = {
     data: $scope.data,
     definitions: [],
+    presets: presets,
     inspected: null,
     mode: 'move',
     preview: 'desktop',
@@ -106,13 +112,13 @@ promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', funct
             <li ng-click="enablePreview()" ng-class="{active: promethee.mode == 'preview'}">
               <a data-toggle="dropdown"><%= fa_icon :eye %></a>
               <ul class="dropdown-menu" ng-show="promethee.mode == 'preview'">
-                <li ng-click="promethee.preview = 'desktop'" 
+                <li ng-click="promethee.preview = 'desktop'"
                     ng-class="{active: promethee.preview == 'desktop'}">
                     <a><i class="fa fa-desktop"></i></a></li>
-                <li ng-click="promethee.preview = 'tablet'" 
+                <li ng-click="promethee.preview = 'tablet'"
                     ng-class="{active: promethee.preview == 'tablet'}">
                     <a><i class="fa fa-tablet"></i></a></li>
-                <li ng-click="promethee.preview = 'mobile'" 
+                <li ng-click="promethee.preview = 'mobile'"
                     ng-class="{active: promethee.preview == 'mobile'}">
                     <a><i class="fa fa-mobile"></i></a></li>
               </ul>

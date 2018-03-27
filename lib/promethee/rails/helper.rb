@@ -22,6 +22,10 @@ module Promethee::Rails::Helper
     promethee_partials_for 'utils/_*.html.erb'
   end
 
+  def promethee_preset_partials
+    promethee_partials_for 'presets/_*.html.erb'
+  end
+
   # promethee_bem_classes 'promethee-edit__move__droppable', '--{{type}}', '--first'
   # -> promethee-edit__move__droppable promethee-edit__move__droppable--{{type}} promethee-edit__move__droppable--{{type}}--first"
   def promethee_bem_classes(*args)

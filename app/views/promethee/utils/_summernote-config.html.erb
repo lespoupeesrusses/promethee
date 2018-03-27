@@ -4,10 +4,11 @@
     callbacks: {
       // Remove text styles on paste
       onPaste: function(event) {
-        // Get and trim clipboard content
+        event.preventDefault();
+
+        // Get and trim clipboard content as paragraph
         var paragraph = document.createElement('p');
         paragraph.textContent = ((event.originalEvent || event).clipboardData || window.clipboardData).getData('Text').trim();
-        event.preventDefault();
 
         // Delete selection if anything is selected (expected behaviour on paste)
         if((window.getSelection !== undefined ? window.getSelection() : document.selection.createRange()).toString().length > 0) {
