@@ -2,18 +2,19 @@
   promethee.constant('summernoteConfig', {
     disableDragAndDrop: true,
     callbacks: {
+      // Remove text styles on paste
       onPaste: function(event) {
-        // Remove text styles on paste
-
+        // Get and trim clipboard content
         var paragraph = document.createElement('p');
         paragraph.textContent = ((event.originalEvent || event).clipboardData || window.clipboardData).getData('Text').trim();
         event.preventDefault();
 
-        // Delete if anything is selected (expected behaviour on paste)
+        // Delete selection if anything is selected (expected behaviour on paste)
         if((window.getSelection !== undefined ? window.getSelection() : document.selection.createRange()).toString().length > 0) {
           document.execCommand('delete', false);
         }
 
+        // Insert trimmed clipboard content as paragraph
         document.execCommand('insertHTML', false, paragraph.outerHTML);
       }
     },
