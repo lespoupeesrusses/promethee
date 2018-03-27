@@ -172,6 +172,7 @@ promethee.controller('AdderController',
       <div class="row">
         <div ng-repeat="preset in promethee.presets" class="col-md-12 col-lg-6">
           <div addable class="promethee-edit__library__item" data-type="text" data-preset="{{preset.name}}">
+            <div class="promethee-edit__library__item__icon" ng-bind-html="preset.icon | htmlSafe"></div>
             <div class="promethee-edit__library__item__name">{{preset.name}}</div>
           </div>
         </div>
