@@ -110,7 +110,8 @@
   // Except for columns, which can be dropped only on rows
   &--dragging.promethee-edit__move--dragging--column
     .promethee-edit__move__droppable
-      display: none
+      &:not(&.promethee-edit__move__droppable--row--first):not(&.promethee-edit__move__droppable--row--inside-column)
+        transform: translateX(-100vh)
       // It's a little specific, columns can be dropped on rows "first droppable", or on columns "inside droppables"
       &.promethee-edit__move__droppable--row--first,
       &.promethee-edit__move__droppable--row--inside-column
