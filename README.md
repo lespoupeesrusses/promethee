@@ -129,7 +129,6 @@ With javascript set:
 //= require summernote
 //= require angular
 //= require angular-animate
-//= require angular-ui-bootstrap
 //= require angular-summernote
 //= require ui-sortable
 ```
