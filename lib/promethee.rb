@@ -3,7 +3,6 @@ require 'font-awesome-rails'
 require 'jquery-rails'
 require 'jquery-ui-rails'
 require 'angularjs-rails'
-require 'angular_rails_csrf'
 
 module Promethee
   def self.root
