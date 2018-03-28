@@ -1,13 +1,12 @@
 <%
   init = <<~JAVASCRIPT
     promethee.definitions.push({
-      name: 'Column',
-      icon: #{render('promethee/components/column/icon').to_json.html_safe},
+      name: 'Collection',
+      icon: #{render('promethee/components/collection/icon').to_json.html_safe},
       data: {
-        type: 'column',
+        type: 'collection',
         attributes: {
-          size: 4,
-          offset: 0
+          items_per_line: 6
         },
         children: []
       }

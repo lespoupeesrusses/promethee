@@ -1,0 +1,29 @@
+<script type="text/ng-template" id="promethee/components/collection/edit/move">
+  <%= render 'promethee/edit/move.header', type: 'collection' %>
+      <div class="header">Collection</div>
+      <div class="row" ng-controller="CollectionMoveController" ng-init="parent_id = component.id; parent_type = component.type; components = component.children">
+        <div class="col-md-{{size}}" ng-repeat-start="component in components">
+          <ng-include src="'promethee/move/component'"></ng-include>
+        </div>
+        <div class="clearfix" ng-if="$index%itemsPerLine === itemsPerLine - 1" ng-repeat-end></div>
+      </div>
+    </div>
+  </div>
+</script>
+
+<script>
+  promethee.controller('CollectionMoveController', ['$scope', function($scope) {
+    Object.defineProperties($scope, {
+      itemsPerLine: {
+        get: function() {
+          return $scope.component.attributes.items_per_line;
+        }
+      },
+      size: {
+        get: function() {
+          return Math.floor(12/$scope.itemsPerLine);
+        }
+      }
+    });
+  }]);
+</script>

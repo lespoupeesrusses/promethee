@@ -34,7 +34,7 @@ promethee
           revertDuration: 0,
           scroll: true,
           refreshPositions: true,
-          cursor: 'move', 
+          cursor: 'move',
           start: function() {
             var $elementDragged = $(element[0]);
             var type = $elementDragged.data('type');
@@ -55,7 +55,7 @@ promethee
       }
     }
   })
-  .directive('droppable', function($compile) {
+  .directive('droppable', ['$compile', 'presets', 'identifier', function($compile, presets, identifier) {
     return {
       restrict: 'A',
       link: function(scope, element, attrs) {
@@ -66,22 +66,39 @@ promethee
             var draggedFromList = angular.element(ui.draggable).parent().scope().components;
             var droppedToList = angular.element(this).scope().components;
             var droppedToIndex = parseInt(this.getAttribute('data-index'));
+            var draggedFromPresets = ui.draggable.attr('data-preset');
+
+            if(draggedFromPresets) {
+              var preset = presets.find(function(preset) {
+                return preset.name === draggedFromPresets;
+              });
+
+              var provideIdentifiers = function(components) {
+                var component;
+                for(var i = 0; i < components.length; i++) {
+                  component = components[i];
+                  component.id = identifier.generate();
+                  if(Array.isArray(component.children)) provideIdentifiers(component.children);
+                }
+
+                return components;
+              };
+
+              var components = provideIdentifiers(angular.copy(preset.components));
+              droppedToList.splice.apply(droppedToList, [droppedToIndex, 0].concat(components));
+
+              scope.$apply();
+
+              return;
+            }
+
             if (draggedFromList === undefined) {
               draggedFromLibrary = true;
             }
             if (draggedFromLibrary) {
               var definition = angular.element(ui.draggable).scope().definition;
               var component = angular.copy(definition.data);
-              // FIXME dirty
-              function guid() {
-                function s4() {
-                  return Math.floor((1 + Math.random()) * 0x10000)
-                    .toString(16)
-                    .substring(1);
-                }
-                return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
-              }
-              component.id = guid();
+              component.id = identifier.generate();
             } else {
               var draggedFromIndex = parseInt(ui.draggable[0].getAttribute('data-list-index'));
               // console.log('dragged', draggedFromList, draggedFromIndex);
@@ -104,10 +121,10 @@ promethee
         });
       }
     }
-  });
+  }]);
 
-promethee.controller('AdderController', 
-  ['$scope', '$rootScope', 'definitions', 'identifier', 
+promethee.controller('AdderController',
+  ['$scope', '$rootScope', 'definitions', 'identifier',
   function($scope, $rootScope, definitions, identifier) {
 
   $scope.adding = false;
@@ -141,8 +158,8 @@ promethee.controller('AdderController',
       <div class="row">
         <div  ng-repeat="definition in promethee.definitions"
               class="col-md-12 col-lg-6">
-          <div  addable 
-                class="promethee-edit__library__item" 
+          <div  addable
+                class="promethee-edit__library__item"
                 data-type="{{definition.data.type}}">
             <div class="promethee-edit__library__item__icon" ng-bind-html="definition.icon | htmlSafe"></div>
             <div class="promethee-edit__library__item__name">{{definition.name}}</div>
@@ -152,6 +169,14 @@ promethee.controller('AdderController',
     </div>
     <div class="promethee-edit__library-header">Presets</div>
     <div class="promethee-edit__library-content">
+      <div class="row">
+        <div ng-repeat="preset in promethee.presets" class="col-md-12 col-lg-6">
+          <div addable class="promethee-edit__library__item" data-type="text" data-preset="{{preset.name}}">
+            <div class="promethee-edit__library__item__icon" ng-bind-html="preset.icon | htmlSafe"></div>
+            <div class="promethee-edit__library__item__name">{{preset.name}}</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -176,7 +201,7 @@ promethee.controller('AdderController',
     </div>
     <div class="promethee-edit__inspect-content">
       <div ng-repeat="definition in promethee.definitions">
-        <ng-include src="'promethee/components/' + definition.data.type + '/edit/inspect'" 
+        <ng-include src="'promethee/components/' + definition.data.type + '/edit/inspect'"
                     ng-show="promethee.inspected.type == definition.data.type"></ng-include>
       </div>
     </div>
@@ -191,7 +216,7 @@ promethee.controller('AdderController',
 
 <script type="text/ng-template" id="promethee/move/components">
   <div ng-init="parent_id = component.id; parent_type = component.type; components = component.children">
-    <div 
+    <div
       droppable
       class="<%= promethee_bem_classes 'promethee-edit__move__droppable', '--{{parent_type}}', '--first' %>"
       data-id="{{parent_id}}"
