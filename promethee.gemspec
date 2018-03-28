@@ -16,13 +16,11 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'rails', '>= 5.1.3'
   s.add_dependency 'angularjs-rails', '~> 1.6.2'
-  s.add_dependency 'angular-ui-tinymce-rails'
-  s.add_dependency 'bootstrap-sass', '~> 3.3.6'
-  s.add_dependency 'sass-rails', '>= 3.2'
+  s.add_dependency 'bootstrap-sass'
+  s.add_dependency 'sass-rails'
   s.add_dependency 'jquery-rails'
   s.add_dependency 'jquery-ui-rails'
   s.add_dependency 'font-awesome-rails'
-  s.add_dependency 'angular_rails_csrf'
 
   s.add_development_dependency 'byebug'
 end
