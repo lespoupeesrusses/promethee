@@ -283,6 +283,13 @@ class CreateLocalizations < ActiveRecord::Migration[5.1]
 end
 ```
 
+In the controllers, don't forget to change the params to convert the data from json to a hash:
+```
+  def page_params
+    params.require(:page).permit(:name, :metier, :position, :parent_id, :data).tap { |permitted| permitted[:data] = JSON.parse(params[:page][:data]) }
+  end
+```
+
 ### SQLite (or other not native json storage)
 
 Prométhée takes a ruby hash.
