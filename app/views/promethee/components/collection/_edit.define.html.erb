@@ -1,0 +1,17 @@
+<%
+  init = <<~JAVASCRIPT
+    promethee.definitions.push({
+      name: 'Collection',
+      icon: #{render('promethee/components/collection/icon').to_json.html_safe},
+      data: {
+        type: 'collection',
+        attributes: {
+          items_per_line: 6
+        },
+        children: []
+      }
+    })
+  JAVASCRIPT
+%>
+
+<%= content_tag :div, nil, 'ng-init': init %>
