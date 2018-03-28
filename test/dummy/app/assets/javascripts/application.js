@@ -6,4 +6,5 @@
 //= require angular
 //= require angular-animate
 //= require angular-summernote
+//= require ui-sortable
 //= require_self

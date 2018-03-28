@@ -131,6 +131,7 @@ With javascript set:
 //= require angular-animate
 //= require angular-ui-bootstrap
 //= require angular-summernote
+//= require ui-sortable
 ```
 
 With stylesheets set:

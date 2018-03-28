@@ -5,7 +5,7 @@ logo = File.read "#{__dir__}/../../assets/images/icon-promethee.svg"
 
 <script type="text/javascript">
 var promethee = angular
-  .module('Promethee', ['summernote', 'ngAnimate'])
+  .module('Promethee', ['summernote', 'ngAnimate', 'ui.sortable'])
   .value('definitions', [])
   .value('presets', []);
 </script>
@@ -19,7 +19,7 @@ var promethee = angular
 <% end %>
 
 <script type="text/javascript">
-promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'presets', function($scope, summernoteConfig, presets) {
+promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'presets', 'identifier', function($scope, summernoteConfig, presets, identifier) {
 
   // Data (TODO use Adder and probably page definition to init)
   if ($scope.data === null || $scope.data === '') {
@@ -30,6 +30,8 @@ promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'pres
       children: []
     };
   }
+
+  $scope.identifier = identifier;
 
   $scope.promethee = {
     data: $scope.data,
