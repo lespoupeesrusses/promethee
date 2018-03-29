@@ -20,25 +20,24 @@ module Promethee
     # The data acts as a hash
     def [](value)
       @master_data[value]
-    end 
+    end
 
     protected
 
     def hashify(data)
-      case data.class.to_s
-      when 'Hash'
-        h = data
-      when 'String'
-        h = JSON.parse data
-      when 'NilClass'
-        h = {}
-      end
+      # https://github.com/bbatsov/ruby-style-guide#indent-conditional-assignment
+      h = case data.class.to_s
+          when 'Hash', 'ActiveSupport::HashWithIndifferentAccess' then data
+          when 'String' then JSON.parse data
+          else {}
+          end
+
       h.deep_symbolize_keys
     end
 
     def check_master_integrity
       @master_data[:version] = 1 unless @master_data.include? :version
-      @master_data[:children] = [] unless @master_data.include? :children 
+      @master_data[:children] = [] unless @master_data.include? :children
     end
 
     # We merge the localization data in the components from the master data.
