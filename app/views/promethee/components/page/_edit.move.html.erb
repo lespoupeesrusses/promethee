@@ -4,6 +4,15 @@
       class="<%= promethee_bem_classes 'promethee-edit__component', "--page" %>">
     <div class="promethee-edit__component__inner">
       <div class="header">Page</div>
+
+      <div class="promethee-edit__move__columns">
+        <div class="row">
+          <% 12.times do %>
+            <div class="col col-md-1"><div class="color"></div></div>
+          <% end %>
+        </div>
+      </div>
+
       <ng-include src="'promethee/move/components'"></ng-include>
     </div>
   </div>
