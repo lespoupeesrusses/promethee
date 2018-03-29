@@ -1,0 +1,10 @@
+<script type="text/ng-template" id="promethee/components/page/edit/move">
+  <div ng-click="inspect(component, $event)"
+      ng-class="{'promethee-edit__component--selected': promethee.inspected === component}"
+      class="<%= promethee_bem_classes 'promethee-edit__component', "--page" %>">
+    <div class="promethee-edit__component__inner">
+      <div class="header">Page</div>
+      <ng-include src="'promethee/move/components'"></ng-include>
+    </div>
+  </div>
+</script>

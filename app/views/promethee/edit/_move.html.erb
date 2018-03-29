@@ -9,7 +9,7 @@ promethee
           revertDuration: 0,
           scroll: true,
           refreshPositions: true,
-          cursor: 'move', 
+          cursor: 'move',
           cursorAt: { top: 50, left: 50 },
           helper: 'clone',
           appendTo: '.promethee-edit__move',
@@ -123,32 +123,32 @@ promethee
     }
   }]);
 
-promethee.controller('AdderController',
-  ['$scope', '$rootScope', 'definitions', 'identifier',
-  function($scope, $rootScope, definitions, identifier) {
+// promethee.controller('AdderController',
+//   ['$scope', '$rootScope', 'definitions', 'identifier',
+//   function($scope, $rootScope, definitions, identifier) {
 
-  $scope.adding = false;
-  $scope.childrenToAddTo = null;
-  $scope.definitions = definitions;
+//   $scope.adding = false;
+//   $scope.childrenToAddTo = null;
+//   $scope.definitions = definitions;
 
-  $scope.close = function() {
-    $scope.adding = false;
-    $scope.addingToChildren = null;
-  };
+//   $scope.close = function() {
+//     $scope.adding = false;
+//     $scope.addingToChildren = null;
+//   };
 
-  $scope.pushComponent = function(definition) {
-    var definition = angular.copy(definition.data);
-    definition.id = identifier.generate();
-    $scope.childrenToAddTo.push(definition);
-    $scope.close();
-  };
+//   $scope.pushComponent = function(definition) {
+//     var definition = angular.copy(definition.data);
+//     definition.id = identifier.generate();
+//     $scope.childrenToAddTo.push(definition);
+//     $scope.close();
+//   };
 
-  $rootScope.addComponentTo = function(components) {
-    $scope.adding = true;
-    $scope.childrenToAddTo = components;
-  };
+//   $rootScope.addComponentTo = function(components) {
+//     $scope.adding = true;
+//     $scope.childrenToAddTo = components;
+//   };
 
-}])
+// }])
 </script>
 
 <div class="promethee-edit__move" ng-show="promethee.mode == 'move'">
@@ -189,7 +189,7 @@ promethee.controller('AdderController',
   </div>
 
   <div class="promethee-edit__move__page">
-    <ng-include src="'promethee/move/components'"></ng-include>
+    <ng-include src="'promethee/move/component'"></ng-include>
   </div>
 
   <div class="promethee-edit__inspect" ng-show="promethee.inspected.type">
@@ -200,6 +200,7 @@ promethee.controller('AdderController',
       {{promethee.inspected.type}}
     </div>
     <div class="promethee-edit__inspect-content">
+      <ng-include src="'promethee/components/page/edit/inspect'" ng-show="promethee.inspected.type == 'page'"></ng-include>
       <div ng-repeat="definition in promethee.definitions">
         <ng-include src="'promethee/components/' + definition.data.type + '/edit/inspect'"
                     ng-show="promethee.inspected.type == definition.data.type"></ng-include>

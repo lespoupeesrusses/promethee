@@ -5,7 +5,9 @@ logo = File.read "#{__dir__}/../../assets/images/icon-promethee.svg"
 
 <script type="text/javascript">
 var promethee = angular
-  .module('Promethee', ['summernote', 'ngAnimate', 'ui.sortable'])
+  .module('Promethee', ['summernote', 'ngAnimate', 'ui.sortable'], ['$rootScopeProvider', function($rootScopeProvider) {
+    $rootScopeProvider.digestTtl(15);
+  }])
   .value('definitions', [])
   .value('presets', []);
 </script>
@@ -20,13 +22,18 @@ var promethee = angular
 
 <script type="text/javascript">
 promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'presets', 'identifier', function($scope, summernoteConfig, presets, identifier) {
+  $scope.data = <%= promethee_data.to_json.html_safe %>;
 
   // Data (TODO use Adder and probably page definition to init)
-  if ($scope.data === null || $scope.data === '') {
+  if (typeof $scope.data !== 'object' || $scope.data === null || $scope.data.type !== 'page') {
     $scope.data = {
       id: '',
       type: 'page',
       version: 1,
+      attributes: {
+        title: 'New page',
+        description: ''
+      },
       children: []
     };
   }
@@ -83,9 +90,6 @@ promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'pres
   };
 
   $scope.summernoteConfig = summernoteConfig;
-
-  $scope.promethee.data = <%= promethee_data.to_json.html_safe %>;
-
   $scope.sendPreviewData('thumb-preview');
 }]);
 </script>
