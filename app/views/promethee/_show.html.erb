@@ -2,5 +2,5 @@
 promethee_data = Promethee::Data.new master_data, localization_data: localization_data
 %>
 <div class="promethee">
-  <%= render 'promethee/show/components', components: promethee_data[:children] %>
+  <%= render 'promethee/show/component', component: promethee_data %>
 </div>

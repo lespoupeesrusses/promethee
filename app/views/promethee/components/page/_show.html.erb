@@ -1,1 +1,14 @@
+<%
+  stylesheets = component[:attributes][:stylesheets]
+  javascripts = component[:attributes][:javascripts]
+%>
+
+<% if stylesheets.present? %>
+  <style><%= stylesheets.html_safe %></style>
+<% end %>
+
+<% if javascripts.present? %>
+  <script><%= javascripts.html_safe %></script>
+<% end %>
+
 <%= render 'promethee/show/components', components: component[:children] %>
