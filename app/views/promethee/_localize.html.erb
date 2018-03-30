@@ -15,7 +15,7 @@ promethee_data = Promethee::Data.new master_data, localization_data: localizatio
   prometheeLocalizer.controller('PrometheeLocalizerController', ['$scope', 'data', function($scope, data) {
 
     $scope.data = data;
-    $scope.component = data.components;
+    $scope.component = data;
 
     $scope.options = {
       toolbar: [
