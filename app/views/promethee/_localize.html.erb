@@ -39,7 +39,7 @@ promethee_data = Promethee::Data.new master_data, localization_data: localizatio
     <ng-include src="'promethee/components/' + component.type + '/localize'"></ng-include>
   </script>
   
-  <input type="hidden" name="localization[data]" id="page_data" value="{{data}}" />
+  <input type="hidden" name="<%= object_name %>[<%= method_name %>]" id="page_data" value="{{data}}" />
 
   <% Dir["#{__dir__}/components/*/_localize.html.erb"].map do |file| %>
     <% partial = file.split('app/views/').last.gsub('.html.erb', '').gsub('/_', '/') %>

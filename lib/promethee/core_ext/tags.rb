@@ -17,7 +17,13 @@ module ActionView
           localization_data = object.send @method_name unless object.nil?
           localization_data = @options[:value] if @options.include? :value
           master_data = @options[:master]
-          ApplicationController.renderer.render partial: 'promethee/localize', locals: { localization_data: localization_data, master_data: master_data }
+          ApplicationController.renderer.render partial: 'promethee/localize', 
+                                                locals: { 
+                                                  object_name: @object_name,
+                                                  method_name: @method_name,
+                                                  localization_data: localization_data, 
+                                                  master_data: master_data 
+                                                }
         end
       end
     end
