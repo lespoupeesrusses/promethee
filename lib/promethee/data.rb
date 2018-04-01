@@ -52,7 +52,7 @@ module Promethee
         components: []
       }
       # We create a flat list of the children and all their child, in the master's order
-      master_components_flat = Promethee::Data.flatten_components @master_data.deep_dup[:children]
+      master_components_flat = Promethee::Data.flatten_components @master_data.deep_dup
       master_components_flat.each do |component|
         localized_component = Promethee::Data.find_localized_component component[:id], @localization_data_raw
         # We take either the localized, or the master component
@@ -93,12 +93,10 @@ module Promethee
     end
 
     # Takes an array of components and puts every component and their children into a unique flat array
-    def self.flatten_components(components)
-      return [] if components.nil?
-      components.reduce [] do |flat_components, component|
-        flat_components +
-        [component.except(:children)] +
-        flatten_components(component[:children] || [])
+    def self.flatten_components(component)
+      flat_components = [component.except(:children)]
+      (component[:children] || []).reduce flat_components do |flat_components, component|
+        flat_components + flatten_components(component)
       end
     end
   end
