@@ -1,10 +1,16 @@
 class Demo
 
-  def self.data 
+  def self.data
     {
       id: 'ero342ezr',
       type: 'page',
       version: 1,
+      attributes: {
+        title: 'Page',
+        description: '',
+        stylesheets: '',
+        javascripts: ''
+      },
       children: [
         {
           id: '5lebjl4j6',
@@ -142,10 +148,22 @@ class Demo
     }
   end
 
-  def self.localization 
+  def self.localization
     {
       version: 1,
       components: [
+        {
+          id: 'ero342ezr',
+          type: 'page',
+          version: 1,
+          master_version: 1,
+          attributes: {
+            title: 'Page',
+            description: '',
+            stylesheets: '',
+            javascripts: ''
+          }
+        },
         {
           id: '6lebjl4j6',
           type: 'text',
