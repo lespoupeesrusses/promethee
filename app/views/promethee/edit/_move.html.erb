@@ -123,32 +123,6 @@ promethee
     }
   }]);
 
-// promethee.controller('AdderController',
-//   ['$scope', '$rootScope', 'definitions', 'identifier',
-//   function($scope, $rootScope, definitions, identifier) {
-
-//   $scope.adding = false;
-//   $scope.childrenToAddTo = null;
-//   $scope.definitions = definitions;
-
-//   $scope.close = function() {
-//     $scope.adding = false;
-//     $scope.addingToChildren = null;
-//   };
-
-//   $scope.pushComponent = function(definition) {
-//     var definition = angular.copy(definition.data);
-//     definition.id = identifier.generate();
-//     $scope.childrenToAddTo.push(definition);
-//     $scope.close();
-//   };
-
-//   $rootScope.addComponentTo = function(components) {
-//     $scope.adding = true;
-//     $scope.childrenToAddTo = components;
-//   };
-
-// }])
 </script>
 
 <div class="promethee-edit__move" ng-show="promethee.mode == 'move'">
@@ -186,9 +160,6 @@ promethee
 
   <div class="promethee-edit__inspect" ng-show="promethee.inspected.type">
     <div class="promethee-edit__inspect-header">
-      <div class="pull-right">
-        <span ng-click="promethee.inspected = null"><%= fa_icon 'minus-square' %></span>
-      </div>
       {{promethee.inspected.type}}
     </div>
     <div class="promethee-edit__inspect-content">

@@ -46,7 +46,7 @@ promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'pres
     data: $scope.data,
     definitions: [],
     presets: presets,
-    inspected: null,
+    inspected: $scope.data,
     mode: 'move',
     preview: 'desktop',
     // fullscreen: false
