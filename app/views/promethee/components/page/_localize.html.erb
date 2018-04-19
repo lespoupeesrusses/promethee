@@ -1,15 +1,17 @@
 <script type="text/ng-template" id="promethee/components/page/localize">
+  <hr>
   <div class="row">
     <div class="col-md-6">
-      <b>Master</b>
-      <input ng-model="component.master.attributes.title" type="text" class="form-control" disabled/>
-      <input ng-model="component.master.attributes.description" type="text" class="form-control" disabled/>
+      <b>Page title</b>
+      <p>{{component.master.attributes.title}}</p><br>
+      <b>Page description</b>
+      <p>{{component.master.attributes.description}}</p>
     </div>
     <div class="col-md-6">
-      <b>Local</b>
-      <input ng-model="component.attributes.title" type="text" class="form-control">
-      <input ng-model="component.attributes.description" type="text" class="form-control">
+      <b>Page title</b>
+      <input ng-model="component.attributes.title" type="text" class="form-control"><br>
+      <b>Page description</b>
+      <textarea ng-model="component.attributes.description" type="text" class="form-control"></textarea>
     </div>
   </div>
-  <hr>
 </script>
