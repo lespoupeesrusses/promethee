@@ -1,18 +1,28 @@
 <script type="text/ng-template" id="promethee/components/image/localize">
-  <hr>
-  <div class="row">
-    <div class="col-md-6">
-      <img ng-src="{{component.master.attributes.src}}" class="img-responsive" />
-      <b>Alt</b>
-      <p>{{component.master.attributes.alt}}</p>
-      <b>Description</b>
-      <p>{{component.master.attributes.caption | htmlSafe}}</p>
-    </div>
-    <div class="col-md-6">
-      <b>Alt</b>
-      <input ng-model="component.attributes.alt" type="text" class="form-control">
-      <b>Description</b>
-      <summernote config="options" ng-model="component.attributes.caption"></summernote>
+  <div ng-show="component.master.attributes.alt || component.master.attributes.caption">
+    <hr>
+    <div class="row">
+      <div class="col-md-6">
+        <img ng-src="{{component.master.attributes.src}}" class="img-responsive" />
+        <div ng-show="component.master.attributes.alt">
+          <b>Alt</b>
+          <p>{{component.master.attributes.alt}}</p>
+        </div>
+        <div ng-show="component.master.attributes.caption">        
+          <b>Description</b>
+          <p>{{component.master.attributes.caption | htmlSafe}}</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div ng-show="component.attributes.alt">
+          <b>Alt</b>
+          <input ng-model="component.attributes.alt" type="text" class="form-control">
+        </div>
+        <div ng-show="component.attributes.caption">
+          <b>Description</b>
+          <summernote config="options" ng-model="component.attributes.caption"></summernote>
+        </div>
+      </div>
     </div>
   </div>
 </script>

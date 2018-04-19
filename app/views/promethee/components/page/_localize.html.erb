@@ -4,14 +4,18 @@
     <div class="col-md-6">
       <b>Page title</b>
       <p>{{component.master.attributes.title}}</p><br>
-      <b>Page description</b>
-      <p>{{component.master.attributes.description}}</p>
+      <div ng-show="component.master.attributes.description">
+        <b>Page description</b>
+        <p>{{component.master.attributes.description}}</p>
+      </div>
     </div>
     <div class="col-md-6">
       <b>Page title</b>
       <input ng-model="component.attributes.title" type="text" class="form-control"><br>
-      <b>Page description</b>
-      <textarea ng-model="component.attributes.description" type="text" class="form-control"></textarea>
+      <div ng-show="component.attributes.description">
+        <b>Page description</b>
+        <textarea ng-model="component.attributes.description" type="text" class="form-control"></textarea>
+      </div>
     </div>
   </div>
 </script>
