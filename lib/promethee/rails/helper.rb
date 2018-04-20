@@ -5,7 +5,7 @@ module Promethee::Rails::Helper
 
   def promethee_class_for component, *modifiers
     base = "promethee__component"
-    component_base = "#{base}--#{component[:type]}"
+    component_base = "#{base}__#{component[:type]}"
 
     [
       base,
