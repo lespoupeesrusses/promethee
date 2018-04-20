@@ -2,8 +2,12 @@
   <%= render 'promethee/edit/move.header', type: 'cover' %>
       <div  class=" promethee-edit__wrapper 
                     promethee-edit__cover-content"
-            ng-bind-html="component.attributes.body | htmlSafe"
-            style="background-image: url('{{component.attributes.src}}')">    
+            style="background-image: url('{{component.attributes.src}}')">
+        <hgroup>
+          <p class="surtitle">{{component.attributes.surtitle}}</p>
+          <h1>{{component.attributes.title}}</h1>
+          <h2>{{component.attributes.subtitle}}</h2>
+        </hgroup>            
       </div>
     </div>
   </div>

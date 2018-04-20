@@ -116,6 +116,8 @@ promethee
             // console.log('dropped', component, droppedToList, droppedToIndex);
             droppedToList.splice(droppedToIndex, 0, component);
 
+            scope.promethee.inspected = component
+            
             scope.$apply();
           }
         });
