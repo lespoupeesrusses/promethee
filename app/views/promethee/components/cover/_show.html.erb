@@ -4,7 +4,7 @@ surtitle = component[:attributes][:surtitle].to_s
 title = component[:attributes][:title].to_s
 subtitle = component[:attributes][:subtitle].to_s
 %>
-<div class="<%= promethee_class_for(component) %>" style="background-image: url(<%= src.html_safe %>)">
+<div class="<%= promethee_class_for(component) %>" style="background-image: url(<%= src %>)">
   <hgroup>
     <% unless surtitle.blank? %><p class="surtitle"><%= surtitle %></p><% end %>
     <% unless title.blank? %><h1><%= title %></h1><% end %>
