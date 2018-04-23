@@ -11,4 +11,6 @@
   <script><%= javascripts.html_safe %></script>
 <% end %>
 
-<%= render 'promethee/show/components', components: component[:children] %>
+<div class="<%= promethee_class_for component %>">
+  <%= render 'promethee/show/components', components: component[:children] %>
+</div>
