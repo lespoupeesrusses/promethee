@@ -1,7 +1,7 @@
 <script type="text/ng-template" id="promethee/components/slider/edit/move">
   <%= render 'promethee/edit/move.header', type: 'slider' %>
       <div class="header">Slider</div>
-      <div class="row" ng-init="parent_id = component.id; parent_type = component.type; components = component.children">
+      <div class="row" ng-controller="SliderMoveController">
         <div class="col-md-2" ng-repeat-start="component in components">
           <ng-include src="'promethee/move/component'"></ng-include>
         </div>
@@ -9,4 +9,12 @@
       </div>
     </div>
   </div>
+</script>
+
+<script>
+  promethee.controller('SliderMoveController', ['$scope', function($scope) {
+    $scope.parent_id = $scope.component.id;
+    $scope.parent_type = $scope.component.type;
+    $scope.components = $scope.component.children;
+  }]);
 </script>
