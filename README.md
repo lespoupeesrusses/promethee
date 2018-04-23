@@ -121,6 +121,15 @@ This would do quite the same thing:
 </form>
 ```
 
+You can specify a back link url to go to when closing the editor without saving:
+
+```erb
+<%= form_for @page do |f| %>
+  <%= f.promethee :data, back_url: root_path %>
+  <%= f.submit %>
+<% end %>
+```
+
 With javascript set:
 ```
 //= require jquery

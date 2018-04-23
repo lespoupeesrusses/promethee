@@ -1,5 +1,6 @@
 <%
 promethee_data = Promethee::Data.new master_data
+back_url ||= nil
 logo = File.read "#{__dir__}/../../assets/images/icon-promethee.svg"
 %>
 
@@ -132,7 +133,11 @@ promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'pres
               </ul>
             </li>
             <li ng-click="submit()"><a><%= fa_icon :save %></a></li>
-            <li ng-click="promethee.fullscreen = false"><a><%= fa_icon :close %></a></li>
+            <% if back_url.present? %>
+              <li><%= link_to fa_icon(:close).html_safe, back_url %></li>
+            <% else %>
+              <li ng-click="promethee.fullscreen = false"><a><%= fa_icon :close %></a></li>
+            <% end %>
           </ul>
         </div>
       </div>

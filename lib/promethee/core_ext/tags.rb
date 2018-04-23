@@ -8,7 +8,8 @@ module ActionView
         def render
           master_data = object.send @method_name unless object.nil?
           master_data = @options[:value] if @options.include? :value
-          ApplicationController.renderer.render partial: 'promethee/edit', locals: { master_data: master_data }
+          back_link = @options[:back_url]
+          ApplicationController.renderer.render partial: 'promethee/edit', locals: { master_data: master_data, back_url: back_url }
         end
       end
 
@@ -17,12 +18,12 @@ module ActionView
           localization_data = object.send @method_name unless object.nil?
           localization_data = @options[:value] if @options.include? :value
           master_data = @options[:master]
-          ApplicationController.renderer.render partial: 'promethee/localize', 
-                                                locals: { 
+          ApplicationController.renderer.render partial: 'promethee/localize',
+                                                locals: {
                                                   object_name: @object_name,
                                                   method_name: @method_name,
-                                                  localization_data: localization_data, 
-                                                  master_data: master_data 
+                                                  localization_data: localization_data,
+                                                  master_data: master_data
                                                 }
         end
       end
