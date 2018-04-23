@@ -8,7 +8,7 @@ module ActionView
         def render
           master_data = object.send @method_name unless object.nil?
           master_data = @options[:value] if @options.include? :value
-          back_link = @options[:back_url]
+          back_url = @options[:back_url]
           ApplicationController.renderer.render partial: 'promethee/edit', locals: { master_data: master_data, back_url: back_url }
         end
       end
