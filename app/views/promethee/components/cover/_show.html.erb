@@ -6,8 +6,8 @@ subtitle = component[:attributes][:subtitle].to_s
 %>
 <div class="<%= promethee_class_for(component) %>" style="background-image: url(<%= src %>)">
   <hgroup>
-    <% unless surtitle.blank? %><h4 class="surtitle"><%= surtitle %></h4><% end %>
+    <% unless surtitle.blank? %><h2><%= surtitle %></h2><% end %>
     <% unless title.blank? %><h1><%= title %></h1><% end %>
-    <% unless subtitle.blank? %><h4><%= subtitle %></h4><% end %>
+    <% unless subtitle.blank? %><h2><%= subtitle %></h2><% end %>
   </hgroup>
 </div>
