@@ -140,6 +140,7 @@ With javascript set:
 //= require angular-animate
 //= require angular-summernote
 //= require ui-sortable
+//= require ng-file-upload/ng-file-upload.min.js
 ```
 
 With stylesheets set:
@@ -253,6 +254,11 @@ This would do quite the same thing:
   <input type="submit">
 </form>
 ```
+
+## Active Storage
+
+Prométhée works natively with Active Storage.
+[https://github.com/rails/rails/tree/master/activestorage](Configure it properly.)
 
 ## Database 
 
