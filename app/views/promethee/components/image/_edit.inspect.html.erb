@@ -1,19 +1,8 @@
 <script type="text/ng-template" id="promethee/components/image/edit/inspect">
   <div class="form-group">
-    <label class="label-control">Url</label>
-    <input class="form-control" ng-model="promethee.inspected.attributes.src">
-
-Upload right away after file selection:
-<div class="button btn btn-default" ngf-select="upload($file)">Upload on file select</div>
-  Drop File:
-<div  ngf-drop="uploadFile($file)" 
-      class="drop-box"
-      ngf-drag-over-class="'dragover'" 
-      ngf-multiple="false"
-      ngf-pattern="'image/*'">Drop images here</div>
-
-Image thumbnail: <img ngf-thumbnail="file || '/thumb.jpg'">
-
+    <label class="label-control">Image</label>
+    <p>{{promethee.inspected.attributes.blob_name}}</p>
+    <div class="button btn btn-default" ngf-select="upload($file)">Select an image</div>
   </div>
 
   <div class="form-group">

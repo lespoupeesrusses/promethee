@@ -1,11 +1,11 @@
 <%
-src = component[:attributes][:src]
+blob_id = component[:attributes][:blob_id]
+blob = ActiveStorage::Blob.find blob_id if blob_id
 alt = component[:attributes][:alt]
 caption = component[:attributes][:caption].to_s
 %>
 <figure class="<%= promethee_class_for component %>">
-  <img class="img-responsive" src="<%= src %>" alt="<%= alt %>">
-
+  <%= image_tag url_for(blob.variant(resize: '1920')), class: 'img-responsive', alt: alt if blob %>
   <% if caption.present? %>
     <figcaption>
       <%= caption.html_safe %>

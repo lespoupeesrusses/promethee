@@ -50,22 +50,23 @@ promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'pres
     inspected: $scope.data,
     mode: 'move',
     preview: 'desktop',
-    // fullscreen: false
     fullscreen: true
   };
 
   $scope.upload = function (file) {
-      Upload.upload({
-          url: 'rails/active_storage/direct_uploads',
-          data: { blob: file }
-      }).then(function (resp) {
-          console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
-      }, function (resp) {
-          console.log('Error status: ' + resp.status);
-      }, function (evt) {
-          var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-          console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
-      });
+    Upload.upload({
+      url: '/promethee/blob',
+      data: { file: file },
+      headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+    }).then(function (resp) {
+      $scope.promethee.inspected.attributes.blob_id = resp.data.id;
+      $scope.promethee.inspected.attributes.blob_name = resp.data.name;
+    }, function (resp) {
+      // console.log('Error');
+    }, function (evt) {
+      var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+      // console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+    });
   };
 
   $scope.inspect = function(component, event) {
