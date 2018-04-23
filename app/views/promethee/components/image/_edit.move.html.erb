@@ -3,6 +3,8 @@
       <figure ng-show="component.attributes.src">
         <img  ng-src="{{component.attributes.src}}" 
               class="img-responsive">
+        <img  ng-src="custom_route/{{component.attributes.blob_key}}"
+              class="img-responsive">
         <figcaption ng-show="component.attributes.caption" 
                     ng-bind-html="component.attributes.caption | htmlSafe"></figcaption>
       </figure>

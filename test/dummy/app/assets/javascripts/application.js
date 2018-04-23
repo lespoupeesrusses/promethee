@@ -7,4 +7,5 @@
 //= require angular-animate
 //= require angular-summernote
 //= require ui-sortable
+//= require ng-file-upload/ng-file-upload.min.js
 //= require_self

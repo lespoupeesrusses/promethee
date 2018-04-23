@@ -6,7 +6,7 @@ logo = File.read "#{__dir__}/../../assets/images/icon-promethee.svg"
 
 <script type="text/javascript">
 var promethee = angular
-  .module('Promethee', ['summernote', 'ngAnimate', 'ui.sortable'], ['$rootScopeProvider', function($rootScopeProvider) {
+  .module('Promethee', ['summernote', 'ngAnimate', 'ngFileUpload', 'ui.sortable'], ['$rootScopeProvider', function($rootScopeProvider) {
     $rootScopeProvider.digestTtl(15);
   }])
   .value('definitions', [])
@@ -22,7 +22,7 @@ var promethee = angular
 <% end %>
 
 <script type="text/javascript">
-promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'presets', 'identifier', function($scope, summernoteConfig, presets, identifier) {
+promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'presets', 'identifier', 'Upload', function($scope, summernoteConfig, presets, identifier, Upload) {
   $scope.data = <%= promethee_data.to_json.html_safe %>;
 
   // Data (TODO use Adder and probably page definition to init)
@@ -52,6 +52,20 @@ promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'pres
     preview: 'desktop',
     // fullscreen: false
     fullscreen: true
+  };
+
+  $scope.upload = function (file) {
+      Upload.upload({
+          url: 'rails/active_storage/direct_uploads',
+          data: { blob: file }
+      }).then(function (resp) {
+          console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
+      }, function (resp) {
+          console.log('Error status: ' + resp.status);
+      }, function (evt) {
+          var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+          console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+      });
   };
 
   $scope.inspect = function(component, event) {
