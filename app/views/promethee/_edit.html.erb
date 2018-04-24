@@ -53,13 +53,17 @@ promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'pres
     fullscreen: true
   };
 
-  $scope.upload = function (file) {
+  $scope.upload = function (file, component) {
+    if (file == undefined) {
+      return;
+    }
+    $scope.promethee.inspected = component;
     Upload.upload({
       url: '/promethee/blob',
       data: { file: file },
       headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
     }).then(function (resp) {
-      $scope.promethee.inspected.attributes.blob = resp.data;
+      component.attributes.blob = resp.data;
       $scope.upload_error = undefined;
     }, function (resp) {
       $scope.upload_error = "An error occured (error " + resp.status + ": " + resp.statusText + ")";

@@ -2,13 +2,17 @@
   <%= render 'promethee/edit/move.header', type: 'image' %>
       <figure ng-show="component.attributes.blob.id">
         <img  ng-src="/promethee/blob/{{component.attributes.blob.id}}"
+              ngf-drop="upload($file, component)"
+              ngf-pattern="'.jpg,.jpeg,.png,.gif'"
               class="img-responsive">
         <figcaption ng-show="component.attributes.caption"
                     ng-bind-html="component.attributes.caption | htmlSafe"></figcaption>
       </figure>
       <div  ng-hide="component.attributes.blob.id">
         <p  ng-hide="editing"
-            class="text-center">Click to set the image</p>
+            ngf-drop="upload($file, component)"
+            ngf-pattern="'.jpg,.jpeg,.png,.gif'"
+            class="text-center">Click or drop file to set the image</p>
       </div>
     </div>
   </div>
