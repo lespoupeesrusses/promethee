@@ -3,6 +3,7 @@
     <% component[:children].each.with_index do |child, n| %>
       <div class="item<%= ' active' if n.zero? %>">
         <%= render 'promethee/show/component', component: child %>
+        <%= component[:attributes].dig(:contents, :"content-#{child.id}").to_s.html_safe %>
       </div>
     <% end %>
   </div>
