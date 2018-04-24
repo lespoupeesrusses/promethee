@@ -59,13 +59,13 @@ promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'pres
       data: { file: file },
       headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
     }).then(function (resp) {
-      $scope.promethee.inspected.attributes.blob_id = resp.data.id;
-      $scope.promethee.inspected.attributes.blob_name = resp.data.name;
+      $scope.promethee.inspected.attributes.blob = resp.data;
+      $scope.upload_error = undefined;
     }, function (resp) {
-      // console.log('Error');
+      $scope.upload_error = "An error occured (error " + resp.status + ": " + resp.statusText + ")";
     }, function (evt) {
       var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-      // console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+      $scope.upload_progress = progressPercentage;
     });
   };
 

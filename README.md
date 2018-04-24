@@ -260,7 +260,7 @@ This would do quite the same thing:
 Prométhée works natively with Active Storage.
 [https://github.com/rails/rails/tree/master/activestorage](Configure it properly.)
 
-## Database 
+## Database
 
 ### PostgreSQL
 

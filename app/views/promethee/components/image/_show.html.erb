@@ -1,5 +1,5 @@
 <%
-blob_id = component[:attributes][:blob_id]
+blob_id = component[:attributes][:blob][:id]
 blob = ActiveStorage::Blob.find blob_id if blob_id
 alt = component[:attributes][:alt]
 caption = component[:attributes][:caption].to_s
