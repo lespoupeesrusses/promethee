@@ -18,8 +18,6 @@
     $scope.components = $scope.component.children;
 
     $scope.$watch('component.children.length', function() {
-      console.log('watch');
-
       var keys = $scope.component.children.map(function(component) {
         return 'content-' + component.id;
       });

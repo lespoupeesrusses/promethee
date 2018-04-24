@@ -1,10 +1,11 @@
 <%
-src = component[:attributes][:src].to_s
+blob_id = component[:attributes][:blob][:id]
+blob = ActiveStorage::Blob.find blob_id if blob_id
 surtitle = component[:attributes][:surtitle].to_s
 title = component[:attributes][:title].to_s
 subtitle = component[:attributes][:subtitle].to_s
 %>
-<div class="<%= promethee_class_for(component) %>" style="background-image: url(<%= src %>)">
+<div class="<%= promethee_class_for(component) %>" style="background-image: url(<%= url_for(blob.variant(resize: '1920')) if blob %>)">
   <hgroup>
     <% unless surtitle.blank? %><h2><%= surtitle %></h2><% end %>
     <% unless title.blank? %><h1><%= title %></h1><% end %>
