@@ -5,10 +5,9 @@
               ngf-drop="upload($file, component)"
               ngf-pattern="'.jpg,.jpeg,.png,.gif'"
               class="img-responsive">
-        <figcaption ng-show="component.attributes.caption"
-                    ng-bind-html="component.attributes.caption | htmlSafe"></figcaption>
+        <figcaption ng-show="component.attributes.caption">{{component.attributes.caption}}</figcaption>
       </figure>
-      <div  ng-hide="component.attributes.blob.id">
+      <div  ng-hide="component.attributes.blob_id">
         <p  ng-hide="editing"
             ngf-drop="upload($file, component)"
             ngf-pattern="'.jpg,.jpeg,.png,.gif'"

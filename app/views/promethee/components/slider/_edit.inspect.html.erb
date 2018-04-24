@@ -1,17 +1,26 @@
 <script type="text/ng-template" id="promethee/components/slider/edit/inspect">
-  <div ui-sortable ng-model="promethee.inspected.children">
+  <div ui-sortable="{handle: '.handle'}" ng-model="promethee.inspected.children">
     <div
       class="panel panel-default"
       ng-repeat="component in promethee.inspected.children"
     >
       <div class="panel-body">
-        <div class="row">
+        <div class="row handle">
           <div class="col-xs-9">
             <span class="label label-default">#{{$index + 1}}</span>
             <span class="label label-info">{{component.type}}</span>
           </div>
           <div class="col-xs-3">
             <ng-include src="'promethee/move/component'"></ng-include>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="form-group">
+              <label class="label-control">Text</label>
+              <summernote config="summernoteConfig" ng-model="promethee.inspected.attributes.contents['content-' + component.id]"></summernote>
+            </div>
           </div>
         </div>
       </div>
@@ -33,7 +42,7 @@
 
     var clone = function(object) {
       return JSON.parse(JSON.stringify(object));
-    }
+    };
 
     $scope.addItem = function(definition) {
       var item = JSON.parse(JSON.stringify(definition.data));

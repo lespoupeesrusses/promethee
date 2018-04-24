@@ -16,5 +16,17 @@
     $scope.parent_id = $scope.component.id;
     $scope.parent_type = $scope.component.type;
     $scope.components = $scope.component.children;
+
+    $scope.$watch('component.children.length', function() {
+      console.log('watch');
+
+      var keys = $scope.component.children.map(function(component) {
+        return 'content-' + component.id;
+      });
+
+      for(var key in $scope.component.attributes.contents) {
+        if(!keys.includes(key)) delete $scope.component.attributes.contents[key];
+      }
+    });
   }]);
 </script>

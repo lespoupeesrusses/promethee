@@ -8,7 +8,7 @@ caption = component[:attributes][:caption].to_s
   <%= image_tag url_for(blob.variant(resize: '1920')), class: 'img-responsive', alt: alt if blob %>
   <% unless caption.blank? %>
     <figcaption>
-      <%= caption.html_safe %>
+      <%= caption %>
     </figcaption>
   <% end %>
 </figure>
