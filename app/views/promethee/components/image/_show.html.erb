@@ -7,8 +7,6 @@ caption = component[:attributes][:caption].to_s
 <figure class="<%= promethee_class_for component %>">
   <%= image_tag url_for(blob.variant(resize: '1920')), class: 'img-responsive', alt: alt if blob %>
   <% if caption.present? %>
-    <figcaption>
-      <%= caption.html_safe %>
-    </figcaption>
+    <figcaption><%= caption %></figcaption>
   <% end %>
 </figure>
