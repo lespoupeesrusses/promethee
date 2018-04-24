@@ -1,13 +1,15 @@
 <script type="text/ng-template" id="promethee/components/cover/edit/move">
   <%= render 'promethee/edit/move.header', type: 'cover' %>
-      <div  class=" promethee-edit__wrapper 
+      <div  class=" promethee-edit__wrapper
                     promethee-edit__cover-content"
-            style="background-image: url('{{component.attributes.src}}')">
+            ngf-drop="upload($file, component)"
+            ngf-pattern="'.jpg,.jpeg,.png,.gif'"
+            style="background-image:url('{{'/promethee/blob/' + component.attributes.blob.id}}')">
         <hgroup>
           <h2 class="surtitle">{{component.attributes.surtitle}}</h2>
           <h1>{{component.attributes.title}}</h1>
           <h2 class="subtitle">{{component.attributes.subtitle}}</h2>
-        </hgroup>            
+        </hgroup>
       </div>
     </div>
   </div>
