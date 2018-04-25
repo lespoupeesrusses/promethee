@@ -9,9 +9,16 @@ title = component[:attributes][:title].to_s
 subtitle = component[:attributes][:subtitle].to_s
 %>
 <div class="<%= promethee_class_for(component) %>" style="background-image: url(<%= url_for(blob.variant(resize: '1920')) if blob %>)">
-  <hgroup>
-    <% unless surtitle.blank? %><h2><%= surtitle %></h2><% end %>
-    <% unless title.blank? %><h1><%= title %></h1><% end %>
-    <% unless subtitle.blank? %><h2><%= subtitle %></h2><% end %>
-  </hgroup>
+  <% if surtitle.present? %>
+    <p><%= surtitle %></p>
+  <% end %>
+
+  <% if title.present? %>
+    <h1><%= title %></h1>
+  <% end %>
+
+  <% if subtitle.present? %>
+    <p><%= subtitle %></p>
+  <% end %>
+
 </div>

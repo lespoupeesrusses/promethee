@@ -5,7 +5,10 @@
       icon: #{render('promethee/components/aside/icon').to_json.html_safe},
       data: {
         type: 'aside',
-        attributes: {},
+        attributes: {
+          visible_content: '',
+          collapsed_content: ''
+        },
         children: []
       }
     })
