@@ -97,7 +97,6 @@ With stylesheets set:
 ```
 @import 'bootstrap'
 @import 'font-awesome.css'
-@import 'summernote'
 @import 'promethee'
 ```
 
@@ -135,19 +134,15 @@ With javascript set:
 //= require jquery
 //= require jquery-ui
 //= require bootstrap
-//= require summernote
 //= require angular
 //= require angular-animate
-//= require angular-summernote
-//= require ui-sortable
-//= require ng-file-upload/ng-file-upload.min.js
 ```
 
 With stylesheets set:
 ```
 @import 'bootstrap'
 @import 'font-awesome.css'
-@import 'summernote'
+@import 'summernote/summernote'
 @import 'promethee'
 @import 'promethee-edit'
 ```
