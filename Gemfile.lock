@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    promethee (1.4.10)
+    promethee (1.4.14)
       angularjs-rails (~> 1.6.2)
       bootstrap-sass
       font-awesome-rails
@@ -10,6 +10,7 @@ PATH
       mini_magick
       rails (>= 5.2)
       sass-rails
+      summernote-rails (~> 0.8.10.0)
 
 GEM
   remote: https://rubygems.org/
@@ -146,6 +147,8 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    summernote-rails (0.8.10.0)
+      railties (>= 3.1)
     thor (0.20.0)
     thread_safe (0.3.6)
     tilt (2.0.8)

@@ -136,6 +136,8 @@ With javascript set:
 //= require bootstrap
 //= require angular
 //= require angular-animate
+//= require summernote/summernote
+//= require promethee
 ```
 
 With stylesheets set:

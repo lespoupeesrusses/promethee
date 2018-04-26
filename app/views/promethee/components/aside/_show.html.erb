@@ -1,6 +1,7 @@
 <%
 visible_content = component[:attributes][:visible_content].to_s
 collapsed_content = component[:attributes][:collapsed_content].to_s
+open_label = component[:attributes][:open_label].to_s
 %>
 
 <aside class="<%= promethee_class_for component %>">
@@ -11,7 +12,9 @@ collapsed_content = component[:attributes][:collapsed_content].to_s
       <%= collapsed_content.html_safe %>
     </div>
     <div>
-      <a href="#aside-collapse-<%= component[:id] %>" data-toggle="collapse" onclick="this.textContent = $(this.getAttribute('href')).is(':visible') ? 'Read more' : 'Reduce'">Read more</a>
+      <a class="collapse show" href="#aside-collapse-<%= component[:id] %>" data-toggle="collapse" onclick="$(this).collapse('hide')">
+        <%= open_label %>
+      </a>
     </div>
   <% end %>
 </aside>
