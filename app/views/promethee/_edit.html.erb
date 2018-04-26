@@ -7,7 +7,7 @@ logo = File.read "#{__dir__}/../../assets/images/icon-promethee.svg"
 <script type="text/javascript">
 var promethee = angular
   .module('Promethee', ['summernote', 'ngAnimate', 'ngFileUpload', 'ui.sortable'], ['$rootScopeProvider', function($rootScopeProvider) {
-    $rootScopeProvider.digestTtl(15);
+    $rootScopeProvider.digestTtl(30);
   }])
   .value('definitions', [])
   .value('presets', []);
