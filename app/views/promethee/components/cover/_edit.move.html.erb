@@ -4,7 +4,7 @@
                     promethee-edit__cover-content"
             ngf-drop="upload($file, component)"
             ngf-pattern="'.jpg,.jpeg,.png,.gif'"
-            style="background-image:url('{{'/promethee/blob/' + component.attributes.blob.id}}')">
+            style="background-image:url('{{ component.attributes.blob.id ? '/promethee/blob/' + component.attributes.blob.id : '' }}')">
         <hgroup>
           <h2 class="surtitle">{{component.attributes.surtitle}}</h2>
           <h1>{{component.attributes.title}}</h1>
