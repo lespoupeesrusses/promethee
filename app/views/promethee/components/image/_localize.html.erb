@@ -1,26 +1,35 @@
 <script type="text/ng-template" id="promethee/components/image/localize">
   <div ng-show="component.master.attributes.alt || component.master.attributes.caption">
     <hr>
+
     <div class="row">
       <div class="col-md-6">
-        <img ng-src="/promethee/blob/{{component.attributes.blob.id}}" class="img-responsive" />
-        <div ng-show="component.master.attributes.alt">
-          <b>Alt</b>
-          <p>{{component.master.attributes.alt}}</p>
-        </div>
-        <div ng-show="component.master.attributes.caption">
-          <b>Description</b>
-          <p>{{component.master.attributes.caption}}</p>
-        </div>
+        <img ng-src="/promethee/blob/{{component.attributes.blob.id}}" class="img-responsive">
+      </div>
+    </div>
+
+    <div class="row" ng-show="component.master.attributes.alt">
+      <div class="col-md-6">
+        <b>Alt</b>
+        <p>{{component.master.attributes.alt}}</p>
       </div>
       <div class="col-md-6">
-        <div ng-show="component.attributes.alt">
-          <b>Alt</b>
-          <input ng-model="component.attributes.alt" type="text" class="form-control">
+        <div class="form-group">
+          <label class="label-control">Alt</label>
+          <input class="form-control" ng-model="component.attributes.alt" type="text">
         </div>
-        <div ng-show="component.attributes.caption">
-          <b>Description</b>
-          <input ng-model="component.attributes.caption" type="text" class="form-control">
+      </div>
+    </div>
+
+    <div class="row" ng-show="component.master.attributes.caption">
+      <div class="col-md-6">
+        <b>Description</b>
+        <p>{{component.master.attributes.caption}}</p>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="label-control">Description</label>
+          <input class="form-control" ng-model="component.attributes.caption" type="text">
         </div>
       </div>
     </div>

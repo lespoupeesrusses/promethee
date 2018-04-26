@@ -1,3 +1,29 @@
 <script type="text/ng-template" id="promethee/components/aside/localize">
+  <hr>
 
+  <div class="row">
+    <div class="col-md-6">
+      <b>Aside visible content</b>
+      <div class="promethee-edit__wrapper" ng-bind-html="component.master.attributes.visible_content | htmlSafe"></div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label class="label-control">Aside visible content</label>
+        <input class="form-control" ng-model="component.attributes.visible_content" type="text">
+      </div>
+    </div>
+  </div>
+
+  <div class="row" ng-show="component.master.attributes.collapsed_content">
+    <div class="col-md-6">
+      <b>Aside collapsed content</b>
+      <p>{{component.master.attributes.collapsed_content}}</p>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label class="label-control">Aside collapsed content</label>
+        <input class="form-control" ng-model="component.attributes.collapsed_content" type="text">
+      </div>
+    </div>
+  </div>
 </script>

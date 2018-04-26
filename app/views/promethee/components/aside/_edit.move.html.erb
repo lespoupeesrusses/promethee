@@ -1,12 +1,12 @@
 <script type="text/ng-template" id="promethee/components/aside/edit/move">
   <%= render 'promethee/edit/move.header', type: 'aside' %>
-      <aside ng-if="component.attributes.collapsed_content">
-        {{component.attributes.visible_content | htmlSafe}}
+      <aside ng-show="component.attributes.collapsed_content" ng-init="collapsed = true">
+        <div ng-bind-html="component.attributes.visible_content | htmlSafe"></div>
         <div ng-hide="collapsed" ng-bind-html="component.attributes.collapsed_content | htmlSafe"></div>
-        <a data-toggle="collapse" href="#aside-collapse-{{component.id}}">{/a>
+        <a class="btn btn-default btn-block" ng-click="collapsed = !collapsed">{{collapsed ? 'Read more' : 'Reduce'}}</a>
       </aside>
 
-      <aside ng-if="!component.attributes.collapsed_content" ng-bind-html="component.attributes.visible_content"></aside>
+      <aside ng-hide="component.attributes.collapsed_content" ng-bind-html="component.attributes.visible_content | htmlSafe"></aside>
     </div>
   </div>
 </script>

@@ -1,3 +1,17 @@
+<%
+visible_content = component[:attributes][:visible_content].to_s
+collapsed_content = component[:attributes][:collapsed_content].to_s
+%>
+
 <aside class="<%= promethee_class_for component %>">
-  <%= render 'promethee/show/components', components: component[:children] %>
+  <%= visible_content.html_safe %>
+
+  <% if collapsed_content.present? %>
+    <div class="collapse" id="aside-collapse-<%= component[:id] %>">
+      <%= collapsed_content.html_safe %>
+    </div>
+    <div>
+      <a href="#aside-collapse-<%= component[:id] %>" data-toggle="collapse" onclick="this.textContent = $(this.getAttribute('href')).is(':visible') ? 'Read more' : 'Reduce'">Read more</a>
+    </div>
+  <% end %>
 </aside>

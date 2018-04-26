@@ -1,11 +1,50 @@
 <script type="text/ng-template" id="promethee/components/cover/localize">
-  <div class="row">
-    <div class="col-md-6">
-      <div class="promethee-edit__wrapper" ng-bind-html="component.master.attributes.body | htmlSafe"></div>
+  <div ng-show="component.master.attributes.surtitle || component.master.attributes.title || component.master.attributes.subtitle">
+    <hr>
+
+    <div class="row">
+      <div class="col-md-6">
+        <img ng-src="/promethee/blob/{{component.attributes.blob.id}}" class="img-responsive">
+      </div>
     </div>
-    <div class="col-md-6">
-      <summernote config="options" ng-model="component.attributes.body"></summernote>
+
+    <div class="row" ng-show="component.master.attributes.surtitle">
+      <div class="col-md-6">
+        <b>Surtitle</b>
+        <p>{{component.master.attributes.surtitle}}</p>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="label-control">Surtitle</label>
+          <input class="form-control" ng-model="component.attributes.surtitle" type="text">
+        </div>
+      </div>
+    </div>
+
+    <div class="row" ng-show="component.master.attributes.title">
+      <div class="col-md-6">
+        <b>Title</b>
+        <p>{{component.master.attributes.title}}</p>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="label-control">Title</label>
+          <input class="form-control" ng-model="component.attributes.title" type="text">
+        </div>
+      </div>
+    </div>
+
+    <div class="row" ng-show="component.master.attributes.subtitle">
+      <div class="col-md-6">
+        <b>Subtitle</b>
+        <p>{{component.master.attributes.subtitle}}</p>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="label-control">Subtitle</label>
+          <input class="form-control" ng-model="component.attributes.subtitle" type="text">
+        </div>
+      </div>
     </div>
   </div>
-  <hr>
 </script>
