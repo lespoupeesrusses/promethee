@@ -3,6 +3,7 @@ require 'font-awesome-rails'
 require 'jquery-rails'
 require 'jquery-ui-rails'
 require 'angularjs-rails'
+require 'summernote-rails'
 
 module Promethee
   def self.root
