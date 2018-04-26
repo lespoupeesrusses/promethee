@@ -119,7 +119,8 @@ promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'pres
 <div  id="promethee"
       ng-app="Promethee"
       ng-controller="PrometheeController as prometheeController"
-      ng-init="component = promethee.data">
+      ng-init="component = promethee.data"
+       class="ng-cloak">
 
   <div class="promethee-open" ng-click="promethee.fullscreen = true">
     <div class="promethee-open__logo"><%= logo.html_safe %></div>
