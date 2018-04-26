@@ -137,6 +137,7 @@ With javascript set:
 //= require angular
 //= require angular-animate
 //= require summernote/summernote
+//= require activestorage
 //= require promethee
 ```
 
