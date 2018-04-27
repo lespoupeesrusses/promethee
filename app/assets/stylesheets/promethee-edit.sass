@@ -92,3 +92,8 @@ $promethee-color: #ff9900 !default
     left: 0
     right: 0
     bottom: 0
+
+@media (min-width: @screen-sm-min)
+  .modal-dialog
+    // default margin-top is 30px and the modal window is displayed UNDER the topbar
+    margin-top: 60px
