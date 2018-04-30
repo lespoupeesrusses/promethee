@@ -22,6 +22,10 @@ module Promethee::Rails::Helper
     promethee_partials_for 'utils/_*.html.erb'
   end
 
+  def promethee_template_partials
+    promethee_partials_for 'templates/_*.html.erb'
+  end
+
   def promethee_preset_partials
     promethee_partials_for 'presets/_*.html.erb'
   end

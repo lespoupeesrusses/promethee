@@ -122,6 +122,10 @@ promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'pres
       ng-init="component = promethee.data"
        class="ng-cloak">
 
+  <% promethee_template_partials.each do |partial| %>
+    <%= render partial %>
+  <% end %>
+
   <div class="promethee-open" ng-click="promethee.fullscreen = true">
     <div class="promethee-open__logo"><%= logo.html_safe %></div>
     <div>Click to edit page</div>
