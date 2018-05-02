@@ -70,6 +70,7 @@
     width: 100%
     height: 20px
     border: 1px dashed #253742
+    box-sizing: border-box
     transition: width .2s, height .2s, opacity .2s
     &.ui-droppable-active
       visibility: visible
@@ -110,15 +111,21 @@
     .promethee-edit__move__droppable--row
       display: none
 
-  // Except for columns, which can be dropped only on rows
-  &--dragging.promethee-edit__move--dragging--column
-    .promethee-edit__move__droppable
-      &:not(&.promethee-edit__move__droppable--row--first):not(&.promethee-edit__move__droppable--row--inside-column)
-        transform: translateX(-100vh)
-      // It's a little specific, columns can be dropped on rows "first droppable", or on columns "inside droppables"
-      &.promethee-edit__move__droppable--row--first,
-      &.promethee-edit__move__droppable--row--inside-column
-        display: block
+    // Except for columns, which can be dropped only on rows
+    &--column
+      .promethee-edit__move__droppable
+        display: none
+        // But we don't want anything to move when the droppable disappear, so we show some substitutes
+        &-substitute
+          // This height is not perfect, some strange things move
+          height: 24px
+          // Except in rows
+          &.promethee-edit__move__droppable-substitute--row
+            height: 0
+        // It's a little specific, columns can be dropped on rows "first droppable", or on columns "inside droppables"
+        &--row--first,
+        &--row--inside-column
+          display: block
 
   .promethee-edit
     &__inspect, &__library

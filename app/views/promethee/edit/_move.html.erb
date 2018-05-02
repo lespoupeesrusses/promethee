@@ -190,6 +190,7 @@ promethee
       data-index="0"
       >
     </div>
+    <div class="<%= promethee_bem_classes 'promethee-edit__move__droppable-substitute', '--{{parent_type}}', '--first' %>"></div>
     <div
       draggable
       ng-repeat="component in components"
@@ -209,6 +210,7 @@ promethee
         data-index="{{$index+1}}"
         >
       </div>
+      <div class="<%= promethee_bem_classes 'promethee-edit__move__droppable-substitute', '--{{parent_type}}' %>"></div>
     </div>
   </div>
 </script>
