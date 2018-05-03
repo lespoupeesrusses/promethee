@@ -145,7 +145,7 @@ With stylesheets set:
 ```
 @import 'bootstrap'
 @import 'font-awesome.css'
-@import 'summernote'
+@import 'summernote.css'
 @import 'promethee'
 @import 'promethee-edit'
 ```
