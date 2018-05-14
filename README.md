@@ -188,6 +188,12 @@ To register a component, the code is:
 To be able to preview responsivity, there is a POST "promethee/preview" route.
 When you send your data, it renders the page in the default layout.
 
+If you want to use a different layout, specify it in your editor's options :
+
+```erb
+<%= promethee_editor :page, :data, value: @page.data, back_url: root_path, preview_layout: 'layouts/my-preview' %>
+```
+
 This is used to generate a live responsive preview.
 
 ### Render localized (l10n)

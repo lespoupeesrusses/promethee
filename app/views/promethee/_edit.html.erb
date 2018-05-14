@@ -103,6 +103,15 @@ promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'pres
     input.value = JSON.stringify($scope.promethee.data);
     input.name = 'data';
     form.appendChild(input);
+
+    <% if preview_layout.present? %>
+    var layoutInput = document.createElement('input');
+    layoutInput.type = 'text';
+    layoutInput.value = "<%= preview_layout %>";
+    layoutInput.name = 'preview_layout';
+    form.appendChild(layoutInput);
+    <% end %>
+
     form.submit();
     document.body.removeChild(form);
   }
