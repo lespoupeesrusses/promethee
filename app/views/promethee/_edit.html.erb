@@ -104,7 +104,7 @@ promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'pres
     input.name = 'data';
     form.appendChild(input);
 
-    <% if preview_layout.present? %>
+    <% if defined?(preview_layout) %>
     var layoutInput = document.createElement('input');
     layoutInput.type = 'text';
     layoutInput.value = "<%= preview_layout %>";
