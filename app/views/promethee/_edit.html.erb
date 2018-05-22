@@ -131,11 +131,18 @@ promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'pres
 }]);
 </script>
 
+<div class="promethee-loader">
+  <div class="promethee-loader__inner">
+    <%= image_tag('loader.gif') %>
+    Loading...
+  </div>
+</div>
+
 <div  id="promethee"
       ng-app="Promethee"
       ng-controller="PrometheeController as prometheeController"
       ng-init="component = promethee.data"
-       class="ng-cloak">
+      class="ng-cloak">
 
   <% promethee_template_partials.each do |partial| %>
     <%= render partial %>
