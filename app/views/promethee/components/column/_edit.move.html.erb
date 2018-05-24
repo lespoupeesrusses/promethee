@@ -9,6 +9,7 @@
       <%= render 'promethee/edit/move.remove' %>
         <div class="header">Column</div>
         <ng-include src="'promethee/move/components'"></ng-include>
+        <pre class="hidden">{{component.attributes.search = concatenateChildrenSearch(component)}}</pre>
         <div
           droppable
           class=" <%= promethee_bem_classes 'promethee-edit__move__droppable', '--row', '--inside-column' %>"

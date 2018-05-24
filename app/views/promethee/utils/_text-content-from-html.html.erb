@@ -1,15 +1,9 @@
 <script>
   promethee.filter('textContentFromHTML', function() {
-    return function(val, distinctParagraphs) {
+    return function(val) {
       var element = document.createElement('div');
       element.innerHTML = val;
-
-      if(distinctParagraphs === 'distinctParagraphs') {
-        var paragraphs = element.querySelectorAll('p');
-        for(var i = 0; i < paragraphs.length; i++) paragraphs[i].textContent += ' ';
-      }
-
-      return element.textContent;
+      return element.innerText;
     }
   });
 </script>

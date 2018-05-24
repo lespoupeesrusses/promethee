@@ -126,6 +126,16 @@ promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'pres
     $('#promethee').closest('form').submit();
   };
 
+  $scope.concatenateChildrenSearch = function(component) {
+    var search =  ''
+    angular.forEach(component.children, function(child) {
+      if (child.attributes && child.attributes.search) {
+        search += child.attributes.search + ' ';
+      }
+    });
+    return search;
+  }
+
   $scope.summernoteConfig = summernoteConfig;
   $scope.sendPreviewData('thumb-preview');
 }]);

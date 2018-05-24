@@ -3,6 +3,7 @@
       <div class="header">Row</div>
       <div class="row">
         <ng-include src="'promethee/move/components'"></ng-include>
+        <pre class="hidden">{{component.attributes.search = concatenateChildrenSearch(component)}}</pre>
       </div>
     </div>
   </div>
