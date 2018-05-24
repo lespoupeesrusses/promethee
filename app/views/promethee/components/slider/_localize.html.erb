@@ -1,5 +1,5 @@
 <script type="text/ng-template" id="promethee/components/slider/localize">
-  <div ng-show="(component.master.contents | json) !== '{}'">
+  <div ng-show="(component.master.attributes.contents | json) !== '{}'">
     <hr>
 
     <div ng-repeat="(key, content) in component.master.attributes.contents">
@@ -12,5 +12,5 @@
         </div>
       </div>
     </div>
-  </script>
+  </div>
 </script>
