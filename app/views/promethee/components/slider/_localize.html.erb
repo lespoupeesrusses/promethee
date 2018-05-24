@@ -2,13 +2,13 @@
   <div ng-show="(component.master.contents | json) !== '{}'">
     <hr>
 
-    <div ng-repeat="key, content in component.master.attributes.contents">
+    <div ng-repeat="(key, content) in component.master.attributes.contents">
       <div class="row">
         <div class="col-md-6">
           <div class="promethee-edit__wrapper" ng-bind-html="component.master.attributes.contents[key] | htmlSafe"></div>
         </div>
         <div class="col-md-6">
-          <summernote config="options" ng-model="component.attributes.contents[key]"></summernote>
+          <summernote config="summernoteConfig" ng-model="component.attributes.contents[key]"></summernote>
         </div>
       </div>
     </div>
