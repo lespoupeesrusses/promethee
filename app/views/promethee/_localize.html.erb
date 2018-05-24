@@ -2,8 +2,8 @@
 promethee_data = Promethee::Data.new master_data, localization_data: localization_data
 %>
 
-<script>
-  var prometheeLocalizer = angular
+<script type="text/javascript">
+  var promethee = angular
     .module('PrometheeLocalizer', ['summernote'])
     .value('data', <%= promethee_data.localization_data_to_json.html_safe %>)
     .filter('htmlSafe', ['$sce', function($sce) {
@@ -11,8 +11,14 @@ promethee_data = Promethee::Data.new master_data, localization_data: localizatio
         return $sce.trustAsHtml(val);
       };
     }]);
+</script>
 
-  prometheeLocalizer.controller('PrometheeLocalizerController', ['$scope', 'summernoteConfig', 'data', function($scope, summernoteConfig, data) {
+<% promethee_util_partials.each do |partial| %>
+  <%= render partial %>
+<% end %>
+
+<script type="text/javascript">
+  promethee.controller('PrometheeLocalizerController', ['$scope', 'summernoteConfig', 'data', function($scope, summernoteConfig, data) {
 
     $scope.data = data;
     $scope.component = {children: data.components};
@@ -21,6 +27,7 @@ promethee_data = Promethee::Data.new master_data, localization_data: localizatio
 
   }]);
 </script>
+
 
 
 <div id="prometheeLocalizer"
