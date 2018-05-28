@@ -129,6 +129,19 @@ You can specify a back link url to go to when closing the editor without saving:
 <% end %>
 ```
 
+> In these examples, the `Page` model would need a migration adding a `data` column:
+>
+> ```ruby
+> class AddDataToPages < ActiveRecord::Migration[5.2]
+>   def change
+>     add_column :pages, :data, :jsonb
+>
+>     # Or, if jsonb isn't supported by your storage strategy:
+>     # add_column :pages, :data, :string
+>   end
+> end
+> ```
+
 With javascript set:
 ```
 //= require jquery
@@ -149,6 +162,8 @@ With stylesheets set:
 @import 'promethee'
 @import 'promethee-edit'
 ```
+
+> These require/import statements are quite flexible: if you already use gems or packages which include bootstrap, jquery, summernote... you're likely to be able to use them in place of those included in Prométhée.
 
 #### The editor has components
 
@@ -223,6 +238,12 @@ end
 
 To be able to preview responsivity, there is a POST "promethee/preview" route.
 When you send your data, it renders the page in the default layout.
+
+If you want to use a different layout, specify it in your editor's options :
+
+```erb
+<%= promethee_editor :page, :data, value: @page.data, back_url: root_path, preview_layout: 'layouts/my-preview' %>
+```
 
 This is used to generate a live responsive preview.
 

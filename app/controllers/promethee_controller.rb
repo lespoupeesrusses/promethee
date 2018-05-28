@@ -4,6 +4,7 @@ class PrometheeController < ApplicationController
 
   def preview
     @data = params[:data]
+    render 'preview', layout: params[:preview_layout] if params.include? :preview_layout
   end
 
   def blob_create

@@ -1,15 +1,17 @@
 <script>
   promethee.filter('textContentFromHTML', function() {
-    return function(val, distinctParagraphs) {
+    return function(val) {
+      // Inner text has a problem with some whitespace/linebreak missing (at least h1, h2...)
+      // We fix it by adding whitespaces before each closing tag.
+      var valWithSpaces = val.split('</').join(' </');
+      // Create a blank div (supposed to be garbage collected afterwards)
       var element = document.createElement('div');
-      element.innerHTML = val;
-
-      if(distinctParagraphs === 'distinctParagraphs') {
-        var paragraphs = element.querySelectorAll('p');
-        for(var i = 0; i < paragraphs.length; i++) paragraphs[i].textContent += ' ';
-      }
-
-      return element.textContent;
+      // Add value as html
+      element.innerHTML = valWithSpaces;
+      // Use textContent or innerText to convert to plain text
+      // http://perfectionkills.com/the-poor-misunderstood-innerText/
+      var text = element.textContent || element.innerText
+      return text;
     }
   });
 </script>

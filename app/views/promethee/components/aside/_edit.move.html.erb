@@ -7,6 +7,8 @@
       </aside>
 
       <aside ng-hide="component.attributes.collapsed_content" ng-bind-html="component.attributes.visible_content | htmlSafe"></aside>
+
+      <pre class="hidden">{{component.attributes.search = ((component.attributes.visible_content | textContentFromHTML) + ' ' + (component.attributes.collapsed_content | textContentFromHTML))}}</pre>
     </div>
   </div>
 </script>

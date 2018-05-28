@@ -103,6 +103,15 @@ promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'pres
     input.value = JSON.stringify($scope.promethee.data);
     input.name = 'data';
     form.appendChild(input);
+
+    <% if defined?(preview_layout) %>
+    var layoutInput = document.createElement('input');
+    layoutInput.type = 'text';
+    layoutInput.value = "<%= preview_layout %>";
+    layoutInput.name = 'preview_layout';
+    form.appendChild(layoutInput);
+    <% end %>
+
     form.submit();
     document.body.removeChild(form);
   }
@@ -117,16 +126,33 @@ promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'pres
     $('#promethee').closest('form').submit();
   };
 
+  $scope.concatenateChildrenSearch = function(component) {
+    var search =  ''
+    angular.forEach(component.children, function(child) {
+      if (child.attributes && child.attributes.search) {
+        search += child.attributes.search + ' ';
+      }
+    });
+    return search;
+  }
+
   $scope.summernoteConfig = summernoteConfig;
   $scope.sendPreviewData('thumb-preview');
 }]);
 </script>
 
+<div class="promethee-loader">
+  <div class="promethee-loader__inner">
+    <%= image_tag 'loader.gif' %>
+    Loading...
+  </div>
+</div>
+
 <div  id="promethee"
       ng-app="Promethee"
       ng-controller="PrometheeController as prometheeController"
       ng-init="component = promethee.data"
-       class="ng-cloak">
+      class="ng-cloak">
 
   <% promethee_template_partials.each do |partial| %>
     <%= render partial %>

@@ -1,1 +1,1 @@
-<%= render "promethee/components/#{component[:type]}/show", component: component %>
+<%= render "promethee/components/#{component[:type]}/show", component: component if component[:type].present? %>

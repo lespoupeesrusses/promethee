@@ -2,8 +2,8 @@
 promethee_data = Promethee::Data.new master_data, localization_data: localization_data
 %>
 
-<script>
-  var prometheeLocalizer = angular
+<script type="text/javascript">
+  var promethee = angular
     .module('PrometheeLocalizer', ['summernote'])
     .value('data', <%= promethee_data.localization_data_to_json.html_safe %>)
     .filter('htmlSafe', ['$sce', function($sce) {
@@ -11,23 +11,33 @@ promethee_data = Promethee::Data.new master_data, localization_data: localizatio
         return $sce.trustAsHtml(val);
       };
     }]);
+</script>
 
-  prometheeLocalizer.controller('PrometheeLocalizerController', ['$scope', 'data', function($scope, data) {
+<% promethee_util_partials.each do |partial| %>
+  <%= render partial %>
+<% end %>
+
+<script type="text/javascript">
+  promethee.controller('PrometheeLocalizerController', ['$scope', 'summernoteConfig', 'data', function($scope, summernoteConfig, data) {
 
     $scope.data = data;
     $scope.component = {children: data.components};
 
-    $scope.options = {
-      toolbar: [
-        ['headline', ['style']],
-        ['style', ['bold', 'italic']],
-        ['alignment', ['ul', 'ol', 'paragraph']],
-        ['code', ['codeview']]
-      ]
-    };
+    $scope.summernoteConfig = summernoteConfig;
+
+    $scope.concatenateSearch = function() {
+      var search =  ''
+      angular.forEach($scope.component.children, function(child) {
+        if (child.type !== 'page' && child.attributes && child.attributes.search) {
+          search += child.attributes.search + ' ';
+        }
+      });
+      return search;
+    }
 
   }]);
 </script>
+
 
 
 <div id="prometheeLocalizer"
@@ -41,9 +51,8 @@ promethee_data = Promethee::Data.new master_data, localization_data: localizatio
 
   <input type="hidden" name="<%= object_name %>[<%= method_name %>]" id="page_data" value="{{data}}" />
 
-  <% Dir["#{__dir__}/components/*/_localize.html.erb"].map do |file| %>
-    <% partial = file.split('app/views/').last.gsub('.html.erb', '').gsub('/_', '/') %>
-    <%= render partial %>
+  <% promethee_localize_partials.each do |partial| %>
+      <%= render partial %>
   <% end %>
 
   <% #TODO override templates from current project %>
