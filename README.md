@@ -183,6 +183,42 @@ To register a component, the code is:
   });
 ```
 
+#### The editor needs routes to be defined
+
+To provide preview and active storage management features, **Prométhée use a controller which have to be targeted by routes**. The gem provide a shortcut helper to achieve that:
+
+```ruby
+# config/routes.rb
+
+Rails.application.routes.draw do
+  promethee
+  # Equivalent to:
+  # namespace :promethee do
+  #   post 'preview' => 'promethee#preview', as: :preview
+  #   post 'blob' => 'promethee#blob_create'
+  #   get 'blob/:id' => 'promethee#blob_show'
+  # end
+end
+```
+
+Since it's just a shortcut calling Rails native methods, this helper consider the route priority order (higher priority at the top, lower at the bottom).
+
+You can specify the namespace path by providing a value to the `path` option:
+
+```ruby
+# config/routes.rb
+
+Rails.application.routes.draw do
+  promethee path: 'admin/promethee'
+  # Equivalent to:
+  # namespace :promethee, path: 'admin/promethee', module: nil do
+  #   post 'preview' => 'promethee#preview', as: :preview
+  #   post 'blob' => 'promethee#blob_create'
+  #   get 'blob/:id' => 'promethee#blob_show'
+  # end
+end
+```
+
 #### The editor previews in an iframe
 
 To be able to preview responsivity, there is a POST "promethee/preview" route.

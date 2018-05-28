@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  promethee
+
   get 'demo/edit' => 'demo#edit', as: :demo_edit
   get 'demo/show' => 'demo#show', as: :demo_show
   get 'demo/localize' => 'demo#localize', as: :demo_localize
