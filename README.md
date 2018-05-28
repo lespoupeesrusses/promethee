@@ -120,6 +120,19 @@ This would do quite the same thing:
 </form>
 ```
 
+> In these examples, the `Page` model would need a migration adding a `data` column:
+>
+> ```ruby
+> class AddDataToPages < ActiveRecord::Migration[5.2]
+>   def change
+>     add_column :pages, :data, :jsonb
+>
+>     # Or, if jsonb isn't supported by your storage strategy:
+>     # add_column :pages, :data, :string
+>   end
+> end
+> ```
+
 You can specify a back link url to go to when closing the editor without saving:
 
 ```erb
@@ -149,6 +162,8 @@ With stylesheets set:
 @import 'promethee'
 @import 'promethee-edit'
 ```
+
+> These require/import statements are quite flexible: if you already use a gem/package which includes bootstrap, jquery, summernote... you're likely to be able to use it.
 
 #### The editor has components
 
