@@ -163,7 +163,7 @@ With stylesheets set:
 @import 'promethee-edit'
 ```
 
-> These require/import statements are quite flexible: if you already use a gem/package which includes bootstrap, jquery, summernote... you're likely to be able to use it.
+> These require/import statements are quite flexible: if you already use gems or packages which include bootstrap, jquery, summernote... you're likely to be able to use them in place of those included in Prométhée.
 
 #### The editor has components
 
