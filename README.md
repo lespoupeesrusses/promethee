@@ -120,6 +120,15 @@ This would do quite the same thing:
 </form>
 ```
 
+You can specify a back link url to go to when closing the editor without saving:
+
+```erb
+<%= form_for @page do |f| %>
+  <%= f.promethee :data, back_url: root_path %>
+  <%= f.submit %>
+<% end %>
+```
+
 > In these examples, the `Page` model would need a migration adding a `data` column:
 >
 > ```ruby
@@ -132,15 +141,6 @@ This would do quite the same thing:
 >   end
 > end
 > ```
-
-You can specify a back link url to go to when closing the editor without saving:
-
-```erb
-<%= form_for @page do |f| %>
-  <%= f.promethee :data, back_url: root_path %>
-  <%= f.submit %>
-<% end %>
-```
 
 With javascript set:
 ```
