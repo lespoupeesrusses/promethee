@@ -129,6 +129,19 @@ You can specify a back link url to go to when closing the editor without saving:
 <% end %>
 ```
 
+> In these examples, the `Page` model would need a migration adding a `data` column:
+>
+> ```ruby
+> class AddDataToPages < ActiveRecord::Migration[5.2]
+>   def change
+>     add_column :pages, :data, :jsonb
+>
+>     # Or, if jsonb isn't supported by your storage strategy:
+>     # add_column :pages, :data, :string
+>   end
+> end
+> ```
+
 With javascript set:
 ```
 //= require jquery
@@ -149,6 +162,8 @@ With stylesheets set:
 @import 'promethee'
 @import 'promethee-edit'
 ```
+
+> These require/import statements are quite flexible: if you already use gems or packages which include bootstrap, jquery, summernote... you're likely to be able to use them in place of those included in Prométhée.
 
 #### The editor has components
 
@@ -181,6 +196,42 @@ To register a component, the code is:
       }
     }
   });
+```
+
+#### The editor needs routes to be defined
+
+To provide preview and active storage management features, **Prométhée use a controller which have to be targeted by routes**. The gem provide a shortcut helper to achieve that:
+
+```ruby
+# config/routes.rb
+
+Rails.application.routes.draw do
+  promethee
+  # Equivalent to:
+  # namespace :promethee do
+  #   post 'preview' => 'promethee#preview', as: :preview
+  #   post 'blob' => 'promethee#blob_create'
+  #   get 'blob/:id' => 'promethee#blob_show'
+  # end
+end
+```
+
+Since it's just a shortcut calling Rails native methods, this helper consider the route priority order (higher priority at the top, lower at the bottom).
+
+You can specify the namespace path by providing a value to the `path` option:
+
+```ruby
+# config/routes.rb
+
+Rails.application.routes.draw do
+  promethee path: 'admin/promethee'
+  # Equivalent to:
+  # namespace :promethee, path: 'admin/promethee', module: nil do
+  #   post 'preview' => 'promethee#preview', as: :preview
+  #   post 'blob' => 'promethee#blob_create'
+  #   get 'blob/:id' => 'promethee#blob_show'
+  # end
+end
 ```
 
 #### The editor previews in an iframe

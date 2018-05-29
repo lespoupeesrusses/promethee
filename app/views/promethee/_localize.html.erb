@@ -25,6 +25,16 @@ promethee_data = Promethee::Data.new master_data, localization_data: localizatio
 
     $scope.summernoteConfig = summernoteConfig;
 
+    $scope.concatenateSearch = function() {
+      var search =  ''
+      angular.forEach($scope.component.children, function(child) {
+        if (child.type !== 'page' && child.attributes && child.attributes.search) {
+          search += child.attributes.search + ' ';
+        }
+      });
+      return search;
+    }
+
   }]);
 </script>
 
