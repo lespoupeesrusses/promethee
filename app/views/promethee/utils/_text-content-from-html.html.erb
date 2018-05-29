@@ -1,6 +1,7 @@
 <script>
   promethee.filter('textContentFromHTML', function() {
     return function(val) {
+      if (val === undefined) return ''
       // Inner text has a problem with some whitespace/linebreak missing (at least h1, h2...)
       // We fix it by adding whitespaces before each closing tag.
       var valWithSpaces = val.split('</').join(' </');

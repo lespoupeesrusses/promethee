@@ -164,6 +164,7 @@ With stylesheets set:
 ```
 
 > These require/import statements are quite flexible: if you already use gems or packages which include bootstrap, jquery, summernote... you're likely to be able to use them in place of those included in Prométhée.
+ATTENTION: If you use the Pace JS lib it must be required AFTER the promethee lib
 
 #### The editor has components
 
