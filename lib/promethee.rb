@@ -16,10 +16,10 @@ module Promethee
     require 'promethee/rails/version'
   end
 
-  require 'promethee/core_ext/tags'
   require 'promethee/core_ext/form_helper'
   require 'promethee/core_ext/form_builder'
+  require 'promethee/core_ext/mapper'
+  require 'promethee/core_ext/tags'
 
-  require 'promethee/configuration'
   require 'promethee/data'
 end
