@@ -361,6 +361,13 @@ In the controllers, don't forget to change the params to convert the data from j
   end
 ```
 
+If you want to store true Json (and not a string) in the "data" attribute of the model just include the concern PrometheeData
+```
+class Page < ApplicationRecord
+  include PrometheeData
+end
+`a `
+
 ### SQLite (or other not native json storage)
 
 Prométhée takes a ruby hash.
