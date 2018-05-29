@@ -54,6 +54,7 @@ promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'pres
   };
 
   $scope.upload = function (file, component, store) {
+    console.log('i enter upload');
     if (file == undefined) {
       return;
     }
@@ -63,12 +64,14 @@ promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'pres
       store = component.attributes;
     }
 
+    // TODO: utiliser les helpers pour le path
     $scope.promethee.inspected = component;
     Upload.upload({
       url: '/promethee/blob',
       data: { file: file },
       headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
     }).then(function (resp) {
+      console.log('i finish upload');
       store.blob = resp.data;
       $scope.upload_error = undefined;
     }, function (resp) {
