@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    promethee (1.6.5)
+    promethee (1.6.6)
       angularjs-rails (~> 1.6.2)
       bootstrap-sass
       font-awesome-rails
@@ -58,7 +58,7 @@ GEM
       tzinfo (~> 1.1)
     angularjs-rails (1.6.8)
     arel (9.0.0)
-    autoprefixer-rails (8.5.2)
+    autoprefixer-rails (8.6.1)
       execjs
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
@@ -69,7 +69,7 @@ GEM
     crass (1.0.4)
     erubi (1.7.1)
     execjs (2.7.0)
-    ffi (1.9.23)
+    ffi (1.9.25)
     font-awesome-rails (4.7.0.4)
       railties (>= 3.2, < 6.0)
     globalid (0.4.1)
