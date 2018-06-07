@@ -3,11 +3,13 @@
     promethee.definitions.push({
       name: 'Aside',
       icon: #{render('promethee/components/aside/icon').to_json.html_safe},
+      position: 30,
       data: {
         type: 'aside',
         attributes: {
           visible_content: '<p>Edit me</p>',
-          collapsed_content: ''
+          collapsed_content: '',
+          open_label: 'See more'
         },
         children: []
       }

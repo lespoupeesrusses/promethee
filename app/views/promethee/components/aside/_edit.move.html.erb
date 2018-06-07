@@ -3,7 +3,7 @@
       <aside ng-show="component.attributes.collapsed_content" ng-init="collapsed = true">
         <div ng-bind-html="component.attributes.visible_content | htmlSafe"></div>
         <div ng-hide="collapsed" ng-bind-html="component.attributes.collapsed_content | htmlSafe"></div>
-        <a class="btn btn-default btn-block" ng-click="collapsed = !collapsed">{{collapsed ? 'Read more' : 'Reduce'}}</a>
+        <a class="btn btn-default btn-block" ng-click="collapsed = !collapsed" ng-show="collapsed" ng-bind-html="component.attributes.open_label | htmlSafe"></a>
       </aside>
 
       <aside ng-hide="component.attributes.collapsed_content" ng-bind-html="component.attributes.visible_content | htmlSafe"></aside>

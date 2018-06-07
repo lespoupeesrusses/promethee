@@ -2,6 +2,7 @@
   angular.injector(['ng', 'Promethee']).get('presets').push({
     name: 'Image with text',
     icon: <%= render('promethee/presets/icon.image-with-text').to_json.html_safe %>,
+    position: 1,
     components: [
       {
         "type": "row",

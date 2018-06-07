@@ -11,10 +11,9 @@ open_label = component[:attributes][:open_label].to_s
     <div class="collapse" id="aside-collapse-<%= component[:id] %>">
       <%= collapsed_content.html_safe %>
     </div>
-    <div>
-      <a class="collapse show" href="#aside-collapse-<%= component[:id] %>" data-toggle="collapse" onclick="$(this).collapse('hide')">
-        <%= open_label %>
-      </a>
+    <div id="aside-open-<%= component[:id] %>" class="collapse show in" data-toggle="collapse" class="collapse show" data-target="#aside-open-<%= component[:id] %>" aria-expanded="true" style="overflow: hidden;">
+      <a href="#aside-collapse-<%= component[:id] %>" data-toggle="collapse"><%= open_label %></a>
     </div>
+
   <% end %>
 </aside>

@@ -41,6 +41,7 @@ promethee
             $('.promethee-edit__move').addClass('promethee-edit__move--dragging promethee-edit__move--dragging--' + type);
             var listId = $elementDragged.data('list-id');
             var listIndex = $elementDragged.data('list-index');
+            // FIXME no jquery hide
             $('.promethee-edit__move__droppable[data-id="' + listId + '"][data-index="' + listIndex + '"]').hide();
           },
           stop: function() {
@@ -49,6 +50,7 @@ promethee
             $('.promethee-edit__move').removeClass('promethee-edit__move--dragging promethee-edit__move--dragging--' + type);
             var listId = $elementDragged.data('list-id');
             var listIndex = $elementDragged.data('list-index');
+            // FIXME no jquery show
             $('.promethee-edit__move__droppable[data-id="' + listId + '"][data-index="' + listIndex + '"]').show();
           }
         });
@@ -117,7 +119,7 @@ promethee
             droppedToList.splice(droppedToIndex, 0, component);
 
             scope.promethee.inspected = component
-            
+
             scope.$apply();
           }
         });
@@ -132,7 +134,7 @@ promethee
     <div class="promethee-edit__library-header">Library</div>
     <div class="promethee-edit__library-content">
       <div class="row">
-        <div  ng-repeat="definition in promethee.definitions"
+        <div  ng-repeat="definition in promethee.definitions | orderBy:'position'"
               class="col-md-12 col-lg-6">
           <div  addable
                 class="promethee-edit__library__item"
@@ -146,7 +148,7 @@ promethee
     <div class="promethee-edit__library-header">Presets</div>
     <div class="promethee-edit__library-content">
       <div class="row">
-        <div ng-repeat="preset in promethee.presets" class="col-md-12 col-lg-6">
+        <div ng-repeat="preset in promethee.presets | orderBy:'position'" class="col-md-12 col-lg-6">
           <div addable class="promethee-edit__library__item" data-type="text" data-preset="{{preset.name}}">
             <div class="promethee-edit__library__item__icon" ng-bind-html="preset.icon | htmlSafe"></div>
             <div class="promethee-edit__library__item__name">{{preset.name}}</div>
@@ -166,7 +168,7 @@ promethee
     </div>
     <div class="promethee-edit__inspect-content">
       <ng-include src="'promethee/components/page/edit/inspect'" ng-show="promethee.inspected.type == 'page'"></ng-include>
-      <div ng-repeat="definition in promethee.definitions">
+      <div ng-repeat="definition in promethee.definitions | orderBy:'position'">
         <ng-include src="'promethee/components/' + definition.data.type + '/edit/inspect'"
                     ng-show="promethee.inspected.type == definition.data.type"></ng-include>
       </div>
