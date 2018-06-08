@@ -1,19 +1,22 @@
 <%
-visible_content = component[:attributes][:visible_content].to_s
-collapsed_content = component[:attributes][:collapsed_content].to_s
-open_label = component[:attributes][:open_label].to_s
+  visible_content = component[:attributes][:visible_content].to_s
+  collapsed_content = component[:attributes][:collapsed_content].to_s
+  open_label = component[:attributes][:open_label].to_s
 %>
 
-<aside class="<%= promethee_class_for component %>">
+<aside class="<%= promethee_class_for component %> aside">
   <%= visible_content.html_safe %>
 
   <% if collapsed_content.present? %>
-    <div class="collapse" id="aside-collapse-<%= component[:id] %>">
-      <%= collapsed_content.html_safe %>
-    </div>
-    <div id="aside-open-<%= component[:id] %>" class="collapse show in" data-toggle="collapse" class="collapse show" data-target="#aside-open-<%= component[:id] %>" aria-expanded="true" style="overflow: hidden;">
-      <a href="#aside-collapse-<%= component[:id] %>" data-toggle="collapse"><%= open_label %></a>
-    </div>
+
+      <div class="collapse aside__collapse" id="aside-collapse-<%= component[:id] %>">
+        <%= collapsed_content.html_safe %>
+      </div>
+
+      <div class="aside__button">
+        <a href="#aside-collapse-<%= component[:id] %>" data-toggle="collapse"><%= open_label %></a>
+      </div>
 
   <% end %>
+
 </aside>
