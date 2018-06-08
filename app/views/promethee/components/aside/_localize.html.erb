@@ -26,6 +26,19 @@
       </div>
     </div>
   </div>
-  
+
+  <div class="row" ng-show="component.master.attributes.collapsed_content">
+    <div class="col-md-6">
+      <b>Button label</b>
+      <div ng-bind-html="component.master.attributes.open_label | htmlSafe"></div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label class="label-control">Button label</label>
+        <input class="form-control" ng-model="component.attributes.open_label" type="text">
+      </div>
+    </div>
+  </div>
+
   <pre class="hidden">{{component.attributes.search = ((component.attributes.visible_content | textContentFromHTML) + ' ' + (component.attributes.collapsed_content | textContentFromHTML))}}</pre>
 </script>
