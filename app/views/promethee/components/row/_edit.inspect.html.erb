@@ -1,3 +1,18 @@
 <script type="text/ng-template" id="promethee/components/row/edit/inspect">
-  No option for row.
+  <div class="form-group">
+    No basic option for row.
+  </div>
+
+  <div class="panel panel-default" ng-init="advancedConfigurationOpen = false">
+    <div class="panel-heading" ng-click="advancedConfigurationOpen = !advancedConfigurationOpen">
+      Advanced configuration
+      <%= fa_icon 'angle-down', class: 'fa-pull-right', 'ng-class': "{'fa-rotate-180': advancedConfigurationOpen}", style: 'font-size: 18px' %>
+    </div>
+    <div class="panel-body" ng-show="advancedConfigurationOpen">
+      <div class="form-group">
+        <label class="label-control">Background color</label>
+        <input ng-model="promethee.inspected.attributes.bgcolor" colorpicker="rgba" class="form-control" type="text" />
+      </div>
+
+    </div>
 </script>
