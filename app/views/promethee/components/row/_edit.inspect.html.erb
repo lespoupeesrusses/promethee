@@ -14,28 +14,8 @@
         <input ng-model="promethee.inspected.attributes.bgcolor" colorpicker="rgba" class="form-control" type="text" />
       </div>
 
-      <promethee-uploader ng-model="promethee.inspected" property="bgimage1" label="Background Image 1" limits="'.jpg,.jpeg,.png,.gif'"></promethee-uploader>
-      <promethee-uploader ng-model="promethee.inspected" property="bgimage2" label="Background Image 2"></promethee-uploader>
-
-      <div class="form-group" ngf-drop="upload($file, promethee.inspected, 'bgimage1')" ngf-pattern="'.jpg,.jpeg,.png,.gif'">
-        <label class="label-control">Background Image 1</label>
-        <p>{{promethee.inspected.attributes.bgimage1.name}}</p>
-        <div class="button btn btn-default" ngf-select="upload($file, promethee.inspected, 'bgimage1')" ngf-accept="'.jpg,.jpeg,.png,.gif'" class="drop-box">Select an image</div>
-        <div class="progress" ng-show="promethee.inspected.attributes.bgimage1_upload_progress != undefined && promethee.inspected.attributes.bgimage1_upload_progress != 0 && promethee.inspected.attributes.bgimage1_upload_progress != 100">
-          <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: {{promethee.inspected.attributes.bgimage1_upload_progress}}%"></div>
-        </div>
-        <div class="alert alert-danger" ng-show="promethee.inspected.attributes.bgimage1_upload_error">{{promethee.inspected.attributes.bgimage1_upload_error}}</div>
-      </div>
-
-      <div class="form-group" ngf-drop="upload($file, promethee.inspected, 'bgimage2')" ngf-pattern="'.jpg,.jpeg,.png,.gif'">
-        <label class="label-control">Background Image 2</label>
-        <p>{{promethee.inspected.attributes.bgimage2.name}}</p>
-        <div class="button btn btn-default" ngf-select="upload($file, promethee.inspected, 'bgimage2')" ngf-accept="'.jpg,.jpeg,.png,.gif'" class="drop-box">Select an image</div>
-        <div class="progress" ng-show="promethee.inspected.attributes.bgimage2_upload_progress != undefined && promethee.inspected.attributes.bgimage2_upload_progress != 0 && promethee.inspected.attributes.bgimage2_upload_progress != 100">
-          <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: {{promethee.inspected.attributes.bgimage2_upload_progress}}%"></div>
-        </div>
-        <div class="alert alert-danger" ng-show="promethee.inspected.attributes.bgimage2_upload_error">{{promethee.inspected.attributes.bgimage2_upload_error}}</div>
-      </div>
+      <promethee-uploader ng-model="promethee.inspected.attributes.bgimage1" label="Background Image 1" limits="'.jpg,.jpeg,.png,.gif'"></promethee-uploader>
+      <promethee-uploader ng-model="promethee.inspected.attributes.bgimage2" label="Background Image 2"></promethee-uploader>
 
     </div>
 </script>
