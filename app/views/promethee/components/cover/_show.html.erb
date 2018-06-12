@@ -1,7 +1,7 @@
 <%
-blob_data = component[:attributes][:blob]
-if blob_data && blob_data[:id]
-  blob = ActiveStorage::Blob.find blob_data[:id]
+image_data = component[:attributes][:image]
+if image_data && image_data[:id]
+  blob = ActiveStorage::Blob.find image_data[:id]
 end
 
 surtitle = component[:attributes][:surtitle].to_s

@@ -1,12 +1,13 @@
 <script type="text/ng-template" id="promethee/components/image/edit/inspect">
-  <div class="form-group" ngf-drop="upload($file, promethee.inspected)" ngf-pattern="'.jpg,.jpeg,.png,.gif'">
+
+  <div class="form-group" ngf-drop="upload($file, promethee.inspected, 'image')" ngf-pattern="'.jpg,.jpeg,.png,.gif'">
     <label class="label-control">Image</label>
-    <p>{{promethee.inspected.attributes.blob.name}}</p>
-    <div class="button btn btn-default" ngf-select="upload($file, promethee.inspected)" ngf-accept="'.jpg,.jpeg,.png,.gif'" class="drop-box">Select an image</div>
-    <div class="progress" ng-show="upload_progress != undefined && upload_progress != 0 && upload_progress != 100">
-      <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: {{upload_progress}}%"></div>
+    <p>{{promethee.inspected.attributes.image.name}}</p>
+    <div class="button btn btn-default" ngf-select="upload($file, promethee.inspected, 'image')" ngf-accept="'.jpg,.jpeg,.png,.gif'" class="drop-box">Select an image</div>
+    <div class="progress" ng-show="promethee.inspected.attributes.image_upload_progress != undefined && promethee.inspected.attributes.image_upload_progress != 0 && promethee.inspected.attributes.image_upload_progress != 100">
+      <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: {{promethee.inspected.attributes.image_upload_progress}}%"></div>
     </div>
-    <div class="alert alert-danger" ng-show="upload_error">{{upload_error}}</div>
+    <div class="alert alert-danger" ng-show="promethee.inspected.attributes.image_upload_error">{{promethee.inspected.attributes.image_upload_error}}</div>
   </div>
 
   <div class="form-group">

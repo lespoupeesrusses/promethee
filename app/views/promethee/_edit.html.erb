@@ -53,13 +53,9 @@ promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'pres
     fullscreen: true
   };
 
-  $scope.upload = function (file, component, store) {
+  $scope.upload = function (file, component, prop) {
     if (file == undefined) {
       return;
-    }
-
-    if (store === undefined) {
-      store = component.attributes;
     }
 
     $scope.promethee.inspected = component;
@@ -68,13 +64,14 @@ promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'pres
       data: { file: file },
       headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
     }).then(function (resp) {
-      store.blob = resp.data;
-      $scope.upload_error = undefined;
+      component.attributes[prop] = resp.data;
+      component.attributes[prop + "_upload_error"] = undefined;
+      component.attributes[prop + "_upload_error"] = "une erreur grave !";
     }, function (resp) {
-      $scope.upload_error = "An error occured (error " + resp.status + ": " + resp.statusText + ")";
+      component.attributes[prop + "_upload_error"] = "An error occured (error " + resp.status + ": " + resp.statusText + ")";
     }, function (evt) {
       var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-      $scope.upload_progress = progressPercentage;
+      component.attributes[prop + "_upload_progress"] = progressPercentage;
     });
   };
 
@@ -149,7 +146,7 @@ promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'pres
       ng-controller="PrometheeController as prometheeController"
       ng-init="component = promethee.data"
       class="ng-cloak">
-
+  
   <% promethee_template_partials.each do |partial| %>
     <%= render partial %>
   <% end %>
@@ -162,6 +159,9 @@ promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'pres
 
   <div class="promethee-edit" ng-show="promethee.fullscreen">
     <input type="hidden" name="page[data]" id="page_data" value="{{promethee.data}}" />
+    <div class="upload__modal" ng-show="upload.running">
+
+    </div>
     <nav class="navbar navbar-default promethee-edit__navbar" ng-class="{'navbar-fixed-top': promethee.fullscreen }">
       <div class="container-fluid">
         <div class="navbar-header promethee-edit__icon">

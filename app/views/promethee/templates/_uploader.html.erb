@@ -1,0 +1,64 @@
+<script type="text/ng-template" id="promethee_uploader">
+  <div class="form-group" ngf-drop="prometheeUploader.upload($file, ngModel, property)" ngf-pattern="{{limits || ''}}">
+    <label class="label-control">{{label}}</label>
+    <p>{{ngModel.attributes[property].name}}</p>
+    <div class="button btn btn-default" ngf-select="prometheeUploader.upload($file, ngModel, property)" ngf-accept="{{limits || ''}}" class="drop-box">Select an image</div>
+    <div class="progress" ng-show="prometheeUploader.upload_progress != undefined && prometheeUploader.upload_progress != 0 && prometheeUploader.upload_progress != 100">
+      <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: {{prometheeUploader.upload_progress}}%"></div>
+    </div>
+    <div class="alert alert-danger" ng-show="prometheeUploader.upload_error">{{prometheeUploader.upload_error}}</div>
+  </div>
+</script>
+
+
+
+
+<script>
+  promethee.directive('prometheeUploader', ['Upload', function(Upload) {
+    return {
+      restrict: 'E',
+      scope: {
+        ngModel: '=',
+        property: '@',
+        label: '@',
+        limits: '@',
+      },
+      templateUrl: 'promethee_uploader',
+      controller: function() {
+        this.upload_error = '';
+        this.upload_progress = 0;
+
+        this.upload = function (file, component, prop) {
+          var self = this;
+          console.log('im in');
+          console.log(file);
+          console.log(component);
+          console.log(prop);
+
+          if (file == undefined) {
+            return;
+          }
+
+          // $scope.promethee.inspected = component;
+          Upload.upload({
+            url: '<%= promethee_active_storage_create_path %>',
+            data: { file: file },
+            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+          }).then(function (resp) {
+            component.attributes[prop] = resp.data;
+            self.upload_error = undefined;
+            self.upload_error = "une erreur grave !";
+          }, function (resp) {
+            self.upload_error = "An error occured (error " + resp.status + ": " + resp.statusText + ")";
+          }, function (evt) {
+            var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+            self.upload_progress = progressPercentage;
+          });
+        };
+
+      },
+      controllerAs: 'prometheeUploader'
+    }
+  }]);
+
+</script>
