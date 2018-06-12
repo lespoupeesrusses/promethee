@@ -2,8 +2,9 @@
   init = <<~JAVASCRIPT
     promethee.definitions.push({
       name: 'Column',
-      icon: #{render('promethee/components/column/icon').to_json.html_safe},
-      position: -1,
+      icon: #{ promethee_component_render_icon 'column' },
+      position: 0,
+      library: false,
       data: {
         type: 'column',
         attributes: {
@@ -15,5 +16,4 @@
     })
   JAVASCRIPT
 %>
-
-<%= content_tag :div, nil, 'ng-init': init %>
+<div ng-init="<%= init %>"></div>

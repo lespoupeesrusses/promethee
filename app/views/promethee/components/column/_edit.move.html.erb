@@ -7,7 +7,7 @@
                 col-md-offset-{{component.attributes.offset}}">
     <div class="promethee-edit__component__inner">
       <%= render 'promethee/edit/move.remove' %>
-        <div class="header">Column</div>
+        <div class="header">Column {{$index + 1}}</div>
         <ng-include src="'promethee/move/components'"></ng-include>
         <pre class="hidden">{{component.attributes.search = concatenateChildrenSearch(component)}}</pre>
         <div

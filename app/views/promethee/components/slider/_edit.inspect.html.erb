@@ -33,7 +33,7 @@
 </script>
 
 <script>
-  promethee.controller('SliderInspectorController', ['$scope', 'identifier', function($scope, identifier) {
+  promethee.controller('SliderInspectorController', ['$scope', function($scope) {
     var availableComponents = ['image', 'video'];
 
     $scope.itemDefinitions = $scope.promethee.definitions.filter(function(definition) {
@@ -46,7 +46,7 @@
 
     $scope.addItem = function(definition) {
       var item = JSON.parse(JSON.stringify(definition.data));
-      item.id = identifier.generate();
+      item.id = $scope.generateIdentifier();
 
       $scope.promethee.inspected.children.push(item);
     }

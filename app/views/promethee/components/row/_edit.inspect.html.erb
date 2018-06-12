@@ -1,6 +1,9 @@
 <script type="text/ng-template" id="promethee/components/row/edit/inspect">
   <div class="form-group">
-    No basic option for row.
+    <ul class="list-unstyled">
+      <li ng-repeat="column in promethee.inspected.children">Column {{$index + 1}}</li>
+    </ul>
+    <div class="btn btn-default" ng-click="addComponentByType('column', promethee.inspected.children)">Add column</div>
   </div>
 
   <div class="panel panel-default" ng-init="advancedConfigurationOpen = false">

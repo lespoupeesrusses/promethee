@@ -57,7 +57,7 @@ promethee
       }
     }
   })
-  .directive('droppable', ['$compile', 'presets', 'identifier', function($compile, presets, identifier) {
+  .directive('droppable', ['$compile', 'presets', function($compile, presets) {
     return {
       restrict: 'A',
       link: function(scope, element, attrs) {
@@ -79,7 +79,7 @@ promethee
                 var component;
                 for(var i = 0; i < components.length; i++) {
                   component = components[i];
-                  component.id = identifier.generate();
+                  component.id = scope.generateIdentifier();
                   if(Array.isArray(component.children)) provideIdentifiers(component.children);
                 }
 
@@ -100,7 +100,7 @@ promethee
             if (draggedFromLibrary) {
               var definition = angular.element(ui.draggable).scope().definition;
               var component = angular.copy(definition.data);
-              component.id = identifier.generate();
+              component.id = scope.generateIdentifier();
             } else {
               var draggedFromIndex = parseInt(ui.draggable[0].getAttribute('data-list-index'));
               // console.log('dragged', draggedFromList, draggedFromIndex);
@@ -134,7 +134,7 @@ promethee
     <div class="promethee-edit__library-header">Library</div>
     <div class="promethee-edit__library-content">
       <div class="row">
-        <div  ng-repeat="definition in promethee.definitions | orderBy:'position'"
+        <div  ng-repeat="definition in promethee.definitions | filter:{library:true} | orderBy:'position'"
               class="col-md-12 col-lg-6">
           <div  addable
                 class="promethee-edit__library__item"
