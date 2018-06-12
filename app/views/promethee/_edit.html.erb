@@ -22,7 +22,7 @@ var promethee = angular
 <% end %>
 
 <script type="text/javascript">
-promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'presets', 'identifier', 'Upload', function($scope, summernoteConfig, presets, identifier, Upload) {
+promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'presets', 'identifier', function($scope, summernoteConfig, presets, identifier) {
   $scope.data = <%= promethee_data.to_json.html_safe %>;
 
   // Data (TODO use Adder and probably page definition to init)
@@ -51,28 +51,6 @@ promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'pres
     mode: 'move',
     preview: 'desktop',
     fullscreen: true
-  };
-
-  $scope.upload = function (file, component, prop) {
-    if (file == undefined) {
-      return;
-    }
-
-    $scope.promethee.inspected = component;
-    Upload.upload({
-      url: '<%= promethee_active_storage_create_path %>',
-      data: { file: file },
-      headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
-    }).then(function (resp) {
-      component.attributes[prop] = resp.data;
-      component.attributes[prop + "_upload_error"] = undefined;
-      component.attributes[prop + "_upload_error"] = "une erreur grave !";
-    }, function (resp) {
-      component.attributes[prop + "_upload_error"] = "An error occured (error " + resp.status + ": " + resp.statusText + ")";
-    }, function (evt) {
-      var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-      component.attributes[prop + "_upload_progress"] = progressPercentage;
-    });
   };
 
   $scope.inspect = function(component, event) {
@@ -146,7 +124,7 @@ promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'pres
       ng-controller="PrometheeController as prometheeController"
       ng-init="component = promethee.data"
       class="ng-cloak">
-  
+
   <% promethee_template_partials.each do |partial| %>
     <%= render partial %>
   <% end %>
