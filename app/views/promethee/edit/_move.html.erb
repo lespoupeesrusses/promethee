@@ -167,7 +167,6 @@ promethee
       {{promethee.inspected.type}}
     </div>
     <div class="promethee-edit__inspect-content">
-      <ng-include src="'promethee/components/page/edit/inspect'" ng-show="promethee.inspected.type == 'page'"></ng-include>
       <div ng-repeat="definition in promethee.definitions | orderBy:'position'">
         <ng-include src="'promethee/components/' + definition.data.type + '/edit/inspect'"
                     ng-show="promethee.inspected.type == definition.data.type"></ng-include>

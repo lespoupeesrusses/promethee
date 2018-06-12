@@ -23,14 +23,24 @@ var promethee = angular
 
 <script type="text/javascript">
 promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'presets', '$filter', function($scope, summernoteConfig, presets, $filter) {
+  
+  $scope.generateIdentifier = function() {
+    // https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
+    function s4() {
+      return Math.floor((1 + Math.random()) * 0x10000)
+        .toString(16)
+        .substring(1);
+    }
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+  }
+
   $scope.data = <%= promethee_data.to_json.html_safe %>;
 
-  // Data (TODO use Adder and probably page definition to init)
+  // Data (TODO use standard method createComponentFromDefinition)
   if (typeof $scope.data !== 'object' || $scope.data === null || $scope.data.type !== 'page') {
     $scope.data = {
-      id: '',
+      id: $scope.generateIdentifier(),
       type: 'page',
-      version: 1,
       attributes: {
         title: 'New page',
         description: '',
@@ -55,30 +65,25 @@ promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'pres
     return $filter('filter')($scope.promethee.definitions, {'data':{'type':type}})[0]; 
   }
   
-  $scope.generateIdentifier = function() {
-    // https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
-    function s4() {
-      return Math.floor((1 + Math.random()) * 0x10000)
-        .toString(16)
-        .substring(1);
-    }
-    return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
-  }
-
   $scope.addComponentByType = function(type, target, index = -1) {
     var definition = $scope.findDefinitionByType(type);
     $scope.addComponent(definition, target, index);
   }
 
   $scope.addComponent = function(definition, target, index = -1) {
-    var component = angular.copy(definition.data);
-    component.id = $scope.generateIdentifier();
+    var component = $scope.createComponentFromDefinition(definition);
     if (index === -1) {
       target.push(component);
     } else {
       target.splice(index, 0, component);
     }
   }
+
+  $scope.createComponentFromDefinition = function(definition) {
+    var component = angular.copy(definition.data);
+    component.id = $scope.generateIdentifier();
+    return component;
+  } 
 
   $scope.inspect = function(component, event) {
     if(event.target.closest('.promethee-edit__component') === event.currentTarget) {
