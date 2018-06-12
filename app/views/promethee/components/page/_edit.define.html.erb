@@ -1,0 +1,21 @@
+<%
+  init = <<~JAVASCRIPT
+    promethee.definitions.push({
+      name: 'Page',
+      icon: #{ promethee_component_render_icon 'page' },
+      position: 0,
+      library: false,
+      data: {
+        type: 'page',
+        attributes: {
+          title: 'New page',
+          description: '',
+          stylesheets: '',
+          javascripts: ''
+        },
+        children: []
+      }
+    })
+  JAVASCRIPT
+%>
+<div ng-init="<%= init %>"></div>
