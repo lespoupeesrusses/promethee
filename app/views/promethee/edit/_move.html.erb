@@ -36,22 +36,12 @@ promethee
           refreshPositions: true,
           cursor: 'move',
           start: function() {
-            var $elementDragged = $(element[0]);
-            var type = $elementDragged.data('type');
+            var type = $(element[0]).data('type');
             $('.promethee-edit__move').addClass('promethee-edit__move--dragging promethee-edit__move--dragging--' + type);
-            var listId = $elementDragged.data('list-id');
-            var listIndex = $elementDragged.data('list-index');
-            // FIXME no jquery hide
-            $('.promethee-edit__move__droppable[data-id="' + listId + '"][data-index="' + listIndex + '"]').hide();
           },
           stop: function() {
-            var $elementDragged = $(element[0]);
-            var type = $elementDragged.data('type');
+            var type = $(element[0]).data('type');
             $('.promethee-edit__move').removeClass('promethee-edit__move--dragging promethee-edit__move--dragging--' + type);
-            var listId = $elementDragged.data('list-id');
-            var listIndex = $elementDragged.data('list-index');
-            // FIXME no jquery show
-            $('.promethee-edit__move__droppable[data-id="' + listId + '"][data-index="' + listIndex + '"]').show();
           }
         });
       }
@@ -185,13 +175,12 @@ promethee
   <div ng-init="parent_id = component.id; parent_type = component.type; components = component.children">
     <div
       droppable
-      class="<%= promethee_bem_classes 'promethee-edit__move__droppable', '--{{parent_type}}', '--first' %>"
+      class="<%= promethee_bem_classes 'promethee-edit__move__droppable', '--{{parent_type}}' %>"
       data-id="{{parent_id}}"
       data-type="{{parent_type}}"
       data-index="0"
       >
     </div>
-    <div class="<%= promethee_bem_classes 'promethee-edit__move__droppable-substitute', '--{{parent_type}}', '--first' %>"></div>
     <div
       draggable
       ng-repeat="component in components"
@@ -211,7 +200,6 @@ promethee
         data-index="{{$index+1}}"
         >
       </div>
-      <div class="<%= promethee_bem_classes 'promethee-edit__move__droppable-substitute', '--{{parent_type}}' %>"></div>
     </div>
   </div>
 </script>

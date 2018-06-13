@@ -77,27 +77,6 @@
     &.ui-droppable-hover
       opacity: 1
       height: 100px
-    &--row
-      position: absolute
-      display: none
-      width: 10px
-      height: 100%
-      &.ui-droppable-active
-        width: 10px
-        height: 100%
-      &.ui-droppable-hover
-        opacity: 1
-        width: 20px
-        height: 100%
-      &--first
-        display: block
-        left: -10px
-        top: 10px
-        bottom: 20px
-      &--inside-column
-        display: block
-        right: -5px
-        top: -10px
 
   .ui-draggable-dragging
     z-index: 1000
@@ -105,27 +84,6 @@
     // Nothing is droppable inside components being dragged
     .promethee-edit__move__droppable
       visibility: hidden !important
-
-  // By default, nothing is dropped in rows
-  &--dragging
-    .promethee-edit__move__droppable--row
-      display: none
-
-    // Except for columns, which can be dropped only on rows
-    &--column
-      .promethee-edit__move__droppable
-        display: none
-        // But we don't want anything to move when the droppable disappear, so we show some substitutes
-        &-substitute
-          // This height is not perfect, some strange things move
-          height: 24px
-          // Except in rows
-          &.promethee-edit__move__droppable-substitute--row
-            height: 0
-        // It's a little specific, columns can be dropped on rows "first droppable", or on columns "inside droppables"
-        &--row--first,
-        &--row--inside-column
-          display: block
 
   .promethee-edit
     &__inspect, &__library
