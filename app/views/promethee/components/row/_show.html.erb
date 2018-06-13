@@ -3,17 +3,15 @@ background_color = component[:attributes][:bgcolor]
 background_images = []
 background_positions = []
 
-index = 1
-while component[:attributes].has_key?("bgimage#{index}".to_sym) do
-    blob_id = component[:attributes]["bgimage#{index}".to_sym][:id]
+if component[:attributes].has_key?(:backgrounds) # retro-compatibility
+  component[:attributes][:backgrounds].each do |item|
+    blob_id = item[:image][:id]
     blob = ActiveStorage::Blob.find blob_id
-    bg_pos_h = component[:attributes]["bgimage#{index}_position_h".to_sym]
-    bg_pos_v = component[:attributes]["bgimage#{index}_position_v".to_sym]
     url = "url(#{url_for(blob)})"
-    position = "#{bg_pos_h} #{bg_pos_v}"
+    position = "#{item[:posh]} #{item[:posv]}"
     background_images << url
     background_positions << position
-    index += 1
+  end
 end
 %>
 
