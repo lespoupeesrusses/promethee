@@ -1,5 +1,5 @@
 <script type="text/ng-template" id="promethee/components/image/localize">
-  <div ng-show="component.master.attributes.alt || component.master.attributes.caption">
+  <div ng-show="component.master.attributes.searchable_alt || component.master.attributes.searchable_caption">
     <hr>
 
     <div class="row">
@@ -8,32 +8,30 @@
       </div>
     </div>
 
-    <div class="row" ng-show="component.master.attributes.alt">
+    <div class="row" ng-show="component.master.attributes.searchable_alt">
       <div class="col-md-6">
         <b>Alt</b>
-        <p>{{component.master.attributes.alt}}</p>
+        <p>{{component.master.attributes.searchable_alt}}</p>
       </div>
       <div class="col-md-6">
         <div class="form-group">
           <label class="label-control">Alt</label>
-          <input class="form-control" ng-model="component.attributes.alt" type="text">
+          <input class="form-control" ng-model="component.attributes.searchable_alt" type="text">
         </div>
       </div>
     </div>
 
-    <div class="row" ng-show="component.master.attributes.caption">
+    <div class="row" ng-show="component.master.attributes.searchable_caption">
       <div class="col-md-6">
         <b>Caption</b>
-        <p>{{component.master.attributes.caption}}</p>
+        <p>{{component.master.attributes.searchable_caption}}</p>
       </div>
       <div class="col-md-6">
         <div class="form-group">
           <label class="label-control">Caption</label>
-          <input class="form-control" ng-model="component.attributes.caption" type="text">
+          <input class="form-control" ng-model="component.attributes.searchable_caption" type="text">
         </div>
       </div>
     </div>
   </div>
-
-  <pre class="hidden">{{component.attributes.search = (component.attributes.caption + ' ' + component.attributes.alt)}}</pre>
 </script>

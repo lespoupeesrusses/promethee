@@ -1,6 +1,6 @@
 <%
-body = component[:attributes][:body].to_s
+searchable_body = component[:attributes][:searchable_body].to_s
 %>
 <div class="<%= promethee_class_for component %>">
-  <%= body.html_safe %>
+  <%= searchable_body.html_safe %>
 </div>

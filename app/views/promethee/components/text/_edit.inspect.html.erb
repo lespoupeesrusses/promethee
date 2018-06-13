@@ -1,8 +1,8 @@
 <script type="text/ng-template" id="promethee/components/text/edit/inspect">
   <div class="form-group">
-    <summernote config="summernoteConfig" ng-model="promethee.inspected.attributes.body"></summernote>
+    <summernote config="summernoteConfig" ng-model="promethee.inspected.attributes.searchable_body"></summernote>
   </div>
 
-  {{promethee.inspected.attributes.body | textContentFromHTML | numberOfWords}} words<br>
-  {{promethee.inspected.attributes.body | textContentFromHTML | numberOfCharacters}} characters
+  {{promethee.inspected.attributes.searchable_body | textContentFromHTML | numberOfWords}} words<br>
+  {{promethee.inspected.attributes.searchable_body | textContentFromHTML | numberOfCharacters}} characters
 </script>
