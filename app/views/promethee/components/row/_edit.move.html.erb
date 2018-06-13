@@ -1,7 +1,7 @@
 <script type="text/ng-template" id="promethee/components/row/edit/move">
   <%= render 'promethee/edit/move.header', type: 'row' %>
       <div class="header">Row</div>
-      <div class="row" style="background-image:url('{{ component.attributes.blob.id ? '/promethee/blob/' + component.attributes.blob.id : '' }}')">
+      <div class="row">
         <div ng-init="components = component.children">
           <div ng-repeat="component in components"
             class="<%= promethee_bem_classes 'promethee-edit__move__draggable', '--{{component.type}}' %>">
