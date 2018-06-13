@@ -1,14 +1,14 @@
 <script type="text/ng-template" id="promethee/components/row/edit/inspect">
   <div class="form-group">
-    <div  class="btn btn-default" 
+    <div  class="btn btn-default"
           ng-click="addComponentByType('column', promethee.inspected.children)">
       Add column
     </div>
     <div  ng-show="promethee.inspected.children.length > 1">
       <br><br>
       <label class="label-control">Drag the columns below to reorder them:</label>
-      <ul ui-sortable 
-          ng-model="promethee.inspected.children" 
+      <ul ui-sortable
+          ng-model="promethee.inspected.children"
           class="list-unstyled">
         <li ng-repeat="column in promethee.inspected.children">
           <%= fa_icon :bars %> Column {{$index + 1}}
@@ -20,30 +20,22 @@
   <%= render 'promethee/edit/inspect.advanced' %>
     <div class="form-group">
       <label  class="label-control">Background color</label>
-      <input  ng-model="promethee.inspected.attributes.bgcolor" 
-              colorpicker="rgba" 
-              class="form-control" 
+      <input  ng-model="promethee.inspected.attributes.bgcolor"
+              colorpicker="rgba"
+              class="form-control"
               type="text" />
     </div>
 
     <div>
-      <div class="btn btn-default" ng-click="promethee.inspected.attributes.backgrounds.push( { image: { id: undefined, name: '' }, posh: 'center', posv: 'center' } )">Add background image</div>
+      <div class="btn btn-default" ng-click="promethee.inspected.attributes.backgrounds.push( { image: { id: undefined, name: '' }, posh: 'center', posv: 'center', size: 'auto' } )">Add background image</div>
 
       <div ng-repeat="background in promethee.inspected.attributes.backgrounds" style="margin-top: 20px">
         <h3>Background {{$index + 1}} <span class="fa fa-trash" ng-click="promethee.inspected.attributes.backgrounds.splice($index, 1)" style="cursor: pointer"></span></h3>
-        <promethee-uploader ng-model="background.image" label="Image" limits="'.jpg,.jpeg,.png,.gif'"></promethee-uploader>
+        <promethee-uploader ng-model="background.image" label="" limits="'.jpg,.jpeg,.png,.gif'"></promethee-uploader>
 
-        <% [ { label: 'Horizontal', attribute: 'posh', values: ['left', 'center', 'right'] }, { label: 'Vertical', attribute: 'posv', values: ['top', 'center', 'bottom'] } ].each do |elt| %>
-          <div class="form-group">
-            <label class="label-control"><%= elt[:label] %> position</label>
-            <div style="margin-left: 2px">
-              <% elt[:values].each do |value| %>
-                <label class="radio-inline"> <input ng-model="background.<%= elt[:attribute] %>" type="radio" value="<%= value %>" /><%= value.humanize %> </label>
-              <% end %>
-            </div>
-          </div>
-        <% end %>
-
+        <%= render 'promethee/edit/radiobuttons', label: 'Horizontal position', attribute: 'posh', values: ['left', 'center', 'right'] %>
+        <%= render 'promethee/edit/radiobuttons', label: 'Vertical position', attribute: 'posv', values: ['top', 'center', 'bottom'] %>
+        <%= render 'promethee/edit/radiobuttons', label: 'Size', attribute: 'size', values: ['auto', 'cover', 'contain'] %>
       </div>
 
     </div>
