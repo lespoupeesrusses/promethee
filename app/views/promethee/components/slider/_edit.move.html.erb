@@ -7,7 +7,6 @@
           <div ng-bind-html="parent.attributes.contents['content-' + component.id] | htmlSafe"></div>
         </div>
         <div class="clearfix" ng-if="$index%6 === 5" ng-repeat-end></div>
-        <pre class="hidden">{{component.attributes.search = concatenateChildrenSearch(component)}}</pre>
       </div>
     </div>
   </div>

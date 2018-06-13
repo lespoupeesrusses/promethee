@@ -4,7 +4,6 @@
       class="<%= promethee_bem_classes 'promethee-edit__component', "--page" %>">
     <div class="promethee-edit__component__inner">
       <div class="header">Page</div>
-
       <div class="promethee-edit__move__columns">
         <div class="row">
           <% 12.times do %>
@@ -12,9 +11,6 @@
           <% end %>
         </div>
       </div>
-      
-      <pre class="hidden">{{component.attributes.search = concatenateChildrenSearch(component)}}</pre>
-
       <ng-include src="'promethee/move/components'"></ng-include>
     </div>
   </div>

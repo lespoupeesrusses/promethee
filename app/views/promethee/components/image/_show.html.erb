@@ -4,14 +4,14 @@ if image_data && image_data[:id]
   blob = ActiveStorage::Blob.find image_data[:id]
 end
 
-alt = component[:attributes][:alt]
-caption = component[:attributes][:caption].to_s
+searchable_alt = component[:attributes][:searchable_alt].to_s
+searchable_caption = component[:attributes][:searchable_caption].to_s
 %>
 <figure class="<%= promethee_class_for component %>">
-  <%= image_tag url_for(blob.variant(resize: '1920')), class: 'img-responsive', alt: alt if blob %>
-  <% unless caption.blank? %>
+  <%= image_tag url_for(blob.variant(resize: '1920')), class: 'img-responsive', alt: searchable_alt if blob %>
+  <% unless searchable_caption.blank? %>
     <figcaption>
-      <%= caption %>
+      <%= searchable_caption %>
     </figcaption>
   <% end %>
 </figure>

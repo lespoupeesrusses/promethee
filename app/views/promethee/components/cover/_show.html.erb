@@ -4,21 +4,21 @@ if image_data && image_data[:id]
   blob = ActiveStorage::Blob.find image_data[:id]
 end
 
-surtitle = component[:attributes][:surtitle].to_s
-title = component[:attributes][:title].to_s
-subtitle = component[:attributes][:subtitle].to_s
+searchable_surtitle = component[:attributes][:searchable_surtitle].to_s
+searchable_title = component[:attributes][:searchable_title].to_s
+searchable_subtitle = component[:attributes][:searchable_subtitle].to_s
 %>
 <div id="component-<%= image_data[:id] %>" class="<%= promethee_class_for(component) %>" style="background-image: url(<%= url_for(blob.variant(resize: '1920')) if blob %>)">
-  <% if surtitle.present? %>
-    <p><%= surtitle %></p>
+  <% if searchable_surtitle.present? %>
+    <p><%= searchable_surtitle %></p>
   <% end %>
 
-  <% if title.present? %>
-    <h1><%= title %></h1>
+  <% if searchable_title.present? %>
+    <h1><%= searchable_title %></h1>
   <% end %>
 
-  <% if subtitle.present? %>
-    <p><%= subtitle %></p>
+  <% if searchable_subtitle.present? %>
+    <p><%= searchable_subtitle %></p>
   <% end %>
 
 </div>

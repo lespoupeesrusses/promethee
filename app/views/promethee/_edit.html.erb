@@ -42,8 +42,8 @@ promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'pres
       id: $scope.generateIdentifier(),
       type: 'page',
       attributes: {
-        title: 'New page',
-        description: '',
+        searchable_title: 'New page',
+        searchable_description: '',
         stylesheets: '',
         javascripts: ''
       },
@@ -131,16 +131,6 @@ promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'pres
   $scope.submit = function() {
     $('#promethee').closest('form').submit();
   };
-
-  $scope.concatenateChildrenSearch = function(component) {
-    var search =  ''
-    angular.forEach(component.children, function(child) {
-      if (child.attributes && child.attributes.search) {
-        search += child.attributes.search + ' ';
-      }
-    });
-    return search;
-  }
 
   $scope.summernoteConfig = summernoteConfig;
   $scope.sendPreviewData('thumb-preview');
