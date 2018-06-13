@@ -1,0 +1,5 @@
+<% media = component[:attributes][:media] %>
+<div class="carousel-item__content">
+  <%= render 'promethee/show/component', component: media if defined?(media[:type]) %>
+  <%= component[:attributes][:text].to_s.html_safe %>
+</div>

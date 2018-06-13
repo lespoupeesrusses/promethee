@@ -1,0 +1,15 @@
+<script type="text/ng-template" id="promethee/components/slider_item/localize">
+  <div ng-show="component.master.attributes.text !== ''">
+    <hr>
+    <div class="row">
+      <div class="col-md-6">
+        <b>Slide Item Text</b>
+        <div class="promethee-edit__wrapper" ng-bind-html="component.master.attributes.text | htmlSafe"></div>
+      </div>
+      <div class="col-md-6">
+        <label class="label-control">Slide Item Text</label>
+        <summernote config="summernoteConfig" ng-model="component.attributes.text"></summernote>
+      </div>
+    </div>
+  </div>
+</script>

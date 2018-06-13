@@ -1,10 +1,9 @@
 <div id="slider-<%= component[:id] %>" class="carousel slide <%= promethee_class_for component %>" data-ride="carousel">
   <div class="carousel-inner">
-    <% component[:children].each.with_index do |child, n| %>
-      <div class="item<%= ' active' if n.zero? %>">
-        <%= render 'promethee/show/component', component: child %>
-        <%= component[:attributes].dig(:contents, :"content-#{child[:id]}").to_s.html_safe %>
-      </div>
+    <% component[:children].each.with_index do |item, n| %>
+    <div class="item<%= ' active' if n.zero? %>">
+      <%= render 'promethee/show/component', component: item %>
+    </div>
     <% end %>
   </div>
 
