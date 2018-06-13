@@ -2,6 +2,7 @@
   visible_content = component[:attributes][:visible_content].to_s
   collapsed_content = component[:attributes][:collapsed_content].to_s
   open_label = component[:attributes][:open_label].to_s
+  open_label_position = component[:attributes][:open_label_position].to_s
 %>
 
 <aside class="<%= promethee_class_for component %> aside">
@@ -14,7 +15,7 @@
       </div>
 
       <div class="aside__button">
-        <a href="#aside-collapse-<%= component[:id] %>" data-toggle="collapse"><%= open_label %></a>
+        <a href="#aside-collapse-<%= component[:id] %>" data-toggle="collapse" class="aside__button--<%= open_label_position %>"><%= open_label %></a>
       </div>
 
   <% end %>
