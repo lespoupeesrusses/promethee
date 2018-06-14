@@ -1,5 +1,6 @@
 <%
 promethee_data = Promethee::Data.new master_data
+preview_url ||= promethee_preview_path.to_json.html_safe
 back_url ||= nil
 logo = File.read "#{__dir__}/../../assets/images/icon-promethee.svg"
 %>
@@ -23,7 +24,7 @@ var promethee = angular
 
 <script type="text/javascript">
 promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'presets', '$filter', function($scope, summernoteConfig, presets, $filter) {
-  
+
   $scope.generateIdentifier = function() {
     // https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
     function s4() {
@@ -62,9 +63,9 @@ promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'pres
   };
 
   $scope.findDefinitionByType = function(type) {
-    return $filter('filter')($scope.promethee.definitions, {'data':{'type':type}})[0]; 
+    return $filter('filter')($scope.promethee.definitions, {'data':{'type':type}})[0];
   }
-  
+
   $scope.addComponentByType = function(type, target, index = -1) {
     var definition = $scope.findDefinitionByType(type);
     $scope.addComponent(definition, target, index);
@@ -83,7 +84,7 @@ promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'pres
     var component = angular.copy(definition.data);
     component.id = $scope.generateIdentifier();
     return component;
-  } 
+  }
 
   $scope.inspect = function(component, event) {
     if(event.target.closest('.promethee-edit__component') === event.currentTarget) {
@@ -101,7 +102,7 @@ promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'pres
     var form = document.createElement('form');
     document.body.appendChild(form);
     form.method = 'POST';
-    form.action = <%= promethee_preview_path.to_json.html_safe %>;
+    form.action = <%= preview_url %>;
     form.target = target;
 
     var input = document.createElement('input');
