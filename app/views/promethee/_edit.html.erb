@@ -102,7 +102,7 @@ promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'pres
     var form = document.createElement('form');
     document.body.appendChild(form);
     form.method = 'POST';
-    form.action = <%= preview_url %>;
+    form.action = "<%= preview_url %>";
     form.target = target;
 
     var input = document.createElement('input');
