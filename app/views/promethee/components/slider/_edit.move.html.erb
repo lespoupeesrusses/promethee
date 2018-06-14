@@ -1,11 +1,17 @@
 <script type="text/ng-template" id="promethee/components/slider/edit/move">
   <%= render 'promethee/edit/move.header', type: 'slider' %>
       <div class="header">Slider</div>
-      <div class="row" ng-controller="SliderMoveController">
-        <div class="col-md-2" ng-repeat-start="component in components">
-          <ng-include src="'promethee/move/component'"></ng-include>
+      <div ng-controller="SliderMoveController">
+        <div class="row carousel">
+          <div class="col-xs-1" ng-click="selectedIndex = (selectedIndex == 0) ? (components.length - 1) : (selectedIndex - 1)"><span><</span></div>
+          <div class="col-xs-8" ng-repeat="component in components" ng-show="$index == selectedIndex">
+            <ng-include src="'promethee/move/component'"></ng-include>
+          </div>
+          <div class="col-xs-1" ng-click="selectedIndex = (selectedIndex == components.length - 1) ? 0 : (selectedIndex + 1)"><span>></span></div>
         </div>
-        <div class="clearfix" ng-if="$index%6 === 5" ng-repeat-end></div>
+        <div class="row dots">
+          <span ng-repeat="component in components" ng-click="setIndex($index)" ng-class="($index == selectedIndex) ? 'active' : ''">&bull;</span>
+        </div>
       </div>
     </div>
   </div>
@@ -15,5 +21,10 @@
   promethee.controller('SliderMoveController', ['$scope', function($scope) {
     $scope.parent = $scope.component;
     $scope.components = $scope.component.children;
+    $scope.selectedIndex = 0
+
+    $scope.setIndex = function(index) {
+      $scope.selectedIndex = index
+    }
   }]);
 </script>
