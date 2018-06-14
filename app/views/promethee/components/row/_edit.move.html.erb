@@ -1,14 +1,20 @@
 <script type="text/ng-template" id="promethee/components/row/edit/move">
   <%= render 'promethee/edit/move.header', type: 'row' %>
       <div class="header">Row</div>
+  {{components | json }}
       <div class="row">
-        <div ng-init="components = component.children">
-          <div ng-repeat="component in components"
-            class="<%= promethee_bem_classes 'promethee-edit__move__draggable', '--{{component.type}}' %>">
-            <ng-include src="'promethee/move/component'"></ng-include>
-          </div>
-        </div>
+         <ng-include src="'promethee/components/row/edit/move/columns'"></ng-include>
       </div>
+    </div>
+  </div>
+</script>
+
+<script type="text/ng-template" id="promethee/components/row/edit/move/columns">
+  // Scope of components must be local, so the row can be removed from its parent components
+  <div ng-init="components = component.children">
+    <div  ng-repeat="component in components"
+          class="<%= promethee_bem_classes 'promethee-edit__move__draggable', '--{{component.type}}' %>">
+      <ng-include src="'promethee/move/component'"></ng-include>
     </div>
   </div>
 </script>
