@@ -4,31 +4,28 @@
   <div class="row">
     <div class="col-md-6">
       <b>Page title</b>
-      <p>{{component.master.attributes.title}}</p><br>
+      <p>{{component.master.attributes.searchable_title}}</p><br>
     </div>
     <div class="col-md-6">
       <div class="form-group">
         <label class="label-control">Page title</label>
-        <input class="form-control" ng-model="component.attributes.title" type="text">
+        <input class="form-control" ng-model="component.attributes.searchable_title" type="text">
       </div>
     </div>
   </div>
 
-  <div class="row" ng-show="component.master.attributes.description">
+  <div class="row" ng-show="component.master.attributes.searchable_description">
     <div class="col-md-6">
       <div>
         <b>Page description</b>
-        <p>{{component.master.attributes.description}}</p>
+        <p>{{component.master.attributes.searchable_description}}</p>
       </div>
     </div>
     <div class="col-md-6">
       <div class="form-group">
         <label class="label-control">Page description</label>
-        <textarea class="form-control" ng-model="component.attributes.description"></textarea>
+        <textarea class="form-control" ng-model="component.attributes.searchable_description"></textarea>
       </div>
     </div>
   </div>
-
-  <pre class="hidden">{{component.attributes.search = concatenateSearch()}}</pre>
-
 </script>

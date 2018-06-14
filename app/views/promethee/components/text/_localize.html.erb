@@ -1,16 +1,14 @@
 <script type="text/ng-template" id="promethee/components/text/localize">
-  <div ng-show="component.master.attributes.body">
+  <div ng-show="component.master.attributes.searchable_body">
     <hr>
-
     <div class="row">
       <div class="col-md-6">
         <b>Text</b>
-        <div ng-bind-html="component.master.attributes.body | htmlSafe"></div>
+        <div ng-bind-html="component.master.attributes.searchable_body | htmlSafe"></div>
       </div>
       <div class="col-md-6">
         <b>Text</b>
-        <summernote config="summernoteConfig" ng-model="component.attributes.body"></summernote>
-        <pre class="hidden">{{component.attributes.search = (component.attributes.body | textContentFromHTML)}}</pre>
+        <summernote config="summernoteConfig" ng-model="component.attributes.searchable_body"></summernote>
       </div>
     </div>
   </div>

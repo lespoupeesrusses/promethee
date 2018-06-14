@@ -4,10 +4,8 @@
       <div class="row" ng-controller="SliderMoveController">
         <div class="col-md-2" ng-repeat-start="component in components">
           <ng-include src="'promethee/move/component'"></ng-include>
-          <div ng-bind-html="parent.attributes.contents['content-' + component.id] | htmlSafe"></div>
         </div>
         <div class="clearfix" ng-if="$index%6 === 5" ng-repeat-end></div>
-        <pre class="hidden">{{component.attributes.search = concatenateChildrenSearch(component)}}</pre>
       </div>
     </div>
   </div>
@@ -16,18 +14,6 @@
 <script>
   promethee.controller('SliderMoveController', ['$scope', function($scope) {
     $scope.parent = $scope.component;
-    $scope.parent_id = $scope.component.id;
-    $scope.parent_type = $scope.component.type;
     $scope.components = $scope.component.children;
-
-    $scope.$watch('component.children.length', function() {
-      var keys = $scope.component.children.map(function(component) {
-        return 'content-' + component.id;
-      });
-
-      for(var key in $scope.component.attributes.contents) {
-        if(!keys.includes(key)) delete $scope.component.attributes.contents[key];
-      }
-    });
   }]);
 </script>

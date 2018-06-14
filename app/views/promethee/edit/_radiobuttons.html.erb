@@ -1,0 +1,8 @@
+<div class="form-group">
+  <label class="label-control"><%= label %></label>
+  <div style="margin-left: 2px">
+    <% values.each do |value| %>
+      <label class="radio-inline"> <input ng-model="background.<%= attribute %>" type="radio" value="<%= value %>" /><%= value.humanize %> </label>
+    <% end %>
+  </div>
+</div>

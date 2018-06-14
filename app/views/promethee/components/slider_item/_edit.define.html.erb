@@ -1,13 +1,16 @@
 <%
   init = <<~JAVASCRIPT
     promethee.definitions.push({
-      name: 'Slider',
+      name: 'Slider Item',
       icon: #{ promethee_component_render_icon 'slider' },
       position: 15,
-      library: true,
+      library: false,
       data: {
-        type: 'slider',
-        children: []
+        type: 'slider_item',
+        attributes: {
+          media: {},
+          text: ""
+        }
       }
     })
   JAVASCRIPT
