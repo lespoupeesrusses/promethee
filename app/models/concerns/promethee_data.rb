@@ -14,12 +14,12 @@ module PrometheeData
     super(value)
   end
 
-  def data_searchable
+  def promethee_data_searchable
     promethee_extract_searchable data
   end
 
   protected
-  
+
   include ActionView::Helpers::SanitizeHelper
   def promethee_extract_searchable(component)
     searchable = ' '
