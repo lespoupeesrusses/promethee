@@ -1,6 +1,6 @@
 <%
 promethee_data = Promethee::Data.new master_data
-preview_url ||= promethee_preview_path.to_json.html_safe
+preview_url ||= promethee_preview_path
 back_url ||= nil
 logo = File.read "#{__dir__}/../../assets/images/icon-promethee.svg"
 %>
