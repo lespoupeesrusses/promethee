@@ -33,9 +33,9 @@
         <h3>Background {{$index + 1}} <span class="fa fa-trash" ng-click="promethee.inspected.attributes.backgrounds.splice($index, 1)" style="cursor: pointer"></span></h3>
         <promethee-uploader ng-model="background.image" label="" limits="'.jpg,.jpeg,.png,.gif'"></promethee-uploader>
 
-        <%= render 'promethee/edit/radiobuttons', label: 'Horizontal position', attribute: 'posh', values: ['left', 'center', 'right'] %>
-        <%= render 'promethee/edit/radiobuttons', label: 'Vertical position', attribute: 'posv', values: ['top', 'center', 'bottom'] %>
-        <%= render 'promethee/edit/radiobuttons', label: 'Size', attribute: 'size', values: ['auto', 'cover', 'contain'] %>
+        <%= render 'promethee/edit/radiobuttons', label: 'Horizontal position', model: 'background.posh', values: ['left', 'center', 'right'] %>
+        <%= render 'promethee/edit/radiobuttons', label: 'Vertical position', model: 'background.posv', values: ['top', 'center', 'bottom'] %>
+        <%= render 'promethee/edit/radiobuttons', label: 'Size', model: 'background.size', values: ['auto', 'cover', 'contain'] %>
       </div>
 
     </div>
