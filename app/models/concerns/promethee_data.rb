@@ -35,7 +35,7 @@ module PrometheeData
     # for translations
     component['components'].each do |child|
       searchable += promethee_extract_searchable child
-    end if component.include? 'children'
+    end if component.include? 'components'
     searchable
   end
 end
