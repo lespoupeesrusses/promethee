@@ -121,6 +121,24 @@ $promethee-color: #ff9900 !default
     margin-left: 5px
     cursor: pointer
 
+
+.promethee-edit
+  .row
+    position: relative
+    &__background
+      position: absolute
+      z-index: 0
+      top: 0
+      left: 5px
+      right: 5px
+      bottom: 0
+      opacity: .5
+      background-repeat: no-repeat
+    &__children
+      position: relative
+      z-index: 10
+
+
 @media (min-width: 768px)
   .modal-dialog
     // default margin-top is 30px and the modal window is displayed UNDER the topbar

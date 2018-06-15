@@ -1,16 +1,27 @@
 <script type="text/ng-template" id="promethee/components/row/edit/move">
   <%= render 'promethee/edit/move.header', type: 'row' %>
-      <div class="header">Row</div>
-      <div class="row">
-         <ng-include src="'promethee/components/row/edit/move/columns'"></ng-include>
-      </div>
+  <div class="header">Row</div>
+  <div class="row">
+    <div class="row__background row__background--color" ng-style="{'background': component.attributes.bgcolor}"></div>
+
+    <div ng-repeat="background in component.attributes.backgrounds"
+         class="row__background"
+         style="
+         background-image:url('{{ background.image.id ? '/promethee/blob/' + background.image.id : '' }}');
+             background-position:{{ background.posh+' '+background.posv }};
+             background-size: {{background.size}}" >
     </div>
+
+    <ng-include src="'promethee/components/row/edit/move/columns'"></ng-include>
+
+  </div>
+  </div>
   </div>
 </script>
 
 <% # Scope of components must be local, so the row can be removed from its parent components %>
 <script type="text/ng-template" id="promethee/components/row/edit/move/columns">
-    <div ng-init="components = component.children">
+  <div ng-init="components = component.children" class="row__children">
     <div  ng-repeat="component in components"
           class="<%= promethee_bem_classes 'promethee-edit__move__draggable', '--{{component.type}}' %>">
       <ng-include src="'promethee/move/component'"></ng-include>
