@@ -8,7 +8,7 @@ searchable_alt = component[:attributes][:searchable_alt].to_s
 searchable_caption = component[:attributes][:searchable_caption].to_s
 %>
 <figure class="<%= promethee_class_for component %>">
-  <%= image_tag url_for(blob.variant(resize: '1920')), class: 'img-responsive', alt: searchable_alt if blob %>
+  <%= render 'promethee/show/image.srcset', blob: blob, alt: searchable_alt if blob %>
   <% unless searchable_caption.blank? %>
     <figcaption>
       <%= searchable_caption %>
