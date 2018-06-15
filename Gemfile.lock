@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    promethee (1.6.24)
+    promethee (1.6.25)
       angularjs-rails (~> 1.6.2)
       bootstrap-sass
       font-awesome-rails
