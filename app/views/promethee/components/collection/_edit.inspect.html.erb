@@ -5,47 +5,16 @@
     <input ng-model="promethee.inspected.attributes.items_per_line" type="range" min="2" max="12">
   </div>
 
-  <div ui-sortable ng-model="promethee.inspected.children">
-    <div
-      class="panel panel-default"
-      ng-repeat="component in promethee.inspected.children"
-    >
-      <div class="panel-body">
-        <div class="row">
-          <div class="col-xs-9">
-            <span class="label label-default">#{{$index + 1}}</span>
-            <span class="label label-info">{{component.type}}</span>
-          </div>
-          <div class="col-xs-3">
-            <ng-include src="'promethee/move/component'"></ng-include>
-          </div>
-        </div>
-      </div>
+  <div class="form-group">
+    <div class="btn btn-default" ng-click="addComponentByType('collection_item', promethee.inspected.children)">Add item</div>
+    <div ng-show="promethee.inspected.children.length > 1">
+      <br><br>
+      <label class="label-control">Drag the items below to reorder them:</label>
+      <ul ui-sortable ng-model="promethee.inspected.children" class="list-unstyled">
+        <li ng-repeat="item in promethee.inspected.children">
+          <%= fa_icon :bars %> Item {{$index + 1}}
+        </li>
+      </ul>
     </div>
   </div>
-
-  <div class="pull-right btn-toolbar" ng-controller="CollectionInspectorController">
-    <span ng-repeat="definition in itemDefinitions" class="btn btn-default" ng-click="addItem(definition)">Add {{definition.name}}</span>
-  </div>
-</script>
-
-<script>
-  promethee.controller('CollectionInspectorController', ['$scope', function($scope) {
-    var availableComponents = ['image', 'video'];
-
-    $scope.itemDefinitions = $scope.promethee.definitions.filter(function(definition) {
-      return availableComponents.includes(definition.data.type);
-    });
-
-    var clone = function(object) {
-      return JSON.parse(JSON.stringify(object));
-    }
-
-    $scope.addItem = function(definition) {
-      var item = JSON.parse(JSON.stringify(definition.data));
-      item.id = $scope.generateIdentifier();
-
-      $scope.promethee.inspected.children.push(item);
-    }
-  }])
 </script>

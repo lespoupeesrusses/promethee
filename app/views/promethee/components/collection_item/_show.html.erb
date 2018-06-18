@@ -1,0 +1,32 @@
+<%
+media_type = component[:attributes][:media_type]
+case media_type
+when 'image'
+  image_data = component[:attributes][:image]
+  if image_data && image_data[:id]
+    image_blob = ActiveStorage::Blob.find image_data[:id]
+  end
+when 'video'
+  url = component[:attributes][:video][:url].to_s
+  if 'vimeo'.in? url
+    video_id = url.gsub(/\A(?:https?:)?\/\/(?:(?:www|player)\.)?vimeo\.com\/(?:video\/)?(\d+).*?\z/, '\1')
+    iframe_src = "https://player.vimeo.com/video/#{video_id}?color=ffffff&title=0&byline=0&portrait=0"
+  elsif 'youtube'.in? url
+    video_id = url.split('watch?v=').last
+    iframe_src = "http://www.youtube.com/embed/#{video_id}"
+  else
+    iframe_src = url
+  end
+end
+%>
+<div class="collection-item__content">
+
+  <% if iframe_src.present? %>
+  <div class="embed-responsive embed-responsive-16by9">
+    <iframe frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="allowfullscreen" src="<%= iframe_src %>"></iframe>
+  </div>
+  <% elsif image_blob.present? %>
+  <%= render 'promethee/show/image.srcset', blob: image_blob, alt: '' %>
+  <% end %>
+  <%= component[:attributes][:text].to_s.html_safe %>
+</div>
