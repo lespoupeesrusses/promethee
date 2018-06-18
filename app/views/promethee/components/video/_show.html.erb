@@ -2,17 +2,23 @@
 url = component[:attributes][:url].to_s
 
 if 'vimeo'.in? url
-  video_id = url.to_s.gsub(/\A(?:https?:)?\/\/(?:(?:www|player)\.)?vimeo\.com\/(?:video\/)?(\d+).*?\z/, '\1')
+  video_id = url.gsub(/\A(?:https?:)?\/\/(?:(?:www|player)\.)?vimeo\.com\/(?:video\/)?(\d+).*?\z/, '\1')
   iframe_src = "https://player.vimeo.com/video/#{video_id}?color=ffffff&title=0&byline=0&portrait=0"
 elsif 'youtube'.in? url
-  video_id = url.to_s.split('watch?v=').last
+  video_id = url.split('watch?v=').last
   iframe_src = "http://www.youtube.com/embed/#{video_id}"
+else
+  iframe_src = url
 end
 %>
 <div class="<%= promethee_class_for component %>">
   <div class="embed-responsive embed-responsive-16by9">
     <% if iframe_src.present? %>
-      <iframe frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="allowfullscreen" src="<%= iframe_src %>"></iframe>
+      <iframe frameborder="0" 
+              webkitallowfullscreen="" 
+              mozallowfullscreen="" 
+              allowfullscreen="allowfullscreen" 
+              src="<%= iframe_src %>"></iframe>
     <% end %>
   </div>
 </div>

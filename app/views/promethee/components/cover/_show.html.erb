@@ -8,7 +8,7 @@ searchable_surtitle = component[:attributes][:searchable_surtitle].to_s
 searchable_title = component[:attributes][:searchable_title].to_s
 searchable_subtitle = component[:attributes][:searchable_subtitle].to_s
 %>
-<div id="component-<%= image_data[:id] %>" class="<%= promethee_class_for(component) %>" style="background-image: url(<%= url_for(blob.variant(resize: '1920')) if blob %>)">
+<div id="component-<%= image_data[:id] %>" class="<%= promethee_class_for(component) %>" style="background-image: url(<%= url_for(blob.variant(resize: 1920, quality: 95)) if blob %>)">
   <% if searchable_surtitle.present? %>
     <p><%= searchable_surtitle %></p>
   <% end %>

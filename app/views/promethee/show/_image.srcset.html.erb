@@ -1,7 +1,7 @@
 <img  src="<%= url_for(blob.variant(resize: '1920')) %>"
       srcset="
         <% [1920, 1600, 1440, 1366, 1280, 1024, 800, 768, 640, 360, 200].each do |size| %>
-          <%= url_for(blob.variant(resize: size)) %> <%= size%>w,
+          <%= url_for(blob.variant(resize: size, quality: 95)) %> <%= size%>w,
         <% end %>
       "
       sizes="100vw"

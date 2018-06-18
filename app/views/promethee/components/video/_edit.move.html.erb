@@ -29,7 +29,10 @@
         else if(url.includes('youtube')) {
           var parts = url.split('watch?v=');
           var id = parts[parts.length - 1];
-          embed = 'http://www.youtube.com/embed/' + id;
+          embed = 'https://www.youtube.com/embed/' + id;
+        }
+        else {
+          var embed = url;
         }
 
         return embed;
