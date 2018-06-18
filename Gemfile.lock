@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    promethee (1.6.27)
+    promethee (1.6.28)
       angularjs-rails (~> 1.6.2)
       bootstrap-sass
       font-awesome-rails
@@ -96,7 +96,7 @@ GEM
     mini_portile2 (2.3.0)
     minitest (5.11.3)
     nio4r (2.3.1)
-    nokogiri (1.8.2)
+    nokogiri (1.8.3)
       mini_portile2 (~> 2.3.0)
     rack (2.0.5)
     rack-test (1.0.0)

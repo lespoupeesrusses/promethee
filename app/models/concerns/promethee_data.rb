@@ -22,6 +22,7 @@ module PrometheeData
 
   include ActionView::Helpers::SanitizeHelper
   def promethee_extract_searchable(component)
+    return '' if component.blank?
     searchable = ' '
     component['attributes'].each do |key, value|
       if key.starts_with? 'searchable_'
