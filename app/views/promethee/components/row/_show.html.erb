@@ -1,10 +1,10 @@
 <%
-background_color = component[:attributes][:bgcolor]
+background_color = "rgba(255, 255, 255, 1)" || component[:attributes][:bgcolor]
 background_images = []
 background_positions = []
 background_sizes = []
 
-if component[:attributes].has_key?(:backgrounds) # retro-compatibility
+if component[:attributes] && component[:attributes].has_key?(:backgrounds) # retro-compatibility
   component[:attributes][:backgrounds].each do |item|
     image_data = item[:image]
     if image_data && image_data[:id]
