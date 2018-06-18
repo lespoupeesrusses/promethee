@@ -2,7 +2,7 @@
   <%= render 'promethee/edit/move.header', type: 'slider' %>
       <div class="header">Slider</div>
       <div ng-controller="SliderMoveController">
-        <div class="row carousel">
+        <div ng-show="components.length" class="row carousel">
           <div class="col-xs-1" ng-click="selectedIndex = (selectedIndex == 0) ? (components.length - 1) : (selectedIndex - 1)"><span><</span></div>
           <div class="col-xs-8" ng-repeat="component in components" ng-show="$index == selectedIndex">
             <ng-include src="'promethee/move/component'"></ng-include>

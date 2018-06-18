@@ -2,13 +2,45 @@
   <%= render 'promethee/edit/move.header', type: 'slider_item' %>
       <div class="header">Slider Item</div>
       <div class="row">
-        <div class="col-xs-12" ng-if="component.attributes.media.type !== undefined">
-          <div ng-init="component = component.attributes.media">
-            <ng-include src="'promethee/move/component'"></ng-include>
+        <div class="col-xs-12">
+          <img ng-show="component.attributes.media_type == 'image'" ng-src="/promethee/blob/{{component.attributes.image.id}}" class="img-responsive">
+          <div ng-show="component.attributes.media_type == 'video'" ng-controller="SliderItemVideoController">
+            <div class="embed-responsive embed-responsive-16by9">
+              <iframe ng-if="embed" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="allowfullscreen" ng-src="{{embed | urlSafe}}"></iframe>
+              <div class="video-neutralizing-overlay"></div>
+            </div>
           </div>
         </div>
+      </div>
+      <div class="row">
         <div class="col-xs-12 slider-item-text" ng-show="component.attributes.text !== ''">Text</div>
       </div>
     </div>
   </div>
+</script>
+
+<script>
+  promethee.controller('SliderItemVideoController', ['$scope', function($scope) {
+    Object.defineProperty($scope, 'embed', {
+      get: function() {
+        var embed = null;
+        var url = this.component.attributes.video.url + '';
+
+        if(url.includes('vimeo')) {
+          var id = url.replace(/^(?:https?:)?\/\/(?:(?:www|player)\.)?vimeo\.com\/(?:video\/)?(\d+).*?$/, '$1');
+          embed = 'https://player.vimeo.com/video/' + id + '?color=ffffff&title=0&byline=0&portrait=0';
+        }
+        else if(url.includes('youtube')) {
+          var parts = url.split('watch?v=');
+          var id = parts[parts.length - 1];
+          embed = 'https://www.youtube.com/embed/' + id;
+        }
+        else {
+          var embed = url;
+        }
+
+        return embed;
+      }
+    })
+  }]);
 </script>

@@ -1,13 +1,17 @@
 <script type="text/ng-template" id="promethee/components/slider_item/edit/inspect">
-  <div ng-if="promethee.inspected.attributes.media.type !== undefined">
-    <div class="row" ng-controller="SliderItemMediaInspectorController">
-      <div class="col-xs-9">
-        <span class="label label-info">{{component.type}}</span>
-      </div>
-      <div class="col-xs-3">
-        <ng-include src="'promethee/move/component'"></ng-include>
-      </div>
+  <div class="form-group">
+    <label class="label-control">Media type</label>
+    <div>
+      <label class="radio-inline"> <input ng-model="promethee.inspected.attributes.media_type" type="radio" value="image" />Image </label>
+      <label class="radio-inline"> <input ng-model="promethee.inspected.attributes.media_type" type="radio" value="video" />Video </label>
     </div>
+  </div>
+
+  <promethee-uploader ng-show="promethee.inspected.attributes.media_type == 'image'" ng-model="promethee.inspected.attributes.image" label="Image" limits="'.jpg,.jpeg,.png,.gif'"></promethee-uploader>
+
+  <div class="form-group" ng-show="promethee.inspected.attributes.media_type == 'video'">
+    <label class="label-control">Video URL</label>
+    <input class="form-control" ng-model="promethee.inspected.attributes.video.url"></summernote>
   </div>
 
   <div class="row">
@@ -18,35 +22,4 @@
       </div>
     </div>
   </div>
-
-  <div class="pull-right btn-toolbar" ng-controller="SliderItemInspectorController">
-    <span ng-show="promethee.inspected.attributes.media.type === undefined" ng-repeat="definition in itemDefinitions" class="btn btn-default" ng-click="setMedia(definition)">Set {{definition.name}}</span>
-    <span ng-show="promethee.inspected.attributes.media.type !== undefined" class="btn btn-danger" ng-click="removeMedia()">Remove Media</span>
-  </div>
-</script>
-
-<script>
-  promethee.controller('SliderItemInspectorController', ['$scope', function($scope) {
-    var availableComponents = ['image', 'video'];
-
-    $scope.itemDefinitions = $scope.promethee.definitions.filter(function(definition) {
-      return availableComponents.includes(definition.data.type);
-    });
-
-    $scope.setMedia = function(definition) {
-      var media = JSON.parse(JSON.stringify(definition.data));
-      $scope.promethee.inspected.attributes.media = media;
-    };
-
-    $scope.removeMedia = function() {
-      $scope.promethee.inspected.attributes.media = {};
-    };
-  }])
-
-  promethee.controller('SliderItemMediaInspectorController', ['$scope', function($scope) {
-    $scope.component = $scope.promethee.inspected.attributes.media;
-    $scope.$watch("promethee.inspected", function() {
-      $scope.component = $scope.promethee.inspected.attributes.media;
-    })
-  }])
 </script>
