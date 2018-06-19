@@ -1,14 +1,14 @@
 <script type="text/ng-template" id="promethee/components/collection_item/localize">
-  <div ng-show="component.master.attributes.text !== ''">
+  <div ng-show="component.master.attributes.searchable_caption !== ''">
     <hr>
     <div class="row">
       <div class="col-md-6">
-        <b>Collection Item Text</b>
-        <div class="promethee-edit__wrapper" ng-bind-html="component.master.attributes.text | htmlSafe"></div>
+        <b>Collection Item Caption</b>
+        <div class="promethee-edit__wrapper" ng-bind-html="component.master.attributes.searchable_caption | htmlSafe"></div>
       </div>
       <div class="col-md-6">
-        <label class="label-control">Collection Item Text</label>
-        <summernote config="summernoteConfig" ng-model="component.attributes.text"></summernote>
+        <label class="label-control">Collection Item Caption</label>
+        <summernote config="summernoteConfig" ng-model="component.attributes.searchable_caption"></summernote>
       </div>
     </div>
   </div>

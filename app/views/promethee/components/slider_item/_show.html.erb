@@ -28,5 +28,5 @@ end
   <% elsif image_blob.present? %>
   <%= render 'promethee/show/image.srcset', blob: image_blob, alt: '' %>
   <% end %>
-  <%= component[:attributes][:text].to_s.html_safe %>
+  <%= component[:attributes][:searchable_caption].to_s.html_safe %>
 </div>
