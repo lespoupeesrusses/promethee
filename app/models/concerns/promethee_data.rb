@@ -3,10 +3,14 @@ module PrometheeData
 
   def data_page_title
     data['attributes']['searchable_title']
+  rescue
+    ""
   end
 
   def data_page_description
     data['attributes']['searchable_description']
+  rescue
+    ""
   end
 
   def data=(value)
