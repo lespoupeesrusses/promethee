@@ -1,18 +1,2 @@
 <script type="text/ng-template" id="promethee/components/slider/localize">
-  <div ng-show="(component.master.attributes.contents | json) !== '{}'">
-    <hr>
-
-    <div ng-repeat="(key, content) in component.master.attributes.contents">
-      <div class="row">
-        <div class="col-md-6">
-          <b>Item {{$index + 1}} Text</b>
-          <div class="promethee-edit__wrapper" ng-bind-html="component.master.attributes.contents[key] | htmlSafe"></div>
-        </div>
-        <div class="col-md-6">
-          <label class="label-control">Item {{$index + 1}} Text</label>
-          <summernote config="summernoteConfig" ng-model="component.attributes.contents[key]"></summernote>
-        </div>
-      </div>
-    </div>
-  </div>
 </script>
