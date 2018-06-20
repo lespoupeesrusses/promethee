@@ -1,6 +1,13 @@
 module PrometheeData
   extend ActiveSupport::Concern
 
+  # Setter to serialize data as JSON
+  def data=(value)
+    value = JSON.parse value if value.is_a? String
+    super(value)
+  end
+
+  # Getters and setters to get PAGE Title & Description
   def promethee_data_page_title
     data['attributes']['searchable_title']
   rescue
@@ -21,10 +28,19 @@ module PrometheeData
     self.data['attributes']['searchable_description'] = value
   end
 
-  def data=(value)
-    value = JSON.parse value if value.is_a? String
-    super(value)
+  # Getters to get TRANSLATION Title & Description
+  def promethee_data_translation_title
+    data['components'].first['attributes']['searchable_title']
+  rescue
+    ""
   end
+
+  def promethee_data_translation_description
+    data['components'].first['attributes']['searchable_description']
+  rescue
+    ""
+  end
+
 
   def promethee_data_searchable
     promethee_extract_searchable data
