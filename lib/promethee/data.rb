@@ -72,7 +72,7 @@ module Promethee
     def self.find_localized_component(id, array)
       return nil if array.nil?
       return nil unless array.include? :components
-      array[:components].select { |component| component[:id] == id }.first
+      array[:components].find { |component| component[:id] == id }
     end
 
     def self.localize_component(component, localization_data)
