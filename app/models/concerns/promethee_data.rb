@@ -1,16 +1,24 @@
 module PrometheeData
   extend ActiveSupport::Concern
 
-  def data_page_title
+  def promethee_data_page_title
     data['attributes']['searchable_title']
   rescue
     ""
   end
 
-  def data_page_description
+  def promethee_data_page_title=(value)
+    self.data['attributes']['searchable_title'] = value
+  end
+
+  def promethee_data_page_description
     data['attributes']['searchable_description']
   rescue
     ""
+  end
+
+  def promethee_data_page_description=(value)
+    self.data['attributes']['searchable_description'] = value
   end
 
   def data=(value)
