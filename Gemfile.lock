@@ -1,10 +1,9 @@
 PATH
   remote: .
   specs:
-    promethee (1.6.33)
+    promethee (1.6.34)
       angularjs-rails (~> 1.6.2)
       bootstrap-sass
-      fancybox-rails
       font-awesome-rails
       jquery-rails
       jquery-ui-rails
@@ -70,8 +69,6 @@ GEM
     crass (1.0.4)
     erubi (1.7.1)
     execjs (2.7.0)
-    fancybox-rails (0.3.1)
-      railties (>= 3.1.0)
     ffi (1.9.25)
     font-awesome-rails (4.7.0.4)
       railties (>= 3.2, < 6.0)
