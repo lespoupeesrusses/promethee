@@ -2,9 +2,10 @@
   "name": "promethee",
   "private": true,
   "dependencies": {
+    "angular-bootstrap-colorpicker": "",
     "angular-summernote": "^0.8.1",
     "angular-ui-sortable": "^0.18.0",
-    "ng-file-upload": "^12.2.13",
-    "angular-bootstrap-colorpicker": ""
+    "fancybox": "^3.0.1",
+    "ng-file-upload": "^12.2.13"
   }
 }

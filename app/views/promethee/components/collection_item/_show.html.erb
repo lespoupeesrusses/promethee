@@ -1,4 +1,5 @@
 <%
+searchable_caption = component[:attributes][:searchable_caption]
 media_type = component[:attributes][:media_type]
 case media_type
 when 'image'
@@ -26,7 +27,7 @@ end
     <iframe frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="allowfullscreen" src="<%= iframe_src %>"></iframe>
   </div>
   <% elsif image_blob.present? %>
-  <%= render 'promethee/show/image.srcset', blob: image_blob, alt: '' %>
+  <%= render 'promethee/show/image.srcset', blob: image_blob, alt: '', caption: searchable_caption %>
   <% end %>
-  <%= component[:attributes][:searchable_caption].to_s.html_safe %>
+  <%= searchable_caption.to_s.html_safe %>
 </div>
