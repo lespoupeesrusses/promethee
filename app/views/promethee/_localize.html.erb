@@ -24,6 +24,12 @@ promethee_data = Promethee::Data.new master_data, localization_data: localizatio
     $scope.component = {children: data.components};
 
     $scope.summernoteConfig = summernoteConfig;
+
+    $scope.$watch('data', function(new_val, old_val) {
+      if (old_val != new_val) {
+        document.body.classList.add("promethee-page-locked");
+      }
+    }, true);
   }]);
 </script>
 
