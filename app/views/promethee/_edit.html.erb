@@ -130,8 +130,15 @@ promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'pres
   }
 
   $scope.submit = function() {
+    document.body.classList.remove("promethee-page-locked");
     $('#promethee').closest('form').submit();
   };
+
+  $scope.$watch('promethee.data', function(new_val, old_val) {
+    if (old_val != new_val) {
+      document.body.classList.add("promethee-page-locked");
+    }
+  }, true);
 
   $scope.summernoteConfig = summernoteConfig;
   $scope.sendPreviewData('thumb-preview');
@@ -159,7 +166,7 @@ promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'pres
   </div>
 
   <div class="promethee-edit" ng-show="promethee.fullscreen">
-    <input type="hidden" name="page[data]" id="page_data" value="{{promethee.data}}" />
+    <input type="hidden" name="page[data]" id="page_data" value="{{promethee.data}}"  />
     <div class="upload__modal" ng-show="upload.running">
 
     </div>
