@@ -93,6 +93,12 @@ Which renders to:
 </div>
 ```
 
+With javascript set:
+```
+//= require fancybox/dist/js/jquery.fancybox
+//= require promethee/fancybox
+```
+
 With stylesheets set:
 ```
 @import 'bootstrap'

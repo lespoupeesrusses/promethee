@@ -7,7 +7,7 @@
 
   <div class="form-group">
     <div class="btn btn-default" ng-click="addComponentByType('collection_item', promethee.inspected.children)">Add item</div>
-    <div ng-show="promethee.inspected.children.length > 1">
+    <div ng-show="promethee.inspected.children.length">
       <br><br>
       <label class="label-control">Drag the items below to reorder them:</label>
       <ul ui-sortable ng-model="promethee.inspected.children" class="list-unstyled">
