@@ -1,0 +1,19 @@
+<%
+title = component[:attributes][:searchable_title].to_s
+body = component[:attributes][:searchable_body].to_s
+
+image = component[:attributes][:image]
+if image && image[:id]
+  image_blob = ActiveStorage::Blob.find image[:id]
+end
+%>
+
+<div class="row <%= promethee_class_for component %>">
+  <div class="col-xs-3">
+    <%= render 'promethee/show/image.srcset', blob: image_blob, alt: '', caption: '' if image_blob %>
+  </div>
+  <div class="col-xs-9">
+    <h4><%= title %></h4>
+    <%= body.html_safe %>
+  </div>
+</div>

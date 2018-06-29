@@ -1,0 +1,17 @@
+<%
+  body = component[:attributes][:searchable_body].to_s
+  author = component[:attributes][:searchable_author].to_s
+%>
+
+<div class="row promethee__component promethee__component__row">
+  <div class="col col-md-8 promethee__component promethee__component__column">
+    <blockquote><%= body.html_safe %></blockquote>
+    <% if author.present? %>
+      <p><%= author %></p>
+    <% end %>
+  </div>
+
+  <div class="col col-md-4 promethee__component promethee__component__column">
+    <%= image_tag "drawings/blockquote/pencil.png", class: "img-responsive" %>
+  </div>
+</div>

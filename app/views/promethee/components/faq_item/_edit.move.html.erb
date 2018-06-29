@@ -1,0 +1,17 @@
+<script type="text/ng-template" id="promethee/components/faq_item/edit/move">
+  <%= render 'promethee/edit/move.header', type: 'faq_item' %>
+      <div class="header">FAQ Item</div>
+      <div class="row">
+        <div class="col-xs-3">
+          <figure ng-show="component.attributes.image.id">
+            <img ng-src="/promethee/blob/{{component.attributes.image.id}}" class="img-responsive">
+          </figure>
+        </div>
+        <div class="col-xs-9">
+          <h4>{{component.attributes.searchable_title}}</h4>
+          <div ng-bind-html="component.attributes.searchable_body | htmlSafe"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</script>
