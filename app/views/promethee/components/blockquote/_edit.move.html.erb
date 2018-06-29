@@ -1,10 +1,8 @@
 <script type="text/ng-template" id="promethee/components/blockquote/edit/move">
   <%= render 'promethee/edit/move.header', type: 'blockquote' %>
       <div class="row">
-        <div class="col-md-8" ng-bind-html="component.attributes.searchable_body | htmlSafe"></div>
-        <div class="col-md-4">
-          <%= image_tag "drawings/blockquote/pencil.png", class: "img-responsive" %>
-        </div>
+        <div class="col-md-12" ng-bind-html="component.attributes.searchable_body | htmlSafe"></div>
+
         <div ng-show="component.attributes.searchable_author" class="col-xs-12">
           <p>{{component.attributes.searchable_author}}</p>
         </div>
