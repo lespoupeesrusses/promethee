@@ -1,0 +1,29 @@
+<script type="text/ng-template" id="promethee/components/faq_item/localize">
+  <div ng-show="component.master.attributes.searchable_title">
+    <hr>
+    <div class="row">
+      <div class="col-md-6">
+        <b>Title</b>
+        <p>{{component.master.attributes.searchable_title}}</p>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="label-control">Title</label>
+          <input class="form-control" ng-model="component.attributes.searchable_title" type="text">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <b>Body</b>
+        <p>{{component.master.attributes.searchable_body}}</p>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="label-control">Body</label>
+          <summernote config="summernoteConfig" ng-model="component.attributes.searchable_body"></summernote>
+        </div>
+      </div>
+    </div>
+  </div>
+</script>

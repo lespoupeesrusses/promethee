@@ -1,0 +1,18 @@
+<%
+  init = <<~JAVASCRIPT
+    promethee.definitions.push({
+      name: 'Blockquote',
+      icon: #{ promethee_component_render_icon 'blockquote' },
+      position: 50,
+      library: true,
+      data: {
+        type: 'blockquote',
+        attributes: {
+          searchable_body: '<p>Edit me</p>',
+          searchable_author: ''
+        }
+      }
+    })
+  JAVASCRIPT
+%>
+<div ng-init="<%= init %>"></div>

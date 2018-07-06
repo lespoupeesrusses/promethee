@@ -29,3 +29,21 @@
           text-align: left
         &--right
           text-align: right
+
+    &__blockquote
+      .blockquote
+        font-size: 30px
+        border: none
+
+        &::before, &::after, & > p
+          display: inline-block
+
+        &::before
+          content: '« '
+
+        &::after
+          content: ' »'
+
+      .author
+        font-size: 14px
+        font-style: italic
