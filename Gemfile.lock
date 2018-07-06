@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    promethee (1.6.37)
+    promethee (1.6.38)
       angularjs-rails (~> 1.6.2)
       bootstrap-sass
       font-awesome-rails
@@ -58,7 +58,7 @@ GEM
       tzinfo (~> 1.1)
     angularjs-rails (1.6.8)
     arel (9.0.0)
-    autoprefixer-rails (8.6.3)
+    autoprefixer-rails (8.6.5)
       execjs
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
@@ -96,7 +96,7 @@ GEM
     mini_portile2 (2.3.0)
     minitest (5.11.3)
     nio4r (2.3.1)
-    nokogiri (1.8.3)
+    nokogiri (1.8.4)
       mini_portile2 (~> 2.3.0)
     rack (2.0.5)
     rack-test (1.0.0)

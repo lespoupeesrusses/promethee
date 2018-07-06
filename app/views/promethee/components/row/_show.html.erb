@@ -4,6 +4,8 @@ background_images = []
 background_positions = []
 background_sizes = []
 
+has_background = !(background_color =~ /rgba\(\s*255\s*,\s*255\s*,\s*255\s*,\s*0\s*\)/)
+
 if component[:attributes] && component[:attributes].has_key?(:backgrounds) # retro-compatibility
   component[:attributes][:backgrounds].each do |item|
     image_data = item[:image]
@@ -20,6 +22,6 @@ if component[:attributes] && component[:attributes].has_key?(:backgrounds) # ret
 end
 %>
 
-<div class="row <%= promethee_class_for component %>" style="background-color: <%= background_color %>; <%= background_images.count > 0 ? "background-repeat: no-repeat; background-image: #{background_images.join(', ')}; background-position: #{background_positions.join(', ')}; background-size: #{background_sizes.join(', ')};" : '' %>">
+<div class="row <%= promethee_class_for component %><%= ' promethee__component__row--background' if has_background %>" style="background-color: <%= background_color %>; <%= background_images.count > 0 ? "background-repeat: no-repeat; background-image: #{background_images.join(', ')}; background-position: #{background_positions.join(', ')}; background-size: #{background_sizes.join(', ')};" : '' %>">
   <%= render 'promethee/show/components', components: component[:children] %>
 </div>
