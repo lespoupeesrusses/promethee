@@ -18,6 +18,28 @@
         transform: translateY(-50%)
         font-size: 30px
 
+    &__faq
+      h4
+        cursor: pointer
+        position: relative
+        &::after
+          content: ""
+          display: block
+          width: 8px
+          height: 8px
+          border-right: 2px solid #000
+          border-top: 2px solid #000
+          transform: rotate(135deg)
+          position: absolute
+          right: 10px
+          top: 5px
+          transition: transform .4s ease
+        &[aria-expanded="true"]
+          &::after
+            transform: rotate(315deg)
+      img
+        margin-bottom: 30px
+
     &__aside
       .aside__button
         padding-top: 30px
