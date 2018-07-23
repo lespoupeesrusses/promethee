@@ -84,6 +84,7 @@ module Promethee
       return unless component.include? :attributes
       localized_component = Promethee::Data.find_localized_component component[:id], localization_data
       return if localized_component.nil?
+      return unless localized_component.include? :attributes
       component[:attributes].merge! localized_component[:attributes]
     end
 

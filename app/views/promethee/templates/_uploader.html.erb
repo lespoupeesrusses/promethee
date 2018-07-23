@@ -1,7 +1,7 @@
 <script type="text/ng-template" id="promethee_uploader">
   <div class="form-group" ngf-drop="prometheeUploader.upload($file)" ngf-pattern="{{limits || ''}}">
     <div class="label-control" ng-show="label != ''">{{label}}</div>
-    <div class="button btn btn-default" ngf-select="prometheeUploader.upload($file, ngModel)" ngf-accept="{{limits || ''}}" class="drop-box" style="margin-top: 5px; margin-bottom: 5px;">Select an image</div>
+    <div class="button btn btn-default" ngf-select="prometheeUploader.upload($file, ngModel)" ngf-accept="{{limits || ''}}" class="drop-box" style="margin-top: 5px; margin-bottom: 5px;">Select a file</div>
     <div ng-show="ngModel.id != undefined" class="promethee_uploader--preview">
       <img ng-src="/promethee/blob/{{ngModel.id}}" />
       {{ngModel.name}}

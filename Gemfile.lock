@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    promethee (1.6.48)
+    promethee (1.6.55)
       angularjs-rails (~> 1.6.2)
       bootstrap-sass
       font-awesome-rails
@@ -58,7 +58,7 @@ GEM
       tzinfo (~> 1.1)
     angularjs-rails (1.6.8)
     arel (9.0.0)
-    autoprefixer-rails (8.6.5)
+    autoprefixer-rails (9.0.0)
       execjs
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
@@ -129,7 +129,7 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
-    sass (3.5.6)
+    sass (3.5.7)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
       rb-fsevent (~> 0.9, >= 0.9.4)
@@ -166,4 +166,4 @@ DEPENDENCIES
   promethee!
 
 BUNDLED WITH
-   1.16.2
+   1.16.3

@@ -183,13 +183,13 @@ promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'pres
               <ul class="dropdown-menu" ng-show="promethee.mode == 'preview'">
                 <li ng-click="promethee.preview = 'desktop'"
                     ng-class="{active: promethee.preview == 'desktop'}">
-                    <a><i class="fa fa-desktop"></i></a></li>
+                    <a class="promethee-previewmode promethee-previewmode__desktop"><i class="fa fa-desktop"></i></a></li>
                 <li ng-click="promethee.preview = 'tablet'"
                     ng-class="{active: promethee.preview == 'tablet'}">
-                    <a><i class="fa fa-tablet"></i></a></li>
+                    <a class="promethee-previewmode promethee-previewmode__tablet"><i class="fa fa-tablet"></i></a></li>
                 <li ng-click="promethee.preview = 'mobile'"
                     ng-class="{active: promethee.preview == 'mobile'}">
-                    <a><i class="fa fa-mobile"></i></a></li>
+                    <a class="promethee-previewmode promethee-previewmode__mobile"><i class="fa fa-mobile"></i></a></li>
               </ul>
             </li>
             <li ng-click="submit()"><a><%= fa_icon :save %></a></li>
