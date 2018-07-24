@@ -1,8 +1,11 @@
 <script type="text/ng-template" id="promethee/components/video/edit/inspect">
   <div class="form-group">
-    <label  class="label-control">Url</label>
-    <input  ng-model="promethee.inspected.attributes.url" 
-            class="form-control" 
-            type="text" />
+    <label class="label-control">Url</label>
+    <input ng-model="promethee.inspected.attributes.url" class="form-control" type="text" />
+  </div>
+
+  <div class="form-group">
+    <input ng-model="promethee.inspected.attributes.autoplay" type="checkbox" />
+    <label class="label-control"> Autoplay</label>
   </div>
 </script>
