@@ -1,5 +1,5 @@
 <% fullsize_url = url_for(blob.variant(resize: '1920>')) %>
-<a class="fancybox zoomable-image" title="<%= strip_tags(caption) %>" href="<%= fullsize_url %>">
+<a class="fancybox fancybox-image-srcset" title="<%= strip_tags(caption) %>" href="<%= fullsize_url %>">
   <img src="<%= fullsize_url %>"
         srcset="
           <% [1920, 1600, 1440, 1366, 1280, 1024, 800, 768, 640, 360, 200].each do |size| %>
