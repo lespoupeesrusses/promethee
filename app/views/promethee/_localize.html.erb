@@ -1,5 +1,5 @@
 <%
-promethee_data = Promethee::Data.new master_data, localization_data: localization_data
+promethee_data = Promethee::Data.new master_data, localization_data: localization_data, other_data: other_data
 %>
 
 <script type="text/javascript">
@@ -53,7 +53,10 @@ promethee_data = Promethee::Data.new master_data, localization_data: localizatio
   <% #TODO override templates from current project %>
 
   <div class="row">
-    <div class="col-md-6"><b>Master</b></div>
+    <div class="col-md-6">
+        <b>Master</b>
+        <pre>{{component | json}}</pre>
+    </div>
     <div class="col-md-6"><b>Translation</b></div>
   </div>
   <div ng-repeat="component in component.children">
