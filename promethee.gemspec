@@ -5,8 +5,8 @@ require 'promethee/rails/version'
 Gem::Specification.new do |s|
   s.name        = 'promethee'
   s.version     = Promethee::Rails::VERSION
-  s.authors     = ['Julien Dargelos', 'Arnaud Levy', 'Pierre-André Boissinot', 'Antoine Prévost', 'Alexis Rousseau', 'Steven Ing']
-  s.email       = ['contact@juliendargelos.com', 'alevy@lespoupees.paris', 'paboissinot@lespoupees.paris', 'aprevost@lespoupees.paris', 'arousseau@lespoupees.paris', 'sing@lespoupees.paris']
+  s.authors     = ['Sébastien Gaya', 'Julien Dargelos', 'Arnaud Levy', 'Pierre-André Boissinot', 'Antoine Prévost', 'Alexis Rousseau', 'Steven Ing']
+  s.email       = ['sebastien.gaya@gmail.com', 'contact@juliendargelos.com', 'alevy@lespoupees.paris', 'paboissinot@lespoupees.paris', 'aprevost@lespoupees.paris', 'arousseau@lespoupees.paris', 'sing@lespoupees.paris']
 
   s.summary     = 'Bring fire to your page'
   s.homepage    = 'https://github.com/lespoupeesrusses/promethee'

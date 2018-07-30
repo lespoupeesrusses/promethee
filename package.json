@@ -2,6 +2,7 @@
   "name": "promethee",
   "private": true,
   "dependencies": {
+    "@fancyapps/fancybox": "^3.3.5",
     "angular-bootstrap-colorpicker": "",
     "angular-summernote": "^0.8.1",
     "angular-ui-sortable": "^0.18.0",
