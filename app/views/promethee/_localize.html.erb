@@ -1,16 +1,43 @@
 <%
-promethee_data = Promethee::Data.new master_data, localization_data: localization_data, other_data: other_data
+promethee_data = Promethee::Data::Localization.new localization_data, master_data
+promethee_masters_multiple = Promethee::Data::MastersMultiple.new master_data, other_data
 %>
 
 <script type="text/javascript">
   var promethee = angular
     .module('PrometheeLocalizer', ['summernote'])
-    .value('data', <%= promethee_data.localization_data_to_json.html_safe %>)
     .filter('htmlSafe', ['$sce', function($sce) {
       return function(val) {
         return $sce.trustAsHtml(val);
       };
-    }]);
+    }])
+    .service('mastersMultiple', function() {
+      var all = [];
+      var current;
+      return {
+        set: function(masters) {
+          this.all = masters;
+          this.current = this.all[0];
+        },
+        choose: function(master) {
+          this.current = master;
+        },
+        masterForComponent: function(component) {
+          var componentFound;
+          this.current.components.forEach(function(masterComponent) {
+            if (masterComponent.id === component.id) {
+              componentFound = masterComponent;
+            }
+          });
+          return componentFound;
+        },
+        multiple: function() {
+          return this.all.length > 1;
+        },
+        all: all,
+        current: current
+      };
+    });
 </script>
 
 <% promethee_util_partials.each do |partial| %>
@@ -18,13 +45,12 @@ promethee_data = Promethee::Data.new master_data, localization_data: localizatio
 <% end %>
 
 <script type="text/javascript">
-  promethee.controller('PrometheeLocalizerController', ['$scope', 'summernoteConfig', 'data', function($scope, summernoteConfig, data) {
-
-    $scope.data = data;
-    $scope.component = {children: data.components};
-
+  promethee.controller('PrometheeLocalizerController', 
+    ['$scope', 'summernoteConfig', 'mastersMultiple', function($scope, summernoteConfig, mastersMultiple) {
     $scope.summernoteConfig = summernoteConfig;
-
+    $scope.data = <%= promethee_data.to_json.html_safe %>;
+    $scope.masters = mastersMultiple;
+    $scope.masters.set(<%= promethee_masters_multiple.to_json.html_safe %>);
     $scope.$watch('data', function(new_val, old_val) {
       if (old_val != new_val) {
         document.body.classList.add("promethee-page-locked");
@@ -33,33 +59,32 @@ promethee_data = Promethee::Data.new master_data, localization_data: localizatio
   }]);
 </script>
 
-
-
 <div id="prometheeLocalizer"
-     class="promethee-localizer"
+     class="promethee-localizer ng-cloak"
      ng-app="PrometheeLocalizer"
      ng-controller="PrometheeLocalizerController as prometheeLocalizerController">
 
   <script type="text/ng-template" id="promethee/localize/component">
+    <span class="hidden">{{ master = masters.masterForComponent(component) }}</span>
     <ng-include src="'promethee/components/' + component.type + '/localize'"></ng-include>
   </script>
 
   <input type="hidden" name="<%= object_name %>[<%= method_name %>]" id="page_data" value="{{data}}" />
 
   <% promethee_localize_partials.each do |partial| %>
-      <%= render partial %>
+    <%= render partial %>
   <% end %>
-
-  <% #TODO override templates from current project %>
 
   <div class="row">
     <div class="col-md-6">
-        <b>Master</b>
-        <pre>{{component | json}}</pre>
+      <b ng-hide="masters.multiple()">Master</b>
+      <select ng-show="masters.multiple()" ng-model="masters.current" class="form-control ignore-lock">
+        <option ng-repeat="master in masters.all" ng-value="master">{{master.title}}</option>
+      </select>
     </div>
     <div class="col-md-6"><b>Translation</b></div>
   </div>
-  <div ng-repeat="component in component.children">
+  <div ng-repeat="component in data.components">
     <ng-include src="'promethee/localize/component'"></ng-include>
   </div>
 </div>

@@ -1,10 +1,10 @@
 <script type="text/ng-template" id="promethee/components/collection_item/localize">
-  <div ng-show="component.master.attributes.searchable_caption !== ''">
+  <div ng-show="master.attributes.searchable_caption !== ''">
     <hr>
     <div class="row">
       <div class="col-md-6">
         <b>Collection Item Caption</b>
-        <div class="promethee-edit__wrapper" ng-bind-html="component.master.attributes.searchable_caption | htmlSafe"></div>
+        <div class="promethee-edit__wrapper" ng-bind-html="master.attributes.searchable_caption | htmlSafe"></div>
       </div>
       <div class="col-md-6">
         <label class="label-control">Collection Item Caption</label>

@@ -1,5 +1,5 @@
 <%
-promethee_data = Promethee::Data.new master_data, localization_data: localization_data
+promethee_data = Promethee::Data::MasterLocalized.new master_data, localization_data
 %>
 <div class="promethee" class="ng-cloak">
   <%= render 'promethee/show/component', component: promethee_data %>

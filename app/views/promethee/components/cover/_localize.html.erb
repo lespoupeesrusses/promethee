@@ -1,5 +1,5 @@
 <script type="text/ng-template" id="promethee/components/cover/localize">
-  <div ng-show="component.master.attributes.searchable_surtitle || component.master.attributes.searchable_title || component.master.attributes.searchable_subtitle">
+  <div ng-show="master.attributes.searchable_surtitle || master.attributes.searchable_title || master.attributes.searchable_subtitle">
     <hr>
 
     <div class="row">
@@ -8,10 +8,10 @@
       </div>
     </div>
 
-    <div class="row" ng-show="component.master.attributes.searchable_surtitle">
+    <div class="row" ng-show="master.attributes.searchable_surtitle">
       <div class="col-md-6">
         <b>Surtitle</b>
-        <p>{{component.master.attributes.searchable_surtitle}}</p>
+        <p>{{master.attributes.searchable_surtitle}}</p>
       </div>
       <div class="col-md-6">
         <div class="form-group">
@@ -21,10 +21,10 @@
       </div>
     </div>
 
-    <div class="row" ng-show="component.master.attributes.searchable_title">
+    <div class="row" ng-show="master.attributes.searchable_title">
       <div class="col-md-6">
         <b>Title</b>
-        <p>{{component.master.attributes.searchable_title}}</p>
+        <p>{{master.attributes.searchable_title}}</p>
       </div>
       <div class="col-md-6">
         <div class="form-group">
@@ -34,10 +34,10 @@
       </div>
     </div>
 
-    <div class="row" ng-show="component.master.attributes.searchable_subtitle">
+    <div class="row" ng-show="master.attributes.searchable_subtitle">
       <div class="col-md-6">
         <b>Subtitle</b>
-        <p>{{component.master.attributes.searchable_subtitle}}</p>
+        <p>{{master.attributes.searchable_subtitle}}</p>
       </div>
       <div class="col-md-6">
         <div class="form-group">

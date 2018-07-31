@@ -1,5 +1,5 @@
 <script type="text/ng-template" id="promethee/components/image/localize">
-  <div ng-show="component.master.attributes.searchable_alt || component.master.attributes.searchable_caption">
+  <div ng-show="master.attributes.searchable_alt || master.attributes.searchable_caption">
     <hr>
 
     <div class="row">
@@ -8,10 +8,10 @@
       </div>
     </div>
 
-    <div class="row" ng-show="component.master.attributes.searchable_alt">
+    <div class="row" ng-show="master.attributes.searchable_alt">
       <div class="col-md-6">
         <b>Alt</b>
-        <p>{{component.master.attributes.searchable_alt}}</p>
+        <p>{{master.attributes.searchable_alt}}</p>
       </div>
       <div class="col-md-6">
         <div class="form-group">
@@ -21,10 +21,10 @@
       </div>
     </div>
 
-    <div class="row" ng-show="component.master.attributes.searchable_caption">
+    <div class="row" ng-show="master.attributes.searchable_caption">
       <div class="col-md-6">
         <b>Caption</b>
-        <p>{{component.master.attributes.searchable_caption}}</p>
+        <p>{{master.attributes.searchable_caption}}</p>
       </div>
       <div class="col-md-6">
         <div class="form-group">

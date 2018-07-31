@@ -1,10 +1,10 @@
 <script type="text/ng-template" id="promethee/components/blockquote/localize">
-  <div ng-show="component.master.attributes.searchable_body">
+  <div ng-show="master.attributes.searchable_body">
     <hr>
     <div class="row">
       <div class="col-md-6">
         <b>Body</b>
-        <div ng-bind-html="component.master.attributes.searchable_body | htmlSafe"></div>
+        <div ng-bind-html="master.attributes.searchable_body | htmlSafe"></div>
       </div>
       <div class="col-md-6">
         <div class="form-group">
@@ -15,10 +15,10 @@
     </div>
   </div>
 
-  <div class="row" ng-show="component.master.attributes.searchable_author">
+  <div class="row" ng-show="master.attributes.searchable_author">
     <div class="col-md-6">
       <b>Author</b>
-      <p>{{component.master.attributes.searchable_author}}</p>
+      <p>{{master.attributes.searchable_author}}</p>
     </div>
     <div class="col-md-6">
       <div class="form-group">

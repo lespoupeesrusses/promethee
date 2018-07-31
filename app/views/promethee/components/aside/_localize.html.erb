@@ -4,7 +4,7 @@
   <div class="row">
     <div class="col-md-6">
       <b>Aside visible content</b>
-      <div ng-bind-html="component.master.attributes.searchable_visible_content | htmlSafe"></div>
+      <div ng-bind-html="master.attributes.searchable_visible_content | htmlSafe"></div>
     </div>
     <div class="col-md-6">
       <div class="form-group">
@@ -14,10 +14,10 @@
     </div>
   </div>
 
-  <div class="row" ng-show="component.master.attributes.searchable_collapsed_content">
+  <div class="row" ng-show="master.attributes.searchable_collapsed_content">
     <div class="col-md-6">
       <b>Aside collapsed content</b>
-      <div ng-bind-html="component.master.attributes.searchable_collapsed_content | htmlSafe"></div>
+      <div ng-bind-html="master.attributes.searchable_collapsed_content | htmlSafe"></div>
     </div>
     <div class="col-md-6">
       <div class="form-group">
@@ -27,10 +27,10 @@
     </div>
   </div>
 
-  <div class="row" ng-show="component.master.attributes.searchable_collapsed_content">
+  <div class="row" ng-show="master.attributes.searchable_collapsed_content">
     <div class="col-md-6">
       <b>Button label</b>
-      <div ng-bind-html="component.master.attributes.searchable_open_label | htmlSafe"></div>
+      <div ng-bind-html="master.attributes.searchable_open_label | htmlSafe"></div>
     </div>
     <div class="col-md-6">
       <div class="form-group">

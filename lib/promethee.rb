@@ -22,4 +22,8 @@ module Promethee
   require 'promethee/core_ext/tags'
 
   require 'promethee/data'
+  require 'promethee/data/master'
+  require 'promethee/data/master_localized'
+  require 'promethee/data/masters_multiple'
+  require 'promethee/data/localization'
 end
