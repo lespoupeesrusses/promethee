@@ -11,26 +11,22 @@ class Promethee::Data::MasterLocalized < Promethee::Data
   protected
 
   def localize_component(component)
-    localize_component_attributes component
-    localize_component_children component
+    localize_component_attributes component if component.include?(:attributes)
+    localize_component_children component if component.include?(:children)
   end
 
   def localize_component_attributes(component)
-    return unless component.include? :attributes
     localized_component = find_localized_component component[:id]
-    return unless localized_component
-    return unless localized_component.include? :attributes
+    return if (localized_component.nil? || !localized_component.include?(:attributes))
     component[:attributes].merge! localized_component[:attributes]
   end
 
   def localize_component_children(component)
-    return unless component.include? :children
     component[:children].each { |child| localize_component child }
   end
 
   def find_localized_component(id)
-    return if @localization.nil?
-    return unless @localization.include? :components
+    return if @localization.nil? || !@localization.include?(:components)
     @localization[:components].find { |component| component[:id] == id }
   end
 end
