@@ -53,7 +53,7 @@ promethee_masters_multiple = Promethee::Data::MastersMultiple.new master_data, o
     $scope.masters.set(<%= promethee_masters_multiple.to_json.html_safe %>);
     $scope.$watch('data', function(new_val, old_val) {
       if (old_val != new_val) {
-        document.body.classList.add("promethee-page-locked");
+        window.warnBeforeUnload.lock();
       }
     }, true);
   }]);

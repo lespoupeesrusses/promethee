@@ -130,13 +130,13 @@ promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'pres
   }
 
   $scope.submit = function() {
-    document.body.classList.remove("promethee-page-locked");
+    window.warnBeforeUnload.unlock();
     $('#promethee').closest('form').submit();
   };
 
   $scope.$watch('promethee.data', function(new_val, old_val) {
     if (old_val != new_val) {
-      document.body.classList.add("promethee-page-locked");
+      window.warnBeforeUnload.lock();
     }
   }, true);
 

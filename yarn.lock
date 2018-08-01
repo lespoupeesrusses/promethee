@@ -2,6 +2,10 @@
 # yarn lockfile v1
 
 
+"@fancyapps/fancybox@^3.3.5":
+  version "3.3.5"
+  resolved "https://registry.yarnpkg.com/@fancyapps/fancybox/-/fancybox-3.3.5.tgz#e0bead520450ff0af51d353a17ac6bf864ba0f49"
+
 angular-bootstrap-colorpicker@:
   version "3.0.32"
   resolved "https://registry.yarnpkg.com/angular-bootstrap-colorpicker/-/angular-bootstrap-colorpicker-3.0.32.tgz#1080b1ab9802c1bae1919badb26417de6758ef3d"
@@ -17,6 +21,10 @@ angular-ui-sortable@^0.18.0:
 fancybox@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/fancybox/-/fancybox-3.0.1.tgz#13f6927449157ed026c69e78c2ba5bf0f1da9af7"
+
+jquery-warn-before-unload@^1.0.2:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/jquery-warn-before-unload/-/jquery-warn-before-unload-1.0.4.tgz#b642e4151c50131c886f3e613e9bb9dde4fcd22a"
 
 ng-file-upload@^12.2.13:
   version "12.2.13"

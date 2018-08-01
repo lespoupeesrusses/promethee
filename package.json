@@ -7,6 +7,7 @@
     "angular-summernote": "^0.8.1",
     "angular-ui-sortable": "^0.18.0",
     "fancybox": "^3.0.1",
+    "jquery-warn-before-unload": "^1.0.2",
     "ng-file-upload": "^12.2.13"
   }
 }
