@@ -11,7 +11,7 @@ module PrometheeData
   def promethee_data_page_title
     data['attributes']['searchable_title']
   rescue
-    ""
+    ''
   end
 
   def promethee_data_page_title=(value)
@@ -21,7 +21,7 @@ module PrometheeData
   def promethee_data_page_description
     data['attributes']['searchable_description']
   rescue
-    ""
+    ''
   end
 
   def promethee_data_page_description=(value)
@@ -32,13 +32,13 @@ module PrometheeData
   def promethee_data_translation_title
     data['components'].first['attributes']['searchable_title']
   rescue
-    ""
+    ''
   end
 
   def promethee_data_translation_description
     data['components'].first['attributes']['searchable_description']
   rescue
-    ""
+    ''
   end
 
 
@@ -52,19 +52,30 @@ module PrometheeData
   def promethee_extract_searchable(component)
     return '' if component.blank?
     searchable = ' '
-    component['attributes'].each do |key, value|
+    searchable += promethee_extract_searchable_attributes component['attributes'] if component.include?('attributes')
+    # For masters, contents are in children
+    searchable += promethee_extract_searchable_children component['children'] if component.include? 'children'
+    # For translations, contents are in components, not children
+    searchable += promethee_extract_searchable_children component['components'] if component.include? 'components'
+    searchable
+  end
+
+  def promethee_extract_searchable_attributes(attributes)
+    searchable = ' '
+    attributes.each do |key, value|
       if key.starts_with? 'searchable_'
         clean_value = strip_tags value
         searchable += "#{clean_value} "
       end
-    end if component.include? 'attributes'
-    component['children'].each do |child|
+    end
+    searchable
+  end
+
+  def promethee_extract_searchable_children(components)
+    searchable = ' '
+    components.each do |child|
       searchable += promethee_extract_searchable child
-    end if component.include? 'children'
-    # for translations
-    component['components'].each do |child|
-      searchable += promethee_extract_searchable child
-    end if component.include? 'components'
+    end
     searchable
   end
 end
