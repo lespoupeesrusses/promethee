@@ -13,7 +13,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-xs-12 collection-item-caption" ng-show="component.attributes.searchable_caption !== ''">Caption</div>
+        <div class="col-xs-12 collection-item-caption" ng-show="component.attributes.searchable_caption" ng-bind-html="component.attributes.searchable_caption | htmlSafe"></div>
       </div>
     </div>
   </div>
