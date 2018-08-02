@@ -45,7 +45,7 @@ promethee_masters_multiple = Promethee::Data::MastersMultiple.new master_data, o
 <% end %>
 
 <script type="text/javascript">
-  promethee.controller('PrometheeLocalizerController', 
+  promethee.controller('PrometheeLocalizerController',
     ['$scope', 'summernoteConfig', 'mastersMultiple', function($scope, summernoteConfig, mastersMultiple) {
     $scope.summernoteConfig = summernoteConfig;
     $scope.data = <%= promethee_data.to_json.html_safe %>;
@@ -78,7 +78,7 @@ promethee_masters_multiple = Promethee::Data::MastersMultiple.new master_data, o
   <div class="row">
     <div class="col-md-6">
       <b ng-hide="masters.multiple()">Master</b>
-      <select ng-show="masters.multiple()" ng-model="masters.current" class="form-control ignore-lock">
+      <select ng-show="masters.multiple()" ng-model="masters.current" class="form-control do-not-warn-before-unload">
         <option ng-repeat="master in masters.all" ng-value="master">{{master.title}}</option>
       </select>
     </div>
