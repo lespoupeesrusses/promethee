@@ -7,8 +7,10 @@
         <div class="promethee-edit__wrapper" ng-bind-html="master.attributes.url | htmlSafe"></div>
       </div>
       <div class="col-md-6">
-        <label class="label-control">URL</label>
-        <summernote config="summernoteConfig" ng-model="component.attributes.url"></summernote>
+        <div class="form-group">
+          <label class="label-control">URL</label>
+          <input class="form-control" ng-model="component.attributes.url" type="text">
+        </div>
       </div>
     </div>
   </div>
