@@ -1,7 +1,7 @@
-<% display_fancybox ||= true %>
+<% display_fancybox = true if display_fancybox.nil? # do not use ||= as display_fancybox may be "false" %>
+<% fullsize_url = url_for(blob.variant(resize: '1920>')) %>
 
 <% if display_fancybox %>
-  <% fullsize_url = url_for(blob.variant(resize: '1920>')) %>
   <a data-fancybox title="<%= strip_tags(caption) %>" href="<%= fullsize_url %>">
 <% end %>
     <img src="<%= fullsize_url %>"
