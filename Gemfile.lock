@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    promethee (1.7.12)
+    promethee (1.8.0)
       angularjs-rails (~> 1.6.2)
       bootstrap-sass
       font-awesome-rails
@@ -58,7 +58,7 @@ GEM
       tzinfo (~> 1.1)
     angularjs-rails (1.6.8)
     arel (9.0.0)
-    autoprefixer-rails (9.1.4)
+    autoprefixer-rails (9.3.1)
       execjs
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
@@ -74,7 +74,7 @@ GEM
       railties (>= 3.2, < 6.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
-    i18n (1.1.0)
+    i18n (1.1.1)
       concurrent-ruby (~> 1.0)
     jquery-rails (4.3.3)
       rails-dom-testing (>= 1, < 3)
@@ -85,7 +85,7 @@ GEM
     loofah (2.2.2)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
-    mail (2.7.0)
+    mail (2.7.1)
       mini_mime (>= 0.1.1)
     marcel (0.3.3)
       mimemagic (~> 0.3.2)

@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"@fancyapps/fancybox@^3.3.5":
-  version "3.3.5"
-  resolved "https://registry.yarnpkg.com/@fancyapps/fancybox/-/fancybox-3.3.5.tgz#e0bead520450ff0af51d353a17ac6bf864ba0f49"
+"@fancyapps/fancybox@^3.5.2":
+  version "3.5.2"
+  resolved "https://registry.yarnpkg.com/@fancyapps/fancybox/-/fancybox-3.5.2.tgz#d6ff4bf3bc99dd69c53bcee9397d8cf698462fe3"
 
 angular-bootstrap-colorpicker@:
   version "3.0.32"
@@ -17,10 +17,6 @@ angular-summernote@^0.8.1:
 angular-ui-sortable@^0.18.0:
   version "0.18.0"
   resolved "https://registry.yarnpkg.com/angular-ui-sortable/-/angular-ui-sortable-0.18.0.tgz#a4dfdce4baf36406ff9e750c44eb8628f7e74e77"
-
-fancybox@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/fancybox/-/fancybox-3.0.1.tgz#13f6927449157ed026c69e78c2ba5bf0f1da9af7"
 
 jquery-warn-before-unload@^1.0.2:
   version "1.0.4"
