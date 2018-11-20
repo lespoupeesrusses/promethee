@@ -1,7 +1,7 @@
 <script type="text/ng-template" id="promethee/components/row/edit/move">
 <%= render 'promethee/edit/move.header', type: 'row' %>
     <div class="header">Row</div>
-    <div class="row">
+    <div class="row" ng-init="components = component.children">
       <div class="row__background row__background--color" ng-style="{'background': component.attributes.bgcolor}"></div>
 
       <div ng-repeat="background in component.attributes.backgrounds"
@@ -14,7 +14,7 @@
 
       <div  ng-click="inspect(component, $event)"
             ng-class="{'promethee-edit__component--selected': promethee.inspected === component}"
-            ng-repeat="component in component.children"
+            ng-repeat="component in components"
             class=" <%= promethee_bem_classes 'promethee-edit__component', "--column" %>
                     col
                     col-md-{{component.attributes.size}}
