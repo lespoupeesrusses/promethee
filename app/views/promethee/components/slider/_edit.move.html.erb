@@ -3,13 +3,13 @@
       <div class="header">Slider</div>
       <div ng-controller="SliderMoveController">
         <div ng-show="components.length" class="row carousel">
-          <div class="col-xs-1" ng-click="selectedIndex = (selectedIndex == 0) ? (components.length - 1) : (selectedIndex - 1)"><span><</span></div>
-          <div class="col-xs-8" ng-repeat="component in components" ng-show="$index == selectedIndex">
+          <div class="col-sm-1" ng-click="selectedIndex = (selectedIndex == 0) ? (components.length - 1) : (selectedIndex - 1)"><span><</span></div>
+          <div class="col-sm-8" ng-repeat="component in components" ng-show="$index == selectedIndex">
             <ng-include src="'promethee/move/component'"></ng-include>
           </div>
-          <div class="col-xs-1" ng-click="selectedIndex = (selectedIndex == components.length - 1) ? 0 : (selectedIndex + 1)"><span>></span></div>
+          <div class="col-sm-1" ng-click="selectedIndex = (selectedIndex == components.length - 1) ? 0 : (selectedIndex + 1)"><span>></span></div>
         </div>
-        <div class="row dots">
+        <div class="dots">
           <span ng-repeat="component in components" ng-click="setIndex($index)" ng-class="($index == selectedIndex) ? 'active' : ''">&bull;</span>
         </div>
       </div>

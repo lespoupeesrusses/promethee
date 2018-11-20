@@ -1,16 +1,16 @@
 <div id="slider-<%= component[:id] %>" class="carousel slide <%= promethee_class_for component %>" data-ride="carousel">
   <div class="carousel-inner">
     <% component[:children].each.with_index do |item, n| %>
-    <div class="item<%= ' active' if n.zero? %>">
+    <div class="carousel-item item<%= ' active' if n.zero? %>">
       <%= render 'promethee/show/component', component: item %>
     </div>
     <% end %>
   </div>
 
-  <a class="left carousel-control fontawesome-carousel-control" href="#slider-<%= component[:id] %>" data-slide="prev">
+  <a class="left carousel-control fontawesome-carousel-control carousel-control-prev" href="#slider-<%= component[:id] %>" data-slide="prev">
     <%= fa_icon 'angle-left' %>
   </a>
-  <a class="right carousel-control fontawesome-carousel-control" href="#slider-<%= component[:id] %>" data-slide="next">
+  <a class="right carousel-control fontawesome-carousel-control carousel-control-next" href="#slider-<%= component[:id] %>" data-slide="next">
     <%= fa_icon 'angle-right' %>
   </a>
 </div>
