@@ -93,7 +93,9 @@ promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'pres
   }
 
   $scope.enablePreview = function() {
+    console.log('lets');
     if (this.promethee.mode === 'preview') return;
+    console.log('go');
     this.promethee.mode = 'preview';
     this.sendPreviewData('preview');
   }
@@ -178,8 +180,8 @@ promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'pres
         <div id="navbar">
           <ul class="nav navbar-nav navbar-right ml-auto">
             <li class="nav-item" ng-click="promethee.mode = 'move'" ng-class="{active: promethee.mode == 'move'}"><a><%= fa_icon :pencil %></a></li>
-            <li class="nav-item" ng-click="enablePreview()" ng-class="{active: promethee.mode == 'preview'}">
-              <a data-toggle="dropdown"><%= fa_icon :eye %></a>
+            <li class="nav-item" ng-class="{active: promethee.mode == 'preview'}">
+              <a ng-click="enablePreview()" data-toggle="dropdown"><%= fa_icon :eye %></a>
               <ul class="dropdown-menu" ng-show="promethee.mode == 'preview'">
                 <li ng-click="promethee.preview = 'desktop'"
                     ng-class="{active: promethee.preview == 'desktop'}">

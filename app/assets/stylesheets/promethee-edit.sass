@@ -90,11 +90,14 @@ $promethee-color: #ff9900 !default
     border: none
     z-index: 10000
     position: fixed
-    ul.nav li a
-      color: white
-      &:hover
-        color: #eee
+    ul.nav li
+      position: relative
+      a
+        color: white
+        &:hover
+          color: #eee
     .dropdown-menu
+      position: absolute
       background: #232323
       min-width: 20px
 
