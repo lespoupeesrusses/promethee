@@ -179,9 +179,9 @@ promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'pres
         </div>
         <div id="navbar">
           <ul class="nav navbar-nav navbar-right ml-auto">
-            <li class="nav-item" ng-click="promethee.mode = 'move'" ng-class="{active: promethee.mode == 'move'}"><a><%= fa_icon :pencil %></a></li>
+            <li class="nav-item" ng-click="promethee.mode = 'move'" ng-class="{active: promethee.mode == 'move'}"><a><%= icon('fa', 'pencil') %></a></li>
             <li class="nav-item" ng-class="{active: promethee.mode == 'preview'}">
-              <a ng-click="enablePreview()" data-toggle="dropdown"><%= fa_icon :eye %></a>
+              <a ng-click="enablePreview()" data-toggle="dropdown"><%= icon('fa', 'eye') %></a>
               <ul class="dropdown-menu" ng-show="promethee.mode == 'preview'">
                 <li ng-click="promethee.preview = 'desktop'"
                     ng-class="{active: promethee.preview == 'desktop'}">
@@ -194,11 +194,11 @@ promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'pres
                     <a class="promethee-previewmode promethee-previewmode__mobile"><i class="fa fa-mobile"></i></a></li>
               </ul>
             </li>
-            <li class="nav-item" ng-click="submit()"><a><%= fa_icon :save %></a></li>
+            <li class="nav-item" ng-click="submit()"><a><%= icon('fa', 'save') %></a></li>
             <% if back_url.present? %>
-              <li class="nav-item"><%= link_to fa_icon(:close).html_safe, back_url %></li>
+              <li class="nav-item"><%= link_to icon('fa', 'close').html_safe, back_url %></li>
             <% else %>
-              <li class="nav-item" ng-click="promethee.fullscreen = false"><a><%= fa_icon :close %></a></li>
+              <li class="nav-item" ng-click="promethee.fullscreen = false"><a><%= icon('fa', 'close') %></a></li>
             <% end %>
           </ul>
         </div>

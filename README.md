@@ -102,7 +102,9 @@ With javascript set:
 With stylesheets set:
 ```
 @import 'bootstrap'
-@import 'font-awesome.css'
+@import 'font-awesome-sprockets'
+@import 'font-awesome'
+@import 'font-awesome/shims'
 @import 'promethee'
 ```
 
@@ -172,7 +174,9 @@ With javascript set:
 With stylesheets set:
 ```
 @import 'bootstrap'
-@import 'font-awesome.css'
+@import 'font-awesome-sprockets'
+@import 'font-awesome'
+@import 'font-awesome/shims'
 @import 'summernote.css'
 @import 'promethee'
 @import 'promethee-edit'

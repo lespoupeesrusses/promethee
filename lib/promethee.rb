@@ -1,5 +1,5 @@
 require 'bootstrap-sass'
-require 'font-awesome-rails'
+require 'font-awesome-sass'
 require 'jquery-rails'
 require 'jquery-ui-rails'
 require 'angularjs-rails'
