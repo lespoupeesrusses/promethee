@@ -95,8 +95,7 @@ Which renders to:
 
 With javascript set:
 ```
-//= require fancybox/dist/js/jquery.fancybox
-//= require promethee/fancybox
+//= require promethee
 ```
 
 With stylesheets set:
