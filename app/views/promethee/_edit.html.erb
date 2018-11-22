@@ -93,9 +93,7 @@ promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'pres
   }
 
   $scope.enablePreview = function() {
-    console.log('lets');
     if (this.promethee.mode === 'preview') return;
-    console.log('go');
     this.promethee.mode = 'preview';
     this.sendPreviewData('preview');
   }
