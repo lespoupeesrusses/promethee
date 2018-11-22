@@ -14,8 +14,8 @@
         <%= searchable_collapsed_content.html_safe %>
       </div>
 
-      <div class="aside__button">
-        <a href="#aside-collapse-<%= component[:id] %>" data-toggle="collapse" class="aside__button--<%= open_label_position %>"><%= searchable_open_label %></a>
+      <div class="aside__button aside__button--<%= open_label_position %>">
+        <a href="#aside-collapse-<%= component[:id] %>" data-toggle="collapse"><%= searchable_open_label %></a>
       </div>
 
   <% end %>
