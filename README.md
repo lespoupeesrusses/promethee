@@ -170,7 +170,8 @@ With javascript set:
 //= require bootstrap-sprockets
 //= require angular
 //= require angular-animate
-//= require summernote/summernote
+//= require summernote/summernote     // Only Bootstrap 3
+//= require summernote/summernote-bs4 // Only Bootstrap 4
 //= require activestorage
 //= require promethee
 ```
@@ -182,7 +183,8 @@ With stylesheets set:
 @import 'font-awesome-sprockets'
 @import 'font-awesome'
 @import 'font-awesome/shims'
-@import 'summernote.css'
+@import 'summernote'     // Only Bootstrap 3
+@import 'summernote-bs4' // Only Bootstrap 4
 @import 'promethee'
 @import 'promethee-edit'
 ```
