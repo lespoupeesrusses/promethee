@@ -1,7 +1,7 @@
 <script type="text/ng-template" id="promethee/components/row/edit/move">
 <%= render 'promethee/edit/move.header', type: 'row' %>
     <div class="header">Row</div>
-    <div class="row" ng-init="components = component.children">
+    <div class="row" ng-controller="RowMoveController">
       <div class="row__background row__background--color" ng-style="{'background': component.attributes.bgcolor}"></div>
 
       <div ng-repeat="background in component.attributes.backgrounds"
@@ -32,4 +32,12 @@
     </div>
   </div>
 </div>
+</script>
+
+<script>
+  promethee.controller('RowMoveController', ['$scope', function($scope) {
+    $scope.parent_id = $scope.component.id;
+    $scope.parent_type = $scope.component.type;
+    $scope.components = $scope.component.children;
+  }]);
 </script>
