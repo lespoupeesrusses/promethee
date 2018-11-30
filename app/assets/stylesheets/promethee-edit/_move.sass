@@ -26,6 +26,15 @@
       font-size: 12px
       line-height: 12px
       z-index: 1
+    
+    &--aside
+      .btn
+        &.left
+          text-align: left
+        &.center
+          text-align: center
+        &.right
+          text-align: right
 
     &--faq_item
       margin-bottom: 10px
@@ -35,10 +44,14 @@
         display: flex
         justify-content: space-around
         align-items: stretch
-        .col-xs-8, .col-xs-1
+        .col-xs-8,
+        .col-xs-1,
+        .col-8,
+        .col-1
           padding: 0
 
-        .col-xs-1
+        .col-xs-1,
+        .col-1
           display: flex
           justify-content: center
           align-items: center
@@ -162,6 +175,7 @@
           .label
             margin-left: 10px
             user-select: none
+            font-size: 75%
             &:hover
               cursor: pointer
 
@@ -179,6 +193,7 @@
         color: white
         &__icon
           display: block
+          height: 64px
           svg
             width: 60px
             height: auto

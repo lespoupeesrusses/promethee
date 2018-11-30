@@ -1,13 +1,35 @@
 @import "@fancyapps/fancybox/dist/jquery.fancybox.min"
 
+=spacing-bottom
+  margin-bottom: 50px
+
 .promethee
   &__component
     &__cover
+      min-height: 300px
+      padding: 150px 30px
+      text-align: center
+      display: flex
+      justify-content: center
+      flex-direction: column
       background-repeat: no-repeat
       background-position: center center
       background-size: cover
-      padding: 150px 30px
-      min-height: 300px
+      +spacing-bottom
+
+    &__page > &__aside,
+    &__page > &__text,
+    &__page > &__faq,
+    &__page > &__video
+      @extend .container
+      +spacing-bottom
+      padding-left: $grid-gutter-width
+      padding-right: $grid-gutter-width
+
+    &__page > &__row,
+    &__page > &__collection
+      @extend .container
+      +spacing-bottom
 
     &__slider
       .promethee__component
@@ -75,3 +97,11 @@
       .author
         font-size: 14px
         font-style: italic
+
+    &__collection
+      .collection-item__content
+        margin-bottom: $grid-gutter-width
+
+    &__slider
+      .carousel-item__content
+        text-align: center

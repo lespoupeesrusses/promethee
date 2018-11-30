@@ -1,9 +1,19 @@
 <script type="text/ng-template" id="promethee/components/faq/edit/move">
   <%= render 'promethee/edit/move.header', type: 'faq' %>
       <div class="header">FAQ</div>
-      <div ng-repeat="component in component.children">
-        <ng-include src="'promethee/move/component'"></ng-include>
+      <div ng-controller="FaqMoveController">
+        <div ng-repeat="component in components">
+          <ng-include src="'promethee/move/component'"></ng-include>
+        </div>
       </div>
     </div>
   </div>
+</script>
+
+<script>
+  promethee.controller('FaqMoveController', ['$scope', function($scope) {
+    $scope.parent_id = $scope.component.id;
+    $scope.parent_type = $scope.component.type;
+    $scope.components = $scope.component.children;
+  }]);
 </script>

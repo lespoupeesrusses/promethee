@@ -18,15 +18,15 @@ end
 <div class="row <%= promethee_class_for component %>">
   <div class="collapse" id="collapse-faq-<%= component[:id] %>">
     <% if image_blob %>
-      <div class="col-xs-9">
+      <div class="col-9 col-xs-9">
         <%= body.html_safe %>
       </div>
-      <div class="col-xs-3">
+      <div class="col-3 col-xs-3">
         <%= render 'promethee/show/image.srcset', blob: image_blob, alt: '', caption: '' %>
       </div>
     <% else %>
       <div class="col-md-12">
-      <%= body.html_safe %>
+        <%= body.html_safe %>
       </div>
     <% end %>
   </div>

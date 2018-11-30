@@ -16,12 +16,11 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'rails', '>= 5.2'
   s.add_dependency 'angularjs-rails', '~> 1.6.2'
-  s.add_dependency 'bootstrap-sass'
   s.add_dependency 'sass-rails'
   s.add_dependency 'jquery-rails'
   s.add_dependency 'jquery-ui-rails'
   s.add_dependency 'mini_magick'
-  s.add_dependency 'font-awesome-rails'
+  s.add_dependency 'font-awesome-sass'
   s.add_dependency 'summernote-rails', '~> 0.8.10.0'
 
   s.add_development_dependency 'byebug'

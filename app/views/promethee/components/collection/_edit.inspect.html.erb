@@ -1,9 +1,23 @@
 <script type="text/ng-template" id="promethee/components/collection/edit/inspect">
-  <b>Desktop</b>
   <div class="form-group">
-    <label class="label-control">Items per line: {{promethee.inspected.attributes.items_per_line}}</label>
-    <input ng-model="promethee.inspected.attributes.items_per_line" type="range" min="2" max="12">
+    <label class="label-control">Items per line (on desktop):</label>
+    <div class="row">
+      <div class="col-xs-2 col-2">
+        <input ng-model="promethee.inspected.attributes.items_per_line" type="radio" ng-value="2"> 2
+      </div>
+      <div class="col-xs-2 col-2">
+        <input ng-model="promethee.inspected.attributes.items_per_line" type="radio" ng-value="3"> 3
+      </div>
+      <div class="col-xs-2 col-2">
+        <input ng-model="promethee.inspected.attributes.items_per_line" type="radio" ng-value="4"> 4
+      </div>
+      <div class="col-xs-2 col-2">
+        <input ng-model="promethee.inspected.attributes.items_per_line" type="radio" ng-value="6"> 6
+      </div>
+    </div>
   </div>
+
+  <hr>
 
   <div class="form-group">
     <div class="btn btn-default" ng-click="addComponentByType('collection_item', promethee.inspected.children)">Add item</div>
@@ -13,7 +27,7 @@
       <ul ui-sortable ng-model="promethee.inspected.children" class="list-unstyled">
         <li ng-repeat="item in promethee.inspected.children">
           <div>
-            <%= fa_icon :bars %> Item {{$index + 1}}
+            <%= icon('fa', 'bars') %> Item {{$index + 1}}
             <span class="label label-info" ng-click="promethee.inspected = item">Edit</span>
           </div>
         </li>

@@ -1,16 +1,1 @@
-<script type="text/ng-template" id="promethee/components/column/edit/move">
-  <div  ng-click="inspect(component, $event)"
-        ng-class="{'promethee-edit__component--selected': promethee.inspected === component}"
-        class=" <%= promethee_bem_classes 'promethee-edit__component', "--column" %>
-                col
-                col-md-{{component.attributes.size}}
-                col-md-offset-{{component.attributes.offset}}">
-    <div class="promethee-edit__component__inner">
-      <%= render 'promethee/edit/move.remove' %>
-        <div class="header">Column {{$index + 1}}</div>
-        <ng-include src="'promethee/move/components'"></ng-include>
-        </div>
-      </div>
-    </div>
-  </div>
-</script>
+<% # Defined in components/row/_edit.move.html.erb %>

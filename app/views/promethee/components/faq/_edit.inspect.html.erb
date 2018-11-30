@@ -7,7 +7,7 @@
       <ul ui-sortable ng-model="promethee.inspected.children" class="list-unstyled">
         <li ng-repeat="item in promethee.inspected.children">
           <div>
-            <%= fa_icon :bars %> Item {{$index + 1}}
+            <%= icon('fa', 'bars') %> Item {{$index + 1}}
             <span class="label label-info" ng-click="promethee.inspected = item">Edit</span>
           </div>
         </li>

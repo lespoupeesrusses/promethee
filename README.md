@@ -6,6 +6,8 @@
 Add this line to your application's Gemfile:
 
 ```ruby
+gem 'bootstrap-sass' # For Bootstrap 3
+gem 'bootstrap' # For Bootstrap 4
 gem 'promethee'
 ```
 
@@ -95,14 +97,18 @@ Which renders to:
 
 With javascript set:
 ```
-//= require fancybox/dist/js/jquery.fancybox
+//= require 'bootstrap-sprockets'
+//= require @fancyapps/fancybox/dist/jquery.fancybox.min
 //= require promethee/fancybox
 ```
 
 With stylesheets set:
 ```
+@import 'bootstrap-sprockets' // Only Bootstrap 3
 @import 'bootstrap'
-@import 'font-awesome.css'
+@import 'font-awesome-sprockets'
+@import 'font-awesome'
+@import 'font-awesome/shims'
 @import 'promethee'
 ```
 
@@ -161,19 +167,24 @@ With javascript set:
 ```
 //= require jquery
 //= require jquery-ui
-//= require bootstrap
+//= require bootstrap-sprockets
 //= require angular
 //= require angular-animate
-//= require summernote/summernote
+//= require summernote/summernote     // Only Bootstrap 3
+//= require summernote/summernote-bs4 // Only Bootstrap 4
 //= require activestorage
 //= require promethee
 ```
 
 With stylesheets set:
 ```
+@import 'bootstrap-sprockets' // Only Bootstrap 3
 @import 'bootstrap'
-@import 'font-awesome.css'
-@import 'summernote.css'
+@import 'font-awesome-sprockets'
+@import 'font-awesome'
+@import 'font-awesome/shims'
+@import 'summernote'     // Only Bootstrap 3
+@import 'summernote-bs4' // Only Bootstrap 4
 @import 'promethee'
 @import 'promethee-edit'
 ```

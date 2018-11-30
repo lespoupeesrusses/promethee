@@ -1,15 +1,31 @@
 <%
+  title = component[:attributes][:searchable_title]
   items_per_line = component[:attributes][:items_per_line]
-  size = (12.0/items_per_line.to_f).floor
+  case items_per_line
+  when 6
+    col_classes = "col-md-2 col-sm-4 col-xs-6 col-6"
+  when 4
+    col_classes = "col-md-3 col-xs-6 col-6"
+  when 3
+    col_classes = "col-md-4"
+  when 2
+    col_classes = "col-md-6"
+  end
 %>
 
 <div class="row <%= promethee_class_for component %>">
   <% component[:children].each.with_index do |child, n| %>
-    <div class="col-md-<%= size %>">
+    <div class="<%= col_classes %>">
         <%= render 'promethee/show/component', component: child %>
     </div>
     <% if n%items_per_line === items_per_line - 1 %>
-      <div class="clearfix"></div>
+      <div class="clearfix hidden-sm hidden-xs d-none d-md-block"></div>
+    <% end %>
+    <% if items_per_line >= 4 && n.odd? %>
+      <div class="clearfix visible-xs-block d-block <%= items_per_line === 4 ? 'visible-sm-block d-md-none' : 'd-sm-none' %>"></div>
+    <% end %>
+    <% if items_per_line == 6 && n%3 == 2 %>
+      <div class="clearfix visible-sm-block .d-none .d-sm-block .d-md-none"></div>
     <% end %>
   <% end %>
 </div>
