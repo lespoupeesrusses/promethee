@@ -16,7 +16,6 @@
             ng-class="{'promethee-edit__component--selected': promethee.inspected === component}"
             ng-repeat="component in components"
             class=" <%= promethee_bem_classes 'promethee-edit__component', "--column" %>
-                    col
                     col-md-{{component.attributes.size}}
                     offset-md-{{component.attributes.offset}}
                     col-md-offset-{{component.attributes.offset}}">
