@@ -1,6 +1,6 @@
 <script type="text/ng-template" id="promethee/components/row/edit/inspect">
   <div class="form-group">
-    <div  class="btn btn-default"
+    <div  class="btn btn-default btn-light"
           ng-click="addComponentByType('column', promethee.inspected.children)">
       Add column
     </div>
@@ -27,7 +27,7 @@
     </div>
 
     <div>
-      <div class="btn btn-default" ng-click="promethee.inspected.attributes.backgrounds.push( { image: { id: undefined, name: '' }, posh: 'center', posv: 'center', size: 'auto' } )">Add background image</div>
+      <div class="btn btn-default btn-light" ng-click="promethee.inspected.attributes.backgrounds.push( { image: { id: undefined, name: '' }, posh: 'center', posv: 'center', size: 'auto' } )">Add background image</div>
 
       <div ng-repeat="background in promethee.inspected.attributes.backgrounds" style="margin-top: 20px">
         <h3>Background {{$index + 1}} <span class="fa fa-trash" ng-click="promethee.inspected.attributes.backgrounds.splice($index, 1)" style="cursor: pointer"></span></h3>

@@ -1,0 +1,22 @@
+<div id="component-<%= component[:id] %>" class="<%= promethee_class_for(component) %>">
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+          <tr>
+            <% component[:attributes][:head].each do |th| %>
+              <th><%= th[:searchable_text] if th.has_key? :searchable_text %></th>
+            <% end %>
+          </tr>
+        </thead>
+        <tbody>
+          <% component[:attributes][:body].each do |tr| %>
+            <tr>
+              <% tr.each do |td| %>
+                <td><%= td[:searchable_text] if td.has_key? :searchable_text %></td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+    </table>
+  </div>
+</div>

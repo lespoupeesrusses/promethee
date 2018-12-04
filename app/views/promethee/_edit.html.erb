@@ -177,26 +177,29 @@ promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'pres
         </div>
         <div id="navbar">
           <ul class="nav navbar-nav navbar-right ml-auto">
-            <li class="nav-item" ng-click="promethee.mode = 'move'" ng-class="{active: promethee.mode == 'move'}"><a><%= icon('fa', 'pencil') %></a></li>
+            <li class="nav-item" ng-click="promethee.mode = 'move'" ng-class="{active: promethee.mode == 'move'}"><a class="nav-link"><%= icon('fa', 'pencil') %></a></li>
             <li class="nav-item" ng-class="{active: promethee.mode == 'preview'}">
-              <a ng-click="enablePreview()" data-toggle="dropdown"><%= icon('fa', 'eye') %></a>
+              <a class="nav-link" ng-click="enablePreview()" data-toggle="dropdown"><%= icon('fa', 'eye') %></a>
               <ul class="dropdown-menu" ng-show="promethee.mode == 'preview'">
                 <li ng-click="promethee.preview = 'desktop'"
+                    class="nav-item"
                     ng-class="{active: promethee.preview == 'desktop'}">
-                    <a class="promethee-previewmode promethee-previewmode__desktop"><i class="fa fa-desktop"></i></a></li>
+                    <a class="promethee-previewmode promethee-previewmode__desktop nav-link"><i class="fa fa-desktop"></i></a></li>
                 <li ng-click="promethee.preview = 'tablet'"
+                    class="nav-item"
                     ng-class="{active: promethee.preview == 'tablet'}">
-                    <a class="promethee-previewmode promethee-previewmode__tablet"><i class="fa fa-tablet"></i></a></li>
+                    <a class="promethee-previewmode promethee-previewmode__tablet nav-link"><i class="fa fa-tablet"></i></a></li>
                 <li ng-click="promethee.preview = 'mobile'"
+                    class="nav-item"
                     ng-class="{active: promethee.preview == 'mobile'}">
-                    <a class="promethee-previewmode promethee-previewmode__mobile"><i class="fa fa-mobile"></i></a></li>
+                    <a class="promethee-previewmode promethee-previewmode__mobile nav-link"><i class="fa fa-mobile"></i></a></li>
               </ul>
             </li>
-            <li class="nav-item" ng-click="submit()"><a><%= icon('fa', 'save') %></a></li>
+            <li class="nav-item" ng-click="submit()"><a class="nav-link"><%= icon('fa', 'save') %></a></li>
             <% if back_url.present? %>
-              <li class="nav-item"><%= link_to icon('fa', 'close').html_safe, back_url %></li>
+              <li class="nav-item"><a class="nav-link" href="<%= back_url %>"><%= icon('fa', 'close') %></a></li>
             <% else %>
-              <li class="nav-item" ng-click="promethee.fullscreen = false"><a><%= icon('fa', 'close') %></a></li>
+              <li class="nav-item" ng-click="promethee.fullscreen = false"><a class="nav-link"><%= icon('fa', 'close') %></a></li>
             <% end %>
           </ul>
         </div>

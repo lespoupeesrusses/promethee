@@ -1,0 +1,128 @@
+.promethee-open
+  $real-width: 300px
+  $real-height: 500px
+  $rendered-width: 1280px
+  $rendered-height: $real-height/$real-width*$rendered-width
+  $size-ratio: $real-width/$rendered-width
+
+  width: $real-width
+  height: $real-height
+  overflow: hidden
+  position: relative
+  text-align: center
+
+  &, &::after, &__logo, &__button, &__thumb-preview
+    cursor: pointer
+
+  &::after
+    content: ''
+    width: 100%
+    height: 100%
+    top: 0
+    left: 0
+    border: 1px solid #253742
+    box-sizing: border-box
+    position: absolute
+    display: block
+
+  &__logo
+    padding: 20px
+    svg
+      width: 50px
+      height: 50px
+
+  &__thumb-preview
+    margin-top: 20px
+    background: #eee
+    width: $rendered-width
+    height: $rendered-height
+    border: none
+    display: block
+    transform: scale(#{$size-ratio})
+    transform-origin: 0 0
+
+.promethee-edit
+  background: white
+  position: fixed
+  left: 0
+  right: 0
+  bottom: 0
+  top: 0
+  padding-top: 50px
+  z-index: 10000
+  overflow: hidden
+
+  .navbar-nav
+    flex-direction: row
+
+  &__navbar
+    background: #232323
+    width: 100%
+    margin-bottom: 0
+    top: 0
+    left: 0
+    border-radius: 0
+    border: none
+    z-index: 10000
+    position: fixed
+    ul.nav li
+      position: relative
+      a
+        color: white
+        &:hover
+          color: #eee
+    .dropdown-menu
+      position: absolute
+      background: #232323
+      min-width: 20px
+
+  &__icon
+    svg path
+      fill: white
+
+  &__wrapper
+    padding: 10px
+
+  .video-neutralizing-overlay
+    background: transparent
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+
+.promethee_uploader--preview
+  float: right
+  margin-top: 5px
+  img, video
+    display: block
+    margin: 0 0 0 auto
+    max-height: 34px
+  video
+    max-width: 50px
+  &__delete
+    margin-left: 5px
+    cursor: pointer
+
+
+.promethee-edit
+  .row
+    position: relative
+    &__background
+      position: absolute
+      z-index: 0
+      top: 0
+      left: 5px
+      right: 5px
+      bottom: 0
+      opacity: .5
+      background-repeat: no-repeat
+    &__children
+      position: relative
+      z-index: 10
+
+
+@media (min-width: 768px)
+  .modal-dialog
+    // default margin-top is 30px and the modal window is displayed UNDER the topbar
+    margin-top: 60px

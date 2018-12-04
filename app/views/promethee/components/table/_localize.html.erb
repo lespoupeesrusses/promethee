@@ -1,0 +1,38 @@
+<script type="text/ng-template" id="promethee/components/table/localize">
+  <hr>
+
+  <div class="row">
+    <div class="col-md-6">
+      <table class="table">
+        <thead>
+          <tr>
+            <th ng-repeat="th in master.attributes.head">{{th.searchable_text}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="tr in master.attributes.body">
+            <td ng-repeat="td in tr">{{td.searchable_text}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-6">
+      <table class="table">
+        <thead>
+          <tr>
+            <th ng-repeat="th in component.attributes.head">
+              <input class="form-control" ng-model="th.searchable_text" type="text">
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="tr in component.attributes.body">
+            <td ng-repeat="td in tr">
+              <input class="form-control" ng-model="td.searchable_text" type="text">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</script>

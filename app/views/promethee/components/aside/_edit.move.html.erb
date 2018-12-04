@@ -5,7 +5,7 @@
         <div  ng-bind-html="component.attributes.searchable_visible_content | htmlSafe"></div>
         <div  ng-hide="collapsed"
               ng-bind-html="component.attributes.searchable_collapsed_content | htmlSafe"></div>
-        <a    class="btn btn-default btn-block"
+        <a    class="btn btn-default btn-light btn-block"
               ng-class="component.attributes.open_label_position"
               ng-click="collapsed = !collapsed"
               ng-bind-html="component.attributes.searchable_open_label | htmlSafe"></a>

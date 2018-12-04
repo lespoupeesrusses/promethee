@@ -1,0 +1,42 @@
+<script type="text/ng-template" id="promethee/components/table/edit/inspect">
+  <div class="form-group">
+    <label class="label-control">Head</label><br/>
+    <div  class="btn btn-default btn-light btn-sm" 
+          ng-click="promethee.inspected.attributes.head.push({searchable_text: 'Column'})">
+      Add column
+    </div><br/><br/>
+    <div ng-repeat="th in promethee.inspected.attributes.head">
+      <div class="form-row">
+        <div class="col-10">
+          <input type="text" ng-model="th.searchable_text" class="form-control" />
+        </div>
+        <div class="col-2">
+          <a  class="btn btn-default btn-light btn-sm" 
+              ng-click="promethee.inspected.attributes.head.splice($index, 1)">
+            <%= icon('fa', 'close') %>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="label-control">Body</label><br/>
+    <div  class="btn btn-default btn-light btn-sm"
+          ng-click="promethee.inspected.attributes.body.push([{searchable_text: 'Text'}])">
+      Add row
+    </div><br/><br/>
+    <div ng-repeat="tr in promethee.inspected.attributes.body">
+      <span class="small"><b>Row {{$index+1}}</b>
+        <a  class="btn btn-default btn-light btn-sm float-right"
+            ng-click="promethee.inspected.attributes.body.splice($index, 1)">
+          <%= icon('fa', 'close') %>
+        </a>
+      </span><br/>
+      <div ng-repeat="th in promethee.inspected.attributes.head">
+        <span class="small">{{th.searchable_text}}</span><br/>
+        <input type="text" ng-model="tr[$index].searchable_text" class="form-control" />
+      </div>
+      <hr/>
+    </div>
+  </div>
+</script>

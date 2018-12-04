@@ -3,22 +3,17 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/98a8649f411bc9f50786/maintainability)](https://codeclimate.com/github/lespoupeesrusses/promethee/maintainability)
 
 ## Installation
-Add this line to your application's Gemfile:
+Add these lines to your application's Gemfile:
 
 ```ruby
-gem 'bootstrap-sass' # For Bootstrap 3
-gem 'bootstrap' # For Bootstrap 4
+gem 'bootstrap-sass' # For Bootstrap 3 (not with bootstrap 4!)
+gem 'bootstrap' # For Bootstrap 4 (not with bootstrap 3!)
 gem 'promethee'
 ```
 
 And then execute:
 ```bash
 $ bundle
-```
-
-Or install it yourself as:
-```bash
-$ gem install promethee
 ```
 
 ## Usage
