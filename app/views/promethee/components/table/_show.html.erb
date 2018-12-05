@@ -2,21 +2,25 @@
   <div class="table-responsive">
     <table class="table">
       <thead>
-          <tr>
-            <% component[:attributes][:head].each do |th| %>
-              <th><%= th[:searchable_text] if th.has_key? :searchable_text %></th>
-            <% end %>
-          </tr>
-        </thead>
-        <tbody>
-          <% component[:attributes][:body].each do |tr| %>
+        <tr>
+          <% component[:attributes][:head].each do |th| %>
+            <th><%= th[:searchable_text] if th.has_key? :searchable_text %></th>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+        <% component[:attributes][:body].each do |tr| %>
+          <% if tr.select { |td| td[:searchable_text]&.present? }.count == 0 %>
+            <tr></tr>
+          <% else %>
             <tr>
               <% tr.each do |td| %>
                 <td><%= td[:searchable_text] if td.has_key? :searchable_text %></td>
               <% end %>
             </tr>
           <% end %>
-        </tbody>
+        <% end %>
+      </tbody>
     </table>
   </div>
 </div>
