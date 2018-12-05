@@ -10,6 +10,8 @@
   </div>
 
   <%= render 'promethee/edit/inspect.advanced' %>
+    <promethee-uploader ng-model="promethee.inspected.attributes.thumbnail" label="Thumbnail" limits="'.jpg,.jpeg,.png,.gif'"></promethee-uploader>
+
     <div class="form-group">
       <label class="label-control">Stylesheets</label>
       <textarea class="form-control" ng-model="promethee.inspected.attributes.stylesheets"></textarea>

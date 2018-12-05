@@ -7,7 +7,7 @@ module PrometheeData
     super(value)
   end
 
-  # Getters and setters to get PAGE Title & Description
+  # Getters and setters to get PAGE Title, Description & Thumbnail
   def promethee_data_page_title
     data['attributes']['searchable_title']
   rescue
@@ -26,6 +26,12 @@ module PrometheeData
 
   def promethee_data_page_description=(value)
     self.data['attributes']['searchable_description'] = value
+  end
+
+  def promethee_data_page_thumbnail
+    ActiveStorage::Blob.find_by(id: data['attributes']['thumbnail']['id'])
+  rescue
+    nil
   end
 
   # Getters to get TRANSLATION Title & Description
