@@ -1,8 +1,5 @@
 @import "@fancyapps/fancybox/dist/jquery.fancybox.min"
 
-=spacing-bottom
-  margin-bottom: 50px
-
 .promethee
   &__component
     &__cover
@@ -15,7 +12,7 @@
       background-repeat: no-repeat
       background-position: center center
       background-size: cover
-      +spacing-bottom
+      margin-bottom: 50px
 
     &__page > &__aside,
     &__page > &__text,
@@ -23,16 +20,16 @@
     &__page > &__table,
     &__page > &__video
       @extend .container
-      +spacing-bottom
-      padding-left: ($grid-gutter-width / 2)
-      padding-right: ($grid-gutter-width / 2)
+      margin-bottom: 50px
+      padding-left: $grid-gutter-width/2
+      padding-right: $grid-gutter-width/2
 
     &__page > &__collection,
     &__page > &__row
       @extend .container
       padding-right: 0
       padding-left: 0
-      +spacing-bottom
+      margin-bottom: 50px
 
     &__slider
       .promethee__component
