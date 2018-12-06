@@ -24,12 +24,14 @@
     &__page > &__video
       @extend .container
       +spacing-bottom
-      padding-left: $grid-gutter-width
-      padding-right: $grid-gutter-width
+      padding-left: ($grid-gutter-width / 2)
+      padding-right: ($grid-gutter-width / 2)
 
-    &__page > &__row,
-    &__page > &__collection
+    &__page > &__collection,
+    &__page > &__row
       @extend .container
+      padding-right: 0
+      padding-left: 0
       +spacing-bottom
 
     &__slider
