@@ -124,26 +124,21 @@ promethee
   <div class="promethee-edit__library">
     <div class="promethee-edit__library-header">Library</div>
     <div class="promethee-edit__library-content">
-      <div class="row">
-        <div  ng-repeat="definition in promethee.definitions | filter:{library:true} | orderBy:'position'"
-              class="col-md-12 col-lg-6">
-          <div  addable
-                class="promethee-edit__library__item"
-                data-type="{{definition.data.type}}">
-            <div class="promethee-edit__library__item__icon" ng-bind-html="definition.icon | htmlSafe"></div>
-            <div class="promethee-edit__library__item__name">{{definition.name}}</div>
-          </div>
+      <div  ng-repeat="definition in promethee.definitions | filter:{library:true} | orderBy:'position'" class="promethee-edit__library__item-container">
+        <div  addable
+              class="promethee-edit__library__item"
+              data-type="{{definition.data.type}}">
+          <div class="promethee-edit__library__item__icon" ng-bind-html="definition.icon | htmlSafe"></div>
+          <div class="promethee-edit__library__item__name">{{definition.name}}</div>
         </div>
       </div>
     </div>
     <div class="promethee-edit__library-header">Presets</div>
     <div class="promethee-edit__library-content">
-      <div class="row">
-        <div ng-repeat="preset in promethee.presets | orderBy:'position'" class="col-md-12 col-lg-6">
-          <div addable class="promethee-edit__library__item" data-type="text" data-preset="{{preset.name}}">
-            <div class="promethee-edit__library__item__icon" ng-bind-html="preset.icon | htmlSafe"></div>
-            <div class="promethee-edit__library__item__name">{{preset.name}}</div>
-          </div>
+      <div ng-repeat="preset in promethee.presets | orderBy:'position'" class="promethee-edit__library__item-container">
+        <div addable class="promethee-edit__library__item" data-type="text" data-preset="{{preset.name}}">
+          <div class="promethee-edit__library__item__icon" ng-bind-html="preset.icon | htmlSafe"></div>
+          <div class="promethee-edit__library__item__name">{{preset.name}}</div>
         </div>
       </div>
     </div>

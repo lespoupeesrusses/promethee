@@ -26,7 +26,7 @@
       font-size: 12px
       line-height: 12px
       z-index: 1
-    
+
     &--aside
       .btn
         &.left
@@ -147,14 +147,13 @@
   .promethee-edit
     &__inspect, &__library
       min-width: 100px
-      max-width: 400px
       background: white
       position: fixed
       top: 50px
       bottom: 0
-      padding: 30px 40px 15px
+      padding: 30px 20px 15px
       z-index: 1000
-      width: calc(50vw - 380px)
+      width: calc(50vw - 365px)
       overflow-x: hidden
       overflow-y: auto
       &-header
@@ -180,13 +179,17 @@
               cursor: pointer
 
     &__library
+      padding-left: 10px
+      padding-right: 10px
       left: 0
+      &__item-container, &__item
+        display: inline-block
       &__item
-        max-width: 300px
+        max-width: 100px
         z-index: 100000
         background-color: #253742
-        padding-top: 10px
-        margin-bottom: 30px
+        padding: 10px 5px 0 5px
+        margin: 0 10px 20px
         height: 100px
         min-width: 100px
         text-align: center
