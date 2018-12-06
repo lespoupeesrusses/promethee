@@ -4,12 +4,12 @@
         <table class="table">
           <thead>
             <tr>
-              <th ng-repeat="th in component.attributes.head">{{th.searchable_text}}</th>
+              <th ng-repeat="th in component.attributes.head track by $index">{{th.searchable_text}}</th>
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="tr in component.attributes.body">
-              <td ng-repeat="td in tr">{{td.searchable_text}}</td>
+            <tr ng-repeat="tr in component.attributes.body track by $index">
+              <td ng-repeat="td in tr track by $index">{{td.searchable_text}}</td>
             </tr>
           </tbody>
         </table>
