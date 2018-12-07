@@ -1,6 +1,7 @@
 <%
 title = component[:attributes][:searchable_title].to_s
 body = component[:attributes][:searchable_body].to_s
+special_question = component[:attributes][:special_question]
 
 image = component[:attributes][:image]
 if image && image[:id]
@@ -8,24 +9,26 @@ if image && image[:id]
 end
 %>
 
-<h4 data-toggle="collapse"
-    data-target="#collapse-faq-<%= component[:id] %>"
-    aria-expanded="false"
-    aria-controls="collapse-faq-<%= component[:id] %>">
-  <%= title %>
-</h4>
+<div class="<%= promethee_class_for component %> <%= 'promethee__component__faq_item--special' if special_question %>">
+  <h4 data-toggle="collapse"
+      data-target="#collapse-faq-<%= component[:id] %>"
+      aria-expanded="false"
+      aria-controls="collapse-faq-<%= component[:id] %>">
+    <%= title %>
+  </h4>
 
-<div class="<%= promethee_class_for component %> collapse" id="collapse-faq-<%= component[:id] %>">
-  <% if image_blob %>
-    <div class="row ">
-      <div class="col-9 col-xs-9">
-        <%= body.html_safe %>
+  <div class="collapse" id="collapse-faq-<%= component[:id] %>">
+    <% if image_blob %>
+      <div class="row ">
+        <div class="col-9 col-xs-9">
+          <%= body.html_safe %>
+        </div>
+        <div class="col-3 col-xs-3">
+          <%= render 'promethee/show/image.srcset', blob: image_blob, alt: '', caption: '' %>
+        </div>
       </div>
-      <div class="col-3 col-xs-3">
-        <%= render 'promethee/show/image.srcset', blob: image_blob, alt: '', caption: '' %>
-      </div>
-    </div>
-  <% else %>
-    <%= body.html_safe %>
-  <% end %>
+    <% else %>
+      <%= body.html_safe %>
+    <% end %>
+  </div>
 </div>

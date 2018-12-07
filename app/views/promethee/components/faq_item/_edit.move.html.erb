@@ -1,7 +1,7 @@
 <script type="text/ng-template" id="promethee/components/faq_item/edit/move">
   <%= render 'promethee/edit/move.header', type: 'faq_item' %>
       <div class="header">FAQ Item</div>
-      <div class="row">
+      <div class="row promethee-edit__faq_item__content{{ component.attributes.special_question ? '--special' : '' }}">
         <div class="col-9 col-xs-9">
           <h4>{{component.attributes.searchable_title}}</h4>
           <div ng-bind-html="component.attributes.searchable_body | htmlSafe"></div>
