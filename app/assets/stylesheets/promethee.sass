@@ -105,3 +105,19 @@
     &__slider
       .carousel-item__content
         text-align: center
+
+@media print
+  body
+    font-size: 125%
+  .promethee
+    &__component
+      &__page > &__aside,
+      &__page > &__text,
+      &__page > &__faq,
+      &__page > &__table,
+      &__page > &__video,
+      &__page > &__collection,
+      &__page > &__row
+        max-width: 90% !important
+  .container
+    max-width: 90% !important
