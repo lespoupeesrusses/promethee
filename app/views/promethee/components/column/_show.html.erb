@@ -1,7 +1,15 @@
 <%
 size = component[:attributes][:size]
 offset = component[:attributes][:offset]
+classes = "col-md-#{size}"
+classes += " offset-md-#{offset} col-md-offset-#{offset}" if offset > 0
+if component[:attributes][:mobile] && component[:attributes][:mobile][:enabled]
+  mobile_size = component[:attributes][:mobile][:size]
+  mobile_offset = component[:attributes][:mobile][:offset]
+  classes += " col-#{mobile_size} col-xs-#{mobile_size}"
+  classes += " offset-#{mobile_offset} col-xs-offset-#{mobile_offset}" if mobile_offset > 0
+end
 %>
-<div class="col-md-<%= size %><%= " offset-md-#{offset} col-md-offset-#{offset}" if offset > 0 %> <%= promethee_class_for component %>">
+<div class="<%= classes %> <%= promethee_class_for component %>">
   <%= render 'promethee/show/components', components: component[:children] %>
 </div>
