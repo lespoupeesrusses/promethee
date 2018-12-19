@@ -17,6 +17,9 @@
 
         // Insert trimmed clipboard content as paragraph
         document.execCommand('insertHTML', false, paragraph.outerHTML);
+      },
+      onInit: function() {
+        $(this).summernote('removeModule', 'autoLink');
       }
     },
     toolbar: [
