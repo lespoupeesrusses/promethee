@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    promethee (1.11.16)
+    promethee (1.11.17)
       angularjs-rails (~> 1.6.2)
       font-awesome-sass
       jquery-rails
@@ -61,7 +61,7 @@ GEM
     byebug (10.0.2)
     concurrent-ruby (1.1.4)
     crass (1.0.4)
-    erubi (1.7.1)
+    erubi (1.8.0)
     ffi (1.9.25)
     font-awesome-sass (5.5.0.1)
       sassc (>= 1.11)
