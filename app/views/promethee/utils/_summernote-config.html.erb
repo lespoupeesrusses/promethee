@@ -18,8 +18,16 @@
         // Insert trimmed clipboard content as paragraph
         document.execCommand('insertHTML', false, paragraph.outerHTML);
       },
+
       onInit: function() {
         $(this).summernote('removeModule', 'autoLink');
+      },
+
+      onApplyCustomStyle: function($target, context, onFormatBlock) {
+        if ($target.hasClass('dropdown-item')) {
+          $target = $target.children().first();
+        }
+        onFormatBlock($target.prop('tagName'), $target);
       }
     },
     toolbar: [
