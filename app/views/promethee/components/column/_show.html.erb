@@ -1,13 +1,41 @@
 <%
+#         576   768   992   1200 
+#          |     |     |     |   
+# BS4   xs | sm  | md  | lg  | xl
+# BS3      xs    | sm  | md  | lg
+
+# Docs:
+# BS4 : https://getbootstrap.com/docs/4.1/layout/overview/#responsive-breakpoints
+# BS3 : https://getbootstrap.com/docs/3.3/css/#grid
+
+# Basic idea is: default layout concerns desktop and tablet.
+# There is a small difference between 3 and 4 regarding tablets:
+# - BS4 treats tablets as desktop (expected behaviour)
+# - BS3 treats tablets as mobile (wrong behaviour for us)
+
+# Desktop
 size = component[:attributes][:size]
 offset = component[:attributes][:offset]
-classes = "col-md-#{size}"
-classes += " offset-md-#{offset} col-md-offset-#{offset}"
+classes = " col-md-#{size} offset-md-#{offset} col-md-offset-#{offset}" # BS4 tablet+, BS3 desktop only
+
+# Tablet override
+# - md for BS4
+# - sm for BS3
+if component[:attributes][:tablet] && component[:attributes][:tablet][:enabled]
+  size = component[:attributes][:tablet][:size]
+  offset = component[:attributes][:tablet][:offset]
+  classes += " col-md-#{size} col-md-offset-#{offset}" # BS4, breaks small desktop for BS3
+  classes += " col-sm-#{size} offset-sm-#{offset}" # BS3, breaks mobile landscape for BS4
+end
+
+# Mobile override
+# - no class for BS4 (xs disappears, sm is treated in the same way)
+# - xs for BS3
 if component[:attributes][:mobile] && component[:attributes][:mobile][:enabled]
-  mobile_size = component[:attributes][:mobile][:size]
-  mobile_offset = component[:attributes][:mobile][:offset]
-  classes += " col-#{mobile_size} col-xs-#{mobile_size}"
-  classes += " offset-#{mobile_offset} col-xs-offset-#{mobile_offset}"
+  size = component[:attributes][:mobile][:size]
+  offset = component[:attributes][:mobile][:offset]
+  classes += " col-#{size} offset-#{offset}" # BS4, does nothing for BS3
+  classes += " col-xs-#{size} col-xs-offset-#{offset}" # BS3, does nothing for BS4
 end
 %>
 <div class="<%= classes %> <%= promethee_class_for component %>">

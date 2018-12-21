@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    promethee (1.11.20)
+    promethee (1.11.21)
       angularjs-rails (~> 1.6.2)
       font-awesome-sass
       jquery-rails
@@ -154,4 +154,4 @@ DEPENDENCIES
   promethee!
 
 BUNDLED WITH
-   1.17.1
+   1.17.2
