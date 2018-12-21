@@ -17,7 +17,6 @@
 size = component[:attributes][:size]
 offset = component[:attributes][:offset]
 classes  = " col-lg-#{size} offset-lg-#{offset} col-lg-offset-#{offset}" # BS4 desktop+, BS3 desktop large
-classes += " col-md-#{size} offset-md-#{offset} col-md-offset-#{offset}" # BS4 tablet+, BS3 desktop only
 
 # Tablet override
 # - md for BS4
@@ -27,6 +26,9 @@ if component[:attributes][:tablet] && component[:attributes][:tablet][:enabled]
   offset = component[:attributes][:tablet][:offset]
   classes += " col-md-#{size} col-md-offset-#{offset} offset-md-#{offset}" # BS4, breaks small desktop for BS3
   classes += " col-sm-#{size} col-sm-offset-#{offset} offset-sm-#{offset}" # BS3, breaks mobile landscape for BS4
+else
+  # No tablet override
+  classes += " col-md-#{size} offset-md-#{offset} col-md-offset-#{offset}" # BS4 tablet+, BS3 desktop only
 end
 
 # Mobile override
