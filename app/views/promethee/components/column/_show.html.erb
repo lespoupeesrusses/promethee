@@ -16,7 +16,8 @@
 # Desktop
 size = component[:attributes][:size]
 offset = component[:attributes][:offset]
-classes = " col-md-#{size} offset-md-#{offset} col-md-offset-#{offset}" # BS4 tablet+, BS3 desktop only
+classes = " col-lg-#{size} offset-lg-#{offset}" # BS4 desktop+, BS3 desktop large
+classes += " col-md-#{size} offset-md-#{offset} col-md-offset-#{offset}" # BS4 tablet+, BS3 desktop only
 
 # Tablet override
 # - md for BS4
