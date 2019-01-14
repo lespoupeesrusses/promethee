@@ -4,4 +4,4 @@
 //= require angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module
 //= require @fancyapps/fancybox/dist/jquery.fancybox.min
 //= require jquery-warn-before-unload/jquery.warnBeforeUnload
-//= require promethee/fancybox
+//= require_tree ./promethee
