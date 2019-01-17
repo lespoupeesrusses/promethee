@@ -1,0 +1,32 @@
+<script type="text/ng-template" id="offset_input">
+  <input  ng-model="ngModel"
+          ng-change="checkOffsetValid()"
+          type="range"
+          class="btn-block"
+          list="tickmarks"
+          min="0"
+          max="12">
+</script>
+
+<script>
+  promethee.directive('offsetInput', function() {
+    return {
+      restrict: 'E',
+      scope: {
+        ngModel: '=',
+        ngMax: "="
+      },
+      templateUrl: 'offset_input',
+      controller: function($scope) {
+        $scope.$watch('ngMax', function () {
+          $scope.checkOffsetValid();
+        });
+
+        $scope.checkOffsetValid = function () {
+          $scope.ngModel = Math.min($scope.ngModel, $scope.ngMax);
+        };
+      }
+    }
+  });
+
+</script>
