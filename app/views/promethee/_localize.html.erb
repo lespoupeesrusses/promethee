@@ -1,4 +1,6 @@
 <%
+@disable_page_attributes = false
+@disable_page_attributes ||= disable_page_attributes
 promethee_data = Promethee::Data::Localization.new localization_data, master_data
 promethee_masters_multiple = Promethee::Data::MastersMultiple.new master_data, other_data
 %>

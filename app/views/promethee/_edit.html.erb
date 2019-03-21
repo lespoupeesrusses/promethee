@@ -1,4 +1,7 @@
 <%
+@disable_page_attributes = false
+@disable_page_attributes ||= disable_page_attributes
+
 promethee_data = Promethee::Data::Master.new master_data
 preview_url ||= promethee_preview_path
 back_url ||= nil

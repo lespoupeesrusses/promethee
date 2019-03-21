@@ -8,6 +8,7 @@ module ActionView
         def render
           @options[:master_data] = object.send @method_name unless object.nil?
           @options[:master_data] = @options[:value] if @options.key?(:value)
+          @options[:disable_page_attributes] ||= false
           ApplicationController.renderer.render partial: 'promethee/edit', locals: @options
         end
       end
@@ -16,13 +17,15 @@ module ActionView
         def render
           localization_data = object.send @method_name unless object.nil?
           localization_data = @options[:value] if @options.include? :value
+          @options[:disable_page_attributes] ||= false
           ApplicationController.renderer.render partial: 'promethee/localize',
                                                 locals: {
                                                   object_name: @object_name,
                                                   method_name: @method_name,
                                                   localization_data: localization_data,
                                                   master_data: @options[:master],
-                                                  other_data: @options[:other]
+                                                  other_data: @options[:other],
+                                                  disable_page_attributes: @options[:disable_page_attributes]
                                                 }
         end
       end

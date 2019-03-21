@@ -1,31 +1,33 @@
 <script type="text/ng-template" id="promethee/components/page/localize">
+  <% unless @disable_page_attributes %>
   <hr>
+  
+    <div class="row">
+      <div class="col-md-6">
+        <b>Page title</b>
+        <p>{{master.attributes.searchable_title}}</p><br>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="label-control">Page title</label>
+          <input class="form-control" ng-model="component.attributes.searchable_title" type="text">
+        </div>
+      </div>
+    </div>
 
-  <div class="row">
-    <div class="col-md-6">
-      <b>Page title</b>
-      <p>{{master.attributes.searchable_title}}</p><br>
-    </div>
-    <div class="col-md-6">
-      <div class="form-group">
-        <label class="label-control">Page title</label>
-        <input class="form-control" ng-model="component.attributes.searchable_title" type="text">
+    <div class="row" ng-show="master.attributes.searchable_description">
+      <div class="col-md-6">
+        <div>
+          <b>Page description</b>
+          <p>{{master.attributes.searchable_description}}</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="label-control">Page description</label>
+          <textarea class="form-control" ng-model="component.attributes.searchable_description"></textarea>
+        </div>
       </div>
     </div>
-  </div>
-
-  <div class="row" ng-show="master.attributes.searchable_description">
-    <div class="col-md-6">
-      <div>
-        <b>Page description</b>
-        <p>{{master.attributes.searchable_description}}</p>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="form-group">
-        <label class="label-control">Page description</label>
-        <textarea class="form-control" ng-model="component.attributes.searchable_description"></textarea>
-      </div>
-    </div>
-  </div>
+  <% end %>
 </script>
