@@ -18,8 +18,10 @@ class Promethee::Data::MasterLocalized < Promethee::Data
   def localize_component_attributes(component)
     localized_component = find_localized_component component[:id]
     return if (localized_component.nil? || !localized_component.include?(:attributes))
-    component[:attributes].merge! localized_component[:attributes]
+    component[:attributes].deep_merge_existing_keys! localized_component[:attributes]
   end
+
+
 
   def localize_component_children(component)
     component[:children].each { |child| localize_component child }
