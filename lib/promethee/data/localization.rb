@@ -25,7 +25,8 @@ class Promethee::Data::Localization < Promethee::Data
     @master_data.flat.each do |master_component|
       localized_component = find_localized_component master_component[:id]
       # We take the localized component if it exists, the master component otherwise
-      component = localized_component || master_component
+      component = localized_component || master_component.except(:attributes)
+      component[:attributes] ||= {}
       # We add it to the list of localized components
       @data[:components] << component
     end

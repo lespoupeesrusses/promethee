@@ -108,8 +108,7 @@ promethee
             // console.log('dropped', component, droppedToList, droppedToIndex);
             droppedToList.splice(droppedToIndex, 0, component);
 
-            scope.promethee.inspected = component
-            scope.refreshInspect(component.type);
+            scope.promethee.inspected = component;
 
             scope.$apply();
           }
@@ -155,7 +154,7 @@ promethee
     <div class="promethee-edit__inspect-content">
       <div ng-repeat="definition in promethee.definitions | orderBy:'position'">
         <ng-include src="'promethee/components/' + definition.data.type + '/edit/inspect'"
-                    ng-show="promethee.inspected.type == definition.data.type"
+                    ng-if="promethee.inspected.type == definition.data.type"
                     class="promethee-edit__inspect-content--{{ definition.data.type }}"></ng-include>
       </div>
     </div>

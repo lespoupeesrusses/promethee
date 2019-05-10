@@ -18,17 +18,18 @@
     </div>
     <div class="col-md-6">
       <table class="table">
-        <thead>
+        <thead ng-init="component.attributes.head = component.attributes.head || []">
           <tr>
-            <th ng-repeat="th in component.attributes.head track by $index">
-              <input class="form-control" ng-model="th.searchable_text" type="text">
+            <th ng-repeat="th in master.attributes.head track by $index">
+              <input class="form-control" ng-model="component.attributes.head[$index].searchable_text" type="text">
             </th>
           </tr>
         </thead>
-        <tbody>
-          <tr ng-repeat="tr in component.attributes.body track by $index">
+        <tbody ng-init="component.attributes.body = component.attributes.body || []">
+          <tr ng-repeat="tr in master.attributes.body track by $index"
+              ng-init="component.attributes.body[$index] = component.attributes.body[$index] || []">
             <td ng-repeat="td in tr track by $index">
-              <input class="form-control" ng-model="td.searchable_text" type="text">
+              <input class="form-control" ng-model="component.attributes.body[$parent.$index][$index].searchable_text" type="text">
             </td>
           </tr>
         </tbody>

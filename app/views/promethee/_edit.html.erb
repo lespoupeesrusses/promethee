@@ -92,16 +92,6 @@ promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'pres
   $scope.inspect = function(component, event) {
     if(event.target.closest('.promethee-edit__component') === event.currentTarget) {
       $scope.promethee.inspected = component;
-      $scope.refreshInspect(component.type);
-    }
-  }
-
-  $scope.refreshInspect = function (componentType) {
-    var inspectContainer = document.querySelector(".promethee-edit__inspect-content--"+componentType);
-    var summernoteToolbars = inspectContainer.querySelectorAll('.note-toolbar-wrapper');
-    var i;
-    for (i = 0 ; i < summernoteToolbars.length ; i += 1) {
-      summernoteToolbars[i].removeAttribute('style');
     }
   }
 
