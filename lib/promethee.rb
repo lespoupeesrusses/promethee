@@ -3,6 +3,7 @@ require 'jquery-rails'
 require 'jquery-ui-rails'
 require 'angularjs-rails'
 require 'summernote-rails'
+require 'deep_merge_existing_keys'
 
 module Promethee
   def self.root
