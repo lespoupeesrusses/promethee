@@ -1,24 +1,36 @@
+<%
+  columns = component[:attributes][:cols].map { |colUid|
+    colData = component[:attributes][:cols_data][colUid.to_sym] || {}
+    { uid: colUid, searchable_text: colData[:searchable_text] }
+  }
+
+  rows = component[:attributes][:rows].map { |rowUid|
+    rowData = component[:attributes][:rows_data][rowUid.to_sym] || {}
+    { uid: rowUid, data: rowData }
+  }
+%>
+
 <div id="component-<%= component[:id] %>" class="<%= promethee_class_for(component) %>">
   <div class="table-responsive">
     <table class="table">
       <thead>
         <tr>
-          <% component[:attributes][:head].each do |th| %>
-            <th><%= th[:searchable_text] if th.has_key? :searchable_text %></th>
+          <% columns.each do |col| %>
+            <th id="col-<%= col[:uid] %>">
+              <%= col[:searchable_text] %>
+            </th>
           <% end %>
         </tr>
       </thead>
       <tbody>
-        <% component[:attributes][:body].each do |tr| %>
-          <% if tr.select { |td| td[:searchable_text]&.present? }.count == 0 %>
-            <tr></tr>
-          <% else %>
-            <tr>
-              <% tr.each do |td| %>
-                <td><%= td[:searchable_text] if td.has_key? :searchable_text %></td>
-              <% end %>
-            </tr>
-          <% end %>
+        <% rows.each do |row| %>
+          <tr>
+            <% row[:data].each do |colUid, cell| %>
+              <td id="cell-<%= row[:uid] %>-<%= colUid %>">
+                <%= cell[:searchable_text] %>
+              </td>
+            <% end %>
+          </tr>
         <% end %>
       </tbody>
     </table>
