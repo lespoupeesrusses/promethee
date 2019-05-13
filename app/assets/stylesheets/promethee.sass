@@ -1,127 +1,135 @@
 @import "@fancyapps/fancybox/dist/jquery.fancybox.min"
 
+//  aside
+//  blockquote
+//  collection
+//  cover
+//  faq
+//  image
+//  slider
+
 .promethee
-  &__component
-    &__cover
-      min-height: 300px
-      padding: 150px 30px
-      text-align: center
-      display: flex
-      justify-content: center
-      flex-direction: column
-      background-repeat: no-repeat
-      background-position: center center
-      background-size: cover
-      margin-bottom: 50px
+    &__component
+        &__page > div:not(&__cover):not(&__slider),
+        &__page > aside
+            @extend .container
+            margin-bottom: 50px
+            padding-left: $grid-gutter-width/2
+            padding-right: $grid-gutter-width/2
 
-    &__page > &__aside,
-    &__page > &__blockquote,
-    &__page > &__faq,
-    &__page > &__table,
-    &__page > &__text,
-    &__page > &__video
-      @extend .container
-      margin-bottom: 50px
-      padding-left: $grid-gutter-width/2
-      padding-right: $grid-gutter-width/2
+        &__page > &__collection,
+        &__page > &__row
+            padding-left: 0
+            padding-right: 0
 
-    &__page > &__collection,
-    &__page > &__row
-      @extend .container
-      padding-right: 0
-      padding-left: 0
-      margin-bottom: 50px
+        &__aside
+            .aside__button
+                padding-top: $grid-gutter-width
+                a
+                    display: inline-block
+                &--center
+                    text-align: center
+                &--left
+                    text-align: left
+                &--right
+                    text-align: right
 
-    &__slider
-      .promethee__component
-        margin-bottom: 0
-      .fontawesome-carousel-control .fa
-        top: 50%
-        position: absolute
-        transform: translateY(-50%)
-        font-size: 30px
+        &__blockquote
+            .blockquote
+                border: none
+                font-size: 30px
 
-    &__collection
-      margin-top: 20px
-      margin-bottom: 20px
-      .clearfix
-        margin: 40px 0
+                p
+                    display: inline
 
-    &__faq
-      h4
-        cursor: pointer
-        position: relative
-        &::after
-          content: ""
-          display: block
-          width: 8px
-          height: 8px
-          border-right: 2px solid #000
-          border-top: 2px solid #000
-          transform: rotate(135deg)
-          position: absolute
-          right: 10px
-          top: 5px
-          transition: transform .4s ease
-        &[aria-expanded="true"]
-          &::after
-            transform: rotate(315deg)
-      img
-        margin-bottom: 30px
+                &::before, &::after
+                    display: inline-block
 
-    &__aside
-      .aside__button
-        padding-top: 30px
-        a
-          display: inline-block
-        &--center
-          text-align: center
-        &--left
-          text-align: left
-        &--right
-          text-align: right
+                &::before
+                    content: '« '
 
-    &__blockquote
-      .blockquote
-        font-size: 30px
-        border: none
+                &::after
+                    content: ' »'
 
-        p
-          display: inline
+            .author
+                font-size: 14px
+                font-style: italic
 
-        &::before, &::after
-          display: inline-block
+        &__collection
+            margin-bottom: 20px
+            margin-top: 20px
+            .clearfix
+                margin: 40px 0
+            .collection-item__content
+                margin-bottom: $grid-gutter-width
+                a + p
+                    margin-top: 10px
 
-        &::before
-          content: '« '
+        &__cover
+            background-position: center center
+            background-repeat: no-repeat
+            background-size: cover
+            display: flex
+            flex-direction: column
+            justify-content: center
+            margin-bottom: 50px
+            min-height: 300px
+            padding: 150px 30px
+            text-align: center
 
-        &::after
-          content: ' »'
+            p:last-of-type
+                margin-bottom: 0
 
-      .author
-        font-size: 14px
-        font-style: italic
+        &__image
+            margin-bottom: $grid-gutter-width
+            figcaption
+                margin-top: 10px
 
-    &__collection
-      .collection-item__content
-        margin-bottom: $grid-gutter-width
+        &__faq
+            &_item:not(:last-of-type)
+                padding-bottom: 10px
+            h4
+                cursor: pointer
+                position: relative
+                &::after
+                    border-right: 2px solid #000
+                    border-top: 2px solid #000
+                    content: ''
+                    display: block
+                    height: 8px
+                    position: absolute
+                    right: 10px
+                    top: 5px
+                    transform: rotate(135deg)
+                    transition: transform .4s ease
+                    width: 8px
+                &[aria-expanded="true"]
+                    &::after
+                        transform: rotate(315deg)
+            img
+                margin-bottom: $grid-gutter-width
 
-    &__slider
-      .carousel-item__content
-        text-align: center
+        &__slider
+            .promethee__component
+                margin-bottom: 0
+            .fontawesome-carousel-control .fa
+                font-size: 30px
+                position: absolute
+                top: 50%
+                transform: translateY(-50%)
+            .carousel-item
+                &__content
+                    text-align: center
+                    p:last-of-type
+                        margin-bottom: 0
+                        margin-top: 10px
 
 @media print
-  body
-    font-size: 125%
-  .promethee
-    &__component
-      &__page > &__aside,
-      &__page > &__text,
-      &__page > &__faq,
-      &__page > &__table,
-      &__page > &__video,
-      &__page > &__collection,
-      &__page > &__row
-        max-width: 90% !important
-  .container
-    max-width: 90% !important
+    body
+        font-size: 125%
+    .promethee
+        &__component
+            &__page > div:not(&__cover):not(&__slider)
+                max-width: 90%
+    .container
+        max-width: 90%
