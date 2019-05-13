@@ -72,6 +72,8 @@ module PrometheeData
       if key.starts_with? 'searchable_'
         clean_value = strip_tags value
         searchable += "#{clean_value} "
+      elsif value.class == Hash
+        searchable += promethee_extract_searchable_attributes(value)
       end
     end
     searchable
