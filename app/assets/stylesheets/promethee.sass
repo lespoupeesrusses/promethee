@@ -1,8 +1,17 @@
 @import "@fancyapps/fancybox/dist/jquery.fancybox.min"
 
+//  aside
+//  blockquote
+//  collection
+//  cover
+//  faq
+//  image
+//  slider
+
 .promethee
     &__component
-        &__page > div:not(&__cover):not(&__slider)
+        &__page > div:not(&__cover):not(&__slider),
+        &__page > aside
             @extend .container
             margin-bottom: 50px
             padding-left: $grid-gutter-width/2
@@ -13,58 +22,9 @@
             padding-left: 0
             padding-right: 0
 
-        &__cover
-            background-position: center center
-            background-repeat: no-repeat
-            background-size: cover
-            display: flex
-            flex-direction: column
-            justify-content: center
-            margin-bottom: 50px
-            min-height: 300px
-            padding: 150px 30px
-            text-align: center
-
-        &__slider
-            .promethee__component
-                margin-bottom: 0
-            .fontawesome-carousel-control .fa
-                font-size: 30px
-                position: absolute
-                top: 50%
-                transform: translateY(-50%)
-
-        &__collection
-            margin-bottom: 20px
-            margin-top: 20px
-            .clearfix
-                margin: 40px 0
-
-        &__faq
-            h4
-                cursor: pointer
-                position: relative
-                &::after
-                    border-right: 2px solid #000
-                    border-top: 2px solid #000
-                    content: ''
-                    display: block
-                    height: 8px
-                    position: absolute
-                    right: 10px
-                    top: 5px
-                    transform: rotate(135deg)
-                    transition: transform .4s ease
-                    width: 8px
-                &[aria-expanded="true"]
-                    &::after
-                        transform: rotate(315deg)
-            img
-                margin-bottom: 30px
-
         &__aside
             .aside__button
-                padding-top: 30px
+                padding-top: $grid-gutter-width
                 a
                     display: inline-block
                 &--center
@@ -96,12 +56,73 @@
                 font-style: italic
 
         &__collection
+            margin-bottom: 20px
+            margin-top: 20px
+            .clearfix
+                margin: 40px 0
             .collection-item__content
+                margin-bottom: $grid-gutter-width
+                a + p
+                    margin-top: 10px
+
+        &__cover
+            background-position: center center
+            background-repeat: no-repeat
+            background-size: cover
+            display: flex
+            flex-direction: column
+            justify-content: center
+            margin-bottom: 50px
+            min-height: 300px
+            padding: 150px 30px
+            text-align: center
+
+            p:last-of-type
+                margin-bottom: 0
+
+        &__image
+            margin-bottom: $grid-gutter-width
+            figcaption
+                margin-top: 10px
+
+        &__faq
+            &_item:not(:last-of-type)
+                padding-bottom: 10px
+            h4
+                cursor: pointer
+                position: relative
+                &::after
+                    border-right: 2px solid #000
+                    border-top: 2px solid #000
+                    content: ''
+                    display: block
+                    height: 8px
+                    position: absolute
+                    right: 10px
+                    top: 5px
+                    transform: rotate(135deg)
+                    transition: transform .4s ease
+                    width: 8px
+                &[aria-expanded="true"]
+                    &::after
+                        transform: rotate(315deg)
+            img
                 margin-bottom: $grid-gutter-width
 
         &__slider
-            .carousel-item__content
-                text-align: center
+            .promethee__component
+                margin-bottom: 0
+            .fontawesome-carousel-control .fa
+                font-size: 30px
+                position: absolute
+                top: 50%
+                transform: translateY(-50%)
+            .carousel-item
+                &__content
+                    text-align: center
+                    p:last-of-type
+                        margin-bottom: 0
+                        margin-top: 10px
 
 @media print
     body
