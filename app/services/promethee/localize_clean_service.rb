@@ -40,13 +40,18 @@ module Promethee
     def start
       puts '= START LOCALIZE CLEAN ='
       puts "Number of objects: #{objects.count}"
+      i = 0
       objects.each do |object|
         next unless can_process?(object.data)
+
+        i += 1
         puts "Processing object ##{object.id}"
+
         object.data = clean(object.data)
-        # object.save
+        object.save
         puts "End processing object ##{object.id}"
       end
+      puts "Number of processed objects: #{i}"
       puts '====== END CLEANER ========'
     end
 
@@ -59,10 +64,9 @@ module Promethee
         next if component_whitelist.nil? # Process only types in whitelist
 
         i += 1
-        component["attributes"].slice!(*component_whitelist)
+        component["attributes"]&.slice!(*component_whitelist)
       end
       puts "- #{i} components were processed"
-      byebug
       data
     end
 
