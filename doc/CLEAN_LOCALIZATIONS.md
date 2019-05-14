@@ -12,7 +12,7 @@ To add rules for the whitelist : `service.add_rule(TYPE, ATTRIBUTES)`. (By defau
 Example:
 
 ```ruby
-# File: lib/tasks/promethee/promethee.rake
+# File: lib/tasks/promethee.rake
 
 Rake::Task["promethee:clean_localizations"].clear
 
