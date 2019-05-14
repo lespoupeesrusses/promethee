@@ -3,7 +3,7 @@
 ##########################################
 
 Prométhée 2.0 brings:
-- [BREAKING CHANGE]   New structure for table component. A rake task is available to update them in your master models.
+- [BREAKING CHANGE]   New structure for table component. A rake task is available to update them in your master models. Localization has to be manual.
 - [TOOL TO FIX ISSUE] A rake task to clean your localization models.
 
 For more details, check the documentation:
