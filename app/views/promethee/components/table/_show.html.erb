@@ -1,4 +1,5 @@
 <%
+  return unless ([:cols, :cols_data, :rows, :rows_data] - component[:attributes].keys).empty?
   columns = component[:attributes][:cols].map { |colUid|
     colData = component[:attributes][:cols_data][colUid.to_sym] || {}
     { uid: colUid, searchable_text: colData[:searchable_text] }
