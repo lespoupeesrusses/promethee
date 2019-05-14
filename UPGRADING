@@ -1,0 +1,10 @@
+##########################################
+#  NOTE FOR UPGRADING TO 2.0.0 OR LATER  #
+##########################################
+
+Prométhée 2.0 brings:
+- [BREAKING CHANGE]   New structure for table component. A rake task is available to update them in your master models.
+- [TOOL TO FIX ISSUE] A rake task to clean your localization models.
+
+For more details, check the documentation:
+https://github.com/lespoupeesrusses/promethee/tree/dev-2.0/doc

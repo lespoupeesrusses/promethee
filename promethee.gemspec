@@ -12,7 +12,10 @@ Gem::Specification.new do |s|
   s.homepage    = 'https://github.com/lespoupeesrusses/promethee'
   s.license     = 'MIT'
 
-  s.files = Dir['{app,config,db,lib,node_modules}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.md']
+  s.files = Dir['{app,config,db,lib,node_modules}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.md', 'UPGRADING']
+  if File.exist?('UPGRADING')
+    s.post_install_message = File.read("UPGRADING")
+  end
 
   s.add_dependency 'rails', '>= 5.2'
   s.add_dependency 'angularjs-rails', '~> 1.6.2'

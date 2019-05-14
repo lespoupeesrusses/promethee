@@ -16,9 +16,7 @@
       <thead>
         <tr>
           <% columns.each do |col| %>
-            <th id="col-<%= col[:uid] %>">
-              <%= col[:searchable_text] %>
-            </th>
+            <th><%= col[:searchable_text] %></th>
           <% end %>
         </tr>
       </thead>
@@ -30,9 +28,7 @@
                 cell = row[:data][col[:uid].to_sym]
                 next if cell.nil?
               %>
-              <td id="cell-<%= row[:uid] %>-<%= col[:uid] %>">
-                <%= cell[:searchable_text] %>
-              </td>
+              <td><%= cell[:searchable_text] %></td>
             <% end %>
           </tr>
         <% end %>

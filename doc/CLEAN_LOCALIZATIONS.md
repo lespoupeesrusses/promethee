@@ -19,7 +19,7 @@ Rake::Task["promethee:clean_localizations"].clear
 namespace :promethee do
 
   desc "Remove useless attributes from localizations' data"
-  task :clean_localizations, [:model_name] do |task, args|
+  task :clean_localizations, [:model_name] => :environment do |task, args|
     service = Promethee::LocalizeCleanService.new(args[:model_name])
     service.add_rule("cta", ["searchable_title", "button_text"])
     service.start
