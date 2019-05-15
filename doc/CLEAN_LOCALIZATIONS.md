@@ -16,7 +16,7 @@ $ rake promethee:clean_localizations[Page]
 
 ### Customize
 
-If you have custom components or override native ones, you can override the task.
+If you have custom components or override native ones, you have to override the task.
 To add rules for the whitelist : `service.add_rule(TYPE, ATTRIBUTES)`. (By default, `ATTRIBUTES` is an empty array, deleting every attribute of the localization)
 
 Example:
