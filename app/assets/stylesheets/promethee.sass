@@ -10,17 +10,16 @@
 
 .promethee
     &__component
-        &__page > div:not(&__cover):not(&__slider),
-        &__page > aside
+        &__page > &:not(&__cover):not(&__slider)
             @extend .container
-            margin-bottom: 50px
-            padding-left: $grid-gutter-width/2
-            padding-right: $grid-gutter-width/2
 
-        &__page > &__collection,
-        &__page > &__row
+        &__page > &__collection:not(&__cover):not(&__slider),
+        &__page > &__row:not(&__cover):not(&__slider)
             padding-left: 0
             padding-right: 0
+
+        &__page > &
+            margin-bottom: 50px
 
         &__aside
             .aside__button
@@ -61,8 +60,10 @@
             .clearfix
                 margin: 40px 0
             .collection-item__content
-                margin-bottom: $grid-gutter-width
+                &:not(:last-of-type)
+                    margin-bottom: $grid-gutter-width
                 a + p
+                    margin-bottom: 0
                     margin-top: 10px
 
         &__cover
@@ -118,6 +119,7 @@
                 top: 50%
                 transform: translateY(-50%)
             .carousel-item
+                margin-bottom: 0
                 &__content
                     text-align: center
                     p:last-of-type
