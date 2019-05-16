@@ -78,8 +78,6 @@
     $scope.addRow = function () {
       var uid = uidService.generate();
       this.promethee.inspected.attributes.rows.push(uid);
-
-      console.log(this.promethee.inspected.attributes);
     }
 
     $scope.removeItem = function (uid, arrayKey) {

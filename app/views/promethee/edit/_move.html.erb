@@ -93,7 +93,6 @@ promethee
               component.id = scope.generateIdentifier();
             } else {
               var draggedFromIndex = parseInt(ui.draggable[0].getAttribute('data-list-index'));
-              // console.log('dragged', draggedFromList, draggedFromIndex);
               draggedFromList.splice(draggedFromIndex, 1);
 
               var component = angular.element(ui.draggable).scope().component;
@@ -105,7 +104,6 @@ promethee
                 }
               }
             }
-            // console.log('dropped', component, droppedToList, droppedToIndex);
             droppedToList.splice(droppedToIndex, 0, component);
 
             scope.promethee.inspected = component;
