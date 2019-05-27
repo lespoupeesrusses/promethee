@@ -18,7 +18,7 @@ class PrometheeController < ApplicationController
   def blob_show
     # as this is called only from promethee preview it sends an image resized to 720
     blob = ActiveStorage::Blob.find params[:id]
-    if blob.image?
+    if blob.image? && blob.variable?
       redirect_to url_for(blob.variant(resize: '720>'))
     elsif blob.video?
       redirect_to url_for(blob.preview(resize: '720>'))

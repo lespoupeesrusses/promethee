@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    promethee (2.0.2)
+    promethee (2.0.3)
       angularjs-rails (~> 1.6.2)
       deep_merge_existing_keys
       font-awesome-sass
@@ -65,7 +65,7 @@ GEM
     deep_merge_existing_keys (1.0.1)
       rails (>= 5.2)
     erubi (1.8.0)
-    ffi (1.10.0)
+    ffi (1.11.1)
     font-awesome-sass (5.8.1)
       sassc (>= 1.11)
     globalid (0.4.2)
