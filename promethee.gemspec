@@ -24,7 +24,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'jquery-ui-rails'
   s.add_dependency 'mini_magick'
   s.add_dependency 'font-awesome-sass'
-  s.add_dependency 'summernote-rails', '~> 0.8.10.0'
+  s.add_dependency 'summernote-rails', '~> 0.8.12.0'
   s.add_dependency 'deep_merge_existing_keys'
 
   s.add_development_dependency 'byebug'
