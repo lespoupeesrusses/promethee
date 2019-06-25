@@ -2,8 +2,14 @@
   <div class="form-group">
     <label class="label-control">Media type</label>
     <div>
-      <label class="radio-inline"> <input ng-model="promethee.inspected.attributes.media_type" type="radio" value="image" />Image </label>
-      <label class="radio-inline"> <input ng-model="promethee.inspected.attributes.media_type" type="radio" value="video" />Video </label>
+      <label for="sliderItemMediaTypeImage" class="radio-inline form-check form-check-inline">
+        <input ng-model="promethee.inspected.attributes.media_type" class="form-check-input" type="radio" value="image" id="sliderItemMediaTypeImage" />
+        <span class="form-check-label">Image</span>
+      </label>
+      <label for="sliderItemMediaTypeVideo" class="radio-inline form-check form-check-inline">
+        <input ng-model="promethee.inspected.attributes.media_type" class="form-check-input" type="radio" value="video" id="sliderItemMediaTypeVideo" />
+        <span class="form-check-label">Video</span>
+      </label>
     </div>
   </div>
 
