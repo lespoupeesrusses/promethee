@@ -10,11 +10,11 @@
 
 .promethee
     &__component
-        &__page > &:not(&__cover):not(&__slider)
+        &__page > &:not(&__cover)
             @extend .container
 
-        &__page > &__collection:not(&__cover):not(&__slider),
-        &__page > &__row:not(&__cover):not(&__slider)
+        &__page > &__collection:not(&__cover),
+        &__page > &__row:not(&__cover)
             padding-left: 0
             padding-right: 0
 
