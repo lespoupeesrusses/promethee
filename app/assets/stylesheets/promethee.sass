@@ -10,11 +10,11 @@
 
 .promethee
     &__component
-        &__page > &:not(&__cover):not(&__slider)
+        &__page > &:not(&__cover)
             @extend .container
 
-        &__page > &__collection:not(&__cover):not(&__slider),
-        &__page > &__row:not(&__cover):not(&__slider)
+        &__page > &__collection:not(&__cover),
+        &__page > &__row:not(&__cover)
             padding-left: 0
             padding-right: 0
 
@@ -76,7 +76,23 @@
             margin-bottom: 50px
             min-height: 300px
             padding: 150px 30px
+            position: relative
             text-align: center
+
+            &::before
+                background-color: rgba(0,0,0,.3)
+                bottom: 0
+                content: ''
+                left: 0
+                pointer-events: none
+                position: absolute
+                right: 0
+                top: 0
+
+            h1,
+            p
+                color: white
+                position: relative
 
             p:last-of-type
                 margin-bottom: 0
