@@ -3,10 +3,7 @@ media_type = component[:attributes][:media_type]
 searchable_caption = component[:attributes][:searchable_caption]
 case media_type
 when 'image'
-  image_data = component[:attributes][:image]
-  if image_data && image_data[:id]
-    image_blob = ActiveStorage::Blob.find image_data[:id]
-  end
+  image_blob = blob_from_data component[:attributes][:image]
 when 'video'
   url = component[:attributes][:video][:url].to_s
   if 'vimeo'.in? url
@@ -27,7 +24,7 @@ end
     <iframe frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="allowfullscreen" src="<%= iframe_src %>"></iframe>
   </div>
   <% elsif image_blob.present? %>
-  <%= render 'promethee/show/image.srcset', blob: image_blob, alt: '', caption: searchable_caption %>
+    <%= render 'promethee/show/image.srcset', blob: image_blob, alt: '', caption: searchable_caption %>
   <% end %>
   <%= searchable_caption.to_s.html_safe %>
 </div>

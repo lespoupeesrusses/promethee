@@ -3,10 +3,7 @@ title = component[:attributes][:searchable_title].to_s
 body = component[:attributes][:searchable_body].to_s
 special_question = component[:attributes][:special_question]
 
-image = component[:attributes][:image]
-if image && image[:id]
-  image_blob = ActiveStorage::Blob.find image[:id]
-end
+image_blob = blob_from_data component[:attributes][:image]
 %>
 
 <div class="<%= promethee_class_for component %> <%= 'promethee__component__faq_item--special' if special_question %>">

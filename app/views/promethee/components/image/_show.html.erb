@@ -1,8 +1,5 @@
 <%
-image_data = component[:attributes][:image]
-if image_data && image_data[:id]
-  blob = ActiveStorage::Blob.find image_data[:id]
-end
+blob = blob_from_data component[:attributes][:image]
 
 searchable_alt = component[:attributes][:searchable_alt].to_s
 searchable_caption = component[:attributes][:searchable_caption].to_s
