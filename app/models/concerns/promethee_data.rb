@@ -29,7 +29,12 @@ module PrometheeData
   end
 
   def promethee_data_page_thumbnail
-    ActiveStorage::Blob.find_by(id: data['attributes']['thumbnail']['id'])
+    blob_id = data['attributes']['thumbnail']['id']
+    if blob_id.is_a? String
+      ActiveStorage::Blob.find_signed(blob_id) rescue nil
+    else
+      ActiveStorage::Blob.find(blob_id)
+    end
   rescue
     nil
   end
