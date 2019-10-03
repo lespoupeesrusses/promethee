@@ -12,7 +12,7 @@ class PrometheeController < ApplicationController
     filename = params[:file].original_filename
     content_type = params[:file].content_type
     blob = ActiveStorage::Blob.create_after_upload! io: io, filename: filename, content_type: content_type
-    render json: { id: blob.id, name: filename }
+    render json: { id: blob.signed_id, name: filename }
   end
 
   def blob_show
