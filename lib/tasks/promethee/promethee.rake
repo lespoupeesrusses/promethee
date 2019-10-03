@@ -12,4 +12,10 @@ namespace :promethee do
     service.start
   end
 
+  desc "Upgrade blob data from IDs to signed IDs"
+  task :upgrade_blob_data, [:model_name] => :environment do |task, args|
+    service = Promethee::BlobUpgradeService.new(args[:model_name])
+    service.start
+  end
+
 end

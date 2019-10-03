@@ -7,7 +7,7 @@ module Promethee
         model_class = model_name.constantize
         objects = model_class.all.select { |page| page.data&.to_json&.include? '"type":"table"' }
       rescue
-        puts 'Please provide a valid model name (e.g. `rake promethee:clean_localizations[Page]`)'
+        puts 'Please provide a valid model name (e.g. `rake promethee:upgrade_table[Page]`)'
         exit
       end
       @objects = objects
@@ -23,7 +23,7 @@ module Promethee
         object.save
         puts "End processing object ##{object.id}"
       end
-      puts '====== END CLEANER ========'
+      puts '====== END UPGRADER ========'
     end
 
     private
