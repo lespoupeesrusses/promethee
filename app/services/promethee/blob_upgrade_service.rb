@@ -19,9 +19,13 @@ module Promethee
       @objects.each do |object|
         puts "Processing object ##{object.id}"
 
-        object.data = upgrade_component(object.data.deep_symbolize_keys)
-        object.save
-        puts "End processing object ##{object.id}"
+        if object.data.nil?
+          puts "End processing object ##{object.id}: no data"
+        else
+          object.data = upgrade_component(object.data.deep_symbolize_keys)
+          object.save
+          puts "End processing object ##{object.id}"
+        end
       end
       puts '====== END UPGRADER ========'
     end
