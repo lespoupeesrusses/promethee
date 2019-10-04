@@ -17,15 +17,10 @@ class PrometheeController < ApplicationController
 
   def blob_show
     # as this is called only from promethee preview it sends an image resized to 720
-    blob_id = params[:id]
-    if blob_id.to_i.to_s == blob_id
-      blob = ActiveStorage::Blob.find(blob_id)
-    else
-      begin
-        blob = ActiveStorage::Blob.find_signed(blob_id)
-      rescue
-        raise ActiveRecord::RecordNotFound
-      end
+    begin
+      blob = ActiveStorage::Blob.find_signed(params[:id])
+    rescue
+      raise ActiveRecord::RecordNotFound
     end
 
     if blob.image? && blob.variable?
