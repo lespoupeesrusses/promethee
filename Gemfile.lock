@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    promethee (2.1.3)
+    promethee (3.0.0)
       angularjs-rails (~> 1.6.2)
       deep_merge_existing_keys
       font-awesome-sass
@@ -70,7 +70,7 @@ GEM
       sassc (>= 1.11)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
-    i18n (1.6.0)
+    i18n (1.7.0)
       concurrent-ruby (~> 1.0)
     jquery-rails (4.3.5)
       rails-dom-testing (>= 1, < 3)

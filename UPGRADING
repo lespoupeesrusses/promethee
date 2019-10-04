@@ -1,10 +1,9 @@
 ###################################
-#  NOTE FOR UPGRADING FROM 1.x.x  #
+#  NOTE FOR UPGRADING TO 3.x.x  #
 ###################################
 
-Prométhée 2.0 brings:
-- [BREAKING CHANGE]   New structure for table component. A rake task is available to update them in your master models. Localization has to be manual.
-- [TOOL TO FIX ISSUE] A rake task to clean your localization models.
+In Prométhée 3.0, the access to ActiveStorage blobs is now with signed IDs instead of simple IDs.
+A rake task is available to upgrade your data.
 
 For more details, check the documentation:
 https://github.com/lespoupeesrusses/promethee/tree/master/doc
