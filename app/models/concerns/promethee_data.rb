@@ -4,6 +4,7 @@ module PrometheeData
   # Setter to serialize data as JSON
   def data=(value)
     value = JSON.parse value if value.is_a? String
+    value = promethee_sanitize(value)
     super(value)
   end
 
@@ -55,6 +56,7 @@ module PrometheeData
   protected
 
   include ActionView::Helpers::SanitizeHelper
+
   def promethee_extract_searchable(component)
     return '' if component.blank?
     searchable = ' '
@@ -85,5 +87,23 @@ module PrometheeData
       searchable += promethee_extract_searchable child
     end
     searchable
+  end
+
+  def promethee_sanitize(data)
+    data.each do |key, value|
+      case value.class.to_s
+      when 'String'
+        data[key] = sanitize(value)
+      when 'Hash'
+        data[key] = promethee_sanitize(value)
+      when 'Array'
+        new_array = []
+        value.each do |element|
+          new_array << promethee_sanitize(element)
+        end
+        data[key] = new_array
+      end
+    end
+    data
   end
 end
