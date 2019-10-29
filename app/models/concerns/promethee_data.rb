@@ -90,6 +90,8 @@ module PrometheeData
   end
 
   def promethee_sanitize(data)
+    return sanitize(data) if data.is_a? String
+
     data.each do |key, value|
       case value.class.to_s
       when 'String'
@@ -103,7 +105,8 @@ module PrometheeData
         end
         data[key] = new_array
       end
-    end
+    end if data.respond_to? :each
+
     data
   end
 end
