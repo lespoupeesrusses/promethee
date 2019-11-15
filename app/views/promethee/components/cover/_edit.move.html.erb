@@ -2,11 +2,11 @@
   <%= render 'promethee/edit/move.header', type: 'cover' %>
       <div  class=" promethee-edit__wrapper
                     promethee-edit__cover-content"
-            style="background-image:url('{{ component.attributes.image.id ? '/promethee/blob/' + component.attributes.image.id : '' }}')">
+            style="background-image:url('{{ component.attributes.image.value.id ? '/promethee/blob/' + component.attributes.image.value.id : '' }}')">
         <hgroup>
-          <h2 class="surtitle">{{component.attributes.searchable_surtitle}}</h2>
-          <h1>{{component.attributes.searchable_title}}</h1>
-          <h2 class="subtitle">{{component.attributes.searchable_subtitle}}</h2>
+          <h2 class="surtitle">{{component.attributes.surtitle.value}}</h2>
+          <h1>{{component.attributes.title.value}}</h1>
+          <h2 class="subtitle">{{component.attributes.subtitle.value}}</h2>
         </hgroup>
       </div>
     </div>

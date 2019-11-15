@@ -8,8 +8,8 @@
 
   <b>Desktop</b>
   <div class="form-group">
-    <label  class="label-control">Size: {{promethee.inspected.attributes.size}}</label><br/>
-    <input  ng-model="promethee.inspected.attributes.size"
+    <label  class="label-control">Size: {{promethee.inspected.attributes.size.value}}</label><br/>
+    <input  ng-model="promethee.inspected.attributes.size.value"
             type="range"
             class="btn-block"
             list="tickmarks"
@@ -17,24 +17,24 @@
             max="12">
   </div>
   <div class="form-group">
-    <label  class="label-control">Offset: {{promethee.inspected.attributes.offset}}</label><br/>
-    <offset-input ng-model="promethee.inspected.attributes.offset"
-                  ng-max="12 - promethee.inspected.attributes.size">
+    <label  class="label-control">Offset: {{promethee.inspected.attributes.offset.value}}</label><br/>
+    <offset-input ng-model="promethee.inspected.attributes.offset.value"
+                  ng-max="12 - promethee.inspected.attributes.size.value">
     </offset-input>
   </div>
 
   <%= render 'promethee/edit/inspect.advanced' %>
     <div class="form-group">
       <input  id="column_edit_inspect_tablet_enabled"
-              ng-model="promethee.inspected.attributes.tablet.enabled"
+              ng-model="promethee.inspected.attributes.tablet.value.enabled.value"
               type="checkbox" />
       <label  class="label-control"
               for="column_edit_inspect_tablet_enabled"> <b>Tablette</b></label>
     </div>
-    <div ng-show="promethee.inspected.attributes.tablet.enabled">
+    <div ng-show="promethee.inspected.attributes.tablet.value.enabled.value">
       <div class="form-group">
-        <label  class="label-control">Size: {{promethee.inspected.attributes.tablet.size}}</label><br/>
-        <input  ng-model="promethee.inspected.attributes.tablet.size"
+        <label  class="label-control">Size: {{promethee.inspected.attributes.tablet.value.size.value}}</label><br/>
+        <input  ng-model="promethee.inspected.attributes.tablet.value.size.value"
                 type="range"
                 class="btn-block"
                 list="tickmarks"
@@ -42,24 +42,24 @@
                 max="12">
       </div>
       <div class="form-group">
-        <label  class="label-control">Offset: {{promethee.inspected.attributes.tablet.offset}}</label><br/>
-        <offset-input ng-model="promethee.inspected.attributes.tablet.offset"
-                      ng-max="12 - promethee.inspected.attributes.tablet.size">
+        <label  class="label-control">Offset: {{promethee.inspected.attributes.tablet.value.offset.value}}</label><br/>
+        <offset-input ng-model="promethee.inspected.attributes.tablet.value.offset.value"
+                      ng-max="12 - promethee.inspected.attributes.tablet.value.size.value">
         </offset-input>
       </div>
     </div>
 
     <div class="form-group">
       <input  id="column_edit_inspect_mobile_enabled"
-              ng-model="promethee.inspected.attributes.mobile.enabled"
+              ng-model="promethee.inspected.attributes.mobile.value.enabled.value"
               type="checkbox" />
       <label  class="label-control"
               for="column_edit_inspect_mobile_enabled"> <b>Mobile</b></label>
     </div>
-    <div ng-show="promethee.inspected.attributes.mobile.enabled">
+    <div ng-show="promethee.inspected.attributes.mobile.value.enabled.value">
       <div class="form-group">
-        <label  class="label-control">Size: {{promethee.inspected.attributes.mobile.size}}</label><br/>
-        <input  ng-model="promethee.inspected.attributes.mobile.size"
+        <label  class="label-control">Size: {{promethee.inspected.attributes.mobile.value.size.value}}</label><br/>
+        <input  ng-model="promethee.inspected.attributes.mobile.value.size.value"
                 type="range"
                 class="btn-block"
                 list="tickmarks"
@@ -67,9 +67,9 @@
                 max="12">
       </div>
       <div class="form-group">
-        <label  class="label-control">Offset: {{promethee.inspected.attributes.mobile.offset}}</label><br/>
-        <offset-input ng-model="promethee.inspected.attributes.mobile.offset"
-                      ng-max="12 - promethee.inspected.attributes.mobile.size">
+        <label  class="label-control">Offset: {{promethee.inspected.attributes.mobile.value.offset.value}}</label><br/>
+        <offset-input ng-model="promethee.inspected.attributes.mobile.value.offset.value"
+                      ng-max="12 - promethee.inspected.attributes.mobile.value.size.value">
         </offset-input>
       </div>
     </div>

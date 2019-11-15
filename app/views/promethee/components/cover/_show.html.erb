@@ -1,21 +1,21 @@
 <%
-blob = blob_from_data component[:attributes][:image]
+blob = blob_from_data component[:attributes].dig(:image, :value)
 
-searchable_surtitle = component[:attributes][:searchable_surtitle].to_s
-searchable_title = component[:attributes][:searchable_title].to_s
-searchable_subtitle = component[:attributes][:searchable_subtitle].to_s
+surtitle = component[:attributes][.dig(:surtitle, :value)&.to_s
+title = component[:attributes].dig(:title, :valuet)&.to_s
+subtitle = component[:attributes].dig(:subtitle, :value)&.to_s
 %>
 <div id="component-<%= component[:id] %>" class="<%= promethee_class_for(component) %>" style="background-image: url(<%= url_for(blob.variant(resize: '1920>', quality: 95)) if blob %>)">
-  <% if searchable_surtitle.present? %>
-    <p><%= searchable_surtitle %></p>
+  <% if surtitle.present? %>
+    <p><%= surtitle %></p>
   <% end %>
 
-  <% if searchable_title.present? %>
-    <h1><%= searchable_title %></h1>
+  <% if title.present? %>
+    <h1><%= title %></h1>
   <% end %>
 
-  <% if searchable_subtitle.present? %>
-    <p><%= searchable_subtitle %></p>
+  <% if subtitle.present? %>
+    <p><%= subtitle %></p>
   <% end %>
 
 </div>

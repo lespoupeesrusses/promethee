@@ -1,6 +1,6 @@
 <script type="text/ng-template" id="promethee/components/text/edit/move">
   <%= render 'promethee/edit/move.header', type: 'text' %>
-      <div ng-bind-html="component.attributes.searchable_body | htmlSafe"></div>
+      <div ng-bind-html="component.attributes.body.value | htmlSafe"></div>
     </div>
   </div>
 </script>

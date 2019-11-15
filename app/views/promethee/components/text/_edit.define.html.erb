@@ -8,7 +8,11 @@
       data: {
         type: 'text',
         attributes: {
-          searchable_body: '<p>Edit me</p>'
+          body: {
+            searchable: true,
+            type: 'text',
+            value: '<p>Edit me</p>'
+          }
         }
       }
     })

@@ -1,6 +1,5 @@
 <%
-  title = component[:attributes][:searchable_title]
-  items_per_line = component[:attributes][:items_per_line]
+  items_per_line = component[:attributes].dig(:items_per_line, :value)
   case items_per_line
   when 6
     col_classes = "col-md-2 col-sm-4 col-xs-6 col-6"

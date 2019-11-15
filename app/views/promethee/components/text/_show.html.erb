@@ -1,6 +1,6 @@
 <%
-searchable_body = component[:attributes][:searchable_body].to_s
+body = component[:attributes].dig(:body, :value)&.to_s&.html_safe
 %>
 <div class="<%= promethee_class_for component %>">
-  <%= searchable_body.html_safe %>
+  <%= body %>
 </div>

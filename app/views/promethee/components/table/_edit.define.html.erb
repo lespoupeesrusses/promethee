@@ -8,10 +8,26 @@
       data: {
         type: 'table',
         attributes: {
-          cols: [],
-          cols_data: {},
-          rows: [],
-          rows_data: {}
+          cols: {
+            searchable: false,
+            type: 'array',
+            value: []
+          },
+          cols_data: {
+            searchable: false,
+            type: 'hash',
+            value: {}
+          },
+          rows: {
+            searchable: false,
+            type: 'array',
+            value: []
+          },
+          rows_data: {
+            searchable: false,
+            type: 'hash',
+            value: {}
+          }
         }
       }
     })

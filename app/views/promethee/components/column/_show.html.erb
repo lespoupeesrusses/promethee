@@ -1,6 +1,6 @@
 <%
-#         576   768   992   1200 
-#          |     |     |     |   
+#         576   768   992   1200
+#          |     |     |     |
 # BS4   xs | sm  | md  | lg  | xl
 # BS3      xs    | sm  | md  | lg
 
@@ -14,16 +14,16 @@
 # - BS3 treats tablets as mobile (wrong behaviour for us)
 
 # Desktop
-size = component[:attributes][:size]
-offset = component[:attributes][:offset]
+size = component[:attributes].dig(:size, :value)
+offset = component[:attributes].dig(:offset, :value)
 classes  = " col-lg-#{size} offset-lg-#{offset} col-lg-offset-#{offset}" # BS4 desktop+, BS3 desktop large
 
 # Tablet override
 # - md for BS4
 # - sm for BS3
-if component[:attributes][:tablet] && component[:attributes][:tablet][:enabled]
-  size = component[:attributes][:tablet][:size]
-  offset = component[:attributes][:tablet][:offset]
+if component[:attributes].dig(:tablet, :value, :enabled, :value)
+  size = component[:attributes].dig(:tablet, :value, :size, :value)
+  offset = component[:attributes].dig(:tablet, :value, :offset, :value)
   classes += " col-md-#{size} col-md-offset-#{offset} offset-md-#{offset}" # BS4, breaks small desktop for BS3
   classes += " col-sm-#{size} col-sm-offset-#{offset} offset-sm-#{offset}" # BS3, breaks mobile landscape for BS4
 else
@@ -34,9 +34,9 @@ end
 # Mobile override
 # - no class for BS4 (xs disappears, sm is treated in the same way)
 # - xs for BS3
-if component[:attributes][:mobile] && component[:attributes][:mobile][:enabled]
-  size = component[:attributes][:mobile][:size]
-  offset = component[:attributes][:mobile][:offset]
+if component[:attributes].dig(:mobile, :value, :enabled, :value)
+  size = component[:attributes].dig(:mobile, :value, :size, :value)
+  offset = component[:attributes].dig(:mobile, :value, :offset, :value)
   classes += " col-#{size} offset-#{offset}" # BS4, does nothing for BS3
   classes += " col-xs-#{size} col-xs-offset-#{offset}" # BS3, does nothing for BS4
 end

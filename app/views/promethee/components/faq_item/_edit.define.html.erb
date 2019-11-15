@@ -9,12 +9,28 @@
         type: 'faq_item',
         attributes: {
           image: {
-            id: undefined,
-            name: ""
+            searchable: false,
+            type: 'blob',
+            value: {
+              id: undefined,
+              name: ''
+            }
           },
-          searchable_title: "",
-          searchable_body: "",
-          special_question: false
+          title: {
+            searchable: true,
+            type: 'string',
+            value: ''
+          },
+          body: {
+            searchable: true,
+            type: 'text',
+            value: ''
+          },
+          special_question: {
+            searchable: false,
+            type: 'boolean',
+            value: false
+          }
         }
       }
     })

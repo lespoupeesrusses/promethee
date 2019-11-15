@@ -1,10 +1,10 @@
 <script type="text/ng-template" id="promethee/components/blockquote/edit/move">
   <%= render 'promethee/edit/move.header', type: 'blockquote' %>
       <div class="row">
-        <div class="col-md-12 blockquote" ng-bind-html="component.attributes.searchable_body | htmlSafe"></div>
+        <div class="col-md-12 blockquote" ng-bind-html="component.attributes.body.value | htmlSafe"></div>
 
-        <div ng-show="component.attributes.searchable_author" class="col-xs-12 col-12">
-          <p class="author">{{component.attributes.searchable_author}}</p>
+        <div ng-show="component.attributes.author.value" class="col-xs-12 col-12">
+          <p class="author">{{component.attributes.author.value}}</p>
         </div>
       </div>
     </div>

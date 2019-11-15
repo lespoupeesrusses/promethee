@@ -8,10 +8,31 @@
       data: {
         type: 'aside',
         attributes: {
-          searchable_visible_content: '<p>Edit me</p>',
-          searchable_collapsed_content: '',
-          searchable_open_label: 'See more',
-          open_label_position: 'left'
+          visible_content: {
+            searchable: true,
+            type: 'text',
+            value: '<p>Edit me</p>'
+          },
+          collapsed_content: {
+            searchable: true,
+            type: 'text',
+            value: ''
+          },
+          open_label: {
+            searchable: true,
+            type: 'string',
+            value: 'See more'
+          },
+          open_label_position: {
+            collection: [
+              { label: 'Left', value: 'left' },
+              { label: 'Center', value: 'center' },
+              { label: 'Right', value: 'right' }
+            ],
+            searchable: false,
+            type: 'enum',
+            value: 'left'
+          }
         },
         children: []
       }

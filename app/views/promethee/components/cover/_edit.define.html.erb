@@ -9,12 +9,28 @@
         type: 'cover',
         attributes: {
           image: {
-            id: undefined,
-            name: ''
+            searchable: false,
+            type: 'blob',
+            value: {
+              id: undefined,
+              name: ''
+            }
           },
-          searchable_surtitle: '',
-          searchable_title: '',
-          searchable_subtitle: ''
+          surtitle: {
+            searchable: true,
+            type: 'string',
+            value: ''
+          },
+          title: {
+            searchable: true,
+            type: 'string',
+            value: ''
+          },
+          subtitle: {
+            searchable: true,
+            type: 'string',
+            value: ''
+          }
         }
       }
     })

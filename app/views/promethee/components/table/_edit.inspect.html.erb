@@ -6,15 +6,15 @@
             ng-click="addColumn()">
         Add column
       </div><br/><br/>
-      <div ui-sortable ng-model="promethee.inspected.attributes.cols">
-        <div ng-repeat="colUid in promethee.inspected.attributes.cols">
+      <div ui-sortable ng-model="promethee.inspected.attributes.cols.value">
+        <div ng-repeat="colUid in promethee.inspected.attributes.cols.value">
           <div class="form-group row align-items-center">
             <div class="col-1" style="line-height: 38px">
               <i class="fas fa-bars"></i>
             </div>
             <div class="col-9">
               <input  type="text"
-                      ng-model="promethee.inspected.attributes.cols_data[colUid].searchable_text"
+                      ng-model="promethee.inspected.attributes.cols_data.value[colUid].text.value"
                       class="form-control" />
             </div>
             <div class="col-2">
@@ -34,7 +34,7 @@
             ng-click="addRow()">
         Add row
       </div><br/><br/>
-      <div ng-repeat="rowUid in promethee.inspected.attributes.rows track by $index">
+      <div ng-repeat="rowUid in promethee.inspected.attributes.rows.value track by $index">
         <span class="small">
           <b>Row {{$index+1}}</b>
           <a  class="btn btn-default btn-light btn-sm float-right"
@@ -42,24 +42,24 @@
             <%= icon('fa', 'close') %>
           </a>
         </span><br/>
-        <div ng-repeat="colUid in promethee.inspected.attributes.cols">
+        <div ng-repeat="colUid in promethee.inspected.attributes.cols.value">
           <span class="small">
-            {{promethee.inspected.attributes.cols_data[colUid].searchable_text}}
+            {{promethee.inspected.attributes.cols_data.value[colUid].text.value}}
           </span>
           <br/>
           <input  type="text"
-                  ng-model="promethee.inspected.attributes.rows_data[rowUid][colUid].searchable_text"
+                  ng-model="promethee.inspected.attributes.rows_data.value[rowUid][colUid].text.value"
                   class="form-control" />
         </div>
         <hr/>
       </div>
     </div>
-    <div class="form-group" ng-show="promethee.inspected.attributes.rows.length > 1">
+    <div class="form-group" ng-show="promethee.inspected.attributes.rows.value.length > 1">
       <label class="label-control">Drag the rows below to reorder them:</label>
       <ul ui-sortable
-          ng-model="promethee.inspected.attributes.rows"
+          ng-model="promethee.inspected.attributes.rows.value"
           class="list-unstyled">
-        <li ng-repeat="_ in promethee.inspected.attributes.rows track by $index">
+        <li ng-repeat="_ in promethee.inspected.attributes.rows.value track by $index">
           <%= icon('fa', 'bars') %> Row {{$index + 1}}
         </li>
       </ul>
@@ -71,21 +71,21 @@
   promethee.controller('TableInspectController', ['$scope', 'uidService', function($scope, uidService) {
     $scope.addColumn = function () {
       var uid = uidService.generate();
-      this.promethee.inspected.attributes.cols.push(uid);
-      this.promethee.inspected.attributes.cols_data[uid] = { searchable_text: 'New column' };
+      this.promethee.inspected.attributes.cols.value.push(uid);
+      this.promethee.inspected.attributes.cols_data.value[uid] = { text: { searchable: true, type: 'string', value: 'New column' } };
     }
 
     $scope.addRow = function () {
       var uid = uidService.generate();
-      this.promethee.inspected.attributes.rows.push(uid);
+      this.promethee.inspected.attributes.rows.value.push(uid);
     }
 
     $scope.removeItem = function (uid, arrayKey) {
       var dataKey = arrayKey + '_data';
-      var index = this.promethee.inspected.attributes[arrayKey].indexOf(uid);
+      var index = this.promethee.inspected.attributes[arrayKey].value.indexOf(uid);
       if (index !== -1) {
-        this.promethee.inspected.attributes[arrayKey].splice(index, 1);
-        delete this.promethee.inspected.attributes[dataKey][uid];
+        this.promethee.inspected.attributes[arrayKey].value.splice(index, 1);
+        delete this.promethee.inspected.attributes[dataKey].value[uid];
       }
     }
 

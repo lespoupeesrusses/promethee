@@ -20,7 +20,7 @@
     Object.defineProperties($scope, {
       itemsPerLine: {
         get: function() {
-          return $scope.component.attributes.items_per_line;
+          return $scope.component.attributes.items_per_line.value;
         }
       },
       size: {

@@ -2,11 +2,11 @@
   <%= render 'promethee/edit/move.header', type: 'video' %>
       <div ng-controller="VideoController">
         <div class="embed-responsive embed-responsive-16by9">
-          <iframe ng-if="embed" 
-                  frameborder="0" 
-                  webkitallowfullscreen="" 
-                  mozallowfullscreen="" 
-                  allowfullscreen="allowfullscreen" 
+          <iframe ng-if="embed"
+                  frameborder="0"
+                  webkitallowfullscreen=""
+                  mozallowfullscreen=""
+                  allowfullscreen="allowfullscreen"
                   ng-src="{{embed | urlSafe}}"></iframe>
           <div class="video-neutralizing-overlay"></div>
         </div>
@@ -20,7 +20,7 @@
     Object.defineProperty($scope, 'embed', {
       get: function() {
         var embed = null;
-        var url = this.component.attributes.url + '';
+        var url = this.component.attributes.url.value + '';
 
         if(url.includes('vimeo')) {
           var id = url.replace(/^(?:https?:)?\/\/(?:(?:www|player)\.)?vimeo\.com\/(?:video\/)?(\d+).*?$/, '$1');

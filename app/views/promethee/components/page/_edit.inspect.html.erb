@@ -2,26 +2,26 @@
   <% unless @disable_page_attributes %>
     <div class="form-group">
       <label class="label-control">Title</label>
-      <input class="form-control" ng-model="promethee.inspected.attributes.searchable_title">
+      <input class="form-control" ng-model="promethee.inspected.attributes.title.value">
     </div>
 
     <div class="form-group">
       <label class="label-control">Description</label>
-      <textarea class="form-control" ng-model="promethee.inspected.attributes.searchable_description"></textarea>
+      <textarea class="form-control" ng-model="promethee.inspected.attributes.description.value"></textarea>
     </div>
   <% end %>
 
   <%= render 'promethee/edit/inspect.advanced' %>
-    <promethee-uploader ng-model="promethee.inspected.attributes.thumbnail" label="Thumbnail" limits="'.jpg,.jpeg,.png,.gif'"></promethee-uploader>
+    <promethee-uploader ng-model="promethee.inspected.attributes.thumbnail.value" label="Thumbnail" limits="'.jpg,.jpeg,.png,.gif'"></promethee-uploader>
 
     <div class="form-group">
       <label class="label-control">Stylesheets</label>
-      <textarea class="form-control" ng-model="promethee.inspected.attributes.stylesheets"></textarea>
+      <textarea class="form-control" ng-model="promethee.inspected.attributes.stylesheets.value"></textarea>
     </div>
 
     <div class="form-group">
       <label class="label-control">Javascripts</label>
-      <textarea class="form-control" ng-model="promethee.inspected.attributes.javascripts"></textarea>
+      <textarea class="form-control" ng-model="promethee.inspected.attributes.javascripts.value"></textarea>
     </div>
   </div>
 </script>

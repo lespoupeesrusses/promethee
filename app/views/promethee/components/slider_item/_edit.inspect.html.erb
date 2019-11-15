@@ -3,28 +3,28 @@
     <label class="label-control">Media type</label>
     <div>
       <label for="sliderItemMediaTypeImage" class="radio-inline form-check form-check-inline">
-        <input ng-model="promethee.inspected.attributes.media_type" class="form-check-input" type="radio" value="image" id="sliderItemMediaTypeImage" />
+        <input ng-model="promethee.inspected.attributes.media_type.value" class="form-check-input" type="radio" value="image" id="sliderItemMediaTypeImage" />
         <span class="form-check-label">Image</span>
       </label>
       <label for="sliderItemMediaTypeVideo" class="radio-inline form-check form-check-inline">
-        <input ng-model="promethee.inspected.attributes.media_type" class="form-check-input" type="radio" value="video" id="sliderItemMediaTypeVideo" />
+        <input ng-model="promethee.inspected.attributes.media_type.value" class="form-check-input" type="radio" value="video" id="sliderItemMediaTypeVideo" />
         <span class="form-check-label">Video</span>
       </label>
     </div>
   </div>
 
-  <promethee-uploader ng-show="promethee.inspected.attributes.media_type == 'image'" ng-model="promethee.inspected.attributes.image" label="Image" limits="'.jpg,.jpeg,.png,.gif'"></promethee-uploader>
+  <promethee-uploader ng-show="promethee.inspected.attributes.media_type.value == 'image'" ng-model="promethee.inspected.attributes.image.value" label="Image" limits="'.jpg,.jpeg,.png,.gif'"></promethee-uploader>
 
-  <div class="form-group" ng-show="promethee.inspected.attributes.media_type == 'video'">
+  <div class="form-group" ng-show="promethee.inspected.attributes.media_type.value == 'video'">
     <label class="label-control">Video URL</label>
-    <input class="form-control" ng-model="promethee.inspected.attributes.video.url"></summernote>
+    <input class="form-control" ng-model="promethee.inspected.attributes.video.value"></summernote>
   </div>
 
   <div class="row">
     <div class="col-xs-12 col-12">
       <div class="form-group">
         <label class="label-control">Caption</label>
-        <summernote config="summernoteConfig" ng-model="promethee.inspected.attributes.searchable_caption"></summernote>
+        <summernote config="summernoteConfig" ng-model="promethee.inspected.attributes.searchable_caption.value"></summernote>
       </div>
     </div>
   </div>

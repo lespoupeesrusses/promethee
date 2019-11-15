@@ -1,11 +1,11 @@
 <%
-  body = component[:attributes][:searchable_body].to_s
-  author = component[:attributes][:searchable_author].to_s
+  body = component[:attributes].dig(:body, :value)&.to_s&.html_safe
+  author = component[:attributes].dig(:author, :value)&.to_s
 %>
 
 <div class="row <%= promethee_class_for(component) %>">
   <div class="col-md-12">
-    <div class="blockquote"><%= body.html_safe %></div>
+    <div class="blockquote"><%= body %></div>
     <% if author.present? %>
       <p class="author"><%= author %></p>
     <% end %>

@@ -10,40 +10,40 @@ module PrometheeData
 
   # Getters and setters to get PAGE Title, Description & Thumbnail
   def promethee_data_page_title
-    data['attributes']['searchable_title']
+    data['attributes']['title']['value']
   rescue
     ''
   end
 
   def promethee_data_page_title=(value)
-    self.data['attributes']['searchable_title'] = value
+    self.data['attributes']['title']['value'] = value
   end
 
   def promethee_data_page_description
-    data['attributes']['searchable_description']
+    data['attributes']['description']['description']
   rescue
     ''
   end
 
   def promethee_data_page_description=(value)
-    self.data['attributes']['searchable_description'] = value
+    self.data['attributes']['description']['value'] = value
   end
 
   def promethee_data_page_thumbnail
-    ActiveStorage::Blob.find_signed(data['attributes']['thumbnail']['id'])
+    ActiveStorage::Blob.find_signed(data['attributes']['thumbnail']['value']['id'])
   rescue
     nil
   end
 
   # Getters to get TRANSLATION Title & Description
   def promethee_data_translation_title
-    data['components'].first['attributes']['searchable_title']
+    data['components'].first['attributes']['title']['value']
   rescue
     ''
   end
 
   def promethee_data_translation_description
-    data['components'].first['attributes']['searchable_description']
+    data['components'].first['attributes']['description']['value']
   rescue
     ''
   end
@@ -58,6 +58,7 @@ module PrometheeData
   include ActionView::Helpers::SanitizeHelper
 
   def promethee_extract_searchable(component)
+    # TODO: refactor
     return '' if component.blank?
     searchable = ' '
     searchable += promethee_extract_searchable_attributes component['attributes'] if component.include?('attributes')
@@ -90,22 +91,22 @@ module PrometheeData
   end
 
   def promethee_sanitize(data)
-    return sanitize(data) if data.is_a? String
-
-    data.each do |key, value|
-      case value.class.to_s
-      when 'String'
-        data[key] = sanitize(value)
-      when 'Hash'
-        data[key] = promethee_sanitize(value)
-      when 'Array'
-        new_array = []
-        value.each do |element|
-          new_array << promethee_sanitize(element)
+    attributes = data['attributes']
+    attributes.each do |key, value_object|
+      if value_object['type'] == 'string'
+        while value_object['value'] != Loofah.fragment(value_object['value']).text(encode_special_chars: false)
+          value_object['value'] = Loofah.fragment(value_object['value']).text(encode_special_chars: false)
         end
-        data[key] = new_array
+      elsif value_object['type'] == 'text'
+        value_object['value'] = sanitize(value_object['value'])
       end
-    end if data.respond_to? :each
+      attributes[key] = value_object
+    end
+
+    children = data['children']
+    children.each do |child|
+      child = promethee_sanitize(child)
+    end unless children.nil?
 
     data
   end

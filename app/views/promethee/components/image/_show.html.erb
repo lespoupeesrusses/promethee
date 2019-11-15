@@ -1,14 +1,14 @@
 <%
-blob = blob_from_data component[:attributes][:image]
+blob = blob_from_data component[:attributes].dig(:image, :value)
 
-searchable_alt = component[:attributes][:searchable_alt].to_s
-searchable_caption = component[:attributes][:searchable_caption].to_s
+alt = component[:attributes].dig(:alt, :value)&.to_s
+caption = component[:attributes].dig(:caption, :value)&.to_s
 %>
 <figure class="<%= promethee_class_for component %>">
-  <%= render 'promethee/show/image.srcset', blob: blob, alt: searchable_alt, caption: searchable_caption if blob %>
-  <% unless searchable_caption.blank? %>
+  <%= render 'promethee/show/image.srcset', blob: blob, alt: alt, caption: caption if blob %>
+  <% unless caption.blank? %>
     <figcaption>
-      <%= searchable_caption %>
+      <%= caption %>
     </figcaption>
   <% end %>
 </figure>

@@ -1,21 +1,21 @@
 <%
-  searchable_visible_content = component[:attributes][:searchable_visible_content].to_s
-  searchable_collapsed_content = component[:attributes][:searchable_collapsed_content].to_s
-  searchable_open_label = component[:attributes][:searchable_open_label].to_s
-  open_label_position = component[:attributes][:open_label_position].to_s
+  visible_content = component[:attributes].dig(:visible_content, :value)&.to_s&.html_safe
+  collapsed_content = component[:attributes].dig(:collapsed_content, :value)&.to_s&.html_safe
+  open_label = component[:attributes].dig(:open_label, :value)&.to_s
+  open_label_position = component[:attributes].dig(:open_label_position, :value)&.to_s
 %>
 
 <aside class="<%= promethee_class_for component %> aside">
-  <%= searchable_visible_content.html_safe %>
+  <%= visible_content %>
 
-  <% if searchable_collapsed_content.present? %>
+  <% if collapsed_content.present? %>
 
       <div class="collapse aside__collapse" id="aside-collapse-<%= component[:id] %>">
-        <%= searchable_collapsed_content.html_safe %>
+        <%= collapsed_content %>
       </div>
 
       <div class="aside__button aside__button--<%= open_label_position %>">
-        <a href="#aside-collapse-<%= component[:id] %>" data-toggle="collapse"><%= searchable_open_label %></a>
+        <a href="#aside-collapse-<%= component[:id] %>" data-toggle="collapse"><%= open_label %></a>
       </div>
 
   <% end %>

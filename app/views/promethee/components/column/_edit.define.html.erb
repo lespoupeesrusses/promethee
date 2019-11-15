@@ -8,17 +8,57 @@
       data: {
         type: 'column',
         attributes: {
-          size: 4,
-          offset: 0,
+          size: {
+            searchable: false,
+            type: 'integer',
+            value: 4
+          },
+          offset: {
+            searchable: false,
+            type: 'integer',
+            value: 0
+          },
           mobile: {
-            enabled: false,
-            size: 12,
-            offset: 0
+            searchable: false,
+            type: 'hash',
+            value: {
+              enabled: {
+                searchable: false,
+                type: 'boolean',
+                value: false
+              },
+              size: {
+                searchable: false,
+                type: 'integer',
+                value: 12
+              },
+              offset: {
+                searchable: false,
+                type: 'integer',
+                value: 0
+              }
+            }
           },
           tablet: {
-            enabled: false,
-            size: 12,
-            offset: 0
+            searchable: false,
+            type: 'hash',
+            value: {
+              enabled: {
+                searchable: false,
+                type: 'boolean',
+                value: false
+              },
+              size: {
+                searchable: false,
+                type: 'integer',
+                value: 12
+              },
+              offset: {
+                searchable: false,
+                type: 'integer',
+                value: 0
+              }
+            }
           }
         },
         children: []

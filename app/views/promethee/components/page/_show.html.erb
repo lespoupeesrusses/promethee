@@ -1,14 +1,14 @@
 <%
-  stylesheets = component[:attributes][:stylesheets]
-  javascripts = component[:attributes][:javascripts]
+  stylesheets = component[:attributes].dig(:stylesheets, :value)&.to_s&.html_safe
+  javascripts = component[:attributes].dig(:javascripts, :value)&.to_s&.html_safe
 %>
 
 <% if stylesheets.present? %>
-  <style><%= stylesheets.html_safe %></style>
+  <style><%= stylesheets %></style>
 <% end %>
 
 <% if javascripts.present? %>
-  <script><%= javascripts.html_safe %></script>
+  <script><%= javascripts %></script>
 <% end %>
 
 <div class="<%= promethee_class_for component %>">

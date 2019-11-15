@@ -3,8 +3,8 @@
       <div class="header">Collection Item</div>
       <div class="row">
         <div class="col-xs-12 col-12">
-          <img ng-show="component.attributes.media_type == 'image'" ng-src="{{ component.attributes.image.id ? '/promethee/blob/' + component.attributes.image.id : '#' }}" class="img-fluid img-responsive">
-          <div ng-show="component.attributes.media_type == 'video'" ng-controller="CollectionItemVideoController">
+          <img ng-show="component.attributes.media_type.value == 'image'" ng-src="{{ component.attributes.image.value.id ? '/promethee/blob/' + component.attributes.image.value.id : '#' }}" class="img-fluid img-responsive">
+          <div ng-show="component.attributes.media_type.value == 'video'" ng-controller="CollectionItemVideoController">
             <div class="embed-responsive embed-responsive-16by9">
               <iframe ng-if="embed" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="allowfullscreen" ng-src="{{embed | urlSafe}}"></iframe>
               <div class="video-neutralizing-overlay"></div>
@@ -13,8 +13,8 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-xs-12 col-12" ng-show="component.attributes.searchable_caption">
-          <div class="collection-item-caption" ng-bind-html="component.attributes.searchable_caption | htmlSafe"></div>
+        <div class="col-xs-12 col-12" ng-show="component.attributes.caption.value">
+          <div class="collection-item-caption" ng-bind-html="component.attributes.caption.value | htmlSafe"></div>
         </fiv>
       </div>
     </div>
@@ -26,7 +26,7 @@
     Object.defineProperty($scope, 'embed', {
       get: function() {
         var embed = null;
-        var url = this.component.attributes.video.url + '';
+        var url = this.component.attributes.video.value.value + '';
 
         if(url.includes('vimeo')) {
           var id = url.replace(/^(?:https?:)?\/\/(?:(?:www|player)\.)?vimeo\.com\/(?:video\/)?(\d+).*?$/, '$1');

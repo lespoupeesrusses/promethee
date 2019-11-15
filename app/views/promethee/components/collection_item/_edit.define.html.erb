@@ -8,14 +8,32 @@
       data: {
         type: 'collection_item',
         attributes: {
-          searchable_caption: "",
-          media_type: "image",
+          caption: {
+            searchable: true,
+            type: 'text',
+            value: ''
+          },
+          media_type: {
+            collection: [
+              { label: 'Image', value: 'image' },
+              { label: 'Video', value: 'video' }
+            ],
+            searchable: false,
+            type: 'enum',
+            value: 'image'
+          },
           image: {
-            id: undefined,
-            name: ""
+            searchable: false,
+            type: 'blob',
+            value: {
+              id: undefined,
+              name: ''
+            }
           },
           video: {
-            url: "https://vimeo.com/115082758"
+            searchable: false,
+            type: 'video',
+            value: 'https://vimeo.com/115082758'
           }
         }
       }

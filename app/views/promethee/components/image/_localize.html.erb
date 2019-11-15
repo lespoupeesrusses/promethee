@@ -1,35 +1,35 @@
 <script type="text/ng-template" id="promethee/components/image/localize">
-  <div ng-show="master.attributes.searchable_alt || master.attributes.searchable_caption">
+  <div ng-show="master.attributes.alt.value || master.attributes.caption.value">
     <hr>
 
     <div class="row">
       <div class="col-md-6">
-        <img ng-src="/promethee/blob/{{component.attributes.image.id}}" class="img-fluid img-responsive">
+        <img ng-src="/promethee/blob/{{component.attributes.image.value.id}}" class="img-fluid img-responsive">
       </div>
     </div>
 
-    <div class="row" ng-show="master.attributes.searchable_alt">
+    <div class="row" ng-show="master.attributes.alt.value">
       <div class="col-md-6">
         <b>Alt</b>
-        <p>{{master.attributes.searchable_alt}}</p>
+        <p>{{master.attributes.alt.value}}</p>
       </div>
       <div class="col-md-6">
         <div class="form-group">
           <label class="label-control">Alt</label>
-          <input class="form-control" ng-model="component.attributes.searchable_alt" type="text">
+          <input class="form-control" ng-model="component.attributes.alt.value" type="text">
         </div>
       </div>
     </div>
 
-    <div class="row" ng-show="master.attributes.searchable_caption">
+    <div class="row" ng-show="master.attributes.caption.value">
       <div class="col-md-6">
         <b>Caption</b>
-        <p>{{master.attributes.searchable_caption}}</p>
+        <p>{{master.attributes.caption.value}}</p>
       </div>
       <div class="col-md-6">
         <div class="form-group">
           <label class="label-control">Caption</label>
-          <input class="form-control" ng-model="component.attributes.searchable_caption" type="text">
+          <input class="form-control" ng-model="component.attributes.caption.value" type="text">
         </div>
       </div>
     </div>

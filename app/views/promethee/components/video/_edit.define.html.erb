@@ -8,8 +8,16 @@
       data: {
         type: 'video',
         attributes: {
-          url: 'https://vimeo.com/115082758',
-          autoplay: false
+          url: {
+            searchable: false,
+            type: 'string',
+            value: 'https://vimeo.com/115082758'
+          },
+          autoplay: {
+            searchable: false,
+            type: boolean,
+            value: false
+          }
         }
       }
     })

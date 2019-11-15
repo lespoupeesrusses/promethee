@@ -9,11 +9,23 @@
         type: 'image',
         attributes: {
           image: {
-            id: undefined,
-            name: ''
+            searchable: false,
+            type: 'blob',
+            value: {
+              id: undefined,
+              name: ''
+            }
           },
-          searchable_alt: '',
-          searchable_caption: ''
+          alt: {
+            searchable: true,
+            type: 'string',
+            value: ''
+          },
+          caption: {
+            searchable: true,
+            type: 'string',
+            value: ''
+          }
         }
       }
     })

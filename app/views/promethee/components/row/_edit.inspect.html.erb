@@ -20,22 +20,22 @@
   <%= render 'promethee/edit/inspect.advanced' %>
     <div class="form-group">
       <label  class="label-control">Background color</label>
-      <input  ng-model="promethee.inspected.attributes.bgcolor"
+      <input  ng-model="promethee.inspected.attributes.bgcolor.value"
               colorpicker="rgba"
               class="form-control"
               type="text" />
     </div>
 
     <div>
-      <div class="btn btn-default btn-light" ng-click="promethee.inspected.attributes.backgrounds.push( { image: { id: undefined, name: '' }, posh: 'center', posv: 'center', size: 'auto' } )">Add background image</div>
+      <div class="btn btn-default btn-light" ng-click="promethee.inspected.attributes.backgrounds.value.push( { image: { searchable: false, type: 'blob', value: { id: undefined, name: '' } }, posh: { collection: [ { label: 'Left', value: 'left' }, { label: 'Center', value: 'center' }, { label: 'Right', value: 'right' } ], searchable: false, type: 'enum', value: 'center' }, posv: { collection: [ { label: 'Top', value: 'top' }, { label: 'Center', value: 'center' }, { label: 'Bottom', value: 'bottom' } ], searchable: false, type: 'enum', value: 'center' }, size: { collection: [ { label: 'Auto', value: 'auto' }, { label: 'Cover', value: 'cover' }, { label: 'Contain', value: 'contain' } ], searchable: false, type: 'enum', value: 'auto' } } )">Add background image</div>
 
-      <div ng-repeat="background in promethee.inspected.attributes.backgrounds" style="margin-top: 20px">
-        <h3>Background {{$index + 1}} <span class="fa fa-trash" ng-click="promethee.inspected.attributes.backgrounds.splice($index, 1)" style="cursor: pointer"></span></h3>
-        <promethee-uploader ng-model="background.image" label="" limits="'.jpg,.jpeg,.png,.gif'"></promethee-uploader>
+      <div ng-repeat="background in promethee.inspected.attributes.backgrounds.value" style="margin-top: 20px">
+        <h3>Background {{$index + 1}} <span class="fa fa-trash" ng-click="promethee.inspected.attributes.backgrounds.value.splice($index, 1)" style="cursor: pointer"></span></h3>
+        <promethee-uploader ng-model="background.image.value" label="" limits="'.jpg,.jpeg,.png,.gif'"></promethee-uploader>
 
-        <%= render 'promethee/edit/radiobuttons', label: 'Horizontal position', model: 'background.posh', values: ['left', 'center', 'right'] %>
-        <%= render 'promethee/edit/radiobuttons', label: 'Vertical position', model: 'background.posv', values: ['top', 'center', 'bottom'] %>
-        <%= render 'promethee/edit/radiobuttons', label: 'Size', model: 'background.size', values: ['auto', 'cover', 'contain'] %>
+        <%= render 'promethee/edit/radiobuttons', label: 'Horizontal position', model: 'background.posh.value', values: ['left', 'center', 'right'] %>
+        <%= render 'promethee/edit/radiobuttons', label: 'Vertical position', model: 'background.posv.value', values: ['top', 'center', 'bottom'] %>
+        <%= render 'promethee/edit/radiobuttons', label: 'Size', model: 'background.size.value', values: ['auto', 'cover', 'contain'] %>
       </div>
 
     </div>

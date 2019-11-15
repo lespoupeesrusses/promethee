@@ -1,20 +1,21 @@
 <%
-background_color = component[:attributes][:bgcolor] || "rgba(255, 255, 255, 0)"
+background_color = component[:attributes].dig(:bgcolor, :value)&.to_s || "rgba(255, 255, 255, 0)"
+backgrounds = component[:attributes].dig(:backgrounds, :value)
 background_images = []
 background_positions = []
 background_sizes = []
 
 has_background = !(background_color =~ /rgba\(\s*255\s*,\s*255\s*,\s*255\s*,\s*0\s*\)/)
 
-if component[:attributes] && component[:attributes].has_key?(:backgrounds) # retro-compatibility
-  component[:attributes][:backgrounds].each do |item|
-    blob = blob_from_data item[:image]
+if backgrounds
+  backgrounds.each do |item|
+    blob = blob_from_data item.dig(:image, :value)
     if blob
       url = "url(#{url_for(blob)})"
-      position = "#{item[:posh]} #{item[:posv]}"
+      position = "#{item.dig(:posh, :value)} #{item.dig(:posv, :value)}"
       background_images << url
       background_positions << position
-      background_sizes << item[:size]
+      background_sizes << item.dig(:size, :value)
     end
   end
 end

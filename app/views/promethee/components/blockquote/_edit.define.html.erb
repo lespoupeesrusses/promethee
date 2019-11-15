@@ -8,8 +8,16 @@
       data: {
         type: 'blockquote',
         attributes: {
-          searchable_body: '<p>Edit me</p>',
-          searchable_author: ''
+          body: {
+            searchable: true,
+            type: 'text',
+            value: '<p>Edit me</p>',
+          },
+          author: {
+            searchable: true,
+            type: 'string',
+            value: ''
+          }
         }
       }
     })

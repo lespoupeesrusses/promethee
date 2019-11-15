@@ -1,14 +1,15 @@
 <%
-url = component[:attributes][:url].to_s
+url = component[:attributes].dig(:url, :value)&.to_s
+autoplay = component[:attributes].dig(:autoplay, :value)
 
 if 'vimeo'.in? url
   video_id = url.gsub(/\A(?:https?:)?\/\/(?:(?:www|player)\.)?vimeo\.com\/(?:video\/)?(\d+).*?\z/, '\1')
   iframe_src = "https://player.vimeo.com/video/#{video_id}?color=ffffff&title=0&byline=0&portrait=0"
-  iframe_src += "&loop=1&autoplay=1&autopause=0&muted=1" if component[:attributes][:autoplay]
+  iframe_src += "&loop=1&autoplay=1&autopause=0&muted=1" if autoplay
 elsif 'youtube'.in? url
   video_id = url.split('watch?v=').last
   iframe_src = "https://www.youtube.com/embed/#{video_id}"
-  iframe_src += "?autoplay=1&mute=1&loop=1" if component[:attributes][:autoplay]
+  iframe_src += "?autoplay=1&mute=1&loop=1" if autoplay
 else
   iframe_src = url
 end

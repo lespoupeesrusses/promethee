@@ -2,23 +2,23 @@
   <div class="form-group">
     <label class="label-control">Media type</label>
     <div>
-      <label class="radio-inline"> <input ng-model="promethee.inspected.attributes.media_type" type="radio" value="image" />Image </label>
-      <label class="radio-inline"> <input ng-model="promethee.inspected.attributes.media_type" type="radio" value="video" />Video </label>
+      <label class="radio-inline"> <input ng-model="promethee.inspected.attributes.media_type.value" type="radio" value="image" />Image </label>
+      <label class="radio-inline"> <input ng-model="promethee.inspected.attributes.media_type.value" type="radio" value="video" />Video </label>
     </div>
   </div>
 
-  <promethee-uploader ng-show="promethee.inspected.attributes.media_type == 'image'" ng-model="promethee.inspected.attributes.image" label="Image" limits="'.jpg,.jpeg,.png,.gif'"></promethee-uploader>
+  <promethee-uploader ng-show="promethee.inspected.attributes.media_type.value == 'image'" ng-model="promethee.inspected.attributes.image.value" label="Image" limits="'.jpg,.jpeg,.png,.gif'"></promethee-uploader>
 
-  <div class="form-group" ng-show="promethee.inspected.attributes.media_type == 'video'">
+  <div class="form-group" ng-show="promethee.inspected.attributes.media_type.value == 'video'">
     <label class="label-control">Video URL</label>
-    <input class="form-control" ng-model="promethee.inspected.attributes.video.url"></summernote>
+    <input class="form-control" ng-model="promethee.inspected.attributes.video.value"></summernote>
   </div>
 
   <div class="row">
     <div class="col-xs-12 col-12">
       <div class="form-group">
         <label class="label-control">Caption</label>
-        <summernote config="summernoteConfig" ng-model="promethee.inspected.attributes.searchable_caption"></summernote>
+        <summernote config="summernoteConfig" ng-model="promethee.inspected.attributes.caption.value"></summernote>
       </div>
     </div>
   </div>

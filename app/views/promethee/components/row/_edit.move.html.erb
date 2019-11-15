@@ -2,23 +2,23 @@
 <%= render 'promethee/edit/move.header', type: 'row' %>
     <div class="header">Row</div>
     <div class="row" ng-controller="RowMoveController">
-      <div class="row__background row__background--color" ng-style="{'background': component.attributes.bgcolor}"></div>
+      <div class="row__background row__background--color" ng-style="{'background': component.attributes.bgcolor.value}"></div>
 
-      <div ng-repeat="background in component.attributes.backgrounds"
+      <div ng-repeat="background in component.attributes.backgrounds.value"
            class="row__background"
            style="
-           background-image:url('{{background.image.id ? '/promethee/blob/'+background.image.id : ''}}');
-               background-position:{{background.posh+' '+background.posv}};
-               background-size: {{background.size}}" >
+           background-image:url('{{background.image.value.id ? '/promethee/blob/'+background.image.value.id : ''}}');
+               background-position:{{background.posh.value+' '+background.posv.value}};
+               background-size: {{background.size.value}}" >
       </div>
 
       <div  ng-click="inspect(component, $event)"
             ng-class="{'promethee-edit__component--selected': promethee.inspected === component}"
             ng-repeat="component in components"
             class=" <%= promethee_bem_classes 'promethee-edit__component', "--column" %>
-                    col-md-{{component.attributes.size}}
-                    offset-md-{{component.attributes.offset}}
-                    col-md-offset-{{component.attributes.offset}}">
+                    col-md-{{component.attributes.size.value}}
+                    offset-md-{{component.attributes.offset.value}}
+                    col-md-offset-{{component.attributes.offset.value}}">
         <div class="promethee-edit__component__inner">
           <%= render 'promethee/edit/move.remove' %>
             <div class="header">Column {{$index + 1}}</div>
