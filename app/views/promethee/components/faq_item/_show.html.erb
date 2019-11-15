@@ -1,5 +1,5 @@
 <%
-title = component[:attributes].dig(:stitle, :value)&.to_s
+title = component[:attributes].dig(:title, :value)&.to_s
 body = component[:attributes].dig(:body, :value)&.to_s.html_safe
 special_question = component[:attributes].dig(:special_question, :value)
 

@@ -1,8 +1,8 @@
 <%
 blob = blob_from_data component[:attributes].dig(:image, :value)
 
-surtitle = component[:attributes][.dig(:surtitle, :value)&.to_s
-title = component[:attributes].dig(:title, :valuet)&.to_s
+surtitle = component[:attributes].dig(:surtitle, :value)&.to_s
+title = component[:attributes].dig(:title, :value)&.to_s
 subtitle = component[:attributes].dig(:subtitle, :value)&.to_s
 %>
 <div id="component-<%= component[:id] %>" class="<%= promethee_class_for(component) %>" style="background-image: url(<%= url_for(blob.variant(resize: '1920>', quality: 95)) if blob %>)">

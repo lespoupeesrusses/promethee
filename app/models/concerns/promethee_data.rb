@@ -101,7 +101,7 @@ module PrometheeData
         value_object['value'] = sanitize(value_object['value'])
       end
       attributes[key] = value_object
-    end
+    end unless attributes.nil?
 
     children = data['children']
     children.each do |child|
