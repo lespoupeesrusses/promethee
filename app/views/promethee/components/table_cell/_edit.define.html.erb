@@ -1,0 +1,21 @@
+<%
+  init = <<~JAVASCRIPT
+    promethee.definitions.push({
+      name: 'Table cell',
+      icon: #{ promethee_component_render_icon 'table_cell' },
+      position: 60,
+      library: false,
+      data: {
+        type: 'table_cell',
+        attributes: {
+          text: {
+            searchable: true,
+            type: 'string',
+            value: ''
+          }
+        }
+      }
+    })
+  JAVASCRIPT
+%>
+<div ng-init="<%= init %>"></div>

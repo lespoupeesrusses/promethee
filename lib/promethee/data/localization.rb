@@ -17,7 +17,6 @@ class Promethee::Data::Localization < Promethee::Data
   # 2 it removes components not in the master anymore
   # 3 it takes the order from the master
   def merge
-    byebug
     @data_before_merge = @data.deep_dup
     @data = {
       version: @master_data[:version],
@@ -31,6 +30,10 @@ class Promethee::Data::Localization < Promethee::Data
       # We add it to the list of localized components
       @data[:components] << component
     end
+  end
+
+  def get_component_without_values(component)
+
   end
 
   def find_localized_component(id)
