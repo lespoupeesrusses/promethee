@@ -1,20 +1,20 @@
 <script type="text/ng-template" id="promethee/components/table/localize">
   <hr>
 
-  <div class="row">
+  <div class="row" ng-if="master.attributes.structure.value.length > 0">
     <div class="col-md-6">
       <table class="table">
         <thead>
           <tr>
-            <th ng-repeat="colUid in master.attributes.cols track by $index">
-              {{ master.attributes.cols_data[colUid].searchable_text }}
+            <th ng-repeat="cellUid in master.attributes.structure.value[0]">
+              {{ master.attributes.data.value[cellUid].text.value }}
             </th>
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="rowUid in master.attributes.rows">
-            <td ng-repeat="colUid in master.attributes.cols">
-              {{ master.attributes.rows_data[rowUid][colUid].searchable_text }}
+          <tr ng-repeat="row in master.attributes.structure.value" ng-if="$index > 0">
+            <td ng-repeat="cellUid in row">
+              {{ master.attributes.data.value[cellUid].text.value }}
             </td>
           </tr>
         </tbody>
@@ -24,18 +24,18 @@
       <table class="table">
         <thead>
           <tr>
-            <th ng-repeat="colUid in master.attributes.cols track by $index">
+            <th ng-repeat="cellUid in master.attributes.structure.value[0]">
               <input  type="text"
-                      ng-model="component.attributes.cols_data[colUid].searchable_text"
+                      ng-model="component.attributes.data.value[cellUid].text.value"
                       class="form-control">
             </th>
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="rowUid in master.attributes.rows">
-            <td ng-repeat="colUid in master.attributes.cols">
+          <tr ng-repeat="row in master.attributes.structure.value" ng-if="$index > 0">
+            <td ng-repeat="cellUid in row">
               <input  class="form-control"
-                      ng-model="component.attributes.rows_data[rowUid][colUid].searchable_text"
+                      ng-model="component.attributes.data.value[cellUid].text.value"
                       type="text">
             </td>
           </tr>

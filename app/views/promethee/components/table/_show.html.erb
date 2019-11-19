@@ -1,14 +1,12 @@
 <%
-  return unless ([:cols, :cols_data, :rows, :rows_data] - component[:attributes].keys).empty?
-  columns = component[:attributes][:cols].map { |colUid|
-    colData = component[:attributes][:cols_data][colUid.to_sym] || {}
-    { uid: colUid, searchable_text: colData[:searchable_text] }
+  return unless ([:structure, :data] - component[:attributes].keys).empty?
+  rows = component.dig(:attributes, :structure, :value).map { |row|
+    row.map { |cellUid|
+      { uid: cellUid, text: component.dig(:attributes, :data, :value, cellUid.to_sym, :text, :value) }
+    }
   }
 
-  rows = component[:attributes][:rows].map { |rowUid|
-    rowData = component[:attributes][:rows_data][rowUid.to_sym] || {}
-    { uid: rowUid, data: rowData }
-  }
+  headerRow = rows.shift
 %>
 
 <div id="component-<%= component[:id] %>" class="<%= promethee_class_for(component) %>">
@@ -16,20 +14,16 @@
     <table class="table">
       <thead>
         <tr>
-          <% columns.each do |col| %>
-            <th><%= col[:searchable_text] %></th>
+          <% headerRow.each do |cell| %>
+            <th><%= cell[:text] %></th>
           <% end %>
         </tr>
       </thead>
       <tbody>
         <% rows.each do |row| %>
           <tr>
-            <% columns.each do |col| %>
-              <%
-                cell = row[:data][col[:uid].to_sym]
-                next if cell.nil?
-              %>
-              <td><%= cell[:searchable_text] %></td>
+            <% row.each do |cell| %>
+              <td><%= cell[:text] %></td>
             <% end %>
           </tr>
         <% end %>

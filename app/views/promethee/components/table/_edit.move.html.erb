@@ -4,15 +4,15 @@
         <table class="table">
           <thead>
             <tr>
-              <th ng-repeat="colUid in component.attributes.cols">
-                {{component.attributes.cols_data.value[colUid].text.value}}
+              <th ng-repeat="cellUid in component.attributes.structure.value[0]">
+                {{component.attributes.data.value[cellUid].text.value}}
               </th>
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="rowUid in component.attributes.rows">
-              <td ng-repeat="colUid in component.attributes.cols">
-                {{component.attributes.rows_data.value[rowUid][colUid].searchable_text}}
+            <tr ng-repeat="row in component.attributes.structure.value" ng-if="$index > 0">
+              <td ng-repeat="cellUid in row">
+                {{component.attributes.data.value[cellUid].text.value}}
               </td>
             </tr>
           </tbody>
