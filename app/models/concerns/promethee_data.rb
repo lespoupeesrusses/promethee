@@ -20,7 +20,7 @@ module PrometheeData
   end
 
   def promethee_data_page_description
-    data['attributes']['description']['description']
+    data['attributes']['description']['value']
   rescue
     ''
   end

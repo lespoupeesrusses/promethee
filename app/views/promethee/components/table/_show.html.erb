@@ -2,7 +2,7 @@
   return unless ([:structure, :data] - component[:attributes].keys).empty?
   rows = component.dig(:attributes, :structure, :value).map { |row|
     row.map { |cellUid|
-      { uid: cellUid, text: component.dig(:attributes, :data, :value, cellUid.to_sym, :text, :value) }
+      { uid: cellUid, text: component.dig(:attributes, :data, :value, cellUid.to_sym, :value) }
     }
   }
 
