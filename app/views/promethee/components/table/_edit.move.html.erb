@@ -5,14 +5,14 @@
           <thead>
             <tr>
               <th ng-repeat="cellUid in component.attributes.structure.value[0]">
-                {{component.attributes.data.value[cellUid].text.value}}
+                {{component.attributes.data.value[cellUid].value}}
               </th>
             </tr>
           </thead>
           <tbody>
             <tr ng-repeat="row in component.attributes.structure.value" ng-if="$index > 0">
               <td ng-repeat="cellUid in row">
-                {{component.attributes.data.value[cellUid].text.value}}
+                {{component.attributes.data.value[cellUid].value}}
               </td>
             </tr>
           </tbody>

@@ -14,7 +14,7 @@
               <i class="fas fa-bars"></i>
             </div>
             <div class="col-9">
-              {{ promethee.inspected.attributes.data.value[cellUid].text.value }}
+              {{ promethee.inspected.attributes.data.value[cellUid].value }}
             </div>
             <div class="col-2">
               <a  class="btn btn-default btn-light btn-sm"
@@ -43,11 +43,11 @@
         </span><br/>
         <div ng-repeat="cellUid in row">
           <span class="small">
-            {{ promethee.inspected.attributes.data.value[getHeaderCellUids()[$index]].text.value }}
+            {{ promethee.inspected.attributes.data.value[getHeaderCellUids()[$index]].value }}
           </span>
           <br/>
           <input  type="text"
-                  ng-model="promethee.inspected.attributes.data.value[cellUid].text.value"
+                  ng-model="promethee.inspected.attributes.data.value[cellUid].value"
                   class="form-control" />
         </div>
       </div>
@@ -118,8 +118,9 @@
 
       for (i = 0; i < this.promethee.inspected.attributes.structure.value.length; i += 1) {
         uids.push(this.promethee.inspected.attributes.structure.value[i][index]);
-        delete this.promethee.inspected.attributes.structure.value[i][index];
+        this.promethee.inspected.attributes.structure.value[i].splice(index, 1);
       }
+
       $scope.removeData(uids);
     }
 
@@ -138,7 +139,9 @@
       }
 
       for (i = 0; i < this.promethee.inspected.attributes.structure.value.length; i += 1) {
-        this.promethee.inspected.attributes.structure.value[i].push(uidService.generate());
+        var uid = uidService.generate();
+        this.promethee.inspected.attributes.structure.value[i].push(uid);
+        $scope.initDataForUid(uid);
       }
     };
 
@@ -146,10 +149,13 @@
       var rowsCount = $scope.getRowsCount(),
           columnsCount = $scope.getColumnsCount(),
           newRow = [],
+          uid,
           i;
 
       for (i = 0; i < columnsCount; i += 1) {
-          newRow.push(uidService.generate());
+          uid = uidService.generate();
+          newRow.push(uid);
+          $scope.initDataForUid(uid);
       }
 
       this.promethee.inspected.attributes.structure.value.push(newRow);
@@ -158,5 +164,13 @@
         $scope.addColumn();
       }
     };
+
+    $scope.initDataForUid = function (uid) {
+      this.promethee.inspected.attributes.data.value[uid] = {
+        type: 'string',
+        searchable: true,
+        value: ''
+      }
+    }
   }]);
 </script>

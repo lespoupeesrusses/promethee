@@ -7,14 +7,14 @@
         <thead>
           <tr>
             <th ng-repeat="cellUid in master.attributes.structure.value[0]">
-              {{ master.attributes.data.value[cellUid].text.value }}
+              {{ master.attributes.data.value[cellUid].value }}
             </th>
           </tr>
         </thead>
         <tbody>
           <tr ng-repeat="row in master.attributes.structure.value" ng-if="$index > 0">
             <td ng-repeat="cellUid in row">
-              {{ master.attributes.data.value[cellUid].text.value }}
+              {{ master.attributes.data.value[cellUid].value }}
             </td>
           </tr>
         </tbody>
@@ -26,7 +26,7 @@
           <tr>
             <th ng-repeat="cellUid in master.attributes.structure.value[0]">
               <input  type="text"
-                      ng-model="component.attributes.data.value[cellUid].text.value"
+                      ng-model="component.attributes.data.value[cellUid].value"
                       class="form-control">
             </th>
           </tr>
@@ -35,7 +35,7 @@
           <tr ng-repeat="row in master.attributes.structure.value" ng-if="$index > 0">
             <td ng-repeat="cellUid in row">
               <input  class="form-control"
-                      ng-model="component.attributes.data.value[cellUid].text.value"
+                      ng-model="component.attributes.data.value[cellUid].value"
                       type="text">
             </td>
           </tr>
