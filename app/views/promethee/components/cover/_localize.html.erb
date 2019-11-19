@@ -1,48 +1,48 @@
 <script type="text/ng-template" id="promethee/components/cover/localize">
-  <div ng-show="master.attributes.searchable_surtitle || master.attributes.searchable_title || master.attributes.searchable_subtitle">
+  <div ng-show="master.attributes.surtitle.value || master.attributes.title.value || master.attributes.subtitle.value">
     <hr>
 
     <div class="row">
       <div class="col-md-6">
-        <img ng-src="/promethee/blob/{{master.attributes.image.id}}" class="img-fluid img-responsive">
+        <img ng-src="/promethee/blob/{{master.attributes.image.value.id}}" class="img-fluid img-responsive">
       </div>
     </div>
 
-    <div class="row" ng-show="master.attributes.searchable_surtitle">
+    <div class="row" ng-show="master.attributes.surtitle.value">
       <div class="col-md-6">
         <b>Surtitle</b>
-        <p>{{master.attributes.searchable_surtitle}}</p>
+        <p>{{master.attributes.surtitle.value}}</p>
       </div>
       <div class="col-md-6">
         <div class="form-group">
           <label class="label-control">Surtitle</label>
-          <input class="form-control" ng-model="component.attributes.searchable_surtitle" type="text">
+          <input class="form-control" ng-model="component.attributes.surtitle.value" type="text">
         </div>
       </div>
     </div>
 
-    <div class="row" ng-show="master.attributes.searchable_title">
+    <div class="row" ng-show="master.attributes.title.value">
       <div class="col-md-6">
         <b>Title</b>
-        <p>{{master.attributes.searchable_title}}</p>
+        <p>{{master.attributes.title.value}}</p>
       </div>
       <div class="col-md-6">
         <div class="form-group">
           <label class="label-control">Title</label>
-          <input class="form-control" ng-model="component.attributes.searchable_title" type="text">
+          <input class="form-control" ng-model="component.attributes.title.value" type="text">
         </div>
       </div>
     </div>
 
-    <div class="row" ng-show="master.attributes.searchable_subtitle">
+    <div class="row" ng-show="master.attributes.subtitle.value">
       <div class="col-md-6">
         <b>Subtitle</b>
-        <p>{{master.attributes.searchable_subtitle}}</p>
+        <p>{{master.attributes.subtitle.value}}</p>
       </div>
       <div class="col-md-6">
         <div class="form-group">
           <label class="label-control">Subtitle</label>
-          <input class="form-control" ng-model="component.attributes.searchable_subtitle" type="text">
+          <input class="form-control" ng-model="component.attributes.subtitle.value" type="text">
         </div>
       </div>
     </div>

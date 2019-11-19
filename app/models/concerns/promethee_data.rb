@@ -48,7 +48,6 @@ module PrometheeData
     ''
   end
 
-
   def promethee_data_searchable
     promethee_extract_searchable data
   end
@@ -88,7 +87,6 @@ module PrometheeData
   end
 
   def promethee_extract_searchable_children(components)
-    # TODO
     searchable = ' '
     components.each do |child|
       searchable += promethee_extract_searchable child

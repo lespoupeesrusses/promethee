@@ -4,38 +4,38 @@
   <div class="row">
     <div class="col-md-6">
       <b>Aside visible content</b>
-      <div ng-bind-html="master.attributes.searchable_visible_content | htmlSafe"></div>
+      <div ng-bind-html="master.attributes.visible_content.value | htmlSafe"></div>
     </div>
     <div class="col-md-6">
       <div class="form-group">
         <label class="label-control">Aside visible content</label>
-        <summernote config="summernoteConfig" ng-model="component.attributes.searchable_visible_content"></summernote>
+        <summernote config="summernoteConfig" ng-model="component.attributes.visible_content.value"></summernote>
       </div>
     </div>
   </div>
 
-  <div class="row" ng-show="master.attributes.searchable_collapsed_content">
+  <div class="row" ng-show="master.attributes.collapsed_content.value">
     <div class="col-md-6">
       <b>Aside collapsed content</b>
-      <div ng-bind-html="master.attributes.searchable_collapsed_content | htmlSafe"></div>
+      <div ng-bind-html="master.attributes.collapsed_content.value | htmlSafe"></div>
     </div>
     <div class="col-md-6">
       <div class="form-group">
         <label class="label-control">Aside collapsed content</label>
-        <summernote config="summernoteConfig" ng-model="component.attributes.searchable_collapsed_content"></summernote>
+        <summernote config="summernoteConfig" ng-model="component.attributes.collapsed_content.value"></summernote>
       </div>
     </div>
   </div>
 
-  <div class="row" ng-show="master.attributes.searchable_collapsed_content">
+  <div class="row" ng-show="master.attributes.collapsed_content.value">
     <div class="col-md-6">
       <b>Button label</b>
-      <div ng-bind-html="master.attributes.searchable_open_label | htmlSafe"></div>
+      <div ng-bind-html="master.attributes.open_label.value | htmlSafe"></div>
     </div>
     <div class="col-md-6">
       <div class="form-group">
         <label class="label-control">Button label</label>
-        <input class="form-control" ng-model="component.attributes.searchable_open_label" type="text">
+        <input class="form-control" ng-model="component.attributes.open_label.value" type="text">
       </div>
     </div>
   </div>

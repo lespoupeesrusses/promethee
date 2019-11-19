@@ -68,10 +68,34 @@ promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'pres
       id: $scope.generateIdentifier(),
       type: 'page',
       attributes: {
-        searchable_title: 'New page',
-        searchable_description: '',
-        stylesheets: '',
-        javascripts: ''
+        title: {
+          searchable: true,
+          type: 'string',
+          value: 'New page'
+        },
+        description: {
+          searchable: true,
+          type: 'text',
+          value: ''
+        },
+        thumbnail: {
+          searchable: false,
+          type: 'blob',
+          value: {
+            id: undefined,
+            name: ''
+          }
+        },
+        stylesheets: {
+          searchable: false,
+          type: 'string',
+          value: ''
+        },
+        javascripts: {
+          searchable: false,
+          type: 'string',
+          value: ''
+        }
       },
       children: []
     };

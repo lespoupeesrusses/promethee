@@ -1,29 +1,29 @@
 <script type="text/ng-template" id="promethee/components/blockquote/localize">
-  <div ng-show="master.attributes.searchable_body">
+  <div ng-show="master.attributes.body.value">
     <hr>
     <div class="row">
       <div class="col-md-6">
         <b>Body</b>
-        <div ng-bind-html="master.attributes.searchable_body | htmlSafe"></div>
+        <div ng-bind-html="master.attributes.body.value | htmlSafe"></div>
       </div>
       <div class="col-md-6">
         <div class="form-group">
           <label class="label-control">Body</label>
-          <summernote config="summernoteConfig" ng-model="component.attributes.searchable_body"></summernote>
+          <summernote config="summernoteConfig" ng-model="component.attributes.body.value"></summernote>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="row" ng-show="master.attributes.searchable_author">
+  <div class="row" ng-show="master.attributes.author.value">
     <div class="col-md-6">
       <b>Author</b>
-      <p>{{master.attributes.searchable_author}}</p>
+      <p>{{master.attributes.author.value}}</p>
     </div>
     <div class="col-md-6">
       <div class="form-group">
         <label class="label-control">Author</label>
-        <input class="form-control" ng-model="component.attributes.searchable_author" type="text">
+        <input class="form-control" ng-model="component.attributes.author.value" type="text">
       </div>
     </div>
   </div>

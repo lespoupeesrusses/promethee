@@ -1,26 +1,26 @@
 <script type="text/ng-template" id="promethee/components/slider_item/localize">
-  <div ng-show="master.attributes.searchable_caption !== '' || master.attributes.media_type == 'video'">
+  <div ng-show="master.attributes.caption.value !== '' || master.attributes.media_type.value == 'video'">
     <hr>
 
-    <div class="row" ng-show="master.attributes.searchable_caption !== ''">
+    <div class="row" ng-show="master.attributes.caption.value !== ''">
       <div class="col-md-6">
         <b>Slider Item Caption</b>
-        <div class="promethee-edit__wrapper" ng-bind-html="master.attributes.searchable_caption | htmlSafe"></div>
+        <div class="promethee-edit__wrapper" ng-bind-html="master.attributes.caption.value | htmlSafe"></div>
       </div>
       <div class="col-md-6">
         <label class="label-control">Slider Item Caption</label>
-        <summernote config="summernoteConfig" ng-model="component.attributes.searchable_caption"></summernote>
+        <summernote config="summernoteConfig" ng-model="component.attributes.caption.value"></summernote>
       </div>
     </div>
 
-    <div class="row" ng-show="master.attributes.media_type == 'video'">
+    <div class="row" ng-show="master.attributes.media_type.value == 'video'">
       <div class="col-md-6">
         <b>Video URL</b>
-        <div ng-bind-html="master.attributes.video.url | htmlSafe"></div>
+        <div ng-bind-html="master.attributes.video.value | htmlSafe"></div>
       </div>
       <div class="col-md-6">
         <label class="label-control">Video URL</label>
-        <input class="form-control" ng-model="component.attributes.video.url" type="text">
+        <input class="form-control" ng-model="component.attributes.video.value" type="text">
       </div>
     </div>
   </div>
