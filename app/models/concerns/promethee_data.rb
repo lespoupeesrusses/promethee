@@ -20,7 +20,7 @@ module PrometheeData
   end
 
   def promethee_data_page_description
-    data['attributes']['description']['description']
+    data['attributes']['description']['value']
   rescue
     ''
   end
@@ -58,31 +58,37 @@ module PrometheeData
   include ActionView::Helpers::SanitizeHelper
 
   def promethee_extract_searchable(component)
-    # TODO: refactor
     return '' if component.blank?
     searchable = ' '
     searchable += promethee_extract_searchable_attributes component['attributes'] if component.include?('attributes')
     # For masters, contents are in children
-    searchable += promethee_extract_searchable_children component['children'] if component.include? 'children'
+    searchable += promethee_extract_searchable_children component['children'] if component.include?('children')
     # For translations, contents are in components, not children
-    searchable += promethee_extract_searchable_children component['components'] if component.include? 'components'
+    # TODO: children
+    # searchable += promethee_extract_searchable_children component['components'] if component.include? 'components'
     searchable
   end
 
   def promethee_extract_searchable_attributes(attributes)
     searchable = ' '
-    attributes.each do |key, value|
-      if key.starts_with? 'searchable_'
-        clean_value = strip_tags value
+    attributes.each do |key, value_object|
+      if value_object['searchable']
+        clean_value = strip_tags value_object['value']
         searchable += "#{clean_value} "
-      elsif value.class == Hash
-        searchable += promethee_extract_searchable_attributes(value)
+      end
+      if value_object['type'] == 'array'
+        value_object['value'].each do |object|
+          searchable += promethee_extract_searchable_attributes(object)
+        end
+      elsif value_object['type'] == 'hash'
+        searchable += promethee_extract_searchable_attributes(value_object['value'])
       end
     end
     searchable
   end
 
   def promethee_extract_searchable_children(components)
+    # TODO
     searchable = ' '
     components.each do |child|
       searchable += promethee_extract_searchable child
@@ -90,24 +96,36 @@ module PrometheeData
     searchable
   end
 
-  def promethee_sanitize(data)
-    attributes = data['attributes']
-    attributes.each do |key, value_object|
-      if value_object['type'] == 'string'
-        while value_object['value'] != Loofah.fragment(value_object['value']).text(encode_special_chars: false)
-          value_object['value'] = Loofah.fragment(value_object['value']).text(encode_special_chars: false)
-        end
-      elsif value_object['type'] == 'text'
-        value_object['value'] = sanitize(value_object['value'])
-      end
-      attributes[key] = value_object
-    end unless attributes.nil?
+  def promethee_sanitize(component)
+    attributes = component['attributes']
+    attributes = promethee_sanitize_attributes(attributes)
 
-    children = data['children']
+    children = component['children']
     children.each do |child|
       child = promethee_sanitize(child)
     end unless children.nil?
 
-    data
+    component
+  end
+
+  def promethee_sanitize_attributes(attributes)
+    attributes.each do |key, value_object|
+      case value_object['type']
+      when 'string'
+        while value_object['value'] != Loofah.fragment(value_object['value']).text(encode_special_chars: false)
+          value_object['value'] = Loofah.fragment(value_object['value']).text(encode_special_chars: false)
+        end
+      when 'text'
+        value_object['value'] = sanitize(value_object['value'])
+      when 'hash'
+        value_object['value'] = promethee_sanitize_attributes(value_object['value'])
+      when 'array'
+        value_object['value'].each do |object|
+          object = promethee_sanitize_attributes(object)
+        end
+      end if value_object.has_key?('type')
+      attributes[key] = value_object
+    end unless attributes.nil?
+    attributes
   end
 end
