@@ -49,7 +49,7 @@ class Promethee::StructureUpgraderService
       puts "End processing object ##{object.id}"
     end
     puts "Number of processed objects: #{i}"
-    puts '====== END CLEANER ========'
+    puts '====== END UPGRADER ========'
   end
 
   def self.process_component(data)
