@@ -14,7 +14,7 @@
               <i class="fas fa-bars"></i>
             </div>
             <div class="col-9">
-              {{ promethee.inspected.attributes.data.value[cellUid].value }}
+              {{ getTableCell(cellUid).attributes.text.value }}
             </div>
             <div class="col-2">
               <a  class="btn btn-default btn-light btn-sm"
@@ -34,7 +34,8 @@
       </div>
 
       <div class="mb-2" ng-repeat="row in promethee.inspected.attributes.structure.value">
-        <b>Row {{$index}}</b>
+        <b ng-if="$index === 0">Header</b>
+        <b ng-if="$index > 0">Row {{$index}}</b>
         <span class="small">
           <a  class="btn btn-default btn-light btn-sm float-right"
               ng-click="removeRow($index)">
@@ -43,11 +44,11 @@
         </span><br/>
         <div ng-repeat="cellUid in row">
           <span class="small">
-            {{ promethee.inspected.attributes.data.value[getHeaderCellUids()[$index]].value }}
+            {{ getTableCell(getHeaderCellUids()[$index]).attributes.text.value }}
           </span>
           <br/>
           <input  type="text"
-                  ng-model="promethee.inspected.attributes.data.value[cellUid].value"
+                  ng-model="getTableCell(cellUid).attributes.text.value"
                   class="form-control" />
         </div>
       </div>
@@ -58,7 +59,9 @@
             ng-model="promethee.inspected.attributes.structure.value"
             class="list-unstyled">
           <li ng-repeat="_ in promethee.inspected.attributes.structure.value track by $index">
-            <%= icon('fa', 'bars') %> Row {{$index}}
+            <%= icon('fa', 'bars') %>
+            <span ng-if="$index === 0">Header</span>
+            <span ng-if="$index > 0">Row {{$index}}</span>
           </li>
         </ul>
       </div>
@@ -125,23 +128,26 @@
     }
 
     $scope.removeData = function (uids) {
-      var i;
-      for (i = 0; i < uids.length; i += 1) {
-        delete this.promethee.inspected.attributes.data.value[uids[i]];
-      }
+      var filteredChildren = this.promethee.inspected.children.filter(function (childComponent) {
+        // Select children where id is not in the input array
+        return uids.indexOf(childComponent.id) === -1;
+      });
+
+      this.promethee.inspected.children = filteredChildren;
     }
 
     $scope.addColumn = function () {
-      var i;
+      var tableCell,
+          uid,
+          i;
 
       if ($scope.getRowsCount() === 0) {
         $scope.addRow(false);
       }
 
       for (i = 0; i < this.promethee.inspected.attributes.structure.value.length; i += 1) {
-        var uid = uidService.generate();
-        this.promethee.inspected.attributes.structure.value[i].push(uid);
-        $scope.initDataForUid(uid);
+        tableCell = $scope.createNewCell();
+        this.promethee.inspected.attributes.structure.value[i].push(tableCell.id);
       }
     };
 
@@ -149,13 +155,13 @@
       var rowsCount = $scope.getRowsCount(),
           columnsCount = $scope.getColumnsCount(),
           newRow = [],
+          tableCell,
           uid,
           i;
 
       for (i = 0; i < columnsCount; i += 1) {
-          uid = uidService.generate();
-          newRow.push(uid);
-          $scope.initDataForUid(uid);
+          tableCell = $scope.createNewCell();
+          newRow.push(tableCell.id);
       }
 
       this.promethee.inspected.attributes.structure.value.push(newRow);
@@ -165,12 +171,18 @@
       }
     };
 
-    $scope.initDataForUid = function (uid) {
-      this.promethee.inspected.attributes.data.value[uid] = {
-        type: 'string',
-        searchable: true,
-        value: ''
-      }
+    $scope.getTableCell = function (uid) {
+      return this.promethee.inspected.children.filter(function (childComponent) {
+        return childComponent.id === uid;
+      })[0];
     }
+
+    $scope.createNewCell = function () {
+      var definition = $scope.findDefinitionByType('table_cell'),
+          newCell = $scope.createComponentFromDefinition(definition);
+
+      this.promethee.inspected.children.push(newCell);
+      return newCell;
+    };
   }]);
 </script>

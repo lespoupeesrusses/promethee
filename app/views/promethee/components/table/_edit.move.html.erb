@@ -1,18 +1,18 @@
 <script type="text/ng-template" id="promethee/components/table/edit/move">
   <%= render 'promethee/edit/move.header', type: 'table' %>
-      <div class="table-responsive">
+      <div class="table-responsive" ng-controller="TableMoveController">
         <table class="table">
           <thead>
             <tr>
               <th ng-repeat="cellUid in component.attributes.structure.value[0]">
-                {{component.attributes.data.value[cellUid].value}}
+                {{getTableCell(cellUid).attributes.text.value}}
               </th>
             </tr>
           </thead>
           <tbody>
             <tr ng-repeat="row in component.attributes.structure.value" ng-if="$index > 0">
               <td ng-repeat="cellUid in row">
-                {{component.attributes.data.value[cellUid].value}}
+                {{getTableCell(cellUid).attributes.text.value}}
               </td>
             </tr>
           </tbody>
@@ -20,4 +20,14 @@
       </div>
     </div>
   </div>
+</script>
+
+<script>
+  promethee.controller('TableMoveController', ['$scope', 'uidService', function($scope, uidService) {
+    $scope.getTableCell = function (uid) {
+      return this.component.children.filter(function (childComponent) {
+        return childComponent.id === uid;
+      })[0];
+    }
+  }]);
 </script>
