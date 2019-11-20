@@ -58,6 +58,36 @@ promethee_masters_multiple = Promethee::Data::MastersMultiple.new master_data, o
         window.warnBeforeUnload.lock();
       }
     }, true);
+    $scope.copyTranslations = function(event) {
+      event.preventDefault();
+      if (confirm('Warning: this will overwrite every translations!')) {
+        // TODO: ne prendre que les objets utiles/clés utiles
+        for (i = 0; i < $scope.masters.current.components.length; i += 1) {
+          var master_component = $scope.masters.current.components[i];
+          var master_component_attributes = master_component['attributes'];
+          var attributes = {};
+          // console.log(master_component_attributes);
+          for (const attribute_key in master_component_attributes) {
+            var attribute = master_component_attributes[attribute_key];
+            if (attribute['translatable']) {
+              attributes[attribute_key] = attribute;
+            }
+          }
+          // console.log(attributes);
+          var target_component = $scope.data.components.filter(function (component) {
+            return component['id'] === master_component['id'];
+          })[0];
+
+          if (!target_component) {
+            console.log('not found');
+            continue;
+          }
+
+          target_component['attributes'] = JSON.parse(JSON.stringify(attributes));
+        }
+        console.log($scope.data.components);
+      }
+    }
   }]);
 </script>
 
@@ -79,10 +109,11 @@ promethee_masters_multiple = Promethee::Data::MastersMultiple.new master_data, o
 
   <div class="row">
     <div class="col-md-6">
-      <b ng-hide="masters.multiple()">Master</b>
-      <select ng-show="masters.multiple()" ng-model="masters.current" class="form-control do-not-warn-before-unload">
+      <b ng-hide="masters.multiple()">{{masters.all[0].title}}</b>
+      <select ng-show="masters.multiple()" ng-model="masters.current" class="float-left pull-left form-control do-not-warn-before-unload reference-choice">
         <option ng-repeat="master in masters.all" ng-value="master">{{master.title}}</option>
       </select>
+      <button class="btn btn-sm ml-1 btn-outline-success translation-copy" ng-click="copyTranslations($event)">Copy texts &gt;&gt;</button>
     </div>
     <div class="col-md-6"><h3>Translation</h3></div>
   </div>

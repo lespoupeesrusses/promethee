@@ -4,7 +4,14 @@ module PrometheeData
   # Setter to serialize data as JSON
   def data=(value)
     value = JSON.parse value if value.is_a? String
-    value = promethee_sanitize(value)
+
+    if value.has_key? 'components'
+      # For translations, contents are in components, not children
+      value['components'].map { |component| promethee_sanitize(component) }
+    else
+      # For masters, contents are in children
+      value = promethee_sanitize(value)
+    end
     super(value)
   end
 
