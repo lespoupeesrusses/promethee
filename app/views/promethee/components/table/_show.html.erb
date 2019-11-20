@@ -1,8 +1,11 @@
 <%
-  return unless ([:structure, :data] - component[:attributes].keys).empty?
+  cells = component[:children]
   rows = component.dig(:attributes, :structure, :value).map { |row|
     row.map { |cellUid|
-      { uid: cellUid, text: component.dig(:attributes, :data, :value, cellUid.to_sym, :value) }
+      {
+        uid: cellUid,
+        text: cells.find { |cell| cell[:id] == cellUid }.dig(:attributes, :text, :value)
+      }
     }
   }
 

@@ -122,6 +122,7 @@ promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'pres
 
   $scope.addComponentByType = function(type, target, index = -1) {
     var definition = $scope.findDefinitionByType(type);
+
     $scope.addComponent(definition, target, index);
   }
 
