@@ -84,7 +84,7 @@ promethee_masters_multiple = Promethee::Data::MastersMultiple.new master_data, o
         <option ng-repeat="master in masters.all" ng-value="master">{{master.title}}</option>
       </select>
     </div>
-    <div class="col-md-6"><b>Translation</b></div>
+    <div class="col-md-6"><h3>Translation</h3></div>
   </div>
   <div ng-repeat="component in data.components">
     <ng-include src="'promethee/localize/component'"></ng-include>
