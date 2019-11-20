@@ -7,27 +7,192 @@
       {
         "type": "row",
         "attributes": {
-          "bgcolor": "rgba(255,255,255,0)",
-          "backgrounds": []
+          bgcolor: {
+            searchable: false,
+            translatable: false,
+            type: 'color',
+            value: "rgba(255,255,255,0)",
+          },
+          backgrounds: {
+            searchable: false,
+            translatable: false,
+            type: 'array',
+            value: []
+          }
         },
         "children": [
           {
             "type": "column",
-            "attributes": {"size": 4, "offset": 0},
+            "attributes": {
+              size: {
+                searchable: false,
+                translatable: false,
+                type: 'integer',
+                value: 4
+              },
+              offset: {
+                searchable: false,
+                translatable: false,
+                type: 'integer',
+                value: 0
+              },
+              mobile: {
+                searchable: false,
+                translatable: false,
+                type: 'hash',
+                value: {
+                  enabled: {
+                    searchable: false,
+                    translatable: false,
+                    type: 'boolean',
+                    value: false
+                  },
+                  size: {
+                    searchable: false,
+                    translatable: false,
+                    type: 'integer',
+                    value: 12
+                  },
+                  offset: {
+                    searchable: false,
+                    translatable: false,
+                    type: 'integer',
+                    value: 0
+                  }
+                }
+              },
+              tablet: {
+                searchable: false,
+                translatable: false,
+                type: 'hash',
+                value: {
+                  enabled: {
+                    searchable: false,
+                    translatable: false,
+                    type: 'boolean',
+                    value: false
+                  },
+                  size: {
+                    searchable: false,
+                    translatable: false,
+                    type: 'integer',
+                    value: 12
+                  },
+                  offset: {
+                    searchable: false,
+                    translatable: false,
+                    type: 'integer',
+                    value: 0
+                  }
+                }
+              }
+            },
             "children": [
               {
                 "type": "image",
-                "attributes": {"id": undefined, "name": ''}
+                "attributes": {
+                  image: {
+                    searchable: false,
+                    translatable: false,
+                    type: 'blob',
+                    value: {
+                      id: undefined,
+                      name: ''
+                    }
+                  },
+                  alt: {
+                    searchable: true,
+                    translatable: true,
+                    type: 'string',
+                    value: ''
+                  },
+                  caption: {
+                    searchable: true,
+                    translatable: true,
+                    type: 'string',
+                    value: ''
+                  }
+                }
               }
             ]
           },
           {
             "type": "column",
-            "attributes": {"size": 8, "offset": 0},
+            "attributes": {
+              size: {
+                searchable: false,
+                translatable: false,
+                type: 'integer',
+                value: 8
+              },
+              offset: {
+                searchable: false,
+                translatable: false,
+                type: 'integer',
+                value: 0
+              },
+              mobile: {
+                searchable: false,
+                translatable: false,
+                type: 'hash',
+                value: {
+                  enabled: {
+                    searchable: false,
+                    translatable: false,
+                    type: 'boolean',
+                    value: false
+                  },
+                  size: {
+                    searchable: false,
+                    translatable: false,
+                    type: 'integer',
+                    value: 12
+                  },
+                  offset: {
+                    searchable: false,
+                    translatable: false,
+                    type: 'integer',
+                    value: 0
+                  }
+                }
+              },
+              tablet: {
+                searchable: false,
+                translatable: false,
+                type: 'hash',
+                value: {
+                  enabled: {
+                    searchable: false,
+                    translatable: false,
+                    type: 'boolean',
+                    value: false
+                  },
+                  size: {
+                    searchable: false,
+                    translatable: false,
+                    type: 'integer',
+                    value: 12
+                  },
+                  offset: {
+                    searchable: false,
+                    translatable: false,
+                    type: 'integer',
+                    value: 0
+                  }
+                }
+              }
+            },
             "children": [
               {
                 "type": "text",
-                "attributes": {"searchable_body": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A dicta, est quos distinctio culpa! Quasi cupiditate, totam nulla reprehenderit animi iusto qui cumque culpa repellat eum sit? Debitis, laboriosam reiciendis!</p>"}
+                "attributes": {
+                  body: {
+                    searchable: true,
+                    translatable: true,
+                    type: 'text',
+                    value: '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A dicta, est quos distinctio culpa! Quasi cupiditate, totam nulla reprehenderit animi iusto qui cumque culpa repellat eum sit? Debitis, laboriosam reiciendis!</p>'
+                  }
+                }
               }
             ]
           }

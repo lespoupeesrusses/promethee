@@ -25,15 +25,22 @@ class Promethee::Data::Localization < Promethee::Data
     @master_data.flat.each do |master_component|
       localized_component = find_localized_component master_component[:id]
       # We take the localized component if it exists, the master component otherwise
-      component = localized_component || master_component.except(:attributes)
+      component = localized_component || get_component_without_attributes_values(master_component)
       component[:attributes] ||= {}
       # We add it to the list of localized components
       @data[:components] << component
     end
   end
 
-  def get_component_without_values(component)
+  def get_component_without_attributes_values(component)
+    clean_component = component.deep_dup
+    clean_component[:attributes] = clean_component[:attributes].keep_if { |key, object_value|
+      object_value[:translatable]
+    }.map { |key, object_value|
+      [key, object_value.merge({ value: '' })]
+    }.to_h
 
+    clean_component
   end
 
   def find_localized_component(id)

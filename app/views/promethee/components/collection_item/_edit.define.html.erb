@@ -10,6 +10,7 @@
         attributes: {
           caption: {
             searchable: true,
+            translatable: true,
             type: 'text',
             value: ''
           },
@@ -19,11 +20,13 @@
               { label: 'Video', value: 'video' }
             ],
             searchable: false,
+            translatable: false,
             type: 'enum',
             value: 'image'
           },
           image: {
             searchable: false,
+            translatable: false,
             type: 'blob',
             value: {
               id: undefined,
@@ -32,6 +35,7 @@
           },
           video: {
             searchable: false,
+            translatable: true,
             type: 'video',
             value: 'https://vimeo.com/115082758'
           }

@@ -70,16 +70,19 @@ promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'pres
       attributes: {
         title: {
           searchable: true,
+          translatable: true,
           type: 'string',
           value: 'New page'
         },
         description: {
           searchable: true,
+          translatable: true,
           type: 'text',
           value: ''
         },
         thumbnail: {
           searchable: false,
+          translatable: false,
           type: 'blob',
           value: {
             id: undefined,
@@ -88,11 +91,13 @@ promethee.controller('PrometheeController', ['$scope', 'summernoteConfig', 'pres
         },
         stylesheets: {
           searchable: false,
+          translatable: false,
           type: 'string',
           value: ''
         },
         javascripts: {
           searchable: false,
+          translatable: false,
           type: 'string',
           value: ''
         }
