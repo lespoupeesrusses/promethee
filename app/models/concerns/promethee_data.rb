@@ -63,8 +63,7 @@ module PrometheeData
     # For masters, contents are in children
     searchable += promethee_extract_searchable_children component['children'] if component.include?('children')
     # For translations, contents are in components, not children
-    # TODO: children
-    # searchable += promethee_extract_searchable_children component['components'] if component.include? 'components'
+    searchable += promethee_extract_searchable_children component['components'] if component.include?('components')
     searchable
   end
 
