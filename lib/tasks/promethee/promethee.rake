@@ -18,4 +18,10 @@ namespace :promethee do
     service.start
   end
 
+  desc "Upgrade data to Promethée V4"
+  task :upgrade_blob_data, [:model_name] => :environment do |task, args|
+    service = Promethee::StructureUpgraderService.new(args[:model_name])
+    service.start
+  end
+
 end
