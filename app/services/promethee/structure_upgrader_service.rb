@@ -55,6 +55,14 @@ class Promethee::StructureUpgraderService
     puts '====== END UPGRADER ========'
   end
 
+  def process_component(data)
+    self.class.process_component(data)
+  end
+
+  def process_localization(data)
+    self.class.process_localization(data)
+  end
+
   def self.process_component(data)
     component_type = data['type']
     component_upgrader = search_component(component_type).new(data)
@@ -67,6 +75,12 @@ class Promethee::StructureUpgraderService
 
   def self.process_localization(data)
     data['components'].map! { |component| process_localization_component(component) }
+    children = []
+    data['components'].each { |component|
+      children.concat component.delete('children').to_a
+    }
+    data['components'].concat children
+
     data
   end
 
@@ -88,6 +102,10 @@ class Promethee::StructureUpgraderService
 
   def self.components_library
     BASE_COMPONENTS.merge(custom_components)
+  end
+
+  def can_process?(data)
+    data.is_a?(Hash) && (data.has_key?("components") || data.has_key?("children"))
   end
 
   def self.custom_components

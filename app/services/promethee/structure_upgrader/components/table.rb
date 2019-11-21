@@ -15,9 +15,18 @@
 module Promethee::StructureUpgrader::Components
   class Table < Base
     def upgrade
-      generate_cell_matrix
+      @upgraded_data = @data.deep_dup
+      return if @upgraded_data['attributes'].empty?
 
-      super
+      if attribute('cols').nil?
+        # Localization
+        generate_cell_matrix_from_data
+      else
+        # Master component
+        generate_cell_matrix_from_structure
+      end
+
+      @upgraded_data['attributes'] = upgraded_attributes.deep_stringify_keys
       @upgraded_data['children'] = @cell_matrix.flatten
     end
 
@@ -38,7 +47,7 @@ module Promethee::StructureUpgrader::Components
 
     private
 
-    def generate_cell_matrix
+    def generate_cell_matrix_from_structure
       cols = attribute('cols')
       rows = attribute('rows')
       data_matrix = []
@@ -57,6 +66,32 @@ module Promethee::StructureUpgrader::Components
             uids: [row_uid, col_uid]
           }
         }
+      end
+
+      @cell_matrix = data_matrix.map { |row|
+        row.map { |cell_data| new_cell(cell_data) }
+      }
+    end
+
+    def generate_cell_matrix_from_data
+      cols_data = attribute('cols_data')
+      rows_data = attribute('rows_data')
+      data_matrix = []
+
+      data_matrix << cols_data.map do |col_uid, _|
+        {
+          text: string_attribute('cols_data', col_uid, 'searchable_text'),
+          uids: [col_uid, col_uid]
+        }
+      end
+
+      rows_data.each do |row_uid, row_data|
+        data_matrix << row_data.map do |col_uid, _|
+          {
+            text: string_attribute('rows_data', row_uid, col_uid, 'searchable_text'),
+            uids: [row_uid, col_uid]
+          }
+        end
       end
 
       @cell_matrix = data_matrix.map { |row|
