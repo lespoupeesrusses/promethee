@@ -41,45 +41,58 @@ module Promethee::StructureUpgrader::Components
     def generate_cell_matrix
       cols = attribute('cols')
       rows = attribute('rows')
-      text_matrix = []
+      data_matrix = []
 
-      text_matrix << cols.map { |col_uid|
-        string_attribute('cols_data', col_uid, 'searchable_text')
+      data_matrix << cols.map { |col_uid|
+        {
+          text: string_attribute('cols_data', col_uid, 'searchable_text'),
+          uids: [col_uid, col_uid]
+        }
       }
 
       rows.each do |row_uid|
-        text_matrix << cols.map { |col_uid|
-          string_attribute('rows_data', row_uid, col_uid, 'searchable_text')
+        data_matrix << cols.map { |col_uid|
+          {
+            text: string_attribute('rows_data', row_uid, col_uid, 'searchable_text'),
+            uids: [row_uid, col_uid]
+          }
         }
       end
 
-      @cell_matrix = text_matrix.map { |row|
-        row.map { |cell_text| new_cell(cell_text) }
+      @cell_matrix = data_matrix.map { |row|
+        row.map { |cell_data| new_cell(cell_data) }
       }
     end
 
-    def new_cell(text)
+    def new_cell(data)
       {
-        'id' => new_uuid,
+        'id' => new_uuid(data[:uids]),
         'type' => 'table_cell',
         'attributes' => {
           'text' => {
             'searchable' => true,
             'translatable' => true,
             'type' => 'string',
-            'value' => text
+            'value' => data[:text]
           }
         }
       }
     end
 
-    def new_uuid
-      "#{uuid_s4}#{uuid_s4}-#{uuid_s4}-#{uuid_s4}-#{uuid_s4}-#{uuid_s4}#{uuid_s4}#{uuid_s4}"
-    end
+    def new_uuid(uids)
+      # Not random to keep the connection between master & translations
+      # [bf59b8868b, dcd302bc62]
+      # => "bf59b886-8bdc-d302-bc62-8bdcd302bc62"
+      source = uids.join ''
+      parts = [
+        source[0..7],
+        source[8..11],
+        source[12..15],
+        source[16..19],
+        source[8..19]
+      ]
 
-    def uuid_s4
-      # https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
-      ((1 + rand) * 0x10000).floor.to_s(16)[1..-1];
+      parts.join('-')
     end
   end
 end
