@@ -19,8 +19,6 @@ class Promethee::StructureUpgraderService
     video: Promethee::StructureUpgrader::Components::Video
   }
 
-  CUSTOM_COMPONENTS = {}
-
   attr_accessor :objects
 
   def initialize(model_name)
@@ -44,7 +42,12 @@ class Promethee::StructureUpgraderService
       i += 1
       puts "Processing object ##{object.id}"
 
-      object.data = process_component(object.data)
+      if object.data.has_key? 'components'
+        object.data = process_localization(object.data)
+      else
+        object.data = process_component(object.data)
+      end
+
       object.save
       puts "End processing object ##{object.id}"
     end
@@ -62,7 +65,19 @@ class Promethee::StructureUpgraderService
     data
   end
 
-  private
+  def self.process_localization(data)
+    data['components'].map! { |component| process_localization_component(component) }
+    data
+  end
+
+  def self.process_localization_component(component)
+    upgraded_component = process_component(component)
+    upgraded_component['attributes'].keep_if { |key, object_value| object_value['translatable'] }
+
+    upgraded_component
+  end
+
+  protected
 
   def self.search_component(type)
     component = components_library[type.to_sym]
@@ -72,6 +87,10 @@ class Promethee::StructureUpgraderService
   end
 
   def self.components_library
-    @components_library ||= BASE_COMPONENTS.merge(CUSTOM_COMPONENTS)
+    BASE_COMPONENTS.merge(custom_components)
+  end
+
+  def self.custom_components
+    {}
   end
 end
