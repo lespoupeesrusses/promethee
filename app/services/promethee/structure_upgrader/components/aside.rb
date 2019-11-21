@@ -32,7 +32,7 @@ module Promethee::StructureUpgrader::Components
           'searchable' => true,
           'translatable' => true,
           'type' => 'string',
-          value: string_attribute('searchable_open_label')
+          'value': string_attribute('searchable_open_label')
         },
         'open_label_position' => {
           'collection' => [

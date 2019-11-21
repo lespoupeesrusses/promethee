@@ -29,7 +29,7 @@ module Promethee::StructureUpgrader::Components
           'searchable' => true,
           'translatable' => true,
           'type' => 'string',
-          value: string_attribute('searchable_title')
+          'value': string_attribute('searchable_title')
         },
         'body' => {
           'searchable' => true,
