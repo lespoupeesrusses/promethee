@@ -1,8 +1,8 @@
 ###################################
-#  NOTE FOR UPGRADING TO 3.x.x  #
+#  NOTE FOR UPGRADING TO 4.x.x  #
 ###################################
 
-In Prométhée 3.0, the access to ActiveStorage blobs is now with signed IDs instead of simple IDs.
+In Prométhée 4.0, to apply the correct sanitization process, every attribute has an explicit type.
 A rake task is available to upgrade your data.
 
 For more details, check the documentation:
