@@ -18,22 +18,15 @@ module Promethee::StructureUpgrader::Components
       @upgraded_data = @data.deep_dup
       return if @upgraded_data['attributes'].empty?
 
-      if attribute('cols').nil?
-        # Localization
-        generate_cell_matrix_from_data
-      else
-        # Master component
-        generate_cell_matrix_from_structure
-      end
+      attribute('cols').nil?  ? generate_cell_matrix_from_data
+                              : generate_cell_matrix_from_structure
 
       @upgraded_data['attributes'] = upgraded_attributes.deep_stringify_keys
       @upgraded_data['children'] = @cell_matrix.flatten
     end
 
     def upgraded_attributes
-      uuid_matrix = @cell_matrix.map { |row|
-        row.map { |cell| cell['id'] }
-      }
+      uuid_matrix = @cell_matrix.map { |row| row.map { |cell| cell['id'] } }
 
       {
         'structure' => {
@@ -48,52 +41,42 @@ module Promethee::StructureUpgrader::Components
     private
 
     def generate_cell_matrix_from_structure
-      cols = attribute('cols')
-      rows = attribute('rows')
+      cols = attribute('cols').to_a
+      rows = attribute('rows').to_a
       data_matrix = []
 
-      data_matrix << cols.map { |col_uid|
-        {
-          text: string_attribute('cols_data', col_uid, 'searchable_text'),
-          uids: [col_uid, col_uid]
-        }
-      }
-
+      data_matrix << cols.map { |col_uid| new_cell_data(:col, col_uid) }
       rows.each do |row_uid|
-        data_matrix << cols.map { |col_uid|
-          {
-            text: string_attribute('rows_data', row_uid, col_uid, 'searchable_text'),
-            uids: [row_uid, col_uid]
-          }
-        }
+        data_matrix << cols.map { |col_uid| new_cell_data(:row, col_uid, row_uid) }
       end
 
-      @cell_matrix = data_matrix.map { |row|
-        row.map { |cell_data| new_cell(cell_data) }
-      }
+      generate_cell_matrix(data_matrix)
     end
 
     def generate_cell_matrix_from_data
-      cols_data = attribute('cols_data')
-      rows_data = attribute('rows_data')
+      cols_data = attribute('cols_data').to_h
+      rows_data = attribute('rows_data').to_h
       data_matrix = []
 
-      data_matrix << cols_data.map do |col_uid, _|
-        {
-          text: string_attribute('cols_data', col_uid, 'searchable_text'),
-          uids: [col_uid, col_uid]
-        }
-      end
-
+      data_matrix << cols_data.map { |col_uid, _| new_cell_data(:col, col_uid) }
       rows_data.each do |row_uid, row_data|
-        data_matrix << row_data.map do |col_uid, _|
-          {
-            text: string_attribute('rows_data', row_uid, col_uid, 'searchable_text'),
-            uids: [row_uid, col_uid]
-          }
-        end
+        data_matrix << row_data.map { |col_uid, _| new_cell_data(:row, col_uid, row_uid) }
       end
 
+      generate_cell_matrix(data_matrix)
+    end
+
+    def new_cell_data(type, col_uid, row_uid = nil)
+      row_uid ||= col_uid
+      uids = [row_uid, col_uid]
+
+      text = type == :col ? string_attribute('cols_data', col_uid, 'searchable_text')
+                          : string_attribute('rows_data', *uids, 'searchable_text')
+
+      { text: text, uids: uids }
+    end
+
+    def generate_cell_matrix(data_matrix)
       @cell_matrix = data_matrix.map { |row|
         row.map { |cell_data| new_cell(cell_data) }
       }

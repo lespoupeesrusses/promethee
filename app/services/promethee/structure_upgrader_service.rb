@@ -38,43 +38,28 @@ class Promethee::StructureUpgraderService
     i = 0
     objects.each do |object|
       next unless can_process?(object.data)
-
       i += 1
-      puts "Processing object ##{object.id}"
-
-      if object.data.has_key? 'components'
-        object.data = process_localization(object.data)
-      else
-        object.data = process_component(object.data)
-      end
-
-      object.save
-      puts "End processing object ##{object.id}"
+      process_object(object)
     end
     puts "Number of processed objects: #{i}"
     puts '====== END UPGRADER ========'
   end
 
-  def process_component(data)
-    self.class.process_component(data)
+  def process_object(object)
+    puts "Processing object ##{object.id}"
+
+    object.data = object.data.has_key?('components')  ? process_localization(object.data)
+                                                      : process_component(object.data)
+    object.save
+    puts "End processing object ##{object.id}"
   end
 
   def process_localization(data)
-    self.class.process_localization(data)
-  end
+    data['components'].map! { |component|
+      process_localization_component(component)
+    }
 
-  def self.process_component(data)
-    component_type = data['type']
-    component_upgrader = search_component(component_type).new(data)
-
-    data = component_upgrader.upgraded_data
-    data['children'].map! { |child| process_component(child) } if data.has_key? 'children'
-
-    data
-  end
-
-  def self.process_localization(data)
-    data['components'].map! { |component| process_localization_component(component) }
+    # We remove the possible children to concatenate them to the list
     children = []
     data['components'].each { |component|
       children.concat component.delete('children').to_a
@@ -84,31 +69,42 @@ class Promethee::StructureUpgraderService
     data
   end
 
-  def self.process_localization_component(component)
+  def process_localization_component(component)
     upgraded_component = process_component(component)
+    # We only keep the translatable attributes
     upgraded_component['attributes'].keep_if { |key, object_value| object_value['translatable'] }
-
     upgraded_component
+  end
+
+  def process_component(data)
+    component_type = data['type']
+    component_upgrader = search_component(component_type).new(data)
+
+    data = component_upgrader.upgraded_data
+    data['children'].map! { |child| process_component(child) } if data.has_key? 'children'
+
+    data
   end
 
   protected
 
-  def self.search_component(type)
+  def can_process?(data)
+    data.is_a?(Hash) && (data.has_key?("components") || data.has_key?("children"))
+  end
+
+  def search_component(type)
     component = components_library[type.to_sym]
 
     puts "Component <#{type}> not found." if component.nil?
     component
   end
 
-  def self.components_library
-    BASE_COMPONENTS.merge(custom_components)
+  def components_library
+    @components_library ||= BASE_COMPONENTS.merge(custom_components)
   end
 
-  def can_process?(data)
-    data.is_a?(Hash) && (data.has_key?("components") || data.has_key?("children"))
-  end
-
-  def self.custom_components
+  def custom_components
+    # Overriden in derivated services
     {}
   end
 end
