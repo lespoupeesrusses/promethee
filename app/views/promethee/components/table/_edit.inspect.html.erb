@@ -10,13 +10,13 @@
             ng-model="promethee.inspected.attributes.structure.value[0]">
         <div ng-if="getHeaderCellUids().length > 1" ng-repeat="cellUid in getHeaderCellUids()">
           <div class="row align-items-center">
-            <div class="col-1" style="line-height: 38px">
+            <div class="col-1 col-xs-1" style="line-height: 38px">
               <i class="fas fa-bars"></i>
             </div>
-            <div class="col-9">
+            <div class="col-8 col-xs-8">
               {{ getTableCell(cellUid).attributes.text.value }}
             </div>
-            <div class="col-2">
+            <div class="col-2 col-xs-2">
               <a  class="btn btn-default btn-light btn-sm"
                   ng-click="removeColumn($index)">
                 <%= icon('fa', 'close') %>
@@ -38,7 +38,8 @@
         <b ng-if="$index > 0">Row {{$index}}</b>
         <span class="small">
           <a  class="btn btn-default btn-light btn-sm float-right"
-              ng-click="removeRow($index)">
+              ng-click="removeRow($index)"
+              ng-if="$index > 0">
             <%= icon('fa', 'close') %>
           </a>
         </span><br/>
@@ -55,13 +56,15 @@
       <hr>
       <div ng-show="promethee.inspected.attributes.structure.value.length > 1">
         <label class="label-control">Drag the rows below to reorder them:</label>
-        <ul ui-sortable
+        <ul ui-sortable="sortableRowsOptions"
             ng-model="promethee.inspected.attributes.structure.value"
             class="list-unstyled">
-          <li ng-repeat="_ in promethee.inspected.attributes.structure.value track by $index">
-            <%= icon('fa', 'bars') %>
-            <span ng-if="$index === 0">Header</span>
-            <span ng-if="$index > 0">Row {{$index}}</span>
+          <li ng-repeat="_ in promethee.inspected.attributes.structure.value track by $index"
+              ng-class="{ 'unsortable': $index === 0 }">
+            <div ng-if="$index > 0">
+              <%= icon('fa', 'bars') %>
+              <span>Row {{$index}}</span>
+            </div>
           </li>
         </ul>
       </div>
@@ -79,6 +82,11 @@
           ui.item.sortable.cancel();
           this.sortColumns(originalIndex, newIndex);
       }.bind($scope)
+    };
+
+    $scope.sortableRowsOptions = {
+      cancel: '.unsortable',
+      items: '> li:not(.unsortable)'
     };
 
     $scope.getHeaderCellUids = function () {
@@ -139,6 +147,7 @@
     $scope.addColumn = function () {
       var tableCell,
           uid,
+          cellValue,
           i;
 
       if ($scope.getRowsCount() === 0) {
@@ -148,6 +157,9 @@
       for (i = 0; i < this.promethee.inspected.attributes.structure.value.length; i += 1) {
         tableCell = $scope.createNewCell();
         this.promethee.inspected.attributes.structure.value[i].push(tableCell.id);
+        if (i === 0) {
+          tableCell.attributes.text.value = 'Column';
+        }
       }
     };
 
