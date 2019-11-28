@@ -13,24 +13,26 @@
 %>
 
 <div id="component-<%= component[:id] %>" class="<%= promethee_class_for(component) %>">
-  <div class="table-responsive">
-    <table class="table">
-      <thead>
-        <tr>
-          <% headerRow.each do |cell| %>
-            <th><%= cell[:text] %></th>
-          <% end %>
-        </tr>
-      </thead>
-      <tbody>
-        <% rows.each do |row| %>
+  <% unless headerRow.nil? %>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
           <tr>
-            <% row.each do |cell| %>
-              <td><%= cell[:text] %></td>
+            <% headerRow.each do |cell| %>
+              <th><%= cell[:text] %></th>
             <% end %>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
+        </thead>
+        <tbody>
+          <% rows.each do |row| %>
+            <tr>
+              <% row.each do |cell| %>
+                <td><%= cell[:text] %></td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
 </div>
