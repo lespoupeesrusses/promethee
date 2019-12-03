@@ -57,31 +57,34 @@ class Promethee::StructureUpgraderService
   def process_localization(data)
     data['components'].map! { |component|
       process_localization_component(component)
-    }
+    }.compact!
 
     # We remove the possible children to concatenate them to the list
     children = []
     data['components'].each { |component|
       children.concat component.delete('children').to_a
     }
-    data['components'].concat children
+    data['components'].concat(children).compact!
 
     data
   end
 
   def process_localization_component(component)
     upgraded_component = process_component(component)
+    return nil if upgraded_component.nil?
     # We only keep the translatable attributes
     upgraded_component['attributes'].keep_if { |key, object_value| object_value['translatable'] }
     upgraded_component
   end
 
   def process_component(data)
+    return nil unless data.has_key? 'type'
+
     component_type = data['type']
     component_upgrader = search_component(component_type).new(data)
 
     data = component_upgrader.upgraded_data
-    data['children'].map! { |child| process_component(child) } if data.has_key? 'children'
+    data['children'].map! { |child| process_component(child) }.compact! if data.has_key? 'children'
 
     data
   end

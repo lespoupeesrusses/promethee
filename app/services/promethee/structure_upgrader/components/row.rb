@@ -32,10 +32,12 @@ module Promethee::StructureUpgrader::Components
     private
 
     def upgraded_backgrounds(backgrounds)
+      backgrounds ||= []
       backgrounds.map { |background|
         {
           'image' => {
             'searchable' => false,
+            'translatable' => false,
             'type' => 'blob',
             'value' => background['image']
           },
@@ -46,6 +48,7 @@ module Promethee::StructureUpgrader::Components
               { 'label' => 'Right', 'value' => 'right' }
             ],
             'searchable' => false,
+            'translatable' => false,
             'type' => 'enum',
             'value' => background['posh']
           },
@@ -56,6 +59,7 @@ module Promethee::StructureUpgrader::Components
               { 'label' => 'Bottom', 'value' => 'bottom' }
             ],
             'searchable' => false,
+            'translatable' => false,
             'type' => 'enum',
             'value' => background['posv']
           },
@@ -66,6 +70,7 @@ module Promethee::StructureUpgrader::Components
               { 'label' => 'Contain', 'value' => 'contain' }
             ],
             'searchable' => false,
+            'translatable' => false,
             'type' => 'enum',
             'value' => background['size']
           }

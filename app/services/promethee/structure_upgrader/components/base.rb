@@ -13,6 +13,7 @@ module Promethee::StructureUpgrader::Components
 
     def upgrade
       @upgraded_data = @data.deep_dup
+      @upgraded_data['attributes'] ||= {}
       return if @upgraded_data['attributes'].empty?
 
       @upgraded_data['attributes'] = upgraded_attributes.deep_stringify_keys
