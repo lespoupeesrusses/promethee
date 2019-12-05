@@ -11,7 +11,7 @@ when 'video'
     iframe_src = "https://player.vimeo.com/video/#{video_id}?color=ffffff&title=0&byline=0&portrait=0"
   elsif 'youtube'.in? url
     video_id = url.split('watch?v=').last
-    iframe_src = "http://www.youtube.com/embed/#{video_id}"
+    iframe_src = "https://www.youtube.com/embed/#{video_id}"
   else
     iframe_src = url
   end
