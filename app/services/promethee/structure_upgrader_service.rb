@@ -84,7 +84,8 @@ class Promethee::StructureUpgraderService
     component_upgrader = search_component(component_type).new(data)
 
     data = component_upgrader.upgraded_data
-    data['children'].map! { |child| process_component(child) }.compact! if data.has_key? 'children'
+    data['children'] ||= []
+    data['children'].map! { |child| process_component(child) }.compact!
 
     data
   end
