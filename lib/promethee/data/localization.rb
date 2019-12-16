@@ -38,7 +38,7 @@ class Promethee::Data::Localization < Promethee::Data
       object_value[:translatable]
     }.map { |key, object_value|
       [key, object_value.merge({ value: '' })]
-    }.to_h if clean_component.has_key :attributes
+    }.to_h if clean_component.has_key? :attributes
 
     clean_component
   end
