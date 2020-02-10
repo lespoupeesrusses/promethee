@@ -3,11 +3,11 @@
   author = component[:attributes].dig(:author, :value)&.to_s
 %>
 
-<div class="row <%= promethee_class_for(component) %>">
-  <div class="col-md-12">
-    <div class="blockquote"><%= body %></div>
-    <% if author.present? %>
-      <p class="author"><%= author %></p>
-    <% end %>
-  </div>
+<div class="<%= promethee_class_for(component) %>">
+    <blockquote class="blockquote">
+        <div><%= body %></div>
+        <% if author.present? %>
+            <footer class="author"><%= author %></footer>
+        <% end %>
+    </blockquote>
 </div>

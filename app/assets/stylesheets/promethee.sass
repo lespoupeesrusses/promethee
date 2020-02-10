@@ -19,11 +19,10 @@
             padding-right: 0
 
         &__page > &
-            margin-bottom: 50px
+            margin-bottom: $grid-gutter-width*2
 
         &__aside
             .aside__button
-                padding-top: $grid-gutter-width
                 a
                     display: inline-block
                 &--center
@@ -37,28 +36,30 @@
             .blockquote
                 border: none
                 font-size: 30px
+                text-align: center
 
                 p
                     display: inline
+                    font-size: 30px
 
-                &::before, &::after
-                    display: inline-block
+                div
+                    margin-bottom: 20px
+                    &::before, &::after
+                        display: inline-block
 
-                &::before
-                    content: '« '
+                    &::before
+                        content: '“ '
 
-                &::after
-                    content: ' »'
+                    &::after
+                        content: ' ”'
 
             .author
                 font-size: 14px
-                font-style: italic
 
         &__collection
-            margin-bottom: 20px
-            margin-top: 20px
-            .clearfix
-                margin: 40px 0
+            margin-bottom: $grid-gutter-width
+            > div
+                margin-bottom: $grid-gutter-width
             .collection-item__content
                 &:not(:last-of-type)
                     margin-bottom: $grid-gutter-width
@@ -141,6 +142,21 @@
                     p:last-of-type
                         margin-bottom: 0
                         margin-top: 10px
+
+
+        // component direct in root
+        &__page > &__blockquote
+            .blockquote
+                @extend .col-md-8
+                @extend .offset-md-2
+
+        &__page > &__aside,
+        &__page > &__faq,
+        &__page > &__text
+            > div
+                @extend .col-md-10
+                @extend .offset-md-1
+
 
 @media print
     body

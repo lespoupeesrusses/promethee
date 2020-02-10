@@ -6,18 +6,20 @@
 %>
 
 <aside class="<%= promethee_class_for component %> aside">
-  <%= visible_content %>
+    <div>
+        <div class="aside__content">
+            <%= visible_content %>
+        </div>
+        <% if collapsed_content.present? %>
 
-  <% if collapsed_content.present? %>
+            <div class="collapse aside__collapse" id="aside-collapse-<%= component[:id] %>">
+                <%= collapsed_content %>
+            </div>
 
-      <div class="collapse aside__collapse" id="aside-collapse-<%= component[:id] %>">
-        <%= collapsed_content %>
-      </div>
+            <div class="aside__button aside__button--<%= open_label_position %>">
+                <a href="#aside-collapse-<%= component[:id] %>" data-toggle="collapse"><%= open_label %></a>
+            </div>
 
-      <div class="aside__button aside__button--<%= open_label_position %>">
-        <a href="#aside-collapse-<%= component[:id] %>" data-toggle="collapse"><%= open_label %></a>
-      </div>
-
-  <% end %>
-
+        <% end %>
+    </div>
 </aside>

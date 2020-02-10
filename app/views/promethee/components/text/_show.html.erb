@@ -2,5 +2,7 @@
 body = component[:attributes].dig(:body, :value)&.to_s&.html_safe
 %>
 <div class="<%= promethee_class_for component %>">
-  <%= body %>
+    <div>
+        <%= body %>
+    </div>
 </div>
