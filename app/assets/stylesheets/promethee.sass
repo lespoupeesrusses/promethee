@@ -105,7 +105,7 @@
 
         &__faq
             &_item:not(:last-of-type)
-                padding-bottom: 10px
+                padding-bottom: 20px
             h4
                 cursor: pointer
                 position: relative
@@ -124,8 +124,10 @@
                 &[aria-expanded="true"]
                     &::after
                         transform: rotate(315deg)
-            img
-                margin-bottom: $grid-gutter-width
+            a
+                display: block
+            p:last-child
+                margin-bottom: 0
 
         &__slider
             .promethee__component

@@ -17,11 +17,11 @@ image_blob = blob_from_data component[:attributes].dig(:image, :value)
   <div class="collapse" id="collapse-faq-<%= component[:id] %>">
     <% if image_blob %>
       <div class="row ">
-        <div class="col-9 col-xs-9">
-          <%= body %>
-        </div>
         <div class="col-3 col-xs-3">
           <%= render 'promethee/show/image.srcset', blob: image_blob, alt: '', caption: '' %>
+        </div>
+        <div class="col-9 col-xs-9">
+          <%= body %>
         </div>
       </div>
     <% else %>
