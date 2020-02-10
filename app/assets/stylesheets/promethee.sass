@@ -81,7 +81,7 @@
             text-align: center
 
             &::before
-                background-color: rgba(0,0,0,.3)
+                background-color: rgba($black,.3)
                 bottom: 0
                 content: ''
                 left: 0
@@ -110,8 +110,8 @@
                 cursor: pointer
                 position: relative
                 &::after
-                    border-right: 2px solid #000
-                    border-top: 2px solid #000
+                    border-right: 2px solid $black
+                    border-top: 2px solid $black
                     content: ''
                     display: block
                     height: 8px
@@ -144,6 +144,13 @@
                     p:last-of-type
                         margin-bottom: 0
                         margin-top: 10px
+            .carousel-control-prev,
+            .carousel-control-next
+                color: $black
+            .carousel-control-prev
+                justify-content: flex-start
+            .carousel-control-next
+                justify-content: flex-end
 
 
         // component direct in root
