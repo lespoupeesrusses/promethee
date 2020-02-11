@@ -1,5 +1,9 @@
 @import "@fancyapps/fancybox/dist/jquery.fancybox.min"
 
+
+$black: #000000 !default
+
+
 //  aside
 //  blockquote
 //  collection
@@ -20,6 +24,9 @@
 
         &__page > &
             margin-bottom: $grid-gutter-width*2
+
+        &__row
+            @extend .row
 
         &__aside
             .aside__button
@@ -81,7 +88,7 @@
             text-align: center
 
             &::before
-                background-color: rgba($black,.3)
+                background-color: rgba(0,0,0,.3)
                 bottom: 0
                 content: ''
                 left: 0
@@ -154,29 +161,28 @@
 
 
         // component direct in root
-        &__page > &__blockquote
-            .blockquote
-                @extend .col-md-8
-                @extend .offset-md-2
-
+        &__page > &__blockquote,
         &__page > &__cover
-            .content
+            .promethee__component__content
                 @extend .col-md-8
-                @extend .offset-md-2
+                @extend .offset-md-2 !optional
+                @extend .col-md-offset-2 !optional
 
         &__page > &__aside,
         &__page > &__faq,
-        &__page > &__text
-            > div
+        &__page > &__image,
+        &__page > &__text,
+        &__page > &__video
+            .promethee__component__content
                 @extend .col-md-10
-                @extend .offset-md-1
+                @extend .offset-md-1 !optional
+                @extend .col-md-offset-1 !optional
 
-
-        @include media-breakpoint-up(lg)
+        @media screen and (max-width: 900px)
             &__cover
                 min-height: 450px
 
-        @include media-breakpoint-up(xl)
+        @media screen and (max-width: 1200px)
             &__cover
                 min-height: 600px
 

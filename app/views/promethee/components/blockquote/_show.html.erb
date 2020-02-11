@@ -4,10 +4,14 @@
 %>
 
 <div class="<%= promethee_class_for(component) %>">
-    <blockquote class="blockquote">
+  <div class="promethee__component__row">
+    <div class="promethee__component__content">
+      <blockquote class="blockquote">
         <div><%= body %></div>
         <% if author.present? %>
             <footer class="author"><%= author %></footer>
         <% end %>
-    </blockquote>
+      </blockquote>
+    </div>
+  </div>
 </div>

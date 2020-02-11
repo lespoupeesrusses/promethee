@@ -5,10 +5,14 @@ alt = component[:attributes].dig(:alt, :value)&.to_s
 caption = component[:attributes].dig(:caption, :value)&.to_s
 %>
 <figure class="<%= promethee_class_for component %>">
-  <%= render 'promethee/show/image.srcset', blob: blob, alt: alt, caption: caption if blob %>
-  <% unless caption.blank? %>
-    <figcaption>
-      <%= caption %>
-    </figcaption>
-  <% end %>
+  <div class="promethee__component__row">
+    <div class="promethee__component__content">
+      <%= render 'promethee/show/image.srcset', blob: blob, alt: alt, caption: caption if blob %>
+      <% unless caption.blank? %>
+        <figcaption>
+          <%= caption %>
+        </figcaption>
+      <% end %>
+    </div>
+  </div>
 </figure>

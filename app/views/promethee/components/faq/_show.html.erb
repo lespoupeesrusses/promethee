@@ -1,5 +1,9 @@
 <div class="<%= promethee_class_for component %>">
-  <% component[:children].each do |child| %>
-  <%= render 'promethee/show/component', component: child %>
-  <% end %>
+  <div class="promethee__component__row">
+    <div class="promethee__component__content">
+      <% component[:children].each do |child| %>
+      <%= render 'promethee/show/component', component: child %>
+      <% end %>
+    </div>
+  </div>
 </div>
