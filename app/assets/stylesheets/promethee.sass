@@ -76,7 +76,7 @@
             justify-content: center
             margin-bottom: 50px
             min-height: 300px
-            padding: 150px 30px
+            padding: $grid-gutter-width 0
             position: relative
             text-align: center
 
@@ -159,12 +159,26 @@
                 @extend .col-md-8
                 @extend .offset-md-2
 
+        &__page > &__cover
+            .content
+                @extend .col-md-8
+                @extend .offset-md-2
+
         &__page > &__aside,
         &__page > &__faq,
         &__page > &__text
             > div
                 @extend .col-md-10
                 @extend .offset-md-1
+
+
+        @include media-breakpoint-up(lg)
+            &__cover
+                min-height: 450px
+
+        @include media-breakpoint-up(xl)
+            &__cover
+                min-height: 600px
 
 
 @media print

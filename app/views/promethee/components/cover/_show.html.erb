@@ -6,16 +6,17 @@ title = component[:attributes].dig(:title, :value)&.to_s
 subtitle = component[:attributes].dig(:subtitle, :value)&.to_s
 %>
 <div id="component-<%= component[:id] %>" class="<%= promethee_class_for(component) %>" style="background-image: url(<%= url_for(blob.variant(resize: '1920>', quality: 95)) if blob %>)">
-  <% if surtitle.present? %>
-    <p><%= surtitle %></p>
-  <% end %>
-
-  <% if title.present? %>
-    <h1><%= title %></h1>
-  <% end %>
-
-  <% if subtitle.present? %>
-    <p><%= subtitle %></p>
-  <% end %>
-
+    <div class="container">
+        <div class="content">
+          <% if surtitle.present? %>
+            <p><%= surtitle %></p>
+          <% end %>
+          <% if title.present? %>
+            <h1><%= title %></h1>
+          <% end %>
+          <% if subtitle.present? %>
+            <p><%= subtitle %></p>
+          <% end %>
+        </div>
+    </div>
 </div>
