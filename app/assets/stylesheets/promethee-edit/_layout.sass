@@ -36,7 +36,7 @@
             width: 50px
 
     &__thumb-preview
-        background: #eee
+        background: $promethee-light-grey
         border: none
         display: block
         height: $rendered-height
@@ -74,7 +74,7 @@
             a
                 color: white
                 &:hover
-                    color: #eee
+                    color: $promethee-light-grey
         .dropdown-menu
             background: #232323
             min-width: 20px
@@ -89,11 +89,11 @@
 
     .video-neutralizing-overlay
         background: transparent
-        position: absolute
-        top: 0
-        left: 0
-        right: 0
         bottom: 0
+        left: 0
+        position: absolute
+        right: 0
+        top: 0
 
 
 .promethee_uploader--preview
@@ -150,10 +150,10 @@
                 content: ' ”'
             p
                 display: inline
-                line-height: 1.3125rem
+                line-height: 1.4rem
 
 
 @media (min-width: 768px)
-  .modal-dialog
-    // default margin-top is 30px and the modal window is displayed UNDER the topbar
-    margin-top: 60px
+    .modal-dialog
+        // default margin-top is 30px and the modal window is displayed UNDER the topbar
+        margin-top: 60px

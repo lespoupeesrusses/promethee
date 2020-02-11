@@ -1,29 +1,29 @@
 .promethee-edit__preview
-  background: black
-  position: relative
-  height: 100%
-  min-height: 500px
-
-  &-frame
-    top: 0
-    left: 50%
-    transition: width .7s
-    position: absolute
+    background: black
     height: 100%
-    transform: translate3d(-50%, 0, 0)
+    min-height: 500px
+    position: relative
 
-  &-loader
-    left: 50%
-    margin: 100px 0
-    position: absolute
-    color: #fff
-    transform: translateX(-50%)
+    &-frame
+        height: 100%
+        left: 50%
+        position: absolute
+        top: 0
+        transform: translate3d(-50%, 0, 0)
+        transition: width .7s
 
-  &--mobile &-frame
-    width: 375px
+    &-loader
+        color: #FFFFFF
+        left: 50%
+        margin: 100px 0
+        position: absolute
+        transform: translateX(-50%)
 
-  &--tablet &-frame
-    width: 768px
+    &--mobile &-frame
+        width: 375px
 
-  &--desktop &-frame
-    width: 100%
+    &--tablet &-frame
+        width: 768px
+
+    &--desktop &-frame
+        width: 100%

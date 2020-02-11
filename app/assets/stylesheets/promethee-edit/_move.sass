@@ -1,211 +1,211 @@
 .promethee-edit__move
-  width: 720px
-  margin: 0 auto
-  .promethee-edit__component
-    font-size: 100%
-    line-height: 100%
-    &__inner
-      min-height: 50px
-      position: relative
-      border: 1px solid #ccc
-      p.text-empty
-        line-height: 50px
-        margin-bottom: 0
-    &--selected
-      > .promethee-edit__component__inner
-        border-color: black
-        > .header
-          background: black
-          color: white
-    &__remove
-      position: absolute
-      top: 4px
-      right: 4px
-      padding: 1px 2px 1px 3px
-      background: white
-      font-size: 12px
-      line-height: 12px
-      z-index: 1
+    margin: 0 auto
+    width: 720px
+    .promethee-edit__component
+        font-size: 100%
+        line-height: 100%
+        &__inner
+            border: 1px solid #CCCCCC
+            min-height: 50px
+            position: relative
+            p.text-empty
+                line-height: 50px
+                margin-bottom: 0
+        &--selected
+            > .promethee-edit__component__inner
+                border-color: black
+                > .header
+                    background: black
+                    color: white
+        &__remove
+            background: white
+            font-size: 12px
+            line-height: 12px
+            padding: 1px 2px 1px 3px
+            position: absolute
+            right: 4px
+            top: 4px
+            z-index: 1
 
-    &--aside
-      .btn
-        &.left
-          text-align: left
-        &.center
-          text-align: center
-        &.right
-          text-align: right
+        &--aside
+            .btn
+                &.left
+                    text-align: left
+                &.center
+                    text-align: center
+                &.right
+                    text-align: right
 
-    &--faq_item
-      margin-bottom: 10px
+        &--faq_item
+            margin-bottom: 10px
 
-    &--slider
-      .carousel
-        display: flex
-        justify-content: space-around
-        align-items: stretch
-        .col-xs-8,
-        .col-xs-1,
-        .col-8,
-        .col-1
-          padding: 0
+        &--slider
+            .carousel
+                align-items: stretch
+                display: flex
+                justify-content: space-around
+                .col-xs-8,
+                .col-xs-1,
+                .col-8,
+                .col-1
+                    padding: 0
 
-        .col-xs-1,
-        .col-1
-          display: flex
-          justify-content: center
-          align-items: center
-      .dots
-        text-align: center
-        margin-top: 5px
+                .col-xs-1,
+                .col-1
+                    align-items: center
+                    display: flex
+                    justify-content: center
+            .dots
+                margin-top: 5px
+                text-align: center
 
-        & > span
-          display: inline-block
-          width: 8px
-          height: 8px
-          margin: 0 2px
-          background-color: #aaa
-          border-radius: 50%
-          color: transparent
+                & > span
+                    background-color: #AAAAAA
+                    border-radius: 50%
+                    color: transparent
+                    display: inline-block
+                    height: 8px
+                    margin: 0 2px
+                    width: 8px
 
-          &.active
-            background-color: #777
-    &--slider_item
-      .slider-item-caption
-        margin: 10px 0 5px 0
+                    &.active
+                        background-color: #777777
+        &--slider_item
+            .slider-item-caption
+                margin: 10px 0 5px 0
 
-    &--collection_item
-      .collection-item-caption
-        width: 100%
-        white-space: nowrap
-        overflow: hidden
-        text-overflow: ellipsis
+        &--collection_item
+            .collection-item-caption
+                overflow: hidden
+                text-overflow: ellipsis
+                white-space: nowrap
+                width: 100%
 
-  &__columns
-    .row.grid
-      pointer-events: none
-      user-select: none
-      height: 100%
-      min-height: 50px
-      position: fixed
-      top: 0
-      bottom: 0
-      width: 730px
-      z-index: 0
-      opacity: 0.03
-      .col
-        height: 100%
-        .color
-          height: 100%
-          background: black
-  &__page
-    z-index: 1
-    padding-bottom: 50px
-    height: calc(100vh - 50px)
-    overflow-x: hidden
-    overflow-y: auto
-  &__columns, &__page
-    .row
-      margin-left: -5px
-      margin-right: -5px
-    .col
-      padding-left: 5px
-      padding-right: 5px
-  .header
-    background: #ccc
-    padding: 4px 5px 5px
-    font-size: 8px
-    color: white
-    text-transform: uppercase
-    margin-bottom: 5px
-  &__component
-    user-select: none
-
-  &__droppable
-    visibility: hidden
-    opacity: .2
-    margin: 2px 0
-    position: relative
-    background: white
-    width: 100%
-    height: 20px
-    border: 1px dashed #253742
-    box-sizing: border-box
-    transition: width .2s, height .2s, opacity .2s
-    &.ui-droppable-active
-      visibility: visible
-    &.ui-droppable-hover
-      opacity: 1
-      height: 100px
-
-  .ui-draggable-dragging
-    z-index: 1000
-    opacity: 0.5
-    // Nothing is droppable inside components being dragged
-    .promethee-edit__move__droppable
-      visibility: hidden !important
-
-  .promethee-edit
-    &__inspect, &__library
-      min-width: 100px
-      background: white
-      position: fixed
-      top: 50px
-      bottom: 0
-      padding: 30px 20px 15px
-      z-index: 1000
-      width: calc(50vw - 365px)
-      overflow-x: hidden
-      overflow-y: auto
-      &-header
-        font-size: 18px
-        font-weight: bold
-        text-transform: uppercase
-        margin-bottom: 20px
-
-    &__inspect
-      right: 0
-
-      label.label-control
-        font-weight: normal
-
-      .list-unstyled
-        li
-          padding: 2px 0
-          .label
-            margin-left: 10px
+    &__columns
+        .row.grid
+            bottom: 0
+            height: 100%
+            min-height: 50px
+            opacity: 0.03
+            pointer-events: none
+            position: fixed
+            top: 0
             user-select: none
-            font-size: 75%
-            &:hover
-              cursor: pointer
-
-    &__library
-      padding-left: 10px
-      padding-right: 10px
-      left: 0
-      &-header
-        padding-left: 10px
-
-      &__item-container, &__item
-        display: inline-block
-      &__item
-        max-width: 100px
-        z-index: 100000
-        background-color: #253742
-        padding: 10px 5px 0 5px
-        margin: 0 10px 20px
-        height: 100px
-        min-width: 100px
-        text-align: center
+            width: 730px
+            z-index: 0
+            .col
+                height: 100%
+                .color
+                    background: black
+                    height: 100%
+    &__page
+        height: calc(100vh - 50px)
+        overflow-x: hidden
+        overflow-y: auto
+        padding-bottom: 50px
+        z-index: 1
+    &__columns, &__page
+        .row
+            margin-left: -5px
+            margin-right: -5px
+        .col
+            padding-left: 5px
+            padding-right: 5px
+    .header
+        background: #CCCCCC
         color: white
-        &__icon
-          display: block
-          height: 64px
-          svg
-            width: 60px
-            height: auto
-        &__name
-          margin-top: -10px
-          font-size: 11px
-          font-weight: normal
-          text-transform: uppercase
+        font-size: 8px
+        margin-bottom: 5px
+        padding: 4px 5px 5px
+        text-transform: uppercase
+    &__component
+        user-select: none
+
+    &__droppable
+        background: white
+        border: 1px dashed #253742
+        box-sizing: border-box
+        height: 20px
+        margin: 2px 0
+        opacity: .2
+        position: relative
+        transition: width .2s, height .2s, opacity .2s
+        visibility: hidden
+        width: 100%
+        &.ui-droppable-active
+            visibility: visible
+        &.ui-droppable-hover
+            height: 100px
+            opacity: 1
+
+    .ui-draggable-dragging
+        opacity: 0.5
+        z-index: 1000
+        // Nothing is droppable inside components being dragged
+        .promethee-edit__move__droppable
+            visibility: hidden !important
+
+    .promethee-edit
+        &__inspect, &__library
+            background: white
+            bottom: 0
+            min-width: 100px
+            overflow-x: hidden
+            overflow-y: auto
+            padding: 30px 20px 15px
+            position: fixed
+            top: 50px
+            width: calc(50vw - 365px)
+            z-index: 1000
+            &-header
+                font-size: 18px
+                font-weight: bold
+                margin-bottom: 20px
+                text-transform: uppercase
+
+        &__inspect
+            right: 0
+
+            label.label-control
+                font-weight: normal
+
+            .list-unstyled
+                li
+                    padding: 2px 0
+                    .label
+                        font-size: 75%
+                        margin-left: 10px
+                        user-select: none
+                        &:hover
+                            cursor: pointer
+
+        &__library
+            left: 0
+            padding-left: 10px
+            padding-right: 10px
+            &-header
+                padding-left: 10px
+
+            &__item-container, &__item
+                display: inline-block
+            &__item
+                background-color: #253742
+                color: white
+                height: 100px
+                margin: 0 10px 20px
+                max-width: 100px
+                min-width: 100px
+                padding: 10px 5px 0 5px
+                text-align: center
+                z-index: 100000
+                &__icon
+                    display: block
+                    height: 64px
+                    svg
+                        height: auto
+                        width: 60px
+                &__name
+                    font-size: 11px
+                    font-weight: normal
+                    margin-top: -10px
+                    text-transform: uppercase
