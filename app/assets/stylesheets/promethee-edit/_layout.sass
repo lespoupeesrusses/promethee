@@ -1,124 +1,156 @@
 .promethee-open
-  $real-width: 300px
-  $real-height: 500px
-  $rendered-width: 1280px
-  $rendered-height: $real-height/$real-width*$rendered-width
-  $size-ratio: $real-width/$rendered-width
+    $real-width: 300px
+    $real-height: 500px
+    $rendered-width: 1280px
+    $rendered-height: $real-height/$real-width*$rendered-width
+    $size-ratio: $real-width/$rendered-width
 
-  width: $real-width
-  height: $real-height
-  overflow: hidden
-  position: relative
-  text-align: center
+    height: $real-height
+    overflow: hidden
+    position: relative
+    text-align: center
+    width: $real-width
 
-  &, &::after, &__logo, &__button, &__thumb-preview
-    cursor: pointer
+    &,
+    &::after,
+    &__logo,
+    &__button,
+    &__thumb-preview
+        cursor: pointer
 
-  &::after
-    content: ''
-    width: 100%
-    height: 100%
-    top: 0
-    left: 0
-    border: 1px solid #253742
-    box-sizing: border-box
-    position: absolute
-    display: block
+    &::after
+        border: 1px solid #253742
+        box-sizing: border-box
+        content: ''
+        display: block
+        height: 100%
+        left: 0
+        position: absolute
+        top: 0
+        width: 100%
 
-  &__logo
-    padding: 20px
-    svg
-      width: 50px
-      height: 50px
+    &__logo
+        padding: 20px
+        svg
+            height: 50px
+            width: 50px
 
-  &__thumb-preview
-    margin-top: 20px
-    background: #eee
-    width: $rendered-width
-    height: $rendered-height
-    border: none
-    display: block
-    transform: scale(#{$size-ratio})
-    transform-origin: 0 0
+    &__thumb-preview
+        background: #eee
+        border: none
+        display: block
+        height: $rendered-height
+        margin-top: 20px
+        transform: scale(#{$size-ratio})
+        transform-origin: 0 0
+        width: $rendered-width
 
 .promethee-edit
-  background: white
-  position: fixed
-  left: 0
-  right: 0
-  bottom: 0
-  top: 0
-  padding-top: 50px
-  z-index: 10000
-  overflow: hidden
-
-  .navbar-nav
-    flex-direction: row
-
-  &__navbar
-    background: #232323
-    width: 100%
-    margin-bottom: 0
-    top: 0
-    left: 0
-    border-radius: 0
-    border: none
-    z-index: 10000
-    position: fixed
-    ul.nav li
-      position: relative
-      a
-        color: white
-        &:hover
-          color: #eee
-    .dropdown-menu
-      position: absolute
-      background: #232323
-      min-width: 20px
-
-  &__icon
-    svg path
-      fill: white
-
-  &__wrapper
-    padding: 10px
-
-  .video-neutralizing-overlay
-    background: transparent
-    position: absolute
-    top: 0
-    left: 0
-    right: 0
+    background: white
     bottom: 0
+    left: 0
+    overflow: hidden
+    padding-top: 50px
+    position: fixed
+    right: 0
+    top: 0
+    z-index: 10000
+
+    .navbar-nav
+        flex-direction: row
+
+    &__navbar
+        background: #232323
+        border: none
+        border-radius: 0
+        left: 0
+        margin-bottom: 0
+        position: fixed
+        top: 0
+        width: 100%
+        z-index: 10000
+        ul.nav li
+            position: relative
+            a
+                color: white
+                &:hover
+                    color: #eee
+        .dropdown-menu
+            background: #232323
+            min-width: 20px
+            position: absolute
+
+    &__icon
+        svg path
+            fill: white
+
+    &__wrapper
+        padding: 30px
+
+    .video-neutralizing-overlay
+        background: transparent
+        position: absolute
+        top: 0
+        left: 0
+        right: 0
+        bottom: 0
+
 
 .promethee_uploader--preview
-  margin-top: 5px
-  img, video
-    display: block
-    max-height: 34px
-  video
-    max-width: 50px
-  &__delete
-    cursor: pointer
-    float: right
-    margin-left: 5px
+    margin-top: 5px
+    img, video
+        display: block
+        max-height: 34px
+    video
+        max-width: 50px
+    &__delete
+        cursor: pointer
+        float: right
+        margin-left: 5px
 
 
 .promethee-edit
-  .row
-    position: relative
-    &__background
-      position: absolute
-      z-index: 0
-      top: 0
-      left: 5px
-      right: 5px
-      bottom: 0
-      opacity: .5
-      background-repeat: no-repeat
-    &__children
-      position: relative
-      z-index: 10
+    .row
+        position: relative
+        &__background
+            background-repeat: no-repeat
+            bottom: 0
+            left: 5px
+            opacity: .5
+            position: absolute
+            right: 5px
+            top: 0
+            z-index: 0
+        &__children
+            position: relative
+            z-index: 10
+
+    &__cover-content
+        background-position: center
+        background-repeat: no-repeat
+        background-size: cover
+        text-align: center
+
+        h1,
+        p
+            color: white
+
+        p:last-of-type
+            margin-bottom: 0
+
+    &__component--blockquote
+        text-align: center
+
+        .blockquote
+            &::before, &::after
+                display: inline-block
+            &::before
+                content: '“ '
+            &::after
+                content: ' ”'
+            p
+                display: inline
+                line-height: 1.3125rem
 
 
 @media (min-width: 768px)

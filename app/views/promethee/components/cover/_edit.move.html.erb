@@ -3,11 +3,9 @@
       <div  class=" promethee-edit__wrapper
                     promethee-edit__cover-content"
             style="background-image:url('{{ component.attributes.image.value.id ? '/promethee/blob/' + component.attributes.image.value.id : '' }}')">
-        <hgroup>
-          <h2 class="surtitle">{{component.attributes.surtitle.value}}</h2>
+          <p>{{component.attributes.surtitle.value}}</p>
           <h1>{{component.attributes.title.value}}</h1>
-          <h2 class="subtitle">{{component.attributes.subtitle.value}}</h2>
-        </hgroup>
+          <p>{{component.attributes.subtitle.value}}</p>
       </div>
     </div>
   </div>
