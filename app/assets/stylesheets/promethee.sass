@@ -1,8 +1,6 @@
 @import "@fancyapps/fancybox/dist/jquery.fancybox.min"
 
-
 $black: #000000 !default
-
 
 //  aside
 //  blockquote
@@ -11,22 +9,22 @@ $black: #000000 !default
 //  faq
 //  image
 //  slider
+//  table
+//  text
 
 .promethee
     &__component
-        &__page > &:not(&__cover)
-            @extend .container
-
-        &__page > &__collection:not(&__cover),
-        &__page > &__row:not(&__cover)
-            padding-left: 0
-            padding-right: 0
-
         &__page > &
+            @extend .container
             margin-bottom: $grid-gutter-width*2
 
-            > .promethee__component__row
-                @extend .row
+        &__page > &__cover
+            max-width: 100%
+
+        &__page > &__row,
+        &__page > &__collection
+            padding-left: 0
+            padding-right: 0
 
         &__aside
             .aside__button
@@ -177,6 +175,16 @@ $black: #000000 !default
                 @extend .col-md-10
                 @extend .offset-md-1 !optional
                 @extend .col-md-offset-1 !optional
+
+        @media screen and (max-width: 767.98px)
+            &__page > &
+                margin-bottom: $grid-gutter-width
+            &__page > &__video
+                padding-left: 0
+                padding-right: 0
+                .promethee__component__content
+                    padding-left: 0
+                    padding-right: 0
 
         @media screen and (max-width: 900px)
             &__cover
