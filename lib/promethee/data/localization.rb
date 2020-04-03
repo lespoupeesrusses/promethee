@@ -11,11 +11,13 @@ class Promethee::Data::Localization < Promethee::Data
 
   # We want to be up to date with the master, so this method will:
   # 1.take the master's components flattened
-  # 2 substitute what's already localized, based on the component id
+  # 2 substitute values of what's already localized, based on the component id
   # Consequences of step 1 are:
   # 1 it adds new components from the master
   # 2 it removes components not in the master anymore
   # 3 it takes the order from the master
+  # 4 use all translatable attributes from the master
+  # 5 merge them with translation values if they exist
   def merge
     @data_before_merge = @data.deep_dup
     @data = {
@@ -23,11 +25,10 @@ class Promethee::Data::Localization < Promethee::Data
       components: []
     }
     @master_data.flat.each do |master_component|
+      translatable_master_component = get_component_without_attributes_values(master_component)
       localized_component = find_localized_component master_component[:id]
-      # We take the localized component if it exists, the master component otherwise
-      component = localized_component || get_component_without_attributes_values(master_component)
-      component[:attributes] ||= {}
-      # We add it to the list of localized components
+
+      component = get_merged_translatable_component(translatable_master_component, localized_component)
       @data[:components] << component
     end
   end
@@ -41,6 +42,21 @@ class Promethee::Data::Localization < Promethee::Data
     }.to_h if clean_component.has_key? :attributes
 
     clean_component
+  end
+
+  def get_merged_translatable_component(master_component, localized_component)
+    # Not found in translation, we use the prepared master component
+    return master_component if localized_component.nil?
+
+    master_component[:attributes] ||= {}
+    localized_component[:attributes] ||= {}
+
+    # Merge values with the prepared master, allowing to add missing attributes from translation
+    master_component[:attributes].each do |attr_key, attr_value|
+      attr_value[:value] = localized_component.dig(:attributes, attr_key, :value) || ''
+    end
+
+    master_component
   end
 
   def find_localized_component(id)
