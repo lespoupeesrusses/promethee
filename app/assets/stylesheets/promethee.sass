@@ -53,7 +53,7 @@ $black: #000000 !default
                         display: inline-block
 
                     &::before
-                        content: '“ '
+                        content: '“ '
 
                     &::after
                         content: ' ”'
@@ -135,13 +135,9 @@ $black: #000000 !default
                 margin-bottom: 0
 
         &__slider
+            overflow: hidden
             .promethee__component
                 margin-bottom: 0
-            .fontawesome-carousel-control .fa
-                font-size: 30px
-                position: absolute
-                top: 50%
-                transform: translateY(-50%)
             .carousel-item
                 margin-bottom: 0
                 &__content
@@ -149,13 +145,20 @@ $black: #000000 !default
                     p:last-of-type
                         margin-bottom: 0
                         margin-top: 10px
-            .carousel-control-prev,
-            .carousel-control-next
-                color: $black
-            .carousel-control-prev
-                justify-content: flex-start
-            .carousel-control-next
-                justify-content: flex-end
+            .carousel-control
+                align-items: center
+                display: flex
+                justify-content: center
+                padding: 5px
+                &-prev,
+                &-next
+                    color: $black
+                &-prev
+                    justify-content: flex-start
+                &-next
+                    justify-content: flex-end
+            .fontawesome-carousel-control .fa
+                font-size: 30px
 
 
         // component direct in root
@@ -176,9 +179,11 @@ $black: #000000 !default
                 @extend .offset-md-1 !optional
                 @extend .col-md-offset-1 !optional
 
+
         @media screen and (max-width: 767.98px)
             &__page > &
                 margin-bottom: $grid-gutter-width
+            &__page > &__slider,
             &__page > &__video
                 padding-left: 0
                 padding-right: 0
