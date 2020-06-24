@@ -164,20 +164,26 @@ $black: #000000 !default
         // component direct in root
         &__page > &__blockquote,
         &__page > &__cover
-            .promethee__component__content
-                @extend .col-md-8
-                @extend .offset-md-2 !optional
-                @extend .col-md-offset-2 !optional
+            .promethee__component
+                &__row
+                    @extend .row
+                &__content
+                    @extend .col-md-8
+                    @extend .offset-md-2 !optional
+                    @extend .col-md-offset-2 !optional
 
         &__page > &__aside,
         &__page > &__faq,
         &__page > &__image,
         &__page > &__text,
         &__page > &__video
-            .promethee__component__content
-                @extend .col-md-10
-                @extend .offset-md-1 !optional
-                @extend .col-md-offset-1 !optional
+            .promethee__component
+                &__row
+                    @extend .row
+                &__content
+                    @extend .col-md-10
+                    @extend .offset-md-1 !optional
+                    @extend .col-md-offset-1 !optional
 
 
         @media screen and (max-width: 767.98px)
@@ -187,6 +193,9 @@ $black: #000000 !default
             &__page > &__video
                 padding-left: 0
                 padding-right: 0
+                .promethee__component__row
+                    margin-left: 0
+                    margin-right: 0
                 .promethee__component__content
                     padding-left: 0
                     padding-right: 0
