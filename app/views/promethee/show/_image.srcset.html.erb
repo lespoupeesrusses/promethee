@@ -3,7 +3,7 @@
 <%  image_width = blob.metadata.has_key?(:width) ? blob.metadata[:width] : ActiveStorage::Analyzer::ImageAnalyzer.new(blob).metadata[:width] %>
 
 <% if image_zoomable %>
-  <a data-fancybox title="<%= strip_tags(caption) %>" href="<%= fullsize_url %>">
+  <a data-fancybox="gallery" title="<%= strip_tags(caption) %>" href="<%= fullsize_url %>">
 <% end %>
     <img src="<%= fullsize_url %>"
         srcset="
