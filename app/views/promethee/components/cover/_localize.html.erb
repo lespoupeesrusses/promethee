@@ -1,5 +1,5 @@
 <script type="text/ng-template" id="promethee/components/cover/localize">
-  <div ng-show="master.attributes.surtitle.value || master.attributes.title.value || master.attributes.subtitle.value">
+  <div ng-show="master.attributes.surtitle.value || frozen_component.attributes.surtitle.value || master.attributes.title.value || frozen_component.attributes.title.value || master.attributes.subtitle.value || frozen_component.attributes.subtitle.value">
     <hr>
 
     <div class="row">
@@ -8,7 +8,7 @@
       </div>
     </div>
 
-    <div class="row" ng-show="master.attributes.surtitle.value">
+    <div class="row" ng-show="master.attributes.surtitle.value || frozen_component.attributes.surtitle.value">
       <div class="col-md-6">
         <b>Surtitle</b>
         <p>{{master.attributes.surtitle.value}}</p>
@@ -21,7 +21,7 @@
       </div>
     </div>
 
-    <div class="row" ng-show="master.attributes.title.value">
+    <div class="row" ng-show="master.attributes.title.value || frozen_component.attributes.title.value">
       <div class="col-md-6">
         <b>Title</b>
         <p>{{master.attributes.title.value}}</p>
@@ -34,7 +34,7 @@
       </div>
     </div>
 
-    <div class="row" ng-show="master.attributes.subtitle.value">
+    <div class="row" ng-show="master.attributes.subtitle.value || frozen_component.attributes.subtitle.value">
       <div class="col-md-6">
         <b>Subtitle</b>
         <p>{{master.attributes.subtitle.value}}</p>

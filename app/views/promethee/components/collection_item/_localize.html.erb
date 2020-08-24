@@ -1,8 +1,8 @@
 <script type="text/ng-template" id="promethee/components/collection_item/localize">
-  <div ng-show="master.attributes.caption.value !== '' || master.attributes.media_type.value == 'video'">
+  <div ng-show="master.attributes.caption.value || frozen_component.attributes.caption.value || master.attributes.media_type.value == 'video'">
     <hr>
 
-    <div class="row" ng-show="master.attributes.caption.value !== ''">
+    <div class="row" ng-show="master.attributes.caption.value || frozen_component.attributes.caption.value">
       <div class="col-md-6">
         <b>Collection Item Caption</b>
         <div class="promethee-edit__wrapper" ng-bind-html="master.attributes.caption.value | htmlSafe"></div>

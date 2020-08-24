@@ -14,7 +14,7 @@
     </div>
   </div>
 
-  <div class="row" ng-show="master.attributes.collapsed_content.value">
+  <div class="row" ng-show="master.attributes.collapsed_content.value || frozen_component.attributes.collapsed_content.value">
     <div class="col-md-6">
       <b>Aside collapsed content</b>
       <div ng-bind-html="master.attributes.collapsed_content.value | htmlSafe"></div>
@@ -27,7 +27,7 @@
     </div>
   </div>
 
-  <div class="row" ng-show="master.attributes.collapsed_content.value">
+  <div class="row" ng-show="master.attributes.open_label.value || frozen_component.attributes.open_label.value">
     <div class="col-md-6">
       <b>Button label</b>
       <div ng-bind-html="master.attributes.open_label.value | htmlSafe"></div>

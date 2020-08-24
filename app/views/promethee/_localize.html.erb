@@ -53,11 +53,17 @@ promethee_masters_multiple = Promethee::Data::MastersMultiple.new master_data, o
     $scope.data = <%= promethee_data.to_json.html_safe %>;
     $scope.masters = mastersMultiple;
     $scope.masters.set(<%= promethee_masters_multiple.to_json.html_safe %>);
+
     $scope.$watch('data', function(new_val, old_val) {
       if (old_val != new_val) {
         window.warnBeforeUnload.lock();
       }
     }, true);
+
+    $scope.freezeData = function (data) {
+      return JSON.parse(JSON.stringify(data));
+    };
+
     $scope.copyTranslations = function(event) {
       event.preventDefault();
       if (confirm('Warning: this will overwrite every translations!')) {
@@ -97,7 +103,9 @@ promethee_masters_multiple = Promethee::Data::MastersMultiple.new master_data, o
      ng-controller="PrometheeLocalizerController as prometheeLocalizerController">
 
   <script type="text/ng-template" id="promethee/localize/component">
-    <span class="hidden d-none">{{ master = masters.masterForComponent(component) }}</span>
+    <span class="hidden d-none" ng-init="frozen_component = freezeData(component)">
+      {{ master = masters.masterForComponent(component) }}
+    </span>
     <ng-include src="'promethee/components/' + component.type + '/localize'"></ng-include>
   </script>
 
