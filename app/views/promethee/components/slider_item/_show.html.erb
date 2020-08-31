@@ -25,5 +25,7 @@ end
   <% elsif image_blob.present? %>
     <%= render 'promethee/show/image.srcset', blob: image_blob, alt: '', caption: caption %>
   <% end %>
-  <%= caption %>
+  <div class="carousel-item__content__caption">
+    <%= caption %>
+  </div>
 </div>
