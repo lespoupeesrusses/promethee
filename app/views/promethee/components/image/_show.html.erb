@@ -4,7 +4,8 @@ blob = blob_from_data component[:attributes].dig(:image, :value)
 alt = component[:attributes].dig(:alt, :value)&.to_s
 caption = component[:attributes].dig(:caption, :value)&.to_s
 %>
-<figure class="<%= promethee_class_for component %>">
+<figure class="<%= promethee_class_for component %>"
+        id="<%= promethee_id_for component %>">
   <div class="promethee__component__row">
     <div class="promethee__component__content">
       <%= render 'promethee/show/image.srcset', blob: blob, alt: alt, caption: caption if blob %>

@@ -3,7 +3,8 @@
   author = component[:attributes].dig(:author, :value)&.to_s
 %>
 
-<div class="<%= promethee_class_for(component) %>">
+<div  class="<%= promethee_class_for(component) %>"
+      id="<%= promethee_id_for component %>">
   <div class="promethee__component__row">
     <div class="promethee__component__content">
       <blockquote class="blockquote">

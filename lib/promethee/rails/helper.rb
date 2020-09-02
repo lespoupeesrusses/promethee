@@ -3,7 +3,7 @@ module Promethee::Rails::Helper
     render partial: 'promethee/show', locals: { master_data: data, localization_data: options[:l] }
   end
 
-  def promethee_class_for component, *modifiers
+  def promethee_class_for(component, *modifiers)
     base = "promethee__component"
     component_base = "#{base}__#{component[:type]}"
 
@@ -12,6 +12,10 @@ module Promethee::Rails::Helper
       component_base,
       modifiers.map { |modifier| "#{component_base}--#{modifier}" }
     ].flatten.select(&:present?).join ' '
+  end
+
+  def promethee_id_for(component)
+    "promethee-component-#{component[:id]}"
   end
 
   def promethee_component_partials

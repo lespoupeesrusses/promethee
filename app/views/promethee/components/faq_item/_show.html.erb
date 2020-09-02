@@ -6,7 +6,8 @@ special_question = component[:attributes].dig(:special_question, :value)
 image_blob = blob_from_data component[:attributes].dig(:image, :value)
 %>
 
-<div class="<%= promethee_class_for component %> <%= 'promethee__component__faq_item--special' if special_question %>">
+<div  class="<%= promethee_class_for component %> <%= 'promethee__component__faq_item--special' if special_question %>"
+      id="<%= promethee_id_for component %>">
   <h4 data-toggle="collapse"
       data-target="#collapse-faq-<%= component[:id] %>"
       aria-expanded="false"

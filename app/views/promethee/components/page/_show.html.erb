@@ -11,6 +11,7 @@
   <script><%= javascripts %></script>
 <% end %>
 
-<div class="<%= promethee_class_for component %>">
+<div  class="<%= promethee_class_for component %>"
+      id="<%= promethee_id_for component %>">
   <%= render 'promethee/show/components', components: component[:children] %>
 </div>

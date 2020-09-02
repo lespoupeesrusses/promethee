@@ -5,7 +5,9 @@ surtitle = component[:attributes].dig(:surtitle, :value)&.to_s
 title = component[:attributes].dig(:title, :value)&.to_s
 subtitle = component[:attributes].dig(:subtitle, :value)&.to_s
 %>
-<div id="component-<%= component[:id] %>" class="<%= promethee_class_for(component) %>" style="background-image: url(<%= url_for(blob.variant(resize: '1920>', quality: 95)) if blob %>)">
+<div  class="<%= promethee_class_for(component) %>"
+      id="<%= promethee_id_for component %>"
+      style="background-image: url(<%= url_for(blob.variant(resize: '1920>', quality: 95)) if blob %>)">
     <div class="container">
       <div class="promethee__component__row">
         <div class="promethee__component__content">

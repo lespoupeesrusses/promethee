@@ -1,4 +1,6 @@
-<div id="slider-<%= component[:id] %>" class="carousel slide <%= promethee_class_for component %>" data-ride="carousel">
+<div  class="carousel slide <%= promethee_class_for component %>"
+      id="<%= promethee_id_for component %>"
+      data-ride="carousel">
   <div class="carousel-inner">
     <% component[:children].each.with_index do |item, n| %>
     <div class="carousel-item item<%= ' active' if n.zero? %>">

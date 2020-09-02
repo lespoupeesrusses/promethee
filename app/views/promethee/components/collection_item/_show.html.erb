@@ -17,8 +17,8 @@ when 'video'
   end
 end
 %>
-<div class="collection-item__content">
-
+<div  class="<%= promethee_class_for component %> collection-item__content"
+      id="<%= promethee_id_for component %>">
   <% if iframe_src.present? %>
   <div class="embed-responsive embed-responsive-16by9">
     <iframe frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="allowfullscreen" src="<%= iframe_src %>"></iframe>
@@ -26,5 +26,7 @@ end
   <% elsif image_blob.present? %>
   <%= render 'promethee/show/image.srcset', blob: image_blob, alt: '', caption: caption %>
   <% end %>
-  <%= caption %>
+  <div class="collection-item__content__caption">
+    <%= caption %>
+  </div>
 </div>

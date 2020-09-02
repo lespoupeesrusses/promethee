@@ -1,7 +1,8 @@
 <%
 body = component[:attributes].dig(:body, :value)&.to_s&.html_safe
 %>
-<div class="<%= promethee_class_for component %>">
+<div  class="<%= promethee_class_for component %>"
+      id="<%= promethee_id_for component %>">
   <div class="promethee__component__row">
     <div class="promethee__component__content">
         <%= body %>

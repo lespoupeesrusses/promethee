@@ -41,6 +41,7 @@ if component[:attributes].dig(:mobile, :value, :enabled, :value)
   classes += " col-xs-#{size} col-xs-offset-#{offset}" # BS3, does nothing for BS4
 end
 %>
-<div class="<%= classes %> <%= promethee_class_for component %>">
+<div  class="<%= classes %> <%= promethee_class_for component %>"
+      id="<%= promethee_id_for component %>">
   <%= render 'promethee/show/components', components: component[:children] %>
 </div>

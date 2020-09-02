@@ -5,7 +5,8 @@
   open_label_position = component[:attributes].dig(:open_label_position, :value)&.to_s
 %>
 
-<aside class="<%= promethee_class_for component %> aside">
+<aside  class="<%= promethee_class_for component %> aside"
+        id="<%= promethee_id_for component %>">
   <div class="promethee__component__row">
     <div class="promethee__component__content">
         <div class="aside__content">

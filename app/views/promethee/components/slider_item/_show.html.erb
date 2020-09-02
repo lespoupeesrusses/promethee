@@ -17,7 +17,8 @@ when 'video'
   end
 end
 %>
-<div class="carousel-item__content">
+<div class="<%= promethee_class_for component %> carousel-item__content"
+     id="<%= promethee_id_for component %>">
   <% if iframe_src.present? %>
   <div class="embed-responsive embed-responsive-16by9">
     <iframe frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="allowfullscreen" src="<%= iframe_src %>"></iframe>

@@ -12,7 +12,8 @@
   end
 %>
 
-<div class="row <%= promethee_class_for component %>">
+<div  class="row <%= promethee_class_for component %>"
+      id="<%= promethee_id_for component %>">
   <% component[:children].each.with_index do |child, n| %>
     <div class="<%= col_classes %>">
         <%= render 'promethee/show/component', component: child %>

@@ -12,7 +12,8 @@
   headerRow = rows.shift
 %>
 
-<div id="component-<%= component[:id] %>" class="<%= promethee_class_for(component) %>">
+<div  class="<%= promethee_class_for(component) %>"
+      id="<%= promethee_id_for component %>">
   <% unless headerRow.nil? %>
     <div class="table-responsive">
       <table class="table">
