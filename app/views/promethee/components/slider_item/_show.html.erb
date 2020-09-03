@@ -24,7 +24,7 @@ end
     <iframe frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="allowfullscreen" src="<%= iframe_src %>"></iframe>
   </div>
   <% elsif image_blob.present? %>
-    <%= render 'promethee/show/image.srcset', blob: image_blob, alt: '', caption: caption %>
+    <%= render 'promethee/show/image.srcset', blob: image_blob, alt: '', caption: caption, image_zoomable: false %>
   <% end %>
   <div class="carousel-item__content__caption">
     <%= caption %>
