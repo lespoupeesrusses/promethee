@@ -10,10 +10,10 @@
   </div>
 
   <% if component[:children].many? %>
-    <a class="left carousel-control fontawesome-carousel-control carousel-control-prev" href="#slider-<%= component[:id] %>" data-slide="prev">
+    <a class="left carousel-control fontawesome-carousel-control carousel-control-prev" href="<%= promethee_id_for component[:id] %>" data-slide="prev">
       <%= icon('fa', 'chevron-left') %>
     </a>
-    <a class="right carousel-control fontawesome-carousel-control carousel-control-next" href="#slider-<%= component[:id] %>" data-slide="next">
+    <a class="right carousel-control fontawesome-carousel-control carousel-control-next" href="<%= promethee_id_for component[:id] %>" data-slide="next">
       <%= icon('fa', 'chevron-right') %>
     </a>
   <% end %>
