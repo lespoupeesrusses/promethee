@@ -26,7 +26,13 @@
         </thead>
         <tbody>
           <% rows.each do |row| %>
-            <tr>
+            <%
+              row_class = 'empty'
+              row.each do |cell|
+                row_class = '' unless cell[:text].blank?
+              end
+            %>
+            <tr class="<%= row_class %>">
               <% row.each do |cell| %>
                 <td><%= cell[:text] %></td>
               <% end %>

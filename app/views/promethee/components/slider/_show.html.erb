@@ -9,10 +9,12 @@
     <% end %>
   </div>
 
-  <a class="left carousel-control fontawesome-carousel-control carousel-control-prev" href="#slider-<%= component[:id] %>" data-slide="prev">
-    <%= icon('fa', 'chevron-left') %>
-  </a>
-  <a class="right carousel-control fontawesome-carousel-control carousel-control-next" href="#slider-<%= component[:id] %>" data-slide="next">
-    <%= icon('fa', 'chevron-right') %>
-  </a>
+  <% if component[:children].many? %>
+    <a class="left carousel-control fontawesome-carousel-control carousel-control-prev" href="#slider-<%= component[:id] %>" data-slide="prev">
+      <%= icon('fa', 'chevron-left') %>
+    </a>
+    <a class="right carousel-control fontawesome-carousel-control carousel-control-next" href="#slider-<%= component[:id] %>" data-slide="next">
+      <%= icon('fa', 'chevron-right') %>
+    </a>
+  <% end %>
 </div>
