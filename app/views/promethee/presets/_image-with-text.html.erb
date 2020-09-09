@@ -1,7 +1,7 @@
 <script>
   angular.injector(['ng', 'Promethee']).get('presets').push({
     name: 'Image with text',
-    icon: <%= render('promethee/presets/icon.image-with-text').to_json.html_safe %>,
+    icon: <%= promethee_preset_render_icon 'image-with-text' %>,
     position: 1,
     components: [
       {

@@ -26,6 +26,10 @@ module Promethee::Rails::Helper
     render("promethee/components/#{icon}/icon.svg").to_json.html_safe
   end
 
+  def promethee_preset_render_icon(icon)
+    render("promethee/presets/icon.#{icon}.svg").to_json.html_safe
+  end
+
   def promethee_util_partials
     promethee_partials_for 'utils/_*.html.erb'
   end
