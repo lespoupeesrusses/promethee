@@ -48,9 +48,7 @@
             {{ getTableCell(getHeaderCellUids()[$index]).attributes.text.value }}
           </span>
           <br/>
-          <input  type="text"
-                  ng-model="getTableCell(cellUid).attributes.text.value"
-                  class="form-control" />
+          <summernote config="summernoteConfig" ng-model="getTableCell(cellUid).attributes.text.value"></summernote>
         </div>
       </div>
       <hr>

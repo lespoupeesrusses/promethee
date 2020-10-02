@@ -5,14 +5,14 @@
           <thead>
             <tr>
               <th ng-repeat="cellUid in component.attributes.structure.value[0]">
-                {{getTableCell(cellUid).attributes.text.value}}
+                <div ng-bind-html="getTableCell(cellUid).attributes.text.value | htmlSafe"></div>
               </th>
             </tr>
           </thead>
           <tbody>
             <tr ng-repeat="row in component.attributes.structure.value" ng-if="$index > 0">
               <td ng-repeat="cellUid in row">
-                {{getTableCell(cellUid).attributes.text.value}}
+                <div ng-bind-html="getTableCell(cellUid).attributes.text.value | htmlSafe"></div>
               </td>
             </tr>
           </tbody>

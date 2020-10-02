@@ -4,7 +4,7 @@
     row.map { |cellUid|
       {
         uid: cellUid,
-        text: cells.find { |cell| cell[:id] == cellUid }.dig(:attributes, :text, :value)
+        text: cells.find { |cell| cell[:id] == cellUid }.dig(:attributes, :text, :value)&.html_safe
       }
     }
   }

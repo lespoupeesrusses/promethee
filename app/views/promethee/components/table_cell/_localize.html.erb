@@ -2,11 +2,11 @@
   <div class="row mt-2" ng-show="master.attributes.text.value || frozen_component.attributes.text.value">
     <div class="col-md-6">
       <b>Text</b>
-      <p>{{ master.attributes.text.value }}</p>
+      <div ng-bind-html="master.attributes.text.value | htmlSafe"></div>
     </div>
     <div class="col-md-6">
       <b>Text</b>
-      <input class="form-control" ng-model="component.attributes.text.value" type="text">
+      <summernote config="summernoteConfig" ng-model="component.attributes.text.value"></summernote>
     </div>
   </div>
 </script>
