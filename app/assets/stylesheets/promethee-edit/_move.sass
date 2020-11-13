@@ -8,7 +8,7 @@
             border: 1px solid #CCCCCC
             display: flex
             flex-direction: column
-            justify-content: center
+            justify-content: flex-start
             min-height: 70px
             position: relative
             p.text-empty
@@ -28,6 +28,30 @@
             right: 4px
             top: 4px
             z-index: 1
+
+        &--row
+            .row
+                margin-left: -10px
+                margin-right: -10px
+            .promethee-edit__component--column
+                padding-bottom: 5px
+                padding-top: 5px
+
+        &--text
+            .promethee-edit__component__inner
+                padding: 10px
+            h1, h2, h3
+                margin-top: 0
+            p
+                line-height: 1.2
+                &:last-of-type
+                    margin-bottom: 0
+
+        &--image
+            figure
+                margin-bottom: 0
+            figcaption
+                padding: 5px
 
         &--aside
             .btn
@@ -57,6 +81,9 @@
                     align-items: center
                     display: flex
                     justify-content: center
+                p
+                    &:last-of-type
+                        margin-bottom: 0
             .dots
                 margin-top: 5px
                 text-align: center
@@ -118,24 +145,23 @@
         color: white
         font-size: 8px
         margin-bottom: 5px
-        padding: 4px 5px 5px
+        padding: 5px 10px
         text-transform: uppercase
     &__component
         user-select: none
 
     &__droppable
         background: white
-        border: 1px dashed #253742
+        border: 0 dashed #253742
         box-sizing: border-box
-        height: 20px
-        margin: 2px 0
         opacity: .2
         position: relative
-        transition: width .2s, height .2s, opacity .2s
-        visibility: hidden
-        width: 100%
+        transition: all .5s
+        width: calc(100% - 4px)
         &.ui-droppable-active
-            visibility: visible
+            border-width: 1px
+            height: 20px
+            margin: 2px
         &.ui-droppable-hover
             height: 100px
             opacity: 1
@@ -157,7 +183,7 @@
             padding: 30px 20px 15px
             position: fixed
             top: 50px
-            width: calc(50vw - 365px)
+            width: calc(50vw - 367px)
             z-index: 1000
             &-header
                 font-size: 18px
