@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    promethee (4.1.17)
+    promethee (4.1.18)
       angularjs-rails (~> 1.6.2)
       deep_merge_existing_keys
       font-awesome-sass
@@ -100,7 +100,7 @@ GEM
       mimemagic (~> 0.3.2)
     method_source (1.0.0)
     mimemagic (0.3.5)
-    mini_magick (4.10.1)
+    mini_magick (4.11.0)
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     minitest (5.14.2)
@@ -157,7 +157,7 @@ GEM
     thor (1.0.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
-    tzinfo (1.2.7)
+    tzinfo (1.2.8)
       thread_safe (~> 0.1)
     websocket-driver (0.7.3)
       websocket-extensions (>= 0.1.0)
