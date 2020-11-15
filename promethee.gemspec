@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   end
 
   s.add_dependency 'rails', '>= 5.2.0', '< 6.1'
-  s.add_dependency 'angularjs-rails', '~> 1.6.2'
+  s.add_dependency 'angularjs-rails'
   s.add_dependency 'sassc-rails'
   s.add_dependency 'jquery-rails'
   s.add_dependency 'jquery-ui-rails'
