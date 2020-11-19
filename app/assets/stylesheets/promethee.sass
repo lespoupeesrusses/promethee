@@ -68,9 +68,10 @@ $black: #000000 !default
             .collection-item__content
                 &:not(:last-of-type)
                     margin-bottom: $grid-gutter-width
-                a + p
-                    margin-bottom: 0
+                &__caption
                     margin-top: 10px
+                    p:last-of-type
+                        margin-bottom: 0
 
         &__cover
             background-position: center center
