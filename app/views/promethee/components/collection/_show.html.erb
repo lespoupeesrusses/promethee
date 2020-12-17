@@ -12,20 +12,22 @@
   end
 %>
 
-<div  class="row <%= promethee_class_for component %>"
+<div  class="<%= promethee_class_for component %>"
       id="<%= promethee_id_for component %>">
   <% component[:children].each.with_index do |child, n| %>
-    <div class="<%= col_classes %>">
-        <%= render 'promethee/show/component', component: child %>
-    </div>
-    <% if n%items_per_line === items_per_line - 1 %>
-      <div class="clearfix hidden-sm hidden-xs d-none d-md-block"></div>
+    <div class="row promethee__component__row">
+      <div class="<%= col_classes %>">
+          <%= render 'promethee/show/component', component: child %>
+      </div>
+      <% if n%items_per_line === items_per_line - 1 %>
+        <div class="clearfix hidden-sm hidden-xs d-none d-md-block"></div>
+      <% end %>
+      <% if items_per_line >= 4 && n.odd? %>
+        <div class="clearfix visible-xs-block d-block <%= items_per_line === 4 ? 'visible-sm-block d-md-none' : 'd-sm-none' %>"></div>
+      <% end %>
+      <% if items_per_line == 6 && n%3 == 2 %>
+        <div class="clearfix visible-sm-block .d-none .d-sm-block .d-md-none"></div>
+      <% end %>
     <% end %>
-    <% if items_per_line >= 4 && n.odd? %>
-      <div class="clearfix visible-xs-block d-block <%= items_per_line === 4 ? 'visible-sm-block d-md-none' : 'd-sm-none' %>"></div>
-    <% end %>
-    <% if items_per_line == 6 && n%3 == 2 %>
-      <div class="clearfix visible-sm-block .d-none .d-sm-block .d-md-none"></div>
-    <% end %>
-  <% end %>
+  </div>
 </div>
