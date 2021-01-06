@@ -18,7 +18,8 @@ class PrometheeController < ApplicationController
   def blob_show
     # as this is called only from promethee preview it sends an image resized to 720
     begin
-      blob = ActiveStorage::Blob.find_signed(params[:id])
+      blob_find_method = ActiveStorage::Blob.respond_to?(:find_signed!) ? :find_signed! : :find_signed
+      blob = ActiveStorage::Blob.public_send(blob_find_method, params[:id])
     rescue
       raise ActiveRecord::RecordNotFound
     end
