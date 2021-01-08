@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    promethee (4.1.26)
+    promethee (4.1.27)
       angularjs-rails
       deep_merge_existing_keys
       font-awesome-sass
