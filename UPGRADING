@@ -1,9 +1,9 @@
 ###################################
-#  NOTE FOR UPGRADING TO 4.x.x  #
+#  NOTE FOR UPGRADING TO 5.x.x  #
 ###################################
 
-In Prométhée 4.0, to apply the correct sanitization process, every attribute has an explicit type.
-A rake task is available to upgrade your data.
+In Prométhée 5.0, having dots in partial names is deprecated.
+If you have custom components, you have to rename some of them.
 
 For more details, check the documentation:
-https://github.com/lespoupeesrusses/promethee/tree/master/doc
+https://github.com/lespoupeesrusses/promethee/tree/master/doc/RENAME_PARTIALS.md
