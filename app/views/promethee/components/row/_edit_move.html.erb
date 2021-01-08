@@ -1,5 +1,5 @@
 <script type="text/ng-template" id="promethee/components/row/edit/move">
-<%= render 'promethee/edit/move.header', type: 'row' %>
+<%= render 'promethee/edit/move_header', type: 'row' %>
     <div class="header">Row</div>
     <div class="row" ng-controller="RowMoveController">
       <div class="row__background row__background--color" ng-style="{'background': component.attributes.bgcolor.value}"></div>
@@ -20,7 +20,7 @@
                     offset-md-{{component.attributes.offset.value}}
                     col-md-offset-{{component.attributes.offset.value}}">
         <div class="promethee-edit__component__inner">
-          <%= render 'promethee/edit/move.remove' %>
+          <%= render 'promethee/edit/move_remove' %>
             <div class="header">Column {{$index + 1}}</div>
             <ng-include src="'promethee/move/components'"></ng-include>
             </div>

@@ -19,7 +19,7 @@ image_blob = blob_from_data component[:attributes].dig(:image, :value)
     <% if image_blob %>
       <div class="row ">
         <div class="col-3 col-xs-3">
-          <%= render 'promethee/show/image.srcset', blob: image_blob, alt: '', title: '', caption: '' %>
+          <%= render 'promethee/show/image_srcset', blob: image_blob, alt: '', title: '', caption: '' %>
         </div>
         <div class="col-9 col-xs-9">
           <%= body %>

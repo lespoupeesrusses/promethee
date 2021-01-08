@@ -19,15 +19,15 @@ module Promethee::Rails::Helper
   end
 
   def promethee_component_partials
-    promethee_partials_for 'components/*/_edit.*.html.erb'
+    promethee_partials_for 'components/*/_edit_*.html.erb'
   end
 
   def promethee_component_render_icon(icon)
-    render("promethee/components/#{icon}/icon.svg").to_json.html_safe
+    render(partial: "promethee/components/#{icon}/icon", formats: :svg).to_json.html_safe
   end
 
   def promethee_preset_render_icon(icon)
-    render("promethee/presets/icon.#{icon}.svg").to_json.html_safe
+    render(partial: "promethee/presets/icon_#{icon}", formats: :svg).to_json.html_safe
   end
 
   def promethee_util_partials
@@ -68,14 +68,13 @@ module Promethee::Rails::Helper
 
   protected
 
-  # Example:  promethee_partials_for 'components/*/_edit.*.html.erb'
+  # Example:  promethee_partials_for 'components/*/_edit_*.html.erb'
   # [
-  #   'promethee/components/column/edit.define',
-  #   'promethee/components/column/edit.inspect',
-  #   'promethee/components/column/edit.move',
-  #   'promethee/components/column/edit.write',
-  #   'promethee/components/cover/edit.define',
-  #   'promethee/components/cover/edit.inspect',
+  #   'promethee/components/column/edit_define',
+  #   'promethee/components/column/edit_inspect',
+  #   'promethee/components/column/edit_move',
+  #   'promethee/components/cover/edit_define',
+  #   'promethee/components/cover/edit_inspect',
   #   ...
   # ]
   def promethee_partials_for(path)
@@ -84,12 +83,11 @@ module Promethee::Rails::Helper
 
   # Example: promethee_partial_paths_for 'components/*/_edit.*.html.erb'
   # [
-  #   Pathname:promethee/components/column/_edit.define.html.erb,
-  #   Pathname:promethee/components/column/_edit.inspect.html.erb,
-  #   Pathname:promethee/components/column/_edit.move.html.erb,
-  #   Pathname:promethee/components/column/_edit.write.html.erb,
-  #   Pathname:promethee/components/cover/_edit.define.html.erb,
-  #   Pathname:promethee/components/cover/_edit.inspect.html.erb,
+  #   Pathname:promethee/components/column/_edit_define.html.erb,
+  #   Pathname:promethee/components/column/_edit_inspect.html.erb,
+  #   Pathname:promethee/components/column/_edit_move.html.erb,
+  #   Pathname:promethee/components/cover/_edit_define.html.erb,
+  #   Pathname:promethee/components/cover/_edit_inspect.html.erb,
   #   ...
   # ]
   def promethee_partial_paths_for(path)

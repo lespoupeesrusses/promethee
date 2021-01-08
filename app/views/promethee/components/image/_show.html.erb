@@ -9,7 +9,7 @@ caption = component[:attributes].dig(:caption, :value)&.to_s
         id="<%= promethee_id_for component %>">
   <div class="promethee__component__row">
     <div class="promethee__component__content">
-      <%= render 'promethee/show/image.srcset', blob: blob, alt: alt, title: title, caption: caption if blob %>
+      <%= render 'promethee/show/image_srcset', blob: blob, alt: alt, title: title, caption: caption if blob %>
       <% unless caption.blank? %>
         <figcaption>
           <%= caption %>
