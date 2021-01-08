@@ -37,7 +37,8 @@ module PrometheeData
   end
 
   def promethee_data_page_thumbnail
-    ActiveStorage::Blob.find_signed(data['attributes']['thumbnail']['value']['id'])
+    blob_find_method = ActiveStorage::Blob.respond_to?(:find_signed!) ? :find_signed! : :find_signed
+    ActiveStorage::Blob.public_send blob_find_method, data['attributes']['thumbnail']['value']['id']
   rescue
     nil
   end

@@ -48,7 +48,10 @@ module Promethee::Rails::Helper
 
   def blob_from_data(blob_data = {})
     return unless blob_data&.has_key? :id
-    ActiveStorage::Blob.find_signed(blob_data[:id]) rescue nil
+    blob_find_method = ActiveStorage::Blob.respond_to?(:find_signed!) ? :find_signed! : :find_signed
+    ActiveStorage::Blob.public_send blob_find_method, blob_data[:id]
+  rescue
+    nil
   end
 
   # promethee_bem_classes 'promethee-edit__move__droppable', '--{{type}}', '--first'
