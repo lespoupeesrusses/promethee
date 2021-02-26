@@ -1,5 +1,5 @@
 module Promethee
   module Rails
-    VERSION = '4.1.28'
+    VERSION = '5.0.0'
   end
 end
