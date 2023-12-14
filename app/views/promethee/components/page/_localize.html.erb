@@ -2,12 +2,12 @@
   <% unless @disable_page_attributes %>
   <hr>
 
-    <div class="row">
+    <div class="row js-translation-element">
       <div class="col-md-6">
         <b>Page title</b>
-        <p>{{master.attributes.title.value}}</p><br>
+        <p class="js-translation-source" data-type="string">{{master.attributes.title.value}}</p><br>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-6 js-translation-target">
         <div class="form-group">
           <b>Page title</b>
           <input class="form-control" ng-model="component.attributes.title.value" type="text">
@@ -15,14 +15,14 @@
       </div>
     </div>
 
-    <div class="row" ng-show="master.attributes.description.value || frozen_component.attributes.description.value">
+    <div class="row js-translation-element" ng-show="master.attributes.description.value || frozen_component.attributes.description.value">
       <div class="col-md-6">
         <div>
           <b>Page description</b>
-          <p>{{master.attributes.description.value}}</p>
+          <p class="js-translation-source" data-type="text">{{master.attributes.description.value}}</p>
         </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-6 js-translation-target">
         <div class="form-group">
           <b>Page description</b>
           <textarea class="form-control" rows="6" ng-model="component.attributes.description.value"></textarea>

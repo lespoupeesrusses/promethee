@@ -2,23 +2,23 @@
   <div ng-show="master.attributes.caption.value || frozen_component.attributes.caption.value || master.attributes.media_type.value == 'video'">
     <hr>
 
-    <div class="row" ng-show="master.attributes.caption.value || frozen_component.attributes.caption.value">
+    <div class="row js-translation-element" ng-show="master.attributes.caption.value || frozen_component.attributes.caption.value">
       <div class="col-md-6">
         <b>Slider Item Caption</b>
-        <div class="promethee-edit__wrapper" ng-bind-html="master.attributes.caption.value | htmlSafe"></div>
+        <div class="promethee-edit__wrapper js-translation-source" data-type="text" ng-bind-html="master.attributes.caption.value | htmlSafe"></div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-6 js-translation-target">
         <b>Slider Item Caption</b>
         <summernote config="summernoteConfig" ng-model="component.attributes.caption.value"></summernote>
       </div>
     </div>
 
-    <div class="row" ng-show="master.attributes.media_type.value == 'video'">
+    <div class="row js-translation-element" ng-show="master.attributes.media_type.value == 'video'">
       <div class="col-md-6">
         <b>Video URL</b>
-        <div ng-bind-html="master.attributes.video.value | htmlSafe"></div>
+        <div class="js-translation-source" data-type="string" ng-bind-html="master.attributes.video.value | htmlSafe"></div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-6 js-translation-target">
         <b>Video URL</b>
         <input class="form-control" ng-model="component.attributes.video.value" type="text">
       </div>

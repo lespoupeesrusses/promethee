@@ -1,12 +1,12 @@
 <script type="text/ng-template" id="promethee/components/blockquote/localize">
   <div ng-show="master.attributes.body.value || frozen_component.attributes.body.value">
     <hr>
-    <div class="row">
+    <div class="row js-translation-element">
       <div class="col-md-6">
         <b>Body</b>
-        <div ng-bind-html="master.attributes.body.value | htmlSafe"></div>
+        <div class="js-translation-source" data-type="text" ng-bind-html="master.attributes.body.value | htmlSafe"></div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-6 js-translation-target">
         <div class="form-group">
           <b>Body</b>
           <summernote config="summernoteConfig" ng-model="component.attributes.body.value"></summernote>
@@ -15,12 +15,12 @@
     </div>
   </div>
 
-  <div class="row" ng-show="master.attributes.author.value || frozen_component.attributes.author.value">
+  <div class="row js-translation-element" ng-show="master.attributes.author.value || frozen_component.attributes.author.value">
     <div class="col-md-6">
       <b>Author</b>
-      <p>{{master.attributes.author.value}}</p>
+      <p class="js-translation-source" data-type="string">{{master.attributes.author.value}}</p>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-6 js-translation-target">
       <div class="form-group">
         <b>Author</b>
         <input class="form-control" ng-model="component.attributes.author.value" type="text">
