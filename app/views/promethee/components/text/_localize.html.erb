@@ -1,12 +1,12 @@
 <script type="text/ng-template" id="promethee/components/text/localize">
   <div ng-show="master.attributes.body.value || frozen_component.attributes.body.value">
     <hr>
-    <div class="row">
+    <div class="row js-translation-element">
       <div class="col-md-6">
         <b>Text</b>
-        <div ng-bind-html="master.attributes.body.value | htmlSafe"></div>
+        <div class="js-translation-source" ng-bind-html="master.attributes.body.value | htmlSafe"></div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-6 js-translation-target">
         <b>Text</b>
         <summernote config="summernoteConfig" ng-model="component.attributes.body.value"></summernote>
       </div>

@@ -8,12 +8,12 @@
       </div>
     </div>
 
-    <div class="row" ng-show="master.attributes.surtitle.value || frozen_component.attributes.surtitle.value">
+    <div class="row js-translation-element" ng-show="master.attributes.surtitle.value || frozen_component.attributes.surtitle.value">
       <div class="col-md-6">
         <b>Surtitle</b>
-        <p>{{master.attributes.surtitle.value}}</p>
+        <p class="js-translation-source">{{master.attributes.surtitle.value}}</p>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-6 js-translation-target">
         <div class="form-group">
           <b>Surtitle</b>
           <input class="form-control" ng-model="component.attributes.surtitle.value" type="text">
@@ -21,12 +21,12 @@
       </div>
     </div>
 
-    <div class="row" ng-show="master.attributes.title.value || frozen_component.attributes.title.value">
+    <div class="row js-translation-element" ng-show="master.attributes.title.value || frozen_component.attributes.title.value">
       <div class="col-md-6">
         <b>Title</b>
-        <p>{{master.attributes.title.value}}</p>
+        <p class="js-translation-source">{{master.attributes.title.value}}</p>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-6 js-translation-target">
         <div class="form-group">
           <b>Title</b>
           <input class="form-control" ng-model="component.attributes.title.value" type="text">
@@ -34,12 +34,12 @@
       </div>
     </div>
 
-    <div class="row" ng-show="master.attributes.subtitle.value || frozen_component.attributes.subtitle.value">
+    <div class="row js-translation-element" ng-show="master.attributes.subtitle.value || frozen_component.attributes.subtitle.value">
       <div class="col-md-6">
         <b>Subtitle</b>
-        <p>{{master.attributes.subtitle.value}}</p>
+        <p class="js-translation-source">{{master.attributes.subtitle.value}}</p>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-6 js-translation-target">
         <div class="form-group">
           <b>Subtitle</b>
           <input class="form-control" ng-model="component.attributes.subtitle.value" type="text">

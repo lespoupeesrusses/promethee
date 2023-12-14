@@ -1,10 +1,10 @@
 <script type="text/ng-template" id="promethee/components/table_cell/localize">
-  <div class="row mt-2" ng-show="master.attributes.text.value || frozen_component.attributes.text.value">
+  <div class="row mt-2 js-translation-element" ng-show="master.attributes.text.value || frozen_component.attributes.text.value">
     <div class="col-md-6">
       <b>Text</b>
-      <div ng-bind-html="master.attributes.text.value | htmlSafe"></div>
+      <div class="js-translation-source" ng-bind-html="master.attributes.text.value | htmlSafe"></div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-6 js-translation-target">
       <b>Text</b>
       <summernote config="summernoteConfig" ng-model="component.attributes.text.value"></summernote>
     </div>
