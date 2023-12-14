@@ -2,7 +2,7 @@
   <div class="row mt-2 js-translation-element" ng-show="master.attributes.text.value || frozen_component.attributes.text.value">
     <div class="col-md-6">
       <b>Text</b>
-      <div class="js-translation-source" ng-bind-html="master.attributes.text.value | htmlSafe"></div>
+      <div class="js-translation-source" data-type="text" ng-bind-html="master.attributes.text.value | htmlSafe"></div>
     </div>
     <div class="col-md-6 js-translation-target">
       <b>Text</b>

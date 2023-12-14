@@ -4,7 +4,7 @@
   <div class="row js-translation-element">
     <div class="col-md-6">
       <b>Aside visible content</b>
-      <div class="js-translation-source" ng-bind-html="master.attributes.visible_content.value | htmlSafe"></div>
+      <div class="js-translation-source" data-type="text" ng-bind-html="master.attributes.visible_content.value | htmlSafe"></div>
     </div>
     <div class="col-md-6 js-translation-target">
       <div class="form-group">
@@ -17,7 +17,7 @@
   <div class="row js-translation-element" ng-show="master.attributes.collapsed_content.value || frozen_component.attributes.collapsed_content.value">
     <div class="col-md-6">
       <b>Aside collapsed content</b>
-      <div class="js-translation-source" ng-bind-html="master.attributes.collapsed_content.value | htmlSafe"></div>
+      <div class="js-translation-source" data-type="text" ng-bind-html="master.attributes.collapsed_content.value | htmlSafe"></div>
     </div>
     <div class="col-md-6 js-translation-target">
       <div class="form-group">
@@ -30,7 +30,7 @@
   <div class="row js-translation-element" ng-show="master.attributes.open_label.value || frozen_component.attributes.open_label.value">
     <div class="col-md-6">
       <b>Button label</b>
-      <div class="js-translation-source" ng-bind-html="master.attributes.open_label.value | htmlSafe"></div>
+      <div class="js-translation-source" data-type="string" ng-bind-html="master.attributes.open_label.value | htmlSafe"></div>
     </div>
     <div class="col-md-6 js-translation-target">
       <div class="form-group">
