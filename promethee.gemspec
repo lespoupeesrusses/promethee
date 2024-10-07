@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
     s.post_install_message = File.read("UPGRADING")
   end
 
-  s.add_dependency 'rails', '>= 5.2.0', '< 7'
+  s.add_dependency 'rails', '>= 5.2.0'
   s.add_dependency 'angularjs-rails'
   s.add_dependency 'sassc-rails'
   s.add_dependency 'jquery-rails'
