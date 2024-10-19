@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'sassc-rails'
   s.add_dependency 'jquery-rails'
   s.add_dependency 'jquery-ui-rails'
-  s.add_dependency 'mini_magick'
+  s.add_dependency 'image_processing'
   s.add_dependency 'font-awesome-sass'
   s.add_dependency 'summernote-rails'
   s.add_dependency 'deep_merge_existing_keys'
