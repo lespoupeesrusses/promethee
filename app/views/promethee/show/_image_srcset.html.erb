@@ -2,7 +2,7 @@
 blob.analyze unless blob.analyzed?
 image_zoomable = true if image_zoomable.nil? # do not use ||= as image_zoomable may be "false"
 fullsize_url = url_for(blob)
-image_width = blob.metadata[:width]
+image_width = blob.metadata[:width].to_i
 alt ||= ''
 title ||= ''
 %>
